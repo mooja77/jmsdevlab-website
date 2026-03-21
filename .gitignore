@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.playwright-mcp/
+logs/
+.wrangler/
+.vercel/
+dist/
+build/
+.next/
+vegrify/node_modules/
