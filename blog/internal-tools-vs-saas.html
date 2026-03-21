@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal Tools vs Off-the-Shelf SaaS: When to Build Custom - JMS Dev Lab</title>
+  <meta name="description" content="Build vs buy software? Here's how to decide when off-the-shelf SaaS is enough and when custom internal tools are worth the investment.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/internal-tools-vs-saas.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Internal Tools vs Off-the-Shelf SaaS: When to Build Custom">
+  <meta property="og:description" content="Build vs buy software? Here's how to decide when off-the-shelf SaaS is enough and when custom internal tools are worth the investment.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/internal-tools-vs-saas.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Internal Tools vs Off-the-Shelf SaaS: When to Build Custom">
+  <meta name="twitter:description" content="Build vs buy software? Here's how to decide when off-the-shelf SaaS is enough and when custom internal tools are worth the investment.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Internal Tools vs Off-the-Shelf SaaS: When to Build Custom",
+    "description": "Build vs buy software? Here's how to decide when off-the-shelf SaaS is enough and when custom internal tools are worth the investment.",
+    "datePublished": "2026-03-19",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/internal-tools-vs-saas.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should a business use off-the-shelf SaaS instead of building custom tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SaaS is the right choice when your problem is generic and common — email, accounting, project management, basic CRM. If your workflow matches what the tool was designed for and you do not need to bend it into shape, buy the SaaS product. You get a polished product with regular updates, support, and costs spread across thousands of customers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the warning signs that off-the-shelf SaaS is no longer working?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key warning signs include paying for 5 tools to do one job, working around the software rather than with it, changing your workflow to fit the tool instead of the other way around, paying enterprise prices while only using a fraction of features, and having data scattered across silos so you spend more time moving data than using it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the hidden costs of using cheap SaaS tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beyond the subscription price, there is the time your team spends on workarounds, data you cannot access without CSV exports, integrations that break when the vendor updates, and feature requests that sit on the roadmap for years. When you add up subscription costs, workaround time, and the limitations you live with, cheap SaaS can cost more than building something purpose-built."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does custom software have to be a big, expensive project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The best custom tools are focused and solve one problem well. They replace the most painful spreadsheet, automate the most tedious process, or give clients the one thing they keep asking for. You can start small, prove the value, and expand from there. Custom builds do not have to take months or cost a fortune."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Internal Tools vs SaaS</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"Internal Tools vs Off-the-Shelf SaaS: When to Build Custom"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Internal Tools vs Off-the-Shelf SaaS: When to Build Custom</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">19 March 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>Every growing business hits the same crossroads. You need software to solve a problem, and you have two options: buy something off the shelf, or build something custom. Both have their place. The trick is knowing which one fits your situation.</p>
+    <p>Get it right and you save time, money, and frustration. Get it wrong and you either pay too much for something you don't need, or shoehorn your business into a tool that was built for someone else.</p>
+
+    <h2>When Off-the-Shelf SaaS Works</h2>
+    <p>SaaS products are brilliant when your problem is generic. Email, accounting, project management, CRM basics &mdash; these are well-understood problems with mature solutions. Tools like Xero, Slack, and Trello exist because millions of businesses need roughly the same thing.</p>
+    <p>If your workflow matches what the tool was designed for, SaaS is almost always the right call. You get a polished product, regular updates, support, and a price that's spread across thousands of customers. You'd be mad to build your own accounting software.</p>
+    <p>The rule of thumb: if the problem is common and your process is standard, buy.</p>
+
+    <h2>When SaaS Starts to Hurt</h2>
+    <p>The cracks appear when your business does something the software wasn't designed for. You start building workarounds. You create spreadsheets to track what the tool can't. You pay for features you'll never use while the one thing you actually need doesn't exist.</p>
+    <p>Here are the warning signs that off-the-shelf isn't cutting it:</p>
+    <ul>
+      <li><strong>You're paying for 5 tools to do one job.</strong> When you need a CRM, a form builder, a spreadsheet, and Zapier glue to hold it together, you've outgrown the buy approach.</li>
+      <li><strong>You're working around the software, not with it.</strong> If your team has a list of "yeah, the system can't do that, so we do it manually," that's a red flag.</li>
+      <li><strong>The tool dictates your process.</strong> Your business should define how you work, not your software vendor. When you change your workflow to fit the tool, you've got the relationship backwards.</li>
+      <li><strong>You're paying enterprise prices for small-business needs.</strong> Many SaaS platforms price by seats or usage tiers. As you grow, costs can spiral &mdash; especially when you're only using a fraction of the features.</li>
+      <li><strong>Data lives in silos.</strong> When your customer data is in one tool, your orders in another, and your reporting in a third, you spend more time moving data than using it.</li>
+    </ul>
+
+    <h2>The Real Cost of "Cheap" SaaS</h2>
+    <p>SaaS looks affordable on the surface. Ten pounds a month per user, what's the problem? But costs add up in ways that aren't on the pricing page.</p>
+    <p>There's the time your team spends on workarounds. There's the data you can't access without exporting to CSV. There's the integration that breaks every time the vendor pushes an update. There's the feature request you submitted two years ago that's still "on the roadmap."</p>
+    <p>When you add up the subscription costs, the workaround time, and the limitations you live with, "cheap" SaaS can end up costing more than building something purpose-built. See our <a href="../pricing.html">pricing page</a> for what a custom build actually costs.</p>
+
+    <h2>When Custom Makes Sense</h2>
+    <p>Custom software is worth the investment when your problem is specific to your business. Not unique in the sense that nobody has ever had it before, but specific in the sense that no off-the-shelf tool solves it well.</p>
+    <p>Good candidates for custom builds include:</p>
+    <ul>
+      <li><strong>Internal workflows that are unique to your operation.</strong> The way you process orders, manage commissions, or track inventory might be different enough that no SaaS tool fits without heavy modification.</li>
+      <li><strong>Client-facing portals.</strong> If your clients need to check status, submit requests, or access documents, a custom portal gives them exactly what they need &mdash; branded, secure, and integrated with your systems.</li>
+      <li><strong>Replacing a tangle of spreadsheets and disconnected tools.</strong> When you've got data in five places and no single source of truth, a custom system brings everything together.</li>
+      <li><strong>Automating repetitive manual processes.</strong> If someone on your team spends hours each week on tasks that follow the same pattern, that's a prime automation candidate.</li>
+    </ul>
+
+    <h2>The Build Doesn't Have to Be Big</h2>
+    <p>One of the biggest misconceptions about custom software is that it means a massive, expensive, months-long project. It doesn't have to be.</p>
+    <p>The best custom tools are focused. They solve one problem well. They replace the most painful spreadsheet, automate the most tedious process, or give your clients the one thing they keep asking for. You can start small, prove the value, and expand from there.</p>
+    <p>That's the approach we take at JMS Dev Lab. We build focused tools for businesses that are too unique for off-the-shelf and too small for enterprise. Fixed-price projects with clear scope, so you know exactly what you're getting and what it costs.</p>
+
+    <h2>How to Decide</h2>
+    <p>Ask yourself three questions:</p>
+    <ol>
+      <li><strong>Is my problem generic or specific?</strong> If it's generic (email, accounting, basic CRM), buy. If it's specific to how your business operates, consider building.</li>
+      <li><strong>Am I working around my tools?</strong> If you're spending significant time on workarounds, the "cheap" option is costing you more than you think.</li>
+      <li><strong>Would a competitor gain an advantage by using the same tool?</strong> If your software is the same as everyone else's, your operations are the same as everyone else's. Custom tools can be a genuine competitive edge.</li>
+    </ol>
+
+    <p><strong>Wondering whether to build or buy?</strong></p>
+    <p><a href="../contact.html">Talk to us about it</a> &mdash; we'll give you an honest answer, even if that answer is "just use Trello." Or <a href="../apps.html">see the kind of tools we build</a>.</p>
+
+    <h3>Related Reading</h3>
+    <ul>
+      <li><a href="buy-vs-build-custom-software.html">Buy vs Build: When Custom Software Makes Sense</a></li>
+      <li><a href="no-code-vs-custom-software.html">No-Code vs Custom Software</a></li>
+      <li><a href="../pricing.html">Our Pricing</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

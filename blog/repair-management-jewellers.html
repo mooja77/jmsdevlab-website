@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repair Management for Jewellers: Why Spreadsheets Don't Cut It - JMS Dev Lab</title>
+  <meta name="description" content="Jewellers and watchmakers tracking repairs in spreadsheets are losing time, losing tickets, and frustrating customers. Here's what a proper repair management system looks like.">
+  <link rel="canonical" href="https://jmsdevlab.com/blog/repair-management-jewellers.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Repair Management for Jewellers: Why Spreadsheets Don't Cut It">
+  <meta property="og:description" content="Why spreadsheets fail for jewelry repair tracking, and what a proper system looks like.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/repair-management-jewellers.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Repair Management for Jewellers: Why Spreadsheets Don't Cut It">
+  <meta name="twitter:description" content="Why spreadsheets fail for jewelry repair tracking, and what a proper system looks like.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Repair Management for Jewellers: Why Spreadsheets Don't Cut It",
+    "description": "Jewellers and watchmakers tracking repairs in spreadsheets are losing time, losing tickets, and frustrating customers. Here's what a proper repair management system looks like.",
+    "datePublished": "2026-03-21",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/repair-management-jewellers.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why are spreadsheets bad for jewelry repair tracking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Spreadsheets lack photo documentation for dispute protection, have no automated customer notifications (costing up to 40 minutes daily on status calls), cannot handle quote approval workflows with timestamps, provide no visibility into workload metrics, and are vulnerable to data loss with no backup system or access controls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What features should a jewelry repair management system have?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A proper system should include a visual repair pipeline with clear stages, timestamped photo documentation at intake, automated customer notifications when status changes, quote management with recorded customer approvals, instant search by customer name or ticket number, and parts tracking for materials on order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does RepairDesk cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RepairDesk plans start at $9.99 per month with no setup fees and no long-term contracts. It integrates directly with Shopify and can be managed from a phone or tablet at the workbench."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you migrate from a spreadsheet to RepairDesk?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with new repairs by entering them into the new system from day one, and let the old spreadsheet serve as a reference for anything already in progress. Within a few weeks, all active repairs will be in the new system and the spreadsheet becomes an archive you rarely need to touch."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Repair Management for Jewellers</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"Repair Management for Jewellers: Why Spreadsheets Don't Cut It"}]}
+  </script>
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Repair Management for Jewellers: Why Spreadsheets Don't Cut It</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">21 March 2026</div>
+    </div>
+  </section>
+  <div class="legal-content">
+    <p>If you run a jewellery or watch repair workshop, there is a good chance your repair tracking system looks something like this: a spreadsheet with columns for customer name, item description, date received, status, and maybe a price. When a repair comes in, someone adds a row. When it is finished, someone updates the status. In theory, it works. In practice, it causes problems that slowly eat into your time, your money, and your reputation.</p>
+
+    <p>You are not alone if this is how you operate. Most independent jewellers and watchmakers start with spreadsheets because they are free, familiar, and flexible. But what works for five repairs a week starts to fall apart at twenty, and by fifty you are spending more time managing the spreadsheet than doing the actual work.</p>
+
+    <h2>The Problems You Already Know About</h2>
+
+    <p>Let us start with the obvious ones &mdash; the daily frustrations that have probably already crossed your mind.</p>
+
+    <p><strong>Finding information takes too long.</strong> A customer calls and asks about their watch. You open the spreadsheet, scroll through dozens or hundreds of rows, try to remember their surname, find three entries for "Smith," and then spend two minutes working out which one is theirs. Meanwhile, the customer is waiting on the line, the person at the counter needs your attention, and the repair you were working on has gone cold.</p>
+
+    <p><strong>Status updates are unreliable.</strong> Spreadsheets rely on someone remembering to update them. When the workshop is busy, that update gets forgotten. A repair that has been finished for three days still shows as "in progress" because nobody changed the cell. The customer does not get called. The item sits on the shelf. And when they finally ring to ask, you look disorganised.</p>
+
+    <p><strong>Multiple people editing causes chaos.</strong> If more than one person accesses the spreadsheet &mdash; even a shared Google Sheet &mdash; things go wrong. Rows get accidentally deleted. Someone sorts a column without selecting the whole sheet and scrambles the data. Two people edit the same row at the same time and one change overwrites the other. You have no audit trail to see who changed what or when.</p>
+
+    <h2>The Problems You Might Not Have Noticed</h2>
+
+    <p>Beyond the daily irritations, spreadsheets create deeper problems that are harder to spot because they accumulate gradually.</p>
+
+    <p><strong>No photographic record.</strong> When a customer drops off a ring with a scratched band, do you have a timestamped photo proving the scratch was already there? When they come back and claim you caused the damage, what evidence do you have? A spreadsheet cannot attach photos to a repair record. It cannot create a visual timeline of the item's condition at intake, during the repair, and at completion. Without this, you are exposed to disputes you cannot win.</p>
+
+    <p><strong>No automated communication.</strong> Every "is my repair ready?" phone call takes three to five minutes. If you get eight of those calls a day, that is up to 40 minutes &mdash; nearly an hour of someone's time every day, just telling people things the system should be telling them automatically. Over a month, that is a full working day lost to phone calls that should never have been necessary.</p>
+
+    <p><strong>No quote approval workflow.</strong> In a spreadsheet, there is no way to send a customer a formal quote, get their approval, and record that approval with a timestamp. So when a repair ends up costing more than the customer expected, you are in a "he said, she said" situation. Without a documented approval, you have no proof the customer agreed to the price before you started the work.</p>
+
+    <p><strong>No visibility into workload.</strong> How many repairs are currently in progress? How many are waiting on parts? Which bench jeweller has the most work? How long does the average repair take from intake to collection? A spreadsheet can technically answer these questions, but only if you spend time building formulas and charts that nobody maintains. In practice, you are flying blind on operational metrics.</p>
+
+    <h2>What Happens When the Spreadsheet Breaks</h2>
+
+    <p>Every jeweller who tracks repairs in a spreadsheet has a horror story. The file got corrupted. Someone accidentally deleted three months of data. The laptop it was stored on died. The shared link stopped working and nobody noticed for a week.</p>
+
+    <p>Spreadsheets are not designed to be databases. They have no backup system (unless you set one up yourself), no data validation (anyone can type anything in any cell), no access controls (everyone sees everything), and no recovery mechanism when things go wrong. When the spreadsheet breaks, you are reconstructing your repair records from memory, paper notes, and whatever the customer can remember.</p>
+
+    <p>For a business that handles valuable items belonging to other people, this is an unacceptable level of risk. You would not store a customer's diamond ring in an unlocked drawer. You should not store their repair records in a system that offers the same level of security.</p>
+
+    <h2>What a Proper Repair Management System Looks Like</h2>
+
+    <p>A purpose-built repair management system does not need to be complicated. It just needs to handle the core repair workflow reliably and take the manual work off your plate. Here is what to look for:</p>
+
+    <ul>
+      <li><strong>A visual repair pipeline.</strong> Every repair moves through clear stages &mdash; Received, Diagnosed, Quoted, Approved, In Progress, Ready for Collection, Collected. You see the full pipeline at a glance, and moving a repair from one stage to the next takes a single click.</li>
+      <li><strong>Photo documentation.</strong> Snap photos at intake and attach them directly to the repair record. Timestamped, searchable, and linked to the right customer. No more digging through a camera roll trying to find the right image.</li>
+      <li><strong>Automated customer notifications.</strong> When a repair moves to a new stage, the customer gets a notification automatically. No phone call, no manual email, no forgetting. The customer stays informed, and you stay at the bench.</li>
+      <li><strong>Quote management with approvals.</strong> Create itemised quotes, send them to the customer, and get a recorded approval before you start work. If the scope changes, send a revised quote. Everything is documented.</li>
+      <li><strong>Search and history.</strong> Find any repair in seconds by customer name, ticket number, date, or status. See a customer's full repair history across every visit. No more scrolling through a spreadsheet trying to find the right row.</li>
+      <li><strong>Parts tracking.</strong> Know which repairs are waiting on materials and which are ready to work on. Track what has been ordered, what has arrived, and what is still outstanding.</li>
+    </ul>
+
+    <h2>The Real Cost of Not Switching</h2>
+
+    <p>It is easy to tell yourself that the spreadsheet is "good enough" and that switching to a new system is not worth the hassle. But consider what the spreadsheet is actually costing you:</p>
+
+    <ul>
+      <li>30&ndash;60 minutes per day on status phone calls that could be automated</li>
+      <li>Customer disputes you cannot resolve because you have no photographic evidence or documented approvals</li>
+      <li>Repairs that sit forgotten because the status was not updated</li>
+      <li>Time spent searching for information instead of doing productive work</li>
+      <li>The risk of a data loss that wipes out your repair records entirely</li>
+      <li>The professional impression you give when a customer calls and you cannot immediately find their repair</li>
+    </ul>
+
+    <p>Add that up over a year and the cost of the spreadsheet &mdash; the supposedly "free" option &mdash; is far higher than the cost of a proper system.</p>
+
+    <h2>RepairDesk: Built for Jewellers and Watchmakers</h2>
+
+    <p>If you are ready to move beyond spreadsheets, <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a> was built specifically for this problem. It handles the full repair pipeline, photo documentation, automated notifications, itemised quotes with customer approval workflows, and parts tracking &mdash; all designed for the way jewellery and watch repair shops actually work.</p>
+
+    <p>RepairDesk integrates directly with Shopify, so if you are already running your retail operation on Shopify, your repairs live in the same ecosystem as your sales. There is no switching between systems, no duplicate data entry, and no disconnected tools.</p>
+
+    <p>The interface is built for workshop environments. You can manage everything from a phone or tablet at the bench &mdash; take photos, update statuses, send quotes, and notify customers without walking back to the office computer. Your whole team sees the same pipeline, so everyone knows what needs doing, what is waiting on parts, and what is ready to go out.</p>
+
+    <p>Plans start at $9.99 per month with no setup fees and no long-term contracts.</p>
+
+    <h2>Making the Switch</h2>
+
+    <p>Moving from a spreadsheet to a dedicated system does not need to be a big-bang migration. Start with new repairs &mdash; enter them into the new system from day one, and let the old spreadsheet serve as a reference for anything already in progress. Within a few weeks, all your active repairs will be in the new system and the spreadsheet becomes an archive you rarely need to touch.</p>
+
+    <p>The most common feedback we hear from jewellers who make the switch is not about any single feature &mdash; it is about the relief of not having to worry. Not worrying about whether the spreadsheet is up to date. Not worrying about whether the customer was called. Not worrying about what happens if the file gets corrupted. The system handles it, and they can focus on the work.</p>
+
+    <p>Ready to see how it works? Visit <a href="https://repairdeskapp.net" target="_blank" rel="noopener">repairdeskapp.net</a> to learn more. For a more detailed look at setting up a digital repair ticket workflow, read our guide on <a href="jewelry-repair-ticket-system.html">how to set up a repair ticket system for your jewelry shop</a>.</p>
+
+    <p>If you have questions or need something more customised for your specific workshop setup, <a href="../contact.html">get in touch</a> &mdash; we build software for exactly these kinds of problems. You can also explore our full range of <a href="../apps.html">services and apps</a> designed for independent retailers and small businesses.</p>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy vs Build: When Should a Small Business Build Custom Software? - JMS Dev Lab</title>
+  <meta name="description" content="A practical decision framework for SMBs choosing between off-the-shelf SaaS, no-code tools, and custom development. Includes cost comparison and when each option makes sense.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/buy-vs-build-custom-software.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Buy vs Build: When Should a Small Business Build Custom Software?">
+  <meta property="og:description" content="A practical decision framework for SMBs choosing between off-the-shelf SaaS, no-code tools, and custom development. Includes cost comparison and when each option makes sense.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/buy-vs-build-custom-software.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Buy vs Build: When Should a Small Business Build Custom Software?">
+  <meta name="twitter:description" content="A practical decision framework for SMBs choosing between off-the-shelf SaaS, no-code tools, and custom development. Includes cost comparison and when each option makes sense.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Buy vs Build: When Should a Small Business Build Custom Software?",
+    "description": "A practical decision framework for SMBs choosing between off-the-shelf SaaS, no-code tools, and custom development. Includes cost comparison and when each option makes sense.",
+    "datePublished": "2026-03-14",
+    "dateModified": "2026-03-14",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/buy-vs-build-custom-software.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should a small business build custom software instead of buying SaaS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Custom software makes sense when your workflow is niche and no off-the-shelf tool fits well, when per-seat SaaS costs are compounding across 10+ users, when you need full control over sensitive data, or when the tool itself is your competitive advantage. If you have outgrown SaaS and no-code and are relying on workarounds, custom development is likely the better investment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does custom software cost compared to SaaS over 3 years?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a small business with 10 users, SaaS typically costs 18,000 to 36,000 pounds over three years with ongoing per-seat fees. Custom software costs 5,500 to 21,000 pounds over three years, with costs flattening after the initial build. Custom has higher upfront costs but lower long-term costs, and you own the software outright."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the limitations of no-code tools like Airtable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No-code tools hit a ceiling with complex business logic, and performance slows as data grows. You remain dependent on the platform, so pricing or API changes affect your solution. Per-seat costs climb quickly with more than a handful of users. No-code works well as a prototyping tool but may need to be rebuilt as you scale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I decide between buying, building lite, or building custom software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start by asking if the problem is common and generic — if so, buy SaaS. If your process is still evolving, prototype with no-code. If an existing tool handles 80% or more of your needs, buy it. If per-seat pricing is painful at 10+ users or the process is core to your competitive advantage, build custom. The smartest approach is often hybrid: buy the basics and build the unique parts."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+              <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Buy vs Build</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"Buy vs Build: When Should a Small Business Build Custom Software?"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Buy vs Build: When Should a Small Business Build Custom Software?</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">14 March 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>You need software to run part of your business. Maybe you've already tried a few tools and nothing quite fits. Maybe you're drowning in spreadsheets. Maybe a well-meaning friend said "just get a developer to build it."</p>
+    <p>The answer isn't always custom software. Sometimes it is. And sometimes the right answer is somewhere in between. Here's a practical framework for deciding.</p>
+
+    <h2>The Three Options</h2>
+    <p>Every business software decision falls into one of three buckets:</p>
+    <ol>
+      <li><strong>Buy (off-the-shelf SaaS)</strong> &mdash; Subscribe to an existing product. Xero for accounting, HubSpot for CRM, Monday.com for project management. Someone else built it, you pay monthly to use it.</li>
+      <li><strong>Build-lite (no-code/low-code)</strong> &mdash; Use platforms like Airtable, Notion, Zapier, or Glide to assemble something yourself without writing code. More flexible than SaaS, less commitment than custom.</li>
+      <li><strong>Build (custom development)</strong> &mdash; Hire a developer to create software tailored exactly to your business. Your workflows, your data, your rules.</li>
+    </ol>
+    <p>None of these is inherently better than the others. The right choice depends on your problem, your budget, and where you are as a business.</p>
+
+    <h2>When to BUY: Off-the-Shelf SaaS</h2>
+    <p>If your problem is common, the solution probably already exists &mdash; and it's probably good. Thousands of businesses have the same need, so a vendor has built a polished product, hired a support team, and spread the cost across all of them.</p>
+    <p><strong>Buy when:</strong></p>
+    <ul>
+      <li>The problem is well-understood and generic (accounting, email marketing, basic CRM, invoicing, project management)</li>
+      <li>Your workflow matches what the tool was designed for &mdash; you don't need to bend it into shape</li>
+      <li>You have fewer than 10 users and per-seat pricing is manageable</li>
+      <li>You need something today, not in six weeks</li>
+      <li>The tool integrates with your existing stack without duct tape</li>
+    </ul>
+    <p><strong>Good examples:</strong> Xero for accounting. Mailchimp or ConvertKit for email. HubSpot or Pipedrive for sales CRM. Monday.com or Asana for project management. Shopify for e-commerce. These are solved problems &mdash; you'd be wasting money building your own version.</p>
+    <p>Honestly, if a well-known SaaS tool does 80% of what you need and the other 20% isn't critical, just use the SaaS tool. Pay the subscription. Move on to the parts of your business that actually need your attention.</p>
+
+    <h2>When to BUILD-LITE: No-Code and Low-Code</h2>
+    <p>No-code sits in a useful middle ground. You get more flexibility than off-the-shelf SaaS without the cost and commitment of custom development. It's particularly good for testing ideas.</p>
+    <p><strong>Build-lite when:</strong></p>
+    <ul>
+      <li>You're prototyping a process and aren't sure what you need yet</li>
+      <li>Your team is small (fewer than 5 people using it)</li>
+      <li>The workflow is relatively simple &mdash; forms, tables, basic automations</li>
+      <li>You want to test an idea before committing real budget to it</li>
+      <li>Someone on your team is comfortable with tools like Airtable, Notion, or Zapier</li>
+      <li>You need something in days, not weeks</li>
+    </ul>
+    <p><strong>The limitations:</strong> No-code tools hit a ceiling. Complex business logic gets messy. Performance slows as data grows. You're still dependent on the platform &mdash; if Airtable changes their pricing or API, your "custom" solution changes too. And the per-seat costs for tools like Airtable can climb quickly once you have more than a handful of users.</p>
+    <p>Think of no-code as a proving ground. It's a great way to figure out what you actually need before you invest in building it properly.</p>
+
+    <h2>When to BUILD: Custom Development</h2>
+    <p>Custom software makes sense when your needs are specific enough that nothing off the shelf fits well, and significant enough that the investment pays for itself.</p>
+    <p><strong>Build when:</strong></p>
+    <ul>
+      <li><strong>Your workflow is niche.</strong> You've looked at the SaaS options and none of them handle the way your business actually operates. Not a small mismatch &mdash; a fundamental one.</li>
+      <li><strong>Per-seat costs are killing you.</strong> Once you hit 10+ users, SaaS subscriptions compound fast. A custom tool has a fixed build cost and no per-seat licensing.</li>
+      <li><strong>Data sensitivity matters.</strong> If you handle sensitive customer data and need full control for GDPR, data residency, or industry compliance, owning the system gives you that control.</li>
+      <li><strong>The tool IS your competitive advantage.</strong> If the way you manage clients, process orders, or deliver services is what sets you apart from competitors, why would you use the same software they use?</li>
+      <li><strong>You've outgrown everything else.</strong> You've tried SaaS. You've tried no-code. You've tried spreadsheets. You've tried combining all three with Zapier. Nothing works well enough.</li>
+      <li><strong>You're replacing a tangle of disconnected tools.</strong> Five subscriptions, three spreadsheets, and a shared email inbox is not a system. It's a liability.</li>
+    </ul>
+
+    <h2>A Simple Decision Framework</h2>
+    <p>Work through these questions in order:</p>
+    <ol>
+      <li><strong>Is this a common business problem?</strong> (Accounting, email, basic CRM, project management) &rarr; <strong>Buy SaaS.</strong> Don't overthink it.</li>
+      <li><strong>Is my process still evolving?</strong> Am I still figuring out what I need? &rarr; <strong>Start with no-code.</strong> Prototype it. Learn what works.</li>
+      <li><strong>Can an existing tool handle 80%+ of what I need?</strong> &rarr; <strong>Buy it.</strong> Live with the 20% gap or fill it with a small integration.</li>
+      <li><strong>Do I have fewer than 5 users and simple workflows?</strong> &rarr; <strong>No-code is probably fine.</strong> Revisit if you grow.</li>
+      <li><strong>Is per-seat pricing becoming painful?</strong> (10+ users on multiple SaaS tools) &rarr; <strong>Custom starts making financial sense.</strong></li>
+      <li><strong>Is this process core to my competitive advantage?</strong> &rarr; <strong>Build custom.</strong> Don't hand your edge to a SaaS vendor.</li>
+      <li><strong>Have I outgrown SaaS and no-code?</strong> Workarounds everywhere, data in silos, team frustrated? &rarr; <strong>Build custom.</strong></li>
+    </ol>
+
+    <h2>The Hybrid Approach: Buy the Basics, Build the Unique Parts</h2>
+    <p>The smartest businesses don't go all-in on one approach. They buy for the common stuff and build for the parts that make them different.</p>
+    <p>Use Xero for accounting &mdash; nobody needs custom accounting software. Use Mailchimp for newsletters. Use Shopify for your storefront. But that client portal your customers keep asking for? The commission tracker that doesn't exist for your industry? The internal dashboard that pulls data from all your other tools? Build those.</p>
+    <p>Custom software doesn't mean replacing everything. It means filling the gaps that off-the-shelf tools can't reach.</p>
+
+    <h2>What This Actually Costs: A 3-Year Comparison</h2>
+    <p>Here's a realistic comparison for a small business with 10 users needing a workflow management solution:</p>
+
+    <h3>Option 1: SaaS (Buy)</h3>
+    <ul>
+      <li>Monthly cost: ~&pound;50&ndash;100/user across 2&ndash;3 tools</li>
+      <li>Year 1: &pound;6,000&ndash;12,000</li>
+      <li>Year 2: &pound;6,000&ndash;12,000 (often more &mdash; SaaS prices go up)</li>
+      <li>Year 3: &pound;6,000&ndash;12,000</li>
+      <li><strong>3-year total: &pound;18,000&ndash;36,000</strong></li>
+      <li>Ongoing: You keep paying forever. The cost never stops.</li>
+    </ul>
+
+    <h3>Option 2: No-Code (Build-Lite)</h3>
+    <ul>
+      <li>Platform costs: ~&pound;200&ndash;500/month</li>
+      <li>Setup time: 20&ndash;40 hours of someone's time</li>
+      <li>Year 1: &pound;4,000&ndash;8,000 (including setup time)</li>
+      <li>Year 2: &pound;2,400&ndash;6,000</li>
+      <li>Year 3: &pound;2,400&ndash;6,000</li>
+      <li><strong>3-year total: &pound;9,000&ndash;20,000</strong></li>
+      <li>Risk: May need to be rebuilt as you grow. Platform dependency.</li>
+    </ul>
+
+    <h3>Option 3: Custom Development (Build)</h3>
+    <ul>
+      <li>Build cost: &pound;3,000&ndash;15,000 (depending on complexity)</li>
+      <li>Hosting: &pound;20&ndash;50/month</li>
+      <li>Maintenance: &pound;500&ndash;1,500/year</li>
+      <li>Year 1: &pound;4,000&ndash;17,000</li>
+      <li>Year 2: &pound;750&ndash;2,100</li>
+      <li>Year 3: &pound;750&ndash;2,100</li>
+      <li><strong>3-year total: &pound;5,500&ndash;21,000</strong></li>
+      <li>You own it. No per-seat fees. Costs flatten after year one.</li>
+    </ul>
+
+    <p>The numbers shift depending on complexity and team size, but the pattern is consistent: SaaS has the lowest entry cost but the highest long-term cost. Custom has the highest upfront cost but flattens out. No-code sits in between &mdash; cheaper to start, but can get expensive and fragile as you scale.</p>
+
+    <h2>The "Missing Middle"</h2>
+    <p>There's a gap in the market that most businesses fall into. You're too complex for off-the-shelf SaaS &mdash; your workflows don't fit neatly into any product. But you're too small for the big development agencies who charge &pound;50,000+ for a project and want a six-month timeline.</p>
+    <p>This is the missing middle. Businesses with real software needs but realistic budgets.</p>
+    <p>That's exactly where solo developers and small studios operate. We build focused, purpose-built tools without the overhead of a 20-person agency. Fixed prices. Clear scope. Software that does exactly what you need and nothing you don't.</p>
+    <p>You don't need an enterprise solution. You need a tool that fits your business the way your business actually works.</p>
+
+    <h2>What to Do Next</h2>
+    <p>If you're reading this, you probably already know that off-the-shelf isn't quite working. Maybe you've been living with workarounds for months. Maybe you've tried three different SaaS tools and none of them stuck.</p>
+    <p>Here's what I'd suggest: don't start by looking at software. Start by writing down the process. What actually happens, step by step, when you do the thing that needs to be better? That's the brief. That's what tells you whether to buy, build-lite, or build.</p>
+
+    <p><strong>Not sure which option fits your situation?</strong></p>
+    <p><a href="../pricing.html">See our pricing</a> to understand what custom development actually costs. Or <a href="../contact.html">start a free conversation</a> &mdash; we'll tell you honestly whether you need custom software or whether a &pound;20/month SaaS tool would do the job.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

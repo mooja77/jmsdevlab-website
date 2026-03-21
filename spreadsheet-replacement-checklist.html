@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spreadsheet Replacement Readiness Checklist - JMS Dev Lab</title>
+  <meta name="description" content="Free self-assessment: is your business ready to replace that critical spreadsheet with a proper system? What to document, what an MVP looks like, and what it costs.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/spreadsheet-replacement-checklist.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Spreadsheet Replacement Readiness Checklist">
+  <meta property="og:description" content="Is your business ready to replace that critical spreadsheet? A practical self-assessment with cost and timeline expectations.">
+  <meta property="og:url" content="https://jmsdevlab.com/spreadsheet-replacement-checklist.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spreadsheet Replacement Readiness Checklist">
+  <meta name="twitter:description" content="Is your business ready to replace that critical spreadsheet? A practical self-assessment with cost and timeline expectations.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Spreadsheet Replacement Readiness Checklist",
+    "description": "A practical self-assessment for businesses wondering whether it's time to replace a critical spreadsheet with custom software.",
+    "datePublished": "2026-03-12",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/spreadsheet-replacement-checklist.html"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="apps.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Spreadsheet Replacement Checklist</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Spreadsheet Replacement Readiness Checklist"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Spreadsheet Replacement Readiness Checklist</h1>
+    <p>A practical self-assessment: is it time to replace that critical spreadsheet with a proper system?</p>
+  </section>
+
+  <!-- Content -->
+  <div class="legal-content">
+
+    <p>Every business has at least one spreadsheet that started as a quick fix and quietly became mission-critical. It tracks orders, manages inventory, calculates commissions, schedules staff &mdash; and nobody is quite sure what will happen if it breaks.</p>
+    <p>Replacing it with custom software is not always the right move. Sometimes a spreadsheet genuinely is the best tool for the job. This checklist helps you figure out whether you have genuinely outgrown yours, what to prepare before talking to a developer, and what a realistic replacement looks like.</p>
+
+    <h2>Part 1: Signs You Have Outgrown Your Spreadsheet</h2>
+    <p>Score yourself honestly. If five or more of these apply, your spreadsheet is probably holding you back.</p>
+    <ol>
+      <li><strong>Multiple people edit it simultaneously</strong> &mdash; You have had merge conflicts, overwritten data, or "who changed this?" conversations. Google Sheets helps, but at a certain scale even shared sheets become chaotic.</li>
+      <li><strong>You maintain multiple copies</strong> &mdash; There is a "master" version and backups or per-location variants. Nobody is 100% certain which one is current.</li>
+      <li><strong>It relies on manual copy-paste between sheets</strong> &mdash; Data from one tab gets manually transferred to another, or from an email into the sheet, or from the sheet into an invoice. Every manual transfer is an error waiting to happen.</li>
+      <li><strong>There is no audit trail</strong> &mdash; When a number changes, you have no way to know who changed it, when, or what the previous value was.</li>
+      <li><strong>Different people need different access levels</strong> &mdash; Your sales team should see their own figures but not everyone else's. Your manager needs the full picture. Your accountant needs export access. Spreadsheets do not handle permissions well.</li>
+      <li><strong>It takes ages to load</strong> &mdash; Thousands of rows, dozens of tabs, complex formulas that recalculate on every change. If people avoid opening it, the data stops being maintained.</li>
+      <li><strong>You have built workarounds on top of workarounds</strong> &mdash; Conditional formatting that acts as validation. VLOOKUP chains that reference other VLOOKUP chains. Hidden columns that drive other calculations. If only one person understands how it works, you have a single point of failure.</li>
+      <li><strong>You spend hours on reports</strong> &mdash; Generating a weekly or monthly summary means manually rearranging data, building pivot tables, and copying numbers into a presentation. The report should generate itself.</li>
+      <li><strong>Data entry errors cause real problems</strong> &mdash; Typos in a customer name, a decimal in the wrong place, a date entered as text. Without input validation, errors compound downstream.</li>
+      <li><strong>It does not connect to anything else</strong> &mdash; Your spreadsheet is an island. Data that exists in your POS, your website, your email system, or your accounting software has to be manually re-entered.</li>
+    </ol>
+
+    <h2>Part 2: What to Document Before Talking to a Developer</h2>
+    <p>If you have decided it is time, the single most useful thing you can do is document your current spreadsheet thoroughly. A developer can turn a well-documented spreadsheet into a spec much faster (and cheaper) than starting from a vague conversation.</p>
+
+    <h3>Who uses it?</h3>
+    <ul>
+      <li>List every person or role that touches the spreadsheet</li>
+      <li>Note what each person does with it: data entry only, data entry and reporting, read-only, admin</li>
+      <li>Note how often each person uses it: daily, weekly, monthly</li>
+      <li>Note what device they use: desktop, phone, tablet. This affects whether you need a mobile-friendly interface.</li>
+    </ul>
+
+    <h3>What data does it hold?</h3>
+    <ul>
+      <li>List every column heading and what it means (do not assume the developer will understand "Ref2" or "JM Status")</li>
+      <li>Note which fields are free text and which come from a fixed set of options (dropdown lists, yes/no, status codes)</li>
+      <li>Note any relationships between sheets or tabs: "the customer name in Sheet2 must match a name in Sheet1"</li>
+      <li>Note how much data it contains: hundreds of rows? Thousands? Tens of thousands?</li>
+      <li>Note how fast it grows: ten rows a day? A hundred a week?</li>
+    </ul>
+
+    <h3>What breaks?</h3>
+    <ul>
+      <li>List the most common errors, frustrations, and time sinks</li>
+      <li>Note any data you have lost or had to reconstruct</li>
+      <li>Note any processes that have been abandoned because the spreadsheet made them too difficult</li>
+    </ul>
+
+    <h3>What is manual that should not be?</h3>
+    <ul>
+      <li>List every step where someone copies data between systems</li>
+      <li>List every report that is assembled by hand</li>
+      <li>List every notification or reminder that is sent manually (follow-ups, reminders, alerts)</li>
+    </ul>
+
+    <h3>What does the output look like?</h3>
+    <ul>
+      <li>Save copies of any reports, exports, or summaries generated from the spreadsheet</li>
+      <li>Screenshot any dashboards or summary views you have built within the spreadsheet</li>
+      <li>Note where the output goes: email, print, another system, a client portal</li>
+    </ul>
+
+    <h2>Part 3: What a Realistic MVP Replacement Looks Like</h2>
+    <p>You do not need to replace every feature of your spreadsheet on day one. A well-scoped MVP (minimum viable product) replaces the core workflow and adds the safeguards your spreadsheet lacks. You can add features later once the foundation is solid.</p>
+
+    <h3>What a typical MVP includes</h3>
+    <ul>
+      <li><strong>Web application with login</strong> &mdash; accessible from any device with a browser. No software to install.</li>
+      <li><strong>User roles and permissions</strong> &mdash; different people see and do different things based on their role</li>
+      <li><strong>Data validation</strong> &mdash; the system enforces rules (required fields, correct formats, valid ranges) so bad data cannot get in</li>
+      <li><strong>Audit trail</strong> &mdash; every change is logged with who, when, and what the previous value was</li>
+      <li><strong>Search, filter, and sort</strong> &mdash; faster and more reliable than spreadsheet filtering, especially at scale</li>
+      <li><strong>Basic reporting</strong> &mdash; the summary views and reports you currently build by hand, generated automatically</li>
+      <li><strong>Data export</strong> &mdash; CSV or Excel export so you can still use spreadsheets for ad-hoc analysis</li>
+      <li><strong>Data import</strong> &mdash; a one-time migration of your existing spreadsheet data into the new system</li>
+    </ul>
+
+    <h3>What is usually added after the MVP</h3>
+    <ul>
+      <li>Integrations with other systems (POS, accounting, email, Shopify, etc.)</li>
+      <li>Automated notifications and reminders</li>
+      <li>Advanced reporting and dashboards</li>
+      <li>API access for connecting to other tools</li>
+      <li>Mobile-specific features (offline access, camera/barcode scanning)</li>
+    </ul>
+
+    <h2>Part 4: Rough Cost and Timeline Expectations</h2>
+    <p>These are ballpark figures for a custom web application built by a small studio like ours. They are not quotes &mdash; every project is different &mdash; but they give you a realistic starting point for budgeting.</p>
+
+    <h3>Simple replacement (one user type, one core workflow)</h3>
+    <ul>
+      <li><strong>Examples:</strong> a job tracker, a client log, a simple inventory system</li>
+      <li><strong>Timeline:</strong> 4&ndash;8 weeks</li>
+      <li><strong>Budget range:</strong> &pound;3,000&ndash;&pound;8,000 / $4,000&ndash;$10,000</li>
+    </ul>
+
+    <h3>Medium replacement (multiple user types, several workflows, basic integrations)</h3>
+    <ul>
+      <li><strong>Examples:</strong> a commission tracking system, a booking and scheduling tool, a multi-location inventory manager</li>
+      <li><strong>Timeline:</strong> 8&ndash;16 weeks</li>
+      <li><strong>Budget range:</strong> &pound;8,000&ndash;&pound;20,000 / $10,000&ndash;$25,000</li>
+    </ul>
+
+    <h3>Complex replacement (enterprise-like features, multiple integrations, high data volumes)</h3>
+    <ul>
+      <li><strong>Examples:</strong> a full CRM, a multi-department workflow engine, a system processing thousands of records daily</li>
+      <li><strong>Timeline:</strong> 16&ndash;30+ weeks</li>
+      <li><strong>Budget range:</strong> &pound;20,000&ndash;&pound;50,000+ / $25,000&ndash;$60,000+</li>
+    </ul>
+
+    <h3>Ongoing costs</h3>
+    <p>Once built, a custom web app typically costs &pound;50&ndash;&pound;200/month to host and maintain (hosting, database, SSL, monitoring). Feature updates, bug fixes, and support are usually billed separately, either hourly or as a monthly retainer.</p>
+
+    <h2>Part 5: Red Flags to Watch For</h2>
+    <p>Whether you work with us or someone else, watch out for these when evaluating developers:</p>
+    <ul>
+      <li><strong>No fixed-price option</strong> &mdash; "we'll bill by the hour and see how it goes" is a recipe for budget overruns. A good developer should be able to give you a fixed price for a defined scope.</li>
+      <li><strong>No discovery phase</strong> &mdash; if someone quotes you without thoroughly understanding your spreadsheet and workflow, the estimate is a guess.</li>
+      <li><strong>No ownership of code</strong> &mdash; you should own the code that is built for you. If the developer retains ownership, you are locked in.</li>
+      <li><strong>No plan for data migration</strong> &mdash; your existing data needs to move from the spreadsheet to the new system. If this is not discussed upfront, it will be a painful afterthought.</li>
+      <li><strong>Overengineering</strong> &mdash; if the proposal includes AI, blockchain, microservices, or a mobile app for a problem that is currently solved by a 50-row spreadsheet, step back and ask why.</li>
+    </ul>
+
+    <h2>The Decision Framework</h2>
+    <p>Ask yourself these three questions:</p>
+    <ol>
+      <li><strong>Is this spreadsheet costing me time every week?</strong> Time spent fixing errors, manually transferring data, building reports, or answering "which version is correct?" Count the hours honestly.</li>
+      <li><strong>Is this spreadsheet creating risk?</strong> Data loss, security concerns (sensitive data in an unprotected spreadsheet), compliance issues, or single-person dependency.</li>
+      <li><strong>Will this spreadsheet get worse as the business grows?</strong> More customers, more staff, more locations, more products. If the spreadsheet struggles now, it will break later.</li>
+    </ol>
+    <p>If the answer to two or more is yes, it is probably time.</p>
+
+    <hr style="border: none; border-top: 1px solid var(--slate-200); margin: 3rem 0;">
+
+    <h2>Send Us Your Spreadsheet</h2>
+    <p>If you have a spreadsheet that is ready to be replaced, we would like to look at it. Send it over and we will scope an MVP for free &mdash; no obligation, no sales pitch. We will tell you what a replacement would look like, how long it would take, and what it would cost. If it turns out a spreadsheet really is the best tool for your situation, we will tell you that too.</p>
+    <p><strong><a href="contact.html">Send us your spreadsheet &rarr;</a></strong></p>
+    <p>Or take a look at our <a href="apps.html">services and apps</a> to see the kind of software we build.</p>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="case-studies.html">Case Studies</a>
+            <a href="partners.html">Partners</a>
+            <a href="tools/">Free Tools</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay in the loop</h3>
+        <p>New tools, insights, and product updates. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2192671/forms/182011083818534198/subscribe" method="POST">
+          <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+          <input type="hidden" name="ml-submit" value="1">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+- generic [ref=e2]:
+  - generic [ref=e6]:
+    - link "Skip to content":
+      - /url: "#AppFrameMain"
+    - main [ref=e8]:
+      - iframe [active] [ref=e16]:
+        - iframe [active] [ref=f14e4]:
+          - application [ref=f17e2]:
+            - generic [ref=f17e6]:
+              - generic [ref=f17e8]:
+                - toolbar [ref=f17e17]:
+                  - listitem [ref=f17e660] [cursor=pointer]:
+                    - toolbar [ref=f17e663]:
+                      - button "Responsive Upgrade-March-18-2018" [ref=f17e664]:
+                        - generic [ref=f17e665]: 
+                        - generic [ref=f17e666]: Responsive Upgrade-March-18-2018
+                - generic [ref=f17e26]:
+                  - generic:
+                    - generic:
+                      - toolbar "Title actions"
+              - generic [ref=f17e31]:
+                - generic [ref=f17e33]:
+                  - tablist "Active View Switcher" [ref=f17e36]:
+                    - tab "Explorer (Ctrl+Shift+E) - 1 unsaved file" [expanded] [selected] [ref=f17e972] [cursor=pointer]:
+                      - generic "Explorer (Ctrl+Shift+E) - 1 unsaved file" [ref=f17e973]: 
+                      - generic "Explorer (Ctrl+Shift+E) - 1 unsaved file" [ref=f17e974]:
+                        - generic [ref=f17e975]: "1"
+                    - tab "Search (Ctrl+Shift+F)" [ref=f17e39] [cursor=pointer]:
+                      - generic "Search (Ctrl+Shift+F)" [ref=f17e40]: 
+                    - tab "Shopify" [ref=f17e41] [cursor=pointer]:
+                      - generic "Shopify" [ref=f17e42]
+                  - toolbar "Manage" [ref=f17e45]:
+                    - button "Manage" [ref=f17e46] [cursor=pointer]:
+                      - generic "Manage" [ref=f17e47]: 
+                - generic [ref=f17e48]:
+                  - generic [ref=f17e49]:
+                    - heading "Explorer" [level=2] [ref=f17e51]
+                    - toolbar "Explorer actions" [ref=f17e55]:
+                      - generic "Views and More Actions..." [ref=f17e58] [cursor=pointer]: 
+                    - generic:
+                      - generic:
+                        - generic:
+                          - toolbar
+                  - generic [ref=f17e67]:
+                    - generic [ref=f17e69]:
+                      - 'button "Explorer Section: Responsive Upgrade-March-18-2018" [expanded] [ref=f17e70] [cursor=pointer]':
+                        - generic [ref=f17e71]: 
+                        - text: 
+                        - 'heading "Explorer Section: Responsive Upgrade-March-18-2018" [level=3] [ref=f17e72]': Responsive Upgrade-March-18-2018
+                        - text:    
+                      - tree "Files Explorer" [ref=f17e75]:
+                        - generic [ref=f17e76]:
+                          - treeitem "article.liquid" [level=2] [ref=f17e77] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\article.liquid" [ref=f17e80]:
+                              - text: 
+                              - generic [ref=f17e83]: article.liquid
+                          - treeitem "blog.liquid" [level=2] [ref=f17e84] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\blog.liquid" [ref=f17e87]:
+                              - text: 
+                              - generic [ref=f17e90]: blog.liquid
+                          - treeitem "cart.liquid" [level=2] [ref=f17e91] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\cart.liquid" [ref=f17e94]:
+                              - text: 
+                              - generic [ref=f17e97]: cart.liquid
+                          - treeitem "collection.banner.liquid" [level=2] [ref=f17e98] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\collection.banner.liquid" [ref=f17e101]:
+                              - text: 
+                              - generic [ref=f17e104]: collection.banner.liquid
+                          - treeitem "collection.liquid" [level=2] [ref=f17e105] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\collection.liquid" [ref=f17e108]:
+                              - text: 
+                              - generic [ref=f17e111]: collection.liquid
+                          - treeitem "collection.nosidebar.liquid" [level=2] [ref=f17e112] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\collection.nosidebar.liquid" [ref=f17e115]:
+                              - text: 
+                              - generic [ref=f17e118]: collection.nosidebar.liquid
+                          - treeitem "collection.sidebar.liquid" [level=2] [ref=f17e119] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\collection.sidebar.liquid" [ref=f17e122]:
+                              - text: 
+                              - generic [ref=f17e125]: collection.sidebar.liquid
+                          - treeitem "collection.sub-collections.liquid" [level=2] [ref=f17e126] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\collection.sub-collections.liquid" [ref=f17e129]:
+                              - text: 
+                              - generic [ref=f17e132]: collection.sub-collections.liquid
+                          - treeitem "gift_card.liquid" [level=2] [ref=f17e133] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\gift_card.liquid" [ref=f17e136]:
+                              - text: 
+                              - generic [ref=f17e139]: gift_card.liquid
+                          - treeitem "index.liquid" [level=2] [selected] [ref=f17e140] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\index.liquid" [ref=f17e143]:
+                              - text: 
+                              - generic [ref=f17e146]: index.liquid
+                          - treeitem "list-collections.liquid" [level=2] [ref=f17e147] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\list-collections.liquid" [ref=f17e150]:
+                              - text: 
+                              - generic [ref=f17e153]: list-collections.liquid
+                          - treeitem "page.admin-dashboard.liquid" [level=2] [ref=f17e154] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.admin-dashboard.liquid" [ref=f17e157]:
+                              - text: 
+                              - generic [ref=f17e160]: page.admin-dashboard.liquid
+                          - treeitem "page.announcements.liquid" [level=2] [ref=f17e161] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.announcements.liquid" [ref=f17e164]:
+                              - text: 
+                              - generic [ref=f17e167]: page.announcements.liquid
+                          - treeitem "page.banner.liquid" [level=2] [ref=f17e168] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.banner.liquid" [ref=f17e171]:
+                              - text: 
+                              - generic [ref=f17e174]: page.banner.liquid
+                          - treeitem "page.closing.liquid" [level=2] [ref=f17e175] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.closing.liquid" [ref=f17e178]:
+                              - text: 
+                              - generic [ref=f17e181]: page.closing.liquid
+                          - treeitem "page.collections.liquid" [level=2] [ref=f17e182] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.collections.liquid" [ref=f17e185]:
+                              - text: 
+                              - generic [ref=f17e188]: page.collections.liquid
+                          - treeitem "page.contact.liquid" [level=2] [ref=f17e189] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.contact.liquid" [ref=f17e192]:
+                              - text: 
+                              - generic [ref=f17e195]: page.contact.liquid
+                          - treeitem "page.details.liquid" [level=2] [ref=f17e196] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.details.liquid" [ref=f17e199]:
+                              - text: 
+                              - generic [ref=f17e202]: page.details.liquid
+                          - treeitem "page.engraving.liquid" [level=2] [ref=f17e203] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.engraving.liquid" [ref=f17e206]:
+                              - text: 
+                              - generic [ref=f17e209]: page.engraving.liquid
+                          - treeitem "page.gallery.liquid" [level=2] [ref=f17e210] [cursor=pointer]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\page.gallery.liquid" [ref=f17e213]:
+                              - text: 
+                              - generic [ref=f17e216]: page.gallery.liquid
+                        - treeitem "templates" [expanded] [level=1] [ref=f17e221] [cursor=pointer]:
+                          - generic [ref=f17e222]:
+                            - generic [ref=f17e223]: 
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates" [ref=f17e225]:
+                              - generic [ref=f17e228]: templates
+                    - button "Outline Section" [ref=f17e231] [cursor=pointer]:
+                      - generic [ref=f17e232]: 
+                      - text: 
+                      - heading "Outline" [level=3] [ref=f17e233]
+                      - text:  
+                    - generic [ref=f17e235]:
+                      - button "Timeline - index.liquid Section" [expanded] [ref=f17e236] [cursor=pointer]:
+                        - generic [ref=f17e237]: 
+                        - text: 
+                        - heading "Timeline" [level=3] [ref=f17e238]
+                        - generic [ref=f17e239]: index.liquid
+                        - text:    
+                      - tree "Timeline" [ref=f17e242]:
+                        - generic [ref=f17e243]:
+                          - 'treeitem "2 weeks: Version 4" [level=1] [ref=f17e244] [cursor=pointer]':
+                            - generic [ref=f17e246]:
+                              - generic [ref=f17e247]: 
+                              - generic [ref=f17e248]:
+                                - generic [ref=f17e251]: Version 4
+                                - generic "2 weeks" [ref=f17e253]: 2 wks
+                          - 'treeitem "2 weeks: Version 3" [level=1] [ref=f17e254] [cursor=pointer]':
+                            - generic [ref=f17e256]:
+                              - generic [ref=f17e257]: 
+                              - generic [ref=f17e261]: Version 3
+                          - 'treeitem "2 weeks: Version 2" [level=1] [ref=f17e263] [cursor=pointer]':
+                            - generic [ref=f17e265]:
+                              - generic [ref=f17e266]: 
+                              - generic [ref=f17e270]: Version 2
+                          - 'treeitem "2 weeks: Original" [level=1] [ref=f17e272] [cursor=pointer]':
+                            - generic [ref=f17e274]:
+                              - generic [ref=f17e275]: 
+                              - generic [ref=f17e279]: Original
+                    - button "References Section" [ref=f17e283] [cursor=pointer]:
+                      - generic [ref=f17e284]: 
+                      - text: 
+                      - heading "References" [level=3] [ref=f17e285]
+                    - button "Dependencies Section" [ref=f17e288] [cursor=pointer]:
+                      - generic [ref=f17e289]: 
+                      - text: 
+                      - heading "Dependencies" [level=3] [ref=f17e290]
+                - main [ref=f17e298]:
+                  - generic [ref=f17e306]:
+                    - generic [ref=f17e307] [cursor=pointer]:
+                      - generic [ref=f17e308]:
+                        - tablist [ref=f17e309]:
+                          - tab "index.liquid, preview" [selected] [ref=f17e310]:
+                            - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\index.liquid" [ref=f17e976]:
+                              - text: 
+                              - generic [ref=f17e313]: index.liquid
+                            - toolbar "Tab actions" [ref=f17e316]:
+                              - button "Close (Ctrl+F4)" [ref=f17e317]: 
+                        - toolbar "Editor actions" [ref=f17e321]:
+                          - button "Save" [ref=f17e977]
+                          - button "Split Editor Right (Ctrl+\\) [Alt] Split Editor Down" [ref=f17e978]: 
+                          - generic "More Actions..." [ref=f17e981]: 
+                      - list [ref=f17e329]:
+                        - listitem [ref=f17e330]:
+                          - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates" [ref=f17e331]:
+                            - generic [ref=f17e333]: templates
+                          - generic [ref=f17e334]: 
+                        - listitem [ref=f17e335]:
+                          - generic "\\themes\\1744142361\\Responsive Upgrade-March-18-2018\\templates\\index.liquid" [ref=f17e336]:
+                            - text: 
+                            - generic [ref=f17e338]: index.liquid
+                          - text: 
+                    - generic "index.liquid, preview" [ref=f17e340]:
+                      - code [ref=f17e341]:
+                        - generic [ref=f17e342]:
+                          - textbox "index.liquid, preview"
+                          - textbox [ref=f17e343]
+                          - generic [ref=f17e346]:
+                            - generic [ref=f17e668]: "391"
+                            - generic [ref=f17e669]:
+                              - generic [ref=f17e670] [cursor=pointer]: 
+                              - generic [ref=f17e671]: "392"
+                            - generic [ref=f17e673]: "393"
+                            - generic [ref=f17e675]: "394"
+                            - generic [ref=f17e677]: "395"
+                            - generic [ref=f17e679]: "396"
+                            - generic [ref=f17e680]:
+                              - generic [ref=f17e681] [cursor=pointer]: 
+                              - generic [ref=f17e682]: "397"
+                            - generic [ref=f17e684]: "398"
+                            - generic [ref=f17e686]: "399"
+                            - generic [ref=f17e688]: "400"
+                            - generic [ref=f17e690]: "401"
+                            - generic [ref=f17e692]: "402"
+                            - generic [ref=f17e694]: "403"
+                            - generic [ref=f17e695]:
+                              - generic [ref=f17e696] [cursor=pointer]: 
+                              - generic [ref=f17e697]: "404"
+                            - generic [ref=f17e699]: "405"
+                            - generic [ref=f17e700]:
+                              - generic [ref=f17e701] [cursor=pointer]: 
+                              - generic [ref=f17e702]: "406"
+                            - generic [ref=f17e703]:
+                              - generic [ref=f17e704] [cursor=pointer]: 
+                              - generic [ref=f17e705]: "407"
+                            - generic [ref=f17e707]: "408"
+                            - generic [ref=f17e1001]: "409"
+                            - generic [ref=f17e1004]: "410"
+                            - generic [ref=f17e714]: "411"
+                            - generic [ref=f17e715]:
+                              - generic [ref=f17e716] [cursor=pointer]: 
+                              - generic [ref=f17e717]: "412"
+                            - generic [ref=f17e719]: "413"
+                            - generic [ref=f17e721]: "414"
+                            - generic [ref=f17e723]: "415"
+                            - generic [ref=f17e725]: "416"
+                            - generic [ref=f17e727]: "417"
+                            - generic [ref=f17e729]: "418"
+                            - generic [ref=f17e731]: "419"
+                            - generic [ref=f17e732]:
+                              - generic [ref=f17e733] [cursor=pointer]: 
+                              - generic [ref=f17e734]: "420"
+                            - generic [ref=f17e736]: "421"
+                            - generic [ref=f17e738]: "422"
+                            - generic [ref=f17e740]: "423"
+                            - generic [ref=f17e742]: "424"
+                            - generic [ref=f17e744]: "425"
+                            - generic [ref=f17e745]:
+                              - generic [ref=f17e746] [cursor=pointer]: 
+                              - generic [ref=f17e747]: "426"
+                          - generic [ref=f17e424]:
+                            - img [ref=f17e1018]
+                            - generic [ref=f17e512]:
+                              - generic [ref=f17e877]: <h2>A Sincere Thank You<br>to Our Community</h2>
+                              - generic [ref=f17e879]: <p>
+                              - generic [ref=f17e881]: After <span class="clo-highlight">46 wonderful years</span> serving the people of Cork, the time has come
+                              - generic [ref=f17e883]: for Moores Jewellers to close its doors. What began as a small family jewellers has grown into something
+                              - generic [ref=f17e885]: far greater than we ever imagined &mdash; and that is entirely because of <em>you</em>.
+                              - generic [ref=f17e887]: </p>
+                              - generic [ref=f17e889]: <p>
+                              - generic [ref=f17e891]: From engagement rings to christening gifts, milestone anniversaries to everyday treasures,
+                              - generic [ref=f17e893]: it has been our privilege to be part of your most cherished moments. Every piece we sold
+                              - generic [ref=f17e895]: carried with it a story, and we are honoured to have played even a small part in yours.
+                              - generic [ref=f17e897]: </p>
+                              - generic [ref=f17e899]: </section>
+                              - generic [ref=f17e902]: <div class="clo-dates">
+                              - generic [ref=f17e904]: <h3>Final Closing Dates</h3>
+                              - generic [ref=f17e906]: <div class="clo-stores">
+                              - generic [ref=f17e908]: <div class="clo-store">
+                              - generic [ref=f17e910]: <div class="clo-store-name">Mahon Point</div>
+                              - generic [ref=f17e997]: <div class="clo-store-date">Wednesday, 25th March</div>
+                              - generic [ref=f17e1026]: <div class="clo-provisional">(Provisional)</div>
+                              - generic [ref=f17e916]: </div>
+                              - generic [ref=f17e918]: <div class="clo-store">
+                              - generic [ref=f17e920]: <div class="clo-store-name">Douglas Court</div>
+                              - generic [ref=f17e999]: <div class="clo-store-date">Wednesday, 25th March</div>
+                              - generic [ref=f17e1028]: <div class="clo-provisional">(Provisional)</div>
+                              - generic [ref=f17e926]: </div>
+                              - generic [ref=f17e928]: </div>
+                              - generic [ref=f17e930]: </div>
+                              - generic [ref=f17e933]: <div class="clo-sale">
+                              - generic [ref=f17e935]: <h3>Celebratory Closing Offers</h3>
+                              - generic [ref=f17e937]: <div class="clo-sale-amount">Up to 70% Off</div>
+                              - generic [ref=f17e939]: <p>All jewellery and watches &mdash; in-store only</p>
+                              - generic [ref=f17e941]: </div>
+                              - generic [ref=f17e944]: <div class="clo-divider">
+                          - generic:
+                            - generic [ref=f17e947]:
+                              - generic [ref=f17e948]:
+                                - generic [ref=f17e949]: "378"
+                                - generic [ref=f17e950]: 
+                              - generic [ref=f17e951]:
+                                - generic [ref=f17e952]: "390"
+                                - generic [ref=f17e953]: 
+                              - generic [ref=f17e954]:
+                                - generic [ref=f17e955]: "392"
+                                - generic [ref=f17e956]: 
+                              - generic [ref=f17e957]:
+                                - list:
+                                  - listitem [ref=f17e958]:
+                                    - generic [ref=f17e959]: <div class="clo-wrap">
+                                  - listitem [ref=f17e960]:
+                                    - generic [ref=f17e961]: <section class="clo-announce">
+                                  - listitem [ref=f17e962]:
+                                    - generic [ref=f17e963]: <p>
+                            - dialog "Find / Replace" [ref=f17e630]:
+                              - button "Toggle Replace" [expanded] [ref=f17e631] [cursor=pointer]: 
+                              - generic [ref=f17e632]:
+                                - generic [ref=f17e633]:
+                                  - textbox "Find" [ref=f17e636]: (Provisional)
+                                  - generic [ref=f17e637]:
+                                    - checkbox "Match Case (Alt+C)" [ref=f17e638] [cursor=pointer]: 
+                                    - checkbox "Match Whole Word (Alt+W)" [ref=f17e639] [cursor=pointer]: 
+                                    - checkbox "Use Regular Expression (Alt+R)" [ref=f17e640] [cursor=pointer]: 
+                                - generic [ref=f17e641]:
+                                  - generic [ref=f17e642]: 1 of 2
+                                  - button "Previous Match (Shift+Enter)" [ref=f17e643] [cursor=pointer]: 
+                                  - button "Next Match (Enter)" [ref=f17e644] [cursor=pointer]: 
+                                  - checkbox "Find in Selection (Alt+L)" [ref=f17e645] [cursor=pointer]: 
+                              - button "Close (Escape)" [ref=f17e646] [cursor=pointer]: 
+                              - generic [ref=f17e647]:
+                                - generic [ref=f17e648]:
+                                  - textbox "Replace" [active] [ref=f17e651]:
+                                    - /placeholder: Replace (⇅ for history)
+                                    - text: (Extended due to demand)
+                                  - checkbox "Preserve Case (Alt+P)" [ref=f17e653] [cursor=pointer]: 
+                                - generic [ref=f17e654]:
+                                  - button "Replace (Enter)" [ref=f17e655] [cursor=pointer]: 
+                                  - button "Replace All (Ctrl+Alt+Enter)" [ref=f17e656] [cursor=pointer]: 
+                            - text:   
+                    - text: 
+              - status [ref=f17e584]:
+                - generic [ref=f17e585]:
+                  - generic "remote mooresjewellers.myshopify.com" [ref=f17e586]:
+                    - button "remote mooresjewellers.myshopify.com" [ref=f17e587] [cursor=pointer]:
+                      - generic [ref=f17e588]: 
+                      - text: mooresjewellers.myshopify.com
+                  - generic "No Problems" [ref=f17e589]:
+                    - button "No Problems" [ref=f17e590] [cursor=pointer]:
+                      - generic [ref=f17e591]: 
+                      - text: "0"
+                      - generic [ref=f17e592]: 
+                      - text: "0"
+                - generic [ref=f17e596]:
+                  - generic "Notifications" [ref=f17e597]:
+                    - button "Notifications" [ref=f17e598] [cursor=pointer]:
+                      - generic [ref=f17e626]: 
+                  - 'generic "Layout: US" [ref=f17e600]':
+                    - 'button "Layout: US" [ref=f17e601] [cursor=pointer]'
+                  - generic "Liquid" [ref=f17e602]:
+                    - button "Liquid" [ref=f17e603] [cursor=pointer]
+                  - 'generic "Editor Language Status: $(copilot) No inline suggestion available, Inline suggestions" [ref=f17e604]':
+                    - 'button "Editor Language Status: $(copilot) No inline suggestion available, Inline suggestions" [ref=f17e605] [cursor=pointer]':
+                      - generic [ref=f17e606]: 
+                  - generic "LF" [ref=f17e607]:
+                    - button "LF" [ref=f17e608] [cursor=pointer]
+                  - generic "UTF-8" [ref=f17e609]:
+                    - button "UTF-8" [ref=f17e610] [cursor=pointer]
+                  - 'generic "Spaces: 2" [ref=f17e611]':
+                    - 'button "Spaces: 2" [ref=f17e612] [cursor=pointer]'
+                  - generic "Ln 410, Col 51 (13 selected)" [ref=f17e1029]:
+                    - button "Ln 410, Col 51 (13 selected)" [ref=f17e1030] [cursor=pointer]
+            - generic [ref=f17e658]:
+              - alert [ref=f17e659]: <div class="clo-provisional">(Provisional)</div>, 1 of 2 found for '(Provisional)', at 410:38
+              - alert
+  - dialog "Sidekick" [ref=e17]:
+    - button "Resize Sidebar" [ref=e18]:
+      - generic [ref=e19]:
+        - generic: Resize Sidebar

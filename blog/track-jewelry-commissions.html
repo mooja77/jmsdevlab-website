@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Track Custom Jewelry Commissions Without Spreadsheets - JMS Dev Lab</title>
+  <meta name="description" content="Managing custom jewelry commissions in spreadsheets? There's a better way. Learn how purpose-built tools handle enquiries, approvals, materials, and delivery tracking.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/track-jewelry-commissions.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Track Custom Jewelry Commissions Without Spreadsheets">
+  <meta property="og:description" content="Managing custom jewelry commissions in spreadsheets? There's a better way to handle enquiries, approvals, materials, and delivery tracking.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/track-jewelry-commissions.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Track Custom Jewelry Commissions Without Spreadsheets">
+  <meta name="twitter:description" content="Managing custom jewelry commissions in spreadsheets? There's a better way to handle enquiries, approvals, materials, and delivery tracking.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Track Custom Jewelry Commissions Without Spreadsheets",
+    "description": "Managing custom jewelry commissions in spreadsheets? There's a better way. Learn how purpose-built tools handle enquiries, approvals, materials, and delivery tracking.",
+    "datePublished": "2026-03-13",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/track-jewelry-commissions.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do spreadsheets fail for tracking custom jewelry commissions?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Custom jewelry commissions involve multi-week processes with distinct stages from enquiry to delivery. Spreadsheets cannot enforce stage transitions, store rich client profiles with ring sizes and preferences, track design iteration history, handle fluctuating material costs reliably, or maintain a centralised communication history."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should a jewelry commission tracking system include?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A purpose-built system should include a visual pipeline showing all commissions grouped by stage, rich client profiles with preferences and measurements, consultation scheduling with linked notes, and a branded client portal where clients can view progress and approve designs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you switch from spreadsheets to JewelryStudioManager?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with your active commissions and get comfortable with the workflow before expanding. JewelryStudioManager lives inside your Shopify admin and syncs with your store data, so there is no need to migrate years of historical data on day one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the stages of a custom jewelry commission?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A typical commission moves through enquiry, consultation, design, approval, production, quality check, and delivery. Each stage involves different tasks and client interactions that need tracking, which is why a dedicated system with visual pipeline management is more effective than a spreadsheet."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Tracking Jewelry Commissions</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"How to Track Custom Jewelry Commissions Without Spreadsheets"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>How to Track Custom Jewelry Commissions Without Spreadsheets</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">13 March 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>If you run a custom jewelry studio, you know the chaos. A client enquiry comes in by email. You scribble down their ring size and metal preference on a Post-it. The design approval lives in a WhatsApp thread. The deposit payment is in your Shopify orders but the commission details are in a spreadsheet. And somewhere in the middle, you're trying to remember which stage each piece is at.</p>
+    <p>It works when you have three commissions on the go. It falls apart at ten.</p>
+
+    <h2>Why Spreadsheets Break for Custom Jewelry</h2>
+    <p>Custom jewelry commissions aren't like standard retail orders. Each one is a multi-week (sometimes multi-month) process with distinct stages: enquiry, consultation, design, approval, production, quality check, and delivery. A spreadsheet can list these stages, but it can't enforce them, automate transitions, or give your client visibility into where their piece is.</p>
+    <p>The real problems start when you try to track the details that matter:</p>
+    <ul>
+      <li><strong>Client preferences</strong> &mdash; Ring sizes, metal preferences, stone choices, allergies, budget ranges. These live in emails, notes apps, and your memory. A spreadsheet row can't hold a rich client profile.</li>
+      <li><strong>Design iterations</strong> &mdash; Clients change their minds. The original brief evolves through three consultations. Tracking revision history in a spreadsheet means adding columns until the sheet is unreadable.</li>
+      <li><strong>Materials and costing</strong> &mdash; Gold prices change. You need to track what was quoted, what was ordered, and what was actually used. Spreadsheet formulas can do this, but they break the moment someone inserts a row in the wrong place.</li>
+      <li><strong>Communication history</strong> &mdash; When did you last update the client? What did you tell them? If your communication is scattered across email, phone, and messaging apps, the answer is always "I think it was last week."</li>
+    </ul>
+
+    <h2>What a Purpose-Built System Looks Like</h2>
+    <p>The right tool for commission tracking isn't a generic CRM or project management app. Those tools don't understand the language of jewelry &mdash; they'll make you adapt your workflow to their structure instead of the other way around.</p>
+    <p>A purpose-built commission tracker gives you:</p>
+    <ul>
+      <li><strong>A visual pipeline</strong> &mdash; See every active commission at a glance, grouped by stage. Know instantly which pieces are waiting for client approval, which are in production, and which are ready for collection.</li>
+      <li><strong>Rich client profiles</strong> &mdash; Store preferences, measurements, past orders, and notes in one place. When a returning client calls, you know their history before they finish their sentence.</li>
+      <li><strong>Consultation scheduling</strong> &mdash; Book design consultations, send reminders, and log what was discussed &mdash; all linked to the commission record.</li>
+      <li><strong>A client portal</strong> &mdash; Give your clients a branded space where they can see their commission progress, approve designs, and access documents. It's a better experience for them and fewer "any updates?" messages for you.</li>
+    </ul>
+
+    <h2>The Cost of Not Switching</h2>
+    <p>Every jeweler we've spoken to who tracks commissions in spreadsheets has the same stories. A client detail that got lost. A follow-up that was forgotten. A piece that sat finished on the bench for a week because nobody updated the status. These aren't catastrophic failures, but they add up &mdash; in wasted time, in missed revenue, and in the occasional awkward conversation with a client.</p>
+    <p>The irony is that most jewelers got into the craft because they love making beautiful things. The last thing they want is to spend their evenings maintaining a spreadsheet.</p>
+
+    <h2>Making the Switch</h2>
+    <p>If you're a Shopify jeweler, the switch is simpler than you think. JewelryStudioManager was built specifically for this &mdash; it lives inside your Shopify admin, syncs with your store data, and replaces the spreadsheet with a proper commission management system.</p>
+    <p>You don't need to migrate years of data on day one. Start with your active commissions, get comfortable with the workflow, and expand from there.</p>
+
+    <p><strong>Ready to ditch the spreadsheet?</strong></p>
+    <p><a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">Try JewelryStudioManager</a> or <a href="../apps.html">see all our tools</a>.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

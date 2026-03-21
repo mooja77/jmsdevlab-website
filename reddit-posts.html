@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reddit Post Templates — Internal Reference</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1.5rem; color: #1a1a2e; line-height: 1.7; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; margin-top: 2.5rem; color: #2563eb; border-bottom: 2px solid #dbeafe; padding-bottom: 0.5rem; }
+    h3 { font-size: 1rem; margin-top: 1.5rem; color: #475569; }
+    .template { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; }
+    .template p { margin: 0.5rem 0; }
+    .subject { font-weight: 700; color: #0f172a; }
+    .note { background: #fef3c7; border: 1px solid #fde68a; border-radius: 6px; padding: 1rem; margin: 1rem 0; font-size: 0.9rem; }
+    .comment { background: #ede9fe; border: 1px solid #c4b5fd; border-radius: 6px; padding: 1rem; margin: 1rem 0; font-size: 0.9rem; }
+    code { background: #e2e8f0; padding: 0.125rem 0.375rem; border-radius: 4px; font-size: 0.875rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    th { background: #f1f5f9; text-align: left; padding: 0.75rem; border: 1px solid #e2e8f0; }
+    td { padding: 0.75rem; border: 1px solid #e2e8f0; }
+    tr:nth-child(even) { background: #f8fafc; }
+  </style>
+</head>
+<body>
+
+<h1>Reddit Post Templates</h1>
+<p><strong>Internal reference document.</strong> Adapt every post to the subreddit's tone. Never copy-paste verbatim — Reddit users can smell canned marketing instantly.</p>
+
+<div class="note">
+  <strong>Reddit Rules:</strong>
+  <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+    <li>Follow the <strong>10:1 rule</strong> — 10 genuinely helpful comments for every self-promotional post</li>
+    <li><strong>NEVER</strong> post the same link to multiple subreddits</li>
+    <li>Always disclose <strong>"I built this"</strong> when linking your own product</li>
+    <li>Use your <strong>personal account</strong>, not a brand new one</li>
+    <li><strong>Read each subreddit's rules</strong> before posting — many ban direct links or require flair</li>
+  </ul>
+</div>
+
+<!-- ========== Target Subreddits ========== -->
+<h2>Target Subreddits</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subreddit</th>
+      <th>Relevant Apps</th>
+      <th>Approach</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r/shopify</td>
+      <td>All apps</td>
+      <td>Answer merchant questions</td>
+    </tr>
+    <tr>
+      <td>r/smallbusiness</td>
+      <td>SmartCash, GrowthMap, StaffHub</td>
+      <td>Business advice</td>
+    </tr>
+    <tr>
+      <td>r/ecommerce</td>
+      <td>SmartCash, StaffHub</td>
+      <td>Operational tips</td>
+    </tr>
+    <tr>
+      <td>r/jewelry</td>
+      <td>JSM, Jewel Value, RepairDesk</td>
+      <td>Industry expertise</td>
+    </tr>
+    <tr>
+      <td>r/jewelers</td>
+      <td>JSM, Jewel Value, RepairDesk</td>
+      <td>Trade-specific help</td>
+    </tr>
+    <tr>
+      <td>r/Entrepreneur</td>
+      <td>GrowthMap, SmartCash</td>
+      <td>Startup advice</td>
+    </tr>
+    <tr>
+      <td>r/SaaS</td>
+      <td>All (case studies)</td>
+      <td>Builder story</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ========== Post 1 ========== -->
+<h2>Post 1 — r/SaaS or r/Entrepreneur</h2>
+<p>Target: Builders and founders who appreciate indie dev stories</p>
+
+<div class="template">
+  <p class="subject">Title: I built 7 Shopify apps as a solo dev — here's what I learned</p>
+
+  <p>Over the past couple of years, I've gone from building client projects to running a portfolio of 7 Shopify apps. I wanted to share what I've learned in case it's useful for anyone considering the app/SaaS route.</p>
+
+  <p><strong>Why Shopify apps?</strong></p>
+  <p>I'd been building custom software for small businesses for years — portals, booking systems, CRMs. I kept noticing that the same problems came up again and again, especially in niche industries. Shopify has a massive merchant base, a solid API, and an app store that gives you distribution (in theory). It seemed like the right platform to productise what I'd been building bespoke.</p>
+
+  <p><strong>Picking niches nobody else cares about</strong></p>
+  <p>My first instinct was to build something broad — a general CRM, a generic dashboard. But the Shopify app store already has hundreds of those and you'll never outrank them. So I went niche. Really niche. I started with the jewelry industry because I'd done client work there and understood the pain points firsthand.</p>
+
+  <p>That turned into three apps: a commission-tracking CRM for custom jewelry studios (JewelryStudioManager), a valuation certificate platform for retail jewellers (Jewel Value), and a repair management system for jewellers and watchmakers (RepairDesk). Each one solves a very specific workflow that generic tools handle badly.</p>
+
+  <p>From there I branched out: SmartCash for cashflow forecasting, StaffHub for team training and management, GrowthMap for marketing plan execution (think Duolingo but for marketing), and Pitch Side — a free coaching companion for grassroots football that's completely different from everything else but was a passion project I couldn't resist.</p>
+
+  <p><strong>Building fast with AI assistance</strong></p>
+  <p>I won't pretend I'm a 10x developer. What's changed the game for me is using AI as a coding partner. Not to generate entire apps — that produces garbage — but to accelerate the boring parts: boilerplate, tests, documentation, debugging edge cases. It's let me ship faster than should be possible for one person.</p>
+
+  <p><strong>The app store is a bottleneck</strong></p>
+  <p>Here's the thing nobody tells you: getting into the Shopify app store is slow. Reviews take weeks. Requirements change. And once you're in, organic discovery is brutal unless you're already ranking. Most of my early traction came from direct outreach — finding merchants who had the exact problem my app solves and showing them a demo.</p>
+
+  <p><strong>What I'd tell myself two years ago</strong></p>
+  <ul>
+    <li><strong>Niche beats broad every time.</strong> A CRM for jewelry studios converts 10x better than "a CRM for Shopify."</li>
+    <li><strong>Solve pain you can articulate.</strong> If you can't describe the problem in one sentence, the merchant won't get it either.</li>
+    <li><strong>The app store is not a growth strategy.</strong> It's a channel. You need your own.</li>
+    <li><strong>Direct outreach works.</strong> Cold emails to 50 well-researched merchants beat 5,000 app store impressions.</li>
+    <li><strong>Ship fast, iterate with real users.</strong> My best features all came from merchant feedback, not my roadmap.</li>
+  </ul>
+
+  <p>If you want to see the full portfolio, it's at <strong>jmsdevlab.com</strong>. Happy to answer any questions about the Shopify app ecosystem, going solo, or building niche SaaS. Fire away.</p>
+</div>
+
+<!-- ========== Post 2 ========== -->
+<h2>Post 2 — r/shopify</h2>
+<p>Target: Shopify merchants who manage cashflow manually</p>
+
+<div class="template">
+  <p class="subject">Title: Free tool for forecasting your Shopify store's cashflow</p>
+
+  <p>Most Shopify merchants I talk to manage cashflow one of two ways: they check their bank balance and hope for the best, or they have a spreadsheet that's three months out of date. Both end the same way — getting blindsided by a cash crunch right when you need to reorder stock or pay a supplier.</p>
+
+  <p>I built a Shopify app called SmartCash that's specifically designed for this. It pulls your order data directly from Shopify, lets you factor in recurring costs (rent, subscriptions, payroll, whatever), and projects your cashflow forward so you can actually see what's coming.</p>
+
+  <p>The AI forecasting bit analyses your sales patterns — seasonal trends, day-of-week variations, growth trajectory — and gives you a realistic projection rather than a straight-line guess. It also flags potential cash crunches before they happen, so you can adjust spending or chase invoices early.</p>
+
+  <p>Full disclosure: I built this. It's at <strong>smartcashapp.net</strong> and there's a free trial if you want to kick the tyres. Plans start at $9.99/mo after that.</p>
+
+  <p>Happy to answer any questions about it or about cashflow forecasting for ecommerce in general.</p>
+</div>
+
+<!-- ========== Post 3 ========== -->
+<h2>Post 3 — r/smallbusiness</h2>
+<p>Target: Small business owners hitting the limits of spreadsheets</p>
+
+<div class="template">
+  <p class="subject">Title: The spreadsheet-to-software transition — when to make the switch</p>
+
+  <p>I've been building software for small businesses for years, and the number one pattern I see is this: someone starts with a spreadsheet, it works fine for a while, and then one day it doesn't — and by the time they realise it, they've already lost data or missed something important.</p>
+
+  <p>Here are the signs you've outgrown your spreadsheet:</p>
+
+  <ul>
+    <li><strong>Multiple people editing it.</strong> If more than one person touches the same spreadsheet regularly, you're going to have version conflicts. Google Sheets helps but doesn't solve the underlying problem — there's no workflow, no permissions, no audit trail.</li>
+    <li><strong>You're copying data between sheets.</strong> If you're manually copying customer info from one spreadsheet to another, or re-entering the same data in multiple places, you've built a manual database without any of the safeguards of an actual database.</li>
+    <li><strong>No automation.</strong> Spreadsheets don't send reminders, don't trigger follow-ups, and don't alert you when something needs attention. If you're relying on memory or calendar reminders to check your spreadsheet, you're going to miss things.</li>
+    <li><strong>Data is getting lost.</strong> Rows get accidentally deleted. Formulas break. Someone sorts column A but not column B. If you've had a moment of "where did that data go?", your spreadsheet has become a liability.</li>
+  </ul>
+
+  <p><strong>When to stick with spreadsheets:</strong> If you're the only person using it, the data is simple, and you don't need automation — spreadsheets are genuinely fine. Don't over-engineer it. A spreadsheet that works is better than software you never set up.</p>
+
+  <p><strong>When to switch:</strong> When the cost of errors (lost data, missed deadlines, wrong numbers) exceeds the cost of software. For most businesses I work with, that tipping point comes somewhere around 50-100 active records or 2-3 people involved in the process.</p>
+
+  <p>I wrote a longer piece about this on our blog if anyone's interested: <strong>jmsdevlab.com/blog/outgrown-spreadsheets.html</strong></p>
+
+  <p>For context, I build niche business tools — things like cashflow forecasting (SmartCash), marketing plan execution (GrowthMap), and team management (StaffHub). The reason I went niche is exactly because of this problem: generic software tries to replace your spreadsheet with something equally confusing, while niche tools replace it with something that actually fits your workflow.</p>
+
+  <p>Curious to hear from others — what was the tipping point for you? When did you realise your spreadsheet wasn't cutting it anymore?</p>
+</div>
+
+<!-- ========== Post 4 ========== -->
+<h2>Post 4 — r/jewelry or r/jewelers</h2>
+<p>Target: Jewellers and workshop owners — discussion-style post</p>
+
+<div class="template">
+  <p class="subject">Title: Digital tools for jewelry workshops — what's actually useful?</p>
+
+  <p>I've spent the last couple of years building software specifically for the jewelry trade, and I'm genuinely curious what tools people here actually find useful vs. what's just tech for tech's sake.</p>
+
+  <p>From the workshops and studios I've worked with, the three biggest pain points seem to be:</p>
+
+  <ul>
+    <li><strong>Commission tracking.</strong> Following a custom piece from the initial enquiry through design, approval, production, and delivery — without losing details or forgetting to follow up. Most studios I've seen use a mix of notebooks, spreadsheets, and memory.</li>
+    <li><strong>Valuation certificates.</strong> Generating professional, insurance-ready certificates that actually meet insurer requirements. A surprising number of valuations get rejected because they're missing fields the insurer needs.</li>
+    <li><strong>Repair pipelines.</strong> Tracking repairs from intake through diagnosis, quoting, approval, work, and collection — and keeping customers informed without fielding constant "is it ready yet?" calls.</li>
+  </ul>
+
+  <p>Full disclosure: I built tools for all three of these (JewelryStudioManager for commissions, Jewel Value for valuations, and RepairDesk for repairs). They're all Shopify apps, built specifically for the jewelry trade.</p>
+
+  <p>But I'm not here to sell — I'm genuinely curious: <strong>what other pain points do you deal with that software could solve?</strong> Inventory management? Supplier tracking? Client communications? Stone sourcing?</p>
+
+  <p>What would actually make your day easier if it existed?</p>
+</div>
+
+<!-- ========== Comment Templates ========== -->
+<h2>Comment Templates</h2>
+<p>Use these as starting points for helpful replies. Adapt the tone to match the thread. <strong>Only mention your product after giving genuine advice.</strong></p>
+
+<h3>r/shopify — Someone asking about CRM options</h3>
+<div class="comment">
+  <p>It really depends on what you need the CRM to do. If you're looking for general customer management, Shopify's built-in customer profiles plus tags and segments get you pretty far. For email marketing CRM, Klaviyo is the go-to.</p>
+  <p>If you're in a niche where you need to track specific workflows (like custom orders, commissions, or project-based work), you'll want something purpose-built. Generic CRMs like HubSpot work but require a ton of customisation to fit Shopify workflows. I actually built a CRM for custom jewelry studios (JewelryStudioManager) because the generic options were so painful for that use case. What industry are you in? That'll narrow down the recommendations.</p>
+</div>
+
+<h3>r/shopify — Someone asking about cashflow management</h3>
+<div class="comment">
+  <p>Cashflow is the thing that kills most stores, and Shopify's built-in analytics don't really help with it — they show you what happened, not what's coming. At minimum, you want to know your cash position 30-60 days out so you can plan stock orders and big expenses.</p>
+  <p>A simple spreadsheet works at first: list your expected income (based on average daily sales) minus known expenses, and project forward week by week. Once that gets too manual, there are tools that pull your Shopify data automatically — I built one called SmartCash (smartcashapp.net) that does this with AI forecasting, but even a well-maintained spreadsheet beats flying blind.</p>
+</div>
+
+<h3>r/shopify — Someone asking about staff/team management</h3>
+<div class="comment">
+  <p>Managing a team inside Shopify is tricky because it's not really designed for it. Shopify gives you staff accounts with permissions, but nothing for training, onboarding, or tracking who knows what. Most store owners I talk to cobble together Google Docs, Loom videos, and Slack messages, then wonder why new hires take forever to get up to speed.</p>
+  <p>If you want something structured, I'd suggest documenting your SOPs first (even in a simple doc) and then deciding if you need a tool. I built StaffHub specifically for Shopify teams — it handles training modules, SOPs, and team management. But honestly, documented processes in any format is 90% of the battle.</p>
+</div>
+
+<h3>r/jewelry — Someone asking about commission tracking</h3>
+<div class="comment">
+  <p>The challenge with commissions is that every piece has a different timeline and different details, so generic project management tools never quite fit. You need to track the client brief, design approvals, materials, production stages, and delivery — and keep the client informed at each step without it eating your whole day.</p>
+  <p>Most studios I've worked with use a combination of notebooks and spreadsheets, which works until you've got 10+ active commissions and things start slipping through the cracks. I ended up building a Shopify app for this (JewelryStudioManager) with a client portal so customers can check status themselves. If you're on Shopify it might be worth a look — jmsdevlab.com has more info.</p>
+</div>
+
+<h3>r/jewelry — Someone asking about repair management</h3>
+<div class="comment">
+  <p>Repair tracking is one of those things that seems simple until you're managing 30+ active jobs and customers keep calling to ask if their piece is ready. The key is having a pipeline you can move jobs through (intake → diagnosis → quote → approved → in progress → ready → collected) with automated updates to the customer at each stage.</p>
+  <p>Paper tickets work for low volume, but once you're busy they become a liability — things get lost, nothing is searchable, and you can't see your overall workload at a glance. I built RepairDesk (repairdeskapp.net) specifically for jewellers and watchmakers on Shopify. It handles the full pipeline with photo documentation and customer notifications. Happy to answer questions about repair workflow in general too.</p>
+</div>
+
+<h3>r/smallbusiness — Someone asking about outgrowing spreadsheets</h3>
+<div class="comment">
+  <p>The tipping point is usually when errors start costing you real money or real time. If you're spending more time maintaining the spreadsheet than actually using the data, or if you've had a "where did that row go?" moment, it's time.</p>
+  <p>My advice: don't jump straight to a big platform like Salesforce. Look for niche tools that solve your specific workflow — they're usually cheaper, faster to set up, and actually fit how you work. I wrote a longer piece about this: jmsdevlab.com/blog/outgrown-spreadsheets.html. What kind of data are you tracking? That'll help narrow down whether you need a CRM, a project tool, or something else entirely.</p>
+</div>
+
+<h3>r/Entrepreneur — Someone asking about niche SaaS ideas</h3>
+<div class="comment">
+  <p>The best niche SaaS ideas come from industries you already know. Talk to people in a specific trade, ask what's painful, and look for workflows they're doing manually that software could automate. The more specific and "boring" the problem, the better — less competition and higher willingness to pay.</p>
+  <p>I build Shopify apps for the jewelry industry (commission tracking, valuations, repair management) and each one came from actual conversations with jewellers about their day-to-day pain. Nobody else was building for them because the market looked "too small" — but that's exactly why it works. A few hundred paying customers in a niche you own beats fighting for scraps in a crowded market.</p>
+</div>
+
+<h3>r/SaaS — Someone asking about finding first customers</h3>
+<div class="comment">
+  <p>App stores and marketplaces are great long-term but terrible for first customers. Your listing is buried, you have no reviews, and nobody's searching for you by name. For the first 10-50 customers, direct outreach wins every time.</p>
+  <p>What worked for me: find 50 businesses that have the exact problem your product solves, send a short personalised email referencing something specific about their business, and offer a demo. No pitch deck, no feature list — just "I noticed you do X, I built a tool that helps with Y, want a quick look?" I run 7 Shopify apps (jmsdevlab.com) and every single one got its first customers through cold outreach, not organic discovery.</p>
+</div>
+
+</body>
+</html>

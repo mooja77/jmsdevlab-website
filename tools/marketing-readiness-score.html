@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Marketing Readiness Score - JMS Dev Lab</title>
+  <meta name="description" content="Is your business ready to start marketing? Take this free 2-minute assessment to find out if your foundations are solid — or if you're about to waste your budget.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/tools/marketing-readiness-score.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Marketing Readiness Score - JMS Dev Lab">
+  <meta property="og:description" content="Is your business ready to start marketing? Take this free 2-minute assessment to find out if your foundations are solid — or if you're about to waste your budget.">
+  <meta property="og:url" content="https://jmsdevlab.com/tools/marketing-readiness-score.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Marketing Readiness Score - JMS Dev Lab">
+  <meta name="twitter:description" content="Is your business ready to start marketing? Take this free 2-minute assessment to find out if your foundations are solid — or if you're about to waste your budget.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="k7OsaJgbYCOwj41rNJgUf2yvt44y8mcp3DLmleNUQE0">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Marketing Readiness Score",
+    "url": "https://jmsdevlab.com/tools/marketing-readiness-score.html",
+    "description": "A free 2-minute assessment to evaluate whether your business is ready to start marketing effectively, or if you need to fix foundations first.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "JMS Dev Lab",
+      "url": "https://jmsdevlab.com"
+    }
+  }
+  </script>
+
+  <style>
+    /* Assessment form */
+    .assess-form {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .assess-form h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.25rem;
+      text-align: center;
+    }
+    .assess-form .assess-subtitle {
+      text-align: center;
+      color: var(--slate-500);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Question groups */
+    .assess-question {
+      margin-bottom: 2rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .assess-question:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .assess-question .q-number {
+      display: inline-block;
+      background: var(--blue-500, #2563eb);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 1.5rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+    .assess-question .q-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Styled radio options as cards */
+    .assess-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .assess-option {
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+    .assess-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .assess-option .option-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--slate-700);
+      background: #fff;
+      transition: all 0.15s ease;
+      line-height: 1.4;
+    }
+    .assess-option .option-card:hover {
+      border-color: var(--blue-300, #93c5fd);
+      background: rgba(37, 99, 235, 0.02);
+    }
+    .assess-option .option-dot {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--slate-300);
+      border-radius: 50%;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .assess-option input[type="radio"]:checked ~ .option-card {
+      border-color: var(--blue-500, #2563eb);
+      background: rgba(37, 99, 235, 0.04);
+    }
+    .assess-option input[type="radio"]:checked ~ .option-card .option-dot {
+      border-color: var(--blue-500, #2563eb);
+      background: var(--blue-500, #2563eb);
+      box-shadow: inset 0 0 0 3px #fff;
+    }
+    .assess-option input[type="radio"]:focus-visible ~ .option-card {
+      outline: 2px solid var(--blue-500, #2563eb);
+      outline-offset: 2px;
+    }
+
+    .assess-btn-wrap {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .assess-error {
+      color: #dc2626;
+      font-size: 0.875rem;
+      text-align: center;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    /* Results */
+    .assess-results {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      display: none;
+    }
+    .assess-results.visible {
+      display: block;
+    }
+
+    /* Score display */
+    .score-display {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .score-display .score-label {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .score-display .score-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .score-bar-track {
+      width: 100%;
+      max-width: 400px;
+      height: 12px;
+      background: var(--slate-100);
+      border-radius: 6px;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.6s ease;
+    }
+    .score-display .score-summary {
+      font-size: 1rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Rating colours */
+    .rating-excellent .score-label { color: #16a34a; }
+    .rating-excellent .score-value { color: #16a34a; }
+    .rating-excellent .score-bar-fill { background: #16a34a; }
+
+    .rating-good .score-label { color: var(--blue-600, #2563eb); }
+    .rating-good .score-value { color: var(--blue-600, #2563eb); }
+    .rating-good .score-bar-fill { background: var(--blue-600, #2563eb); }
+
+    .rating-attention .score-label { color: #ea580c; }
+    .rating-attention .score-value { color: #ea580c; }
+    .rating-attention .score-bar-fill { background: #ea580c; }
+
+    .rating-atrisk .score-label { color: #dc2626; }
+    .rating-atrisk .score-value { color: #dc2626; }
+    .rating-atrisk .score-bar-fill { background: #dc2626; }
+
+    /* Advice section */
+    .advice-section {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .advice-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .advice-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .advice-list li {
+      position: relative;
+      padding: 0.6rem 0 0.6rem 1.75rem;
+      font-size: 0.9rem;
+      color: var(--slate-700);
+      line-height: 1.6;
+      border-bottom: 1px solid var(--slate-50);
+    }
+    .advice-list li:last-child {
+      border-bottom: none;
+    }
+    .advice-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue-500, #2563eb);
+    }
+
+    /* What ready businesses do */
+    .merchants-section {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .merchants-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .merchants-section p {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      line-height: 1.7;
+      margin-bottom: 0.5rem;
+    }
+    .merchants-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* CTA */
+    .assess-cta {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      display: none;
+    }
+    .assess-cta.visible {
+      display: block;
+    }
+    .assess-cta h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .assess-cta p {
+      color: var(--slate-600);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    .assess-cta .cta-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Retake button */
+    .retake-wrap {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .retake-wrap button {
+      background: none;
+      border: none;
+      color: var(--slate-500);
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .retake-wrap button:hover {
+      color: var(--slate-700);
+    }
+
+    @media (max-width: 480px) {
+      .assess-form,
+      .score-display,
+      .advice-section,
+      .merchants-section,
+      .assess-cta {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li>Free Tools</li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Marketing Readiness Score</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Free Tools","item":"https://jmsdevlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Marketing Readiness Score"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Marketing Readiness Score</h1>
+    <p>Is your business actually ready to start marketing? Answer 8 quick questions to find out if your foundations are solid &mdash; or if you need to fix a few things first.</p>
+  </section>
+
+  <!-- Assessment -->
+  <section class="section section-light">
+    <div class="container">
+
+      <!-- Form -->
+      <div class="assess-form" id="assessForm">
+        <h3>Your 2-Minute Marketing Readiness Assessment</h3>
+        <p class="assess-subtitle">Select the answer that best describes your current situation.</p>
+
+        <!-- Q1 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">1</span> Can you clearly explain what you sell and who it's for in one sentence?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q1" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, it's crystal clear</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q1" value="2">
+              <span class="option-card"><span class="option-dot"></span>Mostly, but it depends on the audience</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q1" value="1">
+              <span class="option-card"><span class="option-dot"></span>I struggle to keep it concise</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q1" value="0">
+              <span class="option-card"><span class="option-dot"></span>I'm still figuring that out</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">2</span> Do you have a website that accurately represents your business?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q2" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, it's up to date and looks professional</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q2" value="2">
+              <span class="option-card"><span class="option-dot"></span>Yes, but it needs updating</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q2" value="1">
+              <span class="option-card"><span class="option-dot"></span>It exists but I'm not proud of it</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q2" value="0">
+              <span class="option-card"><span class="option-dot"></span>No website, or it's basically a placeholder</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">3</span> Do you know where your best customers come from?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q3" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, I can name the top 2&ndash;3 channels</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q3" value="2">
+              <span class="option-card"><span class="option-dot"></span>I have a rough idea</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q3" value="1">
+              <span class="option-card"><span class="option-dot"></span>Not really &mdash; they just seem to find me</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q3" value="0">
+              <span class="option-card"><span class="option-dot"></span>I've never tracked this</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">4</span> Do you have any way to collect leads or enquiries online?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q4" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes &mdash; contact forms, email capture, or booking system</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q4" value="2">
+              <span class="option-card"><span class="option-dot"></span>Just a contact email address</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q4" value="1">
+              <span class="option-card"><span class="option-dot"></span>Social media DMs only</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q4" value="0">
+              <span class="option-card"><span class="option-dot"></span>No online lead capture at all</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">5</span> How would you describe your current marketing efforts?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q5" value="3">
+              <span class="option-card"><span class="option-dot"></span>Consistent and planned</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q5" value="2">
+              <span class="option-card"><span class="option-dot"></span>Occasional bursts when I remember</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q5" value="1">
+              <span class="option-card"><span class="option-dot"></span>I post on social media sometimes</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q5" value="0">
+              <span class="option-card"><span class="option-dot"></span>I don't do any marketing</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">6</span> Do you have a budget set aside for marketing?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q6" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, a defined monthly or quarterly budget</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q6" value="2">
+              <span class="option-card"><span class="option-dot"></span>I spend when something comes up</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q6" value="1">
+              <span class="option-card"><span class="option-dot"></span>Only free activities</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q6" value="0">
+              <span class="option-card"><span class="option-dot"></span>I haven't thought about it</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">7</span> Can you handle more customers right now without things breaking?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q7" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, I have capacity and systems in place</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q7" value="2">
+              <span class="option-card"><span class="option-dot"></span>Probably, but it would be tight</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q7" value="1">
+              <span class="option-card"><span class="option-dot"></span>It would be chaotic</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q7" value="0">
+              <span class="option-card"><span class="option-dot"></span>I'm already overwhelmed</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="assess-question">
+          <div class="q-label"><span class="q-number">8</span> Do you know what makes you different from competitors?</div>
+          <div class="assess-options">
+            <label class="assess-option">
+              <input type="radio" name="q8" value="3">
+              <span class="option-card"><span class="option-dot"></span>Yes, I can articulate it clearly</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q8" value="2">
+              <span class="option-card"><span class="option-dot"></span>I think so, but I'm not sure customers see it</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q8" value="1">
+              <span class="option-card"><span class="option-dot"></span>Not really &mdash; we're similar to others</span>
+            </label>
+            <label class="assess-option">
+              <input type="radio" name="q8" value="0">
+              <span class="option-card"><span class="option-dot"></span>I haven't researched competitors</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="assess-btn-wrap">
+          <button type="button" class="btn btn-primary" id="assessButton">
+            Get My Score
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <div class="assess-error" id="assessError">Please answer all 8 questions before getting your score.</div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="assess-results" id="assessResults">
+
+        <!-- Score -->
+        <div class="score-display" id="scoreDisplay">
+          <div class="score-label" id="scoreLabel"></div>
+          <div class="score-value" id="scoreValue"></div>
+          <div class="score-bar-track">
+            <div class="score-bar-fill" id="scoreBar" style="width: 0%;"></div>
+          </div>
+          <div class="score-summary" id="scoreSummary"></div>
+        </div>
+
+        <!-- Advice -->
+        <div class="advice-section">
+          <h3>Your Personalised Recommendations</h3>
+          <ul class="advice-list" id="adviceList"></ul>
+        </div>
+
+        <!-- What ready businesses do -->
+        <div class="merchants-section">
+          <h3>What Ready Businesses Do</h3>
+          <p>Businesses that get the most from their marketing tend to share a few things in common: they can describe what they do in plain language, they know where their customers come from, and they have a simple way to capture interest online.</p>
+          <p>They don't necessarily have big budgets or fancy strategies. They just have the basics in place first &mdash; a clear message, a decent website, and enough capacity to deliver. Once those foundations are solid, even small, consistent marketing efforts start to compound.</p>
+          <p>The biggest mistake most small businesses make isn't choosing the wrong marketing channel. It's starting to market before they're ready to make a good first impression.</p>
+        </div>
+
+        <div class="retake-wrap">
+          <button type="button" id="retakeButton">Retake assessment</button>
+        </div>
+      </div>
+
+      <!-- Soft CTA -->
+      <div class="assess-cta" id="assessCta">
+        <h3>Turn Your Readiness Into Results</h3>
+        <p>Once your foundations are in place, the next challenge is knowing what to do each day. GrowthMap breaks marketing down into small, manageable daily tasks &mdash; like Duolingo, but for marketing. No jargon, no overwhelm. Just the next step to take.</p>
+        <p>Whether you scored high or have work to do first, GrowthMap meets you where you are and guides you forward.</p>
+        <div class="cta-links">
+          <a href="https://mygrowthmap.net" target="_blank" rel="noopener" class="btn btn-primary">
+            Explore GrowthMap
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+          <a href="../contact.html" class="btn btn-ghost">
+            Ask Us a Question
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay in the loop</h3>
+        <p>New tools, insights, and product updates. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2192671/forms/182011083818534198/subscribe" method="POST">
+          <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+          <input type="hidden" name="ml-submit" value="1">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var assessButton = document.getElementById('assessButton');
+    var assessError = document.getElementById('assessError');
+    var assessForm = document.getElementById('assessForm');
+    var resultsEl = document.getElementById('assessResults');
+    var ctaEl = document.getElementById('assessCta');
+    var retakeButton = document.getElementById('retakeButton');
+
+    var questionCount = 8;
+    var maxScore = 24;
+
+    // Question metadata for personalised advice
+    var questionMeta = {
+      q1: {
+        topic: 'value proposition',
+        advice: [
+          'Your message is your foundation. Before you spend a penny on marketing, write down what you sell and who it\'s for in one clear sentence. Test it on someone outside your business \u2014 if they don\'t get it immediately, keep refining.',
+          'A concise pitch matters more than you think. Try this format: "I help [specific audience] to [specific outcome]." Keep testing it until it clicks instantly.',
+          'Your messaging shifts depending on the audience, which means it\'s not quite locked in yet. Pick your single best customer type and write your pitch for them specifically. You can adapt later, but start with one.',
+          'You\'re in a strong position \u2014 consider testing your pitch in different contexts (website, social, conversations) to make sure it lands the same way everywhere.'
+        ]
+      },
+      q2: {
+        topic: 'website presence',
+        advice: [
+          'Your website is often the first impression someone has of your business. Before marketing, make sure it clearly says what you do, who you help, and how to get in touch. It doesn\'t need to be fancy \u2014 it needs to be accurate.',
+          'An outdated website can actively hurt your marketing. Even simple updates \u2014 current photos, accurate service descriptions, a working contact form \u2014 make a big difference.',
+          'A website you\'re not proud of will undermine every marketing effort you make. Consider a focused refresh: clear headline, one or two pages, and a contact form. That\'s all you need to start.',
+          'Your website is solid. Make sure your calls to action are clear and that visitors know exactly what step to take next.'
+        ]
+      },
+      q3: {
+        topic: 'customer acquisition channels',
+        advice: [
+          'Understanding where your customers come from is essential before you invest in marketing. Start by asking your next 10 customers: "How did you hear about us?" The patterns will surprise you.',
+          'You have a rough idea, which is a good start. Make it concrete by tracking every new enquiry source for the next month. Even a simple tally on a notepad will give you actionable data.',
+          'If customers "just find you," that\'s a sign you\'re relying on luck rather than a system. Start tracking referral sources now so you can double down on what actually works.',
+          'Great awareness of your channels. Use this knowledge to focus your marketing budget on the channels that already deliver, rather than spreading thin across everything.'
+        ]
+      },
+      q4: {
+        topic: 'lead capture',
+        advice: [
+          'Without a way to capture interest online, marketing traffic has nowhere to go. At minimum, set up a simple contact form on your website. A basic email signup or booking link is even better.',
+          'A contact email is better than nothing, but it creates friction. Adding a simple contact form to your website can significantly increase the number of enquiries you receive.',
+          'Relying solely on social media DMs means you don\'t own your leads. If the platform changes its algorithm or goes down, you lose your pipeline. Add a contact form or email capture to your own website.',
+          'Your lead capture setup is solid. Consider whether you\'re following up quickly enough \u2014 speed of response is one of the biggest factors in converting enquiries.'
+        ]
+      },
+      q5: {
+        topic: 'marketing consistency',
+        advice: [
+          'The most effective marketing isn\'t brilliant one-off campaigns \u2014 it\'s consistent, small efforts over time. Even 15 minutes a day of focused marketing activity compounds into real results.',
+          'Burst-and-forget marketing rarely builds momentum. Try committing to just one marketing activity per week, consistently. Pick the easiest one and build the habit first.',
+          'Occasional social media posts are better than nothing, but without a plan, it\'s hard to build momentum. Choose one channel and commit to a simple routine \u2014 even two posts a week is a start.',
+          'Your consistency is an advantage. Focus on measuring what\'s working so you can do more of it and less of what isn\'t.'
+        ]
+      },
+      q6: {
+        topic: 'marketing budget',
+        advice: [
+          'You don\'t need a big budget, but you do need to decide what you\'re willing to invest \u2014 even if it\'s just time. Knowing your budget helps you choose the right activities and avoid wasting money on the wrong ones.',
+          'Reactive spending often costs more than planned spending. Set even a small monthly amount aside \u2014 it forces you to be intentional about where it goes.',
+          'Free marketing activities can be very effective, especially content marketing and referral programmes. Make sure you\'re investing your time wisely by tracking which free activities actually generate results.',
+          'Having a defined budget is excellent. Review it quarterly to make sure it\'s aligned with what\'s actually working.'
+        ]
+      },
+      q7: {
+        topic: 'operational capacity',
+        advice: [
+          'Marketing when you can\'t handle more customers is a recipe for bad reviews and burnout. Focus on systemising your current operations first \u2014 document your processes, set up templates, and remove bottlenecks.',
+          'If more customers would make things tight, that\'s a sign to build a bit more capacity before ramping up marketing. Small improvements to your systems now will pay off hugely when demand increases.',
+          'The chaos of handling more customers without systems will cost you in reputation and stress. Invest in streamlining your current workflows before driving more traffic.',
+          'Having capacity and systems in place is a real competitive advantage. You\'re ready to scale your marketing with confidence.'
+        ]
+      },
+      q8: {
+        topic: 'competitive differentiation',
+        advice: [
+          'If you can\'t explain why someone should choose you over alternatives, your marketing will struggle to cut through. Research your top 3 competitors this week and identify what you do differently \u2014 even if it\'s just your approach or customer experience.',
+          'You know your difference but customers might not see it. Make sure your differentiator is visible on your website, in your social media bio, and in every piece of marketing you create.',
+          'Being similar to competitors makes marketing much harder and more expensive. Look for a niche, a specialism, or an angle that sets you apart \u2014 it doesn\'t have to be dramatic, just genuine.',
+          'Clear differentiation makes every marketing effort more effective. Lead with what makes you different in your headlines, ads, and conversations.'
+        ]
+      }
+    };
+
+    assessButton.addEventListener('click', function() {
+      // Collect answers
+      var scores = {};
+      var total = 0;
+      var allAnswered = true;
+
+      for (var i = 1; i <= questionCount; i++) {
+        var name = 'q' + i;
+        var selected = document.querySelector('input[name="' + name + '"]:checked');
+        if (!selected) {
+          allAnswered = false;
+          break;
+        }
+        var val = parseInt(selected.value, 10);
+        scores[name] = val;
+        total += val;
+      }
+
+      if (!allAnswered) {
+        assessError.style.display = 'block';
+        return;
+      }
+      assessError.style.display = 'none';
+
+      // Determine rating
+      var rating, ratingClass, ratingLabel, summary;
+      if (total >= 20) {
+        rating = 'excellent';
+        ratingClass = 'rating-excellent';
+        ratingLabel = 'Ready to Go';
+        summary = 'Your foundations are solid. You\'re in a great position to start marketing with confidence. Focus on consistency, measure what works, and double down on your strongest channels. The hardest part \u2014 getting ready \u2014 is already done.';
+      } else if (total >= 14) {
+        rating = 'good';
+        ratingClass = 'rating-good';
+        ratingLabel = 'Almost Ready';
+        summary = 'Most of the foundations are there, but a few gaps could waste your marketing budget. Address the areas below before spending money on ads or campaigns \u2014 it\'ll make everything you do afterwards more effective.';
+      } else if (total >= 7) {
+        rating = 'attention';
+        ratingClass = 'rating-attention';
+        ratingLabel = 'Fix First';
+        summary = 'Marketing right now would be like pouring water into a leaky bucket. The good news: the fixes aren\'t complicated, and getting them right will save you time and money. Focus on the foundations below before investing in promotion.';
+      } else {
+        rating = 'atrisk';
+        ratingClass = 'rating-atrisk';
+        ratingLabel = 'Build the Basics';
+        summary = 'You\'re not ready for marketing yet \u2014 and that\'s completely fine. Every successful business started exactly where you are. The recommendations below give you a clear starting point. Get these right, and when you do start marketing, it\'ll actually work.';
+      }
+
+      // Display score
+      var scoreDisplay = document.getElementById('scoreDisplay');
+      scoreDisplay.className = 'score-display ' + ratingClass;
+      document.getElementById('scoreLabel').textContent = ratingLabel;
+      document.getElementById('scoreValue').textContent = total + ' / ' + maxScore;
+      document.getElementById('scoreSummary').textContent = summary;
+
+      // Animate progress bar
+      var pct = Math.round((total / maxScore) * 100);
+      setTimeout(function() {
+        document.getElementById('scoreBar').style.width = pct + '%';
+      }, 100);
+
+      // Build personalised advice based on lowest-scoring questions
+      var sortable = [];
+      for (var key in scores) {
+        sortable.push({ q: key, score: scores[key] });
+      }
+      sortable.sort(function(a, b) { return a.score - b.score; });
+
+      var adviceList = document.getElementById('adviceList');
+      adviceList.innerHTML = '';
+      var adviceCount = 0;
+      var maxAdvice = 4;
+
+      for (var j = 0; j < sortable.length && adviceCount < maxAdvice; j++) {
+        var q = sortable[j];
+        if (q.score >= 3) continue; // Skip perfect scores
+        var meta = questionMeta[q.q];
+        var adviceText = meta.advice[q.score];
+        var li = document.createElement('li');
+        li.textContent = adviceText;
+        adviceList.appendChild(li);
+        adviceCount++;
+      }
+
+      // If all scores are high, give optimisation tips
+      if (adviceCount === 0) {
+        var tips = [
+          'Focus on measuring results from the start. Track which channels bring the best customers (not just the most traffic) and allocate your budget accordingly.',
+          'Consider creating a simple content calendar. Even planning a week ahead makes your marketing more coherent and less stressful.',
+          'Build a referral system. Your existing happy customers are your best marketing asset \u2014 make it easy for them to recommend you.',
+          'Test one new marketing channel every quarter. You already have strong foundations, so controlled experiments will help you find your next growth lever.'
+        ];
+        for (var t = 0; t < tips.length; t++) {
+          var tipLi = document.createElement('li');
+          tipLi.textContent = tips[t];
+          adviceList.appendChild(tipLi);
+        }
+      }
+
+      // Show results and CTA
+      resultsEl.classList.add('visible');
+      ctaEl.classList.add('visible');
+
+      // Scroll to results
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Retake
+    retakeButton.addEventListener('click', function() {
+      // Reset form
+      var radios = assessForm.querySelectorAll('input[type="radio"]');
+      for (var r = 0; r < radios.length; r++) {
+        radios[r].checked = false;
+      }
+
+      // Hide results
+      resultsEl.classList.remove('visible');
+      ctaEl.classList.remove('visible');
+      document.getElementById('scoreBar').style.width = '0%';
+
+      // Scroll to top of form
+      assessForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+  </script>
+
+  <script src="../main.js"></script>
+</body>
+</html>

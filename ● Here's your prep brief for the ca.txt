@@ -1,0 +1,198 @@
+● Here's your prep brief for the call with Kate tomorrow at 3:45pm:
+
+  ---
+  Vegrify Call Prep — Friday 20 March, 3:45pm
+
+  What Kate likely wants to discuss
+
+  This is a procurement call, not a sales pitch. She'll probably:
+  - Clarify details from your proposal
+  - Ask about your experience/capability
+  - Discuss timeline and availability
+  - Possibly ask about the prototype
+
+  Your key numbers (know these cold)
+
+  ┌────────────────┬─────────────────────────────────────────┐
+  │                │                                         │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Total price    │ EUR 28,875                              │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Daily rate     │ EUR 525                                 │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Duration       │ 55 days / 10 weeks                      │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Work packages  │ 6                                       │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Payment per WP │ ~EUR 4,812                              │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ VAT            │ Not registered — price is what they pay │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ LEO grant      │ Client claims 50% back (~EUR 14,437)    │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Prototype      │ https://vegrify-mvp.vercel.app          │
+  ├────────────────┼─────────────────────────────────────────┤
+  │ Ingredients    │ 6,413                                   │
+  └────────────────┴─────────────────────────────────────────┘
+
+  Likely questions and answers
+
+  "You're a new practice — what experience do you have?"
+  - BSc Computer Science from UCC, Software Engineer at Sun Microsystems (2001-2004)
+  - 6 published Shopify apps — same TypeScript/React/Node stack
+  - 22 years running a retail business — you understand real-world product needs
+  - You've already built a working prototype with 6,413 ingredients
+
+  "Can you handle this alone?"
+  - Sole developer = no handoff, no communication overhead. The person Kate evaluates is the person who writes every
+  line of code
+  - Your published apps prove you can ship end-to-end (design, build, test, deploy, App Store review)
+
+  "Why is your price lower than others?"
+  - Not VAT registered (below EUR 42,500 threshold) — that's a genuine 23% saving vs VAT-registered competitors
+  - EUR 525/day is a fair rate for a sole trader, not artificially low
+  - No agency overhead, no project manager middleman
+
+  "Tell me about the prototype"
+  - 6,413 ingredients with explainable reasoning for every classification
+  - Four-tier pipeline: database lookup → fuzzy matching → pattern recognition → cloud AI fallback
+  - Offline-first — works in supermarkets with no signal
+  - Sub-10ms classification speed
+  - Built to demonstrate the XAI approach that differentiates Vegrify
+
+  "What about OCR / camera scanning?"
+  - That's WP4 (10 days, weeks 5-7). The prototype demonstrates the classification engine. Camera integration with
+  real-world label scanning is a core deliverable
+  - React Native Camera + Tesseract/ML Kit for text recognition
+
+  "What's your availability?"
+  - Can start immediately upon contract signing
+
+  "How does the LEO grant work?"
+  - LEO Feasibility Grant — 50% co-funding up to EUR 15,000
+  - Your price (EUR 28,875) lets them claim ~EUR 14,437 back
+  - This is NOT the Grow Digital Voucher (that's a different programme)
+
+  Things to NOT bring up unless asked
+
+  - That JMS Dev Lab is brand new (2026) — your work speaks for itself
+  - Specific pricing breakdown — she has it in the document
+  - Competitors or other bidders
+
+  Practical tips
+
+  - Have the prototype open on your screen: https://vegrify-mvp.vercel.app
+  - Have your RFQ response open for reference
+  - Keep answers short and direct — it's a 20-minute call
+  - Let Kate lead the conversation — she'll have specific questions
+  - It's OK to say "I'd need to look into that and come back to you"
+
+  Your strongest card
+
+  No other bidder will have built a working prototype before submitting. Demo it if she gives you the chance — paste an
+  ingredient list and show the explainable output in real time.
+
+  ---
+  You've got this. The prototype does the talking.
+
+✻ Cooked for 39s
+
+❯
+  "Tell me about the prototype"
+  - 6,413 ingredients with explainable reasoning for every classification
+  - Four-tier pipeline: database lookup → fuzzy matching → pattern recognition → cloud AI fallback
+  - Offline-first — works in supermarkets with no signal
+  - Sub-10ms classification speed
+  - Built to demonstrate the XAI approach that differentiates Vegrify
+
+  "What about OCR / camera scanning?"
+  - That's WP4 (10 days, weeks 5-7). The prototype demonstrates the classification engine. Camera integration with
+  real-world label scanning is a core deliverable
+  - React Native Camera + Tesseract/ML Kit for text recognition - expand more on these
+
+● Prototype — deeper detail
+
+  The 4-tier classification pipeline:
+
+  1. Direct lookup — exact match against 6,413 ingredients in a local database. Handles ~85% of ingredients instantly.
+  Each entry has aliases (e.g. "E120" = "carmine" = "cochineal"), so it catches different label formats.
+  2. Fuzzy matching — handles OCR errors and typos. "Gelatln" matches to "gelatin", "leclthin" matches to "lecithin".
+  Uses Levenshtein distance scoring so near-misses don't slip through.
+  3. Pattern recognition — 27+ heuristic rules that break down compound ingredients. "Hydrolysed vegetable protein" →
+  recognises "vegetable" → vegan. "Milk chocolate powder" → recognises "milk" → not vegan. Covers dairy, eggs, meat,
+  honey, E-numbers, plant-based qualifiers, etc.
+  4. Cloud AI fallback — for the rare ingredient none of the above can classify (~2-3%), it calls an LLM API for
+  analysis. The result gets cached locally so it's instant next time. Only triggers when online.
+
+  Steps 1-3 run entirely on-device — no internet needed. This is critical for supermarket use where signal is
+  unreliable.
+
+  OCR / Camera — what the full MVP will deliver
+
+  Camera capture:
+  - React Native Camera module for live viewfinder
+  - User points phone at ingredient label, taps to capture
+  - Handles real-world conditions: curved packaging, small text, poor supermarket lighting, reflective surfaces
+
+  Text extraction:
+  - Google ML Kit (preferred) — on-device text recognition, no network needed, fast, free, works on iOS and Android.
+  Better accuracy than Tesseract for structured text on packaging
+  - Tesseract as fallback option — open source, fully offline, but lower accuracy on curved/distorted labels
+  - Post-processing: strip line breaks, normalise separators (commas, semicolons, "contains:"), handle multi-language
+  labels
+
+  The pipeline after OCR:
+  Camera → ML Kit extracts text → parser splits into individual ingredients → each ingredient goes through the 4-tier
+  classification → results displayed with traffic-light UI (green/amber/red) and explainable reasoning for every
+  ingredient
+
+  Why ML Kit over Tesseract:
+  - ML Kit is optimised for mobile — uses device GPU/NPU for acceleration
+  - Higher accuracy on real-world photos (trained on millions of images)
+  - Handles skewed/rotated text better
+  - Zero latency — runs on-device
+  - Tesseract is a desktop-era engine ported to mobile — works but slower and less accurate on packaging
+
+  Edge cases the prototype already handles that carry into OCR:
+  - "May contain traces of..." — flagged separately as cross-contamination risk, not classified as an ingredient
+  - Nested brackets: "Chocolate (cocoa mass, sugar, cocoa butter, soy lecithin)"
+  - E-numbers with and without the "E" prefix
+  - Regional name variations (coriander/cilantro, aubergine/eggplant)
+
+✻ Baked for 1m 10s
+
+❯ questions I should ask her?
+
+● Questions to ask Kate
+
+  About the project:
+  - What's the target launch date for the MVP — is there a specific deadline or event driving the timeline?
+  - Who will be the day-to-day product contact — Kate or someone from the Vegrify team?
+  - Is there a existing brand identity / design guidelines, or is that part of the build?
+  - How large is the initial ingredient database they're targeting — and do they have any existing data or is it
+  starting from scratch?
+
+  About the grant / procurement:
+  - Has the LEO Feasibility Grant already been approved, or is it still pending?
+  - Is the contract contingent on grant approval?
+
+  About the evaluation:
+  - Are there other candidates being interviewed, or is this a clarification call? (ask this casually — "Am I the only
+  one you're speaking with, or are you meeting a few people?")
+  - When are they hoping to make a decision?
+
+  About working arrangements:
+  - Would they prefer regular check-ins — weekly standups, fortnightly demos?
+  - Is there a preference for in-person meetings in Cork, or is remote fine?
+  - Who signs off on each work package milestone — Kate or someone technical?
+
+  About the app itself:
+  - What's their priority — iOS first, Android first, or both simultaneously?
+  - Do they have test users or beta testers lined up for early feedback?
+  - Are there any specific regulatory or food-labelling standards they need to comply with?
+
+  The one question that matters most
+
+  ▎ "What does success look like for this MVP — what would make you say it was worth the investment?"
+
+  That tells you exactly what they care about and lets you tailor everything else to it.

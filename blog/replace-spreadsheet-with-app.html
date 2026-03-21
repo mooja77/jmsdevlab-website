@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Replace a Business Spreadsheet with a Custom App - JMS Dev Lab</title>
+  <meta name="description" content="A practical step-by-step guide for small businesses ready to replace a painful spreadsheet with a custom web app. What it costs, how long it takes, and what to expect.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/replace-spreadsheet-with-app.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Replace a Business Spreadsheet with a Custom App">
+  <meta property="og:description" content="A practical step-by-step guide for small businesses ready to replace a painful spreadsheet with a custom web app.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/replace-spreadsheet-with-app.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Replace a Business Spreadsheet with a Custom App">
+  <meta name="twitter:description" content="A practical step-by-step guide for small businesses ready to replace a painful spreadsheet with a custom web app.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Replace a Business Spreadsheet with a Custom App",
+    "description": "A practical step-by-step guide for small businesses ready to replace a painful spreadsheet with a custom web app. What it costs, how long it takes, and what to expect.",
+    "datePublished": "2026-03-14",
+    "dateModified": "2026-03-14",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/replace-spreadsheet-with-app.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost to replace a spreadsheet with a custom app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A typical spreadsheet-to-app project costs between EUR 3,000 and EUR 6,000 depending on workflow complexity, number of user roles, and automations needed. Irish small businesses may be eligible for the LEO Grow Digital Voucher, which provides up to EUR 5,000 in 50% matched funding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to build a custom app to replace a spreadsheet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A typical spreadsheet replacement takes 3-4 weeks from first conversation to working software. Week 1 covers discovery and planning, weeks 2-3 are the build phase with ongoing feedback, and week 4 handles testing, data migration, and launch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know my spreadsheet needs replacing with a custom app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Key signs include multiple colour-coded tabs, broken formulas from accidental sorting, cells or rows nobody is allowed to edit, emailing files back and forth with version confusion, multiple versions of the truth across copies, and only one person understanding how the spreadsheet works."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a custom app do that a spreadsheet cannot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A custom app provides structured forms instead of free-text cells, automatic calculations that cannot break, user permissions so different staff see and do different things, one source of truth updated in real time, and works on any device including phones and tablets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the LEO Grow Digital Voucher for custom software?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The LEO Grow Digital Voucher can provide Irish small businesses with up to EUR 5,000 in matched funding, covering 50% of eligible digital project costs. Eligibility requirements include having 1-50 employees, trading for at least 6 months, and completing a Digital for Business programme."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+              <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Replace Spreadsheet with App</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"How to Replace a Business Spreadsheet with a Custom App"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>How to Replace a Business Spreadsheet with a Custom App</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">14 March 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>You know the spreadsheet is a problem. It's slow, fragile, confusing to anyone who didn't build it, and somehow essential to how your business runs. But what do you actually <em>do</em> about it?</p>
+    <p>This guide walks you through the process of replacing a business spreadsheet with a custom web app &mdash; step by step, in plain language. No jargon, no scare tactics. Just a practical roadmap from "this spreadsheet is killing me" to "this actually works."</p>
+
+    <h2>First: How Do You Know It's Time?</h2>
+    <p>Not every spreadsheet needs replacing. Some are perfectly fine. But if any of these sound familiar, you've probably crossed the line:</p>
+    <ul>
+      <li><strong>Multiple tabs, colour-coded chaos.</strong> Your workbook has 15+ tabs. Some are active, some are "archive," and nobody's quite sure which is which.</li>
+      <li><strong>Broken formulas.</strong> Someone sorted a column and now half the calculations are wrong. Again.</li>
+      <li><strong>"Don't touch row 47."</strong> There are cells, rows, or entire sheets that nobody is allowed to edit because "it'll break everything."</li>
+      <li><strong>Emailing files back and forth.</strong> You're sending spreadsheets as attachments, then manually merging changes. Or worse, you've lost track of which version is current.</li>
+      <li><strong>Multiple versions of the truth.</strong> Sarah's copy says one thing. The shared drive says another. The one Dave emailed last Tuesday says something else entirely.</li>
+      <li><strong>Only one person understands it.</strong> If that person is on holiday, the business process stops.</li>
+    </ul>
+    <p>If you're nodding along to two or more of those, keep reading.</p>
+    <p>Not sure how much your spreadsheet is really costing you? Try our free <a href="../tools/spreadsheet-cost-calculator.html">Spreadsheet Cost Calculator</a> &mdash; it takes two minutes and the answer usually surprises people.</p>
+
+    <h2>What Does a "Custom App" Actually Look Like?</h2>
+    <p>Let's clear up the biggest misconception first. When we say "custom app," we don't mean a complex enterprise system with six months of development and a training manual the size of a phone book.</p>
+    <p>We mean a simple, clean web app that your team logs into from their browser &mdash; on a computer, tablet, or phone. It does what your spreadsheet does, but properly:</p>
+    <ul>
+      <li><strong>Forms instead of free-text cells.</strong> Staff fill in structured fields, so data goes in correctly the first time.</li>
+      <li><strong>Automatic calculations.</strong> No formulas to break. The system handles the maths behind the scenes.</li>
+      <li><strong>Permissions.</strong> Sarah can view reports but can't edit pricing. Dave can add new records but can't delete old ones.</li>
+      <li><strong>One source of truth.</strong> Everyone sees the same data, updated in real time. No more emailing files around.</li>
+      <li><strong>Works on any device.</strong> Check stock levels from the shop floor. Approve a quote from your phone. Run a report from home.</li>
+    </ul>
+    <p>Think of it as your spreadsheet, rebuilt as a proper tool &mdash; one that doesn't break when someone accidentally presses Delete.</p>
+
+    <h2>The Step-by-Step Process</h2>
+    <p>Here's what it actually looks like to go from spreadsheet to custom app. There are five steps, and the first three are things you can start thinking about right now.</p>
+
+    <h3>Step 1: Identify the Core Workflow</h3>
+    <p>Before anything gets built, we need to understand what your spreadsheet actually <em>does</em>. Not what it looks like &mdash; what job it performs for your business.</p>
+    <p>Ask yourself: if you had to explain this spreadsheet to a new employee in one sentence, what would you say?</p>
+    <ul>
+      <li>"It tracks customer orders from quote to delivery."</li>
+      <li>"It logs repair jobs and tells us what's due back this week."</li>
+      <li>"It calculates commissions for each team member at the end of the month."</li>
+    </ul>
+    <p>That one sentence is the core workflow. Everything else &mdash; the tabs, the formulas, the colour coding &mdash; is just how you've been managing that workflow inside a spreadsheet. The app will handle it differently and better.</p>
+
+    <h3>Step 2: Map the Data</h3>
+    <p>Next, we look at what you're actually tracking. Open your spreadsheet and look at the column headers. Those are your data fields.</p>
+    <p>A typical spreadsheet replacement might track things like:</p>
+    <ul>
+      <li>Customer name, contact details, notes</li>
+      <li>Order or job details (description, date, status, value)</li>
+      <li>Dates and deadlines</li>
+      <li>Costs, prices, payments</li>
+      <li>Who's responsible for what</li>
+    </ul>
+    <p>We don't need you to create a formal specification. Just send us the spreadsheet and we'll figure out the data model together. Most of the time, the column headers tell us 80% of what we need to know.</p>
+
+    <h3>Step 3: Define Who Uses It and How</h3>
+    <p>Different people use your spreadsheet in different ways. Maybe the owner needs to see financial summaries, floor staff need to log jobs, and a manager needs to approve quotes.</p>
+    <p>In your app, each person gets exactly the interface they need &mdash; no more, no less. A counter staff member sees a simple form to log a new repair. The manager sees a dashboard of everything in progress. The owner sees the numbers.</p>
+    <p>Think about:</p>
+    <ul>
+      <li>Who uses the spreadsheet today?</li>
+      <li>What does each person need to <em>see</em>?</li>
+      <li>What does each person need to <em>do</em>?</li>
+      <li>Is there anything someone should <em>not</em> be able to change?</li>
+    </ul>
+
+    <h3>Step 4: Decide What to Automate</h3>
+    <p>This is where a custom app starts saving you serious time. Think about the repetitive tasks you do around the spreadsheet:</p>
+    <ul>
+      <li><strong>Notifications.</strong> "Email me when a job has been in progress for more than 5 days." No more scanning the sheet manually every morning.</li>
+      <li><strong>Calculations.</strong> Totals, margins, commissions, VAT &mdash; calculated automatically, every time, without a formula in sight.</li>
+      <li><strong>Reports.</strong> Weekly summaries, monthly overviews, year-end figures &mdash; generated with a click instead of an hour of copy-pasting.</li>
+      <li><strong>Status updates.</strong> Move a job to "Complete" and the customer automatically gets a notification. No separate email to remember.</li>
+    </ul>
+    <p>You don't need to automate everything on day one. We usually start with the basics and add automations once the core system is working and you can see where the biggest time savings are.</p>
+
+    <h3>Step 5: Get It Built</h3>
+    <p>Here's what the development process looks like with us:</p>
+    <ol>
+      <li><strong>Initial conversation</strong> (free, no obligation). You tell us about the spreadsheet. We ask questions. We'll usually ask you to share the actual file so we can see the data structure and understand the workflow.</li>
+      <li><strong>Proposal.</strong> We come back with a clear scope, a fixed price, and a timeline. No surprises.</li>
+      <li><strong>Build.</strong> We build the app in short cycles, showing you progress along the way. You give feedback, we adjust. This isn't a "disappear for three months and hope for the best" situation.</li>
+      <li><strong>Launch.</strong> We help you migrate your existing data from the spreadsheet into the new system and make sure your team is comfortable using it.</li>
+      <li><strong>Support.</strong> We don't disappear after launch. If something needs tweaking or you want to add a feature, we're here.</li>
+    </ol>
+
+    <h2>Before and After: What the Change Actually Looks Like</h2>
+    <p>To make this concrete, here are a couple of real-world examples of what "before" and "after" looks like.</p>
+
+    <h3>Example: Repair Job Tracking</h3>
+    <p><strong>Before:</strong> A shared Google Sheet with columns for customer name, item description, date received, status, and notes. Staff update the status by typing into cells. The owner filters by status each morning to see what's due. When a job is done, someone copies the row to an "Archive" tab. There's no way to search old jobs without scrolling through hundreds of rows.</p>
+    <p><strong>After:</strong> A web app where staff log new jobs via a simple form. Each job has a status that updates with a single click. The owner's dashboard shows today's priorities automatically. Completed jobs are archived and searchable. Customers get a text when their item is ready. End-of-month reports generate themselves.</p>
+
+    <h3>Example: Commission Tracking</h3>
+    <p><strong>Before:</strong> An Excel file with a tab per month. Each tab has a grid of staff members vs. sales. Formulas calculate commission rates, but they break every time a new row is added. The owner spends two hours at month-end fixing formulas and double-checking numbers before payroll.</p>
+    <p><strong>After:</strong> Sales are logged as they happen. The system calculates commissions automatically based on the rules you set &mdash; different rates for different products, tiered bonuses, whatever your structure is. At month-end, the owner clicks "Generate Report" and it's done in seconds. Accurate every time.</p>
+
+    <h2>What Does It Cost?</h2>
+    <p>A typical spreadsheet-to-app project costs between <strong>&euro;3,000 and &euro;6,000</strong>. The exact price depends on how complex your workflow is, how many user roles you need, and what automations you want.</p>
+    <p>That might sound like a lot compared to a "free" spreadsheet. But consider what the spreadsheet is actually costing you: the hours spent maintaining it, the errors that slip through, the time training new staff on a system nobody fully understands, and the opportunities you miss because you don't have the right data at the right time.</p>
+    <p>For most businesses, a custom app pays for itself within 6&ndash;12 months in time saved alone.</p>
+
+    <h3>LEO Grow Digital Voucher: Up to 50% Funded</h3>
+    <p>If you're an Irish small business, you may be eligible for the <strong>Local Enterprise Office (LEO) Grow Digital Voucher</strong>. This can provide up to <strong>&euro;5,000 in matched funding</strong> &mdash; covering 50% of eligible digital project costs.</p>
+    <p>A &euro;5,000 project could become &euro;2,500 out of pocket. A &euro;3,000 project could become &euro;1,500. Eligibility requires 1&ndash;50 employees, trading for at least 6 months, and completing a Digital for Business programme. We can guide you on what's involved.</p>
+
+    <h2>How Long Does It Take?</h2>
+    <p>For a typical spreadsheet replacement: <strong>3&ndash;4 weeks from first conversation to working software</strong>.</p>
+    <ul>
+      <li><strong>Week 1:</strong> Discovery and planning. We review your spreadsheet, map the workflow, and agree on the scope.</li>
+      <li><strong>Weeks 2&ndash;3:</strong> Build. You'll see progress along the way and give feedback.</li>
+      <li><strong>Week 4:</strong> Testing, data migration, and launch.</li>
+    </ul>
+    <p>That's not a vague estimate &mdash; it's how these projects actually run. Spreadsheet replacements are well-defined problems with clear inputs and outputs, which makes them faster to build than most software projects.</p>
+
+    <h2>Ready to Ditch the Spreadsheet?</h2>
+    <p>You don't need to write a brief. You don't need to know what technology you want. You don't even need to know exactly what the app should look like.</p>
+    <p>Just <strong>send us the spreadsheet</strong>. We'll look at it, ask a few questions, and come back with a clear plan and a fixed price. No obligation, no pressure.</p>
+    <p><a href="../contact.html" class="btn btn-primary">Send Us the Spreadsheet</a></p>
+    <p style="margin-top: 1rem;">Or, if you're still in the "thinking about it" stage, try our free <a href="../tools/spreadsheet-cost-calculator.html">Spreadsheet Cost Calculator</a> to see what your current spreadsheet is really costing you.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

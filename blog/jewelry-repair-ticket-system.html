@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Set Up a Repair Ticket System for Your Jewelry Shop - JMS Dev Lab</title>
+  <meta name="description" content="How to replace paper repair tickets with a proper digital system for your jewelry or watch repair shop. Track repairs, notify customers, and save hours every week.">
+  <link rel="canonical" href="https://jmsdevlab.com/blog/jewelry-repair-ticket-system.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Set Up a Repair Ticket System for Your Jewelry Shop">
+  <meta property="og:description" content="Replace paper repair tickets with a proper digital system for your jewelry shop.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/jewelry-repair-ticket-system.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Set Up a Repair Ticket System for Your Jewelry Shop">
+  <meta name="twitter:description" content="Replace paper repair tickets with a proper digital system for your jewelry shop.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Set Up a Repair Ticket System for Your Jewelry Shop",
+    "description": "How to replace paper repair tickets with a proper digital system for your jewelry or watch repair shop.",
+    "datePublished": "2026-03-12",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/jewelry-repair-ticket-system.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the problems with paper repair tickets in a jewelry shop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Paper repair tickets create several costly problems: no audit trail when customers dispute what was agreed, staff time wasted on status calls that can consume an hour per day, customer frustration from hearing nothing for weeks, and no visibility across the team when only one person knows where a repair stands. Lost tickets and misread handwriting lead to further errors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What features should a digital repair ticket system have for jewellers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A good digital repair system needs five core features: a ticket pipeline with clear stages from received through to collected, photo documentation attached to each ticket, automatic customer notifications when repairs move to new stages, quote management with itemised breakdowns and customer approval workflows, and parts tracking to know which repairs are waiting on materials."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do automated notifications reduce phone calls in a repair shop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When a repair moves to a new stage, customers automatically receive a notification by email or SMS letting them know the status. Instead of wondering whether their item has been forgotten, they receive updates at each stage from diagnosis through to ready for collection. Shops that implement automated notifications typically report a 60 to 80 percent reduction in inbound status calls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is photo documentation important for jewelry repairs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Photographing items at intake with existing damage creates a timestamped record of condition before any work begins. This protects you from false claims that you caused pre-existing damage, gives customers confidence the work was done properly with before-and-after photos, and builds a portfolio of your work. Photos should also be taken when items are sent to and returned from specialists."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is RepairDesk and how much does it cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "RepairDesk is a repair management app built specifically for jewelry and watch repair shops. It covers the full repair pipeline, photo documentation, automated customer notifications, itemised quotes with approval workflows, and parts tracking. It integrates with Shopify and plans start at $9.99 per month with no setup fees or long-term contracts."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Jewelry Repair Tickets</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"How to Set Up a Repair Ticket System for Your Jewelry Shop"}]}
+  </script>
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>How to Set Up a Repair Ticket System for Your Jewelry Shop</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">12 March 2026</div>
+    </div>
+  </section>
+  <div class="legal-content">
+    <p>If you run a jewelry or watch repair shop, you already know the routine. A customer walks in with a broken clasp or a watch that has stopped ticking. You grab a paper ticket book, scribble down a description, tear off the stub, and drop the item into a tray. Three weeks later, the customer calls asking if it is ready. You spend five minutes hunting through a stack of envelopes to find out where that repair is in the process.</p>
+
+    <p>It works &mdash; until it does not. Paper tickets get lost. Handwriting gets misread. Nobody remembers whether the customer approved the quote. And every "is it ready yet?" phone call pulls you or your staff away from the bench. There is a better way to handle this, and it does not require an expensive enterprise system or a degree in IT.</p>
+
+    <h2>The Hidden Cost of Paper Repair Tickets</h2>
+
+    <p>Most jewellers underestimate how much time and money their paper-based system actually costs them. The obvious problems are easy to spot &mdash; a lost ticket here, a misplaced item there. But the real damage is slower and harder to measure.</p>
+
+    <p><strong>No audit trail.</strong> When a customer disputes what was agreed, you have nothing but a faded carbon copy to fall back on. If the ticket is missing, you have even less. This puts you in a weak position when disagreements arise about pricing, scope, or the condition of an item when it was dropped off.</p>
+
+    <p><strong>Staff time wasted on status calls.</strong> Every phone call asking "is my ring ready?" takes two to five minutes. If you get ten of those calls a day, that is up to an hour of lost productivity &mdash; time that could be spent on actual repair work. Over a month, that adds up to entire working days lost to answering the same question repeatedly.</p>
+
+    <p><strong>Customer frustration.</strong> From the customer's perspective, handing over a valuable piece of jewellery and then hearing nothing for weeks is stressful. They want to know what is happening. Silence breeds anxiety, and anxious customers leave bad reviews.</p>
+
+    <p><strong>No visibility across the team.</strong> If only one person knows where a particular repair is in the process, you have a single point of failure. When that person is off sick or on holiday, everything stalls.</p>
+
+    <h2>What a Digital Repair System Should Do</h2>
+
+    <p>You do not need a complex piece of software with hundreds of features. What you need is a system that handles the core workflow reliably. Here is what to look for:</p>
+
+    <ul>
+      <li><strong>A ticket pipeline</strong> with clear stages: Received, Diagnosed, Quoted, Approved, In Progress, Ready for Collection, and Collected</li>
+      <li><strong>Photo documentation</strong> attached directly to each ticket</li>
+      <li><strong>Customer notifications</strong> sent automatically when a repair moves to a new stage</li>
+      <li><strong>Quote management</strong> with itemised breakdowns and a customer approval workflow</li>
+      <li><strong>Parts tracking</strong> so you know which repairs are waiting on materials and which are ready to work on</li>
+    </ul>
+
+    <p>If a system covers these five areas, it will handle 90% of what a typical jewelry or watch repair shop needs on a daily basis.</p>
+
+    <h2>Setting Up Your Repair Pipeline</h2>
+
+    <p>The pipeline is the backbone of the whole system. Each stage represents a real step in your repair process, and moving a ticket from one stage to the next should take a single click or tap.</p>
+
+    <p><strong>Received.</strong> The customer has dropped off the item. You log the details &mdash; item description, customer contact information, any issues they have described &mdash; and the ticket is created. The customer gets a confirmation with a ticket reference number.</p>
+
+    <p><strong>Diagnosed.</strong> You or your bench jeweller have examined the item and identified what needs doing. This is where you note the actual work required, which may differ from what the customer originally described.</p>
+
+    <p><strong>Quoted.</strong> You have prepared a price for the work. The quote should be itemised so the customer can see exactly what they are paying for &mdash; labour, materials, stones, and any third-party costs like rhodium plating or laser welding sent out to a specialist.</p>
+
+    <p><strong>Approved.</strong> The customer has agreed to the quote. This is a critical stage because it creates a clear record that work was authorised at a specific price. No more "I never agreed to that" disputes.</p>
+
+    <p><strong>In Progress.</strong> The repair is actively being worked on. If you have multiple bench jewellers, this stage helps you see workload distribution at a glance.</p>
+
+    <p><strong>Ready for Collection.</strong> The work is done and the item is waiting for the customer to pick it up. An automatic notification goes out so you do not have to make a phone call.</p>
+
+    <p><strong>Collected.</strong> The customer has picked up their item and paid. The ticket is closed, but the full history remains searchable for future reference.</p>
+
+    <h2>Photo Documentation: Protect Yourself and Your Customer</h2>
+
+    <p>This is one of the most important features in any repair system, and it is the one that paper tickets simply cannot provide. Taking photos of every item at intake protects both you and your customer.</p>
+
+    <p>Photograph the item from multiple angles when it arrives. Capture any existing damage &mdash; scratches, dents, missing stones, worn prongs. These photos are timestamped and attached to the ticket, creating an indisputable record of the item's condition before you touched it.</p>
+
+    <p>Then take photos again when the repair is complete. Before-and-after documentation does three things. First, it protects you from false claims that you caused damage that was already there. Second, it gives the customer confidence that the work was done properly. Third, it builds a portfolio of your work that you can reference for training or marketing purposes.</p>
+
+    <p>If you are sending an item out to a specialist &mdash; for example, for stone setting or engraving &mdash; photograph it before it leaves and again when it comes back. This creates accountability at every handoff point.</p>
+
+    <h2>Automated Customer Notifications</h2>
+
+    <p>This single feature will save you more time than anything else on this list. When a repair moves to a new stage in the pipeline, the customer receives an automatic notification &mdash; typically by email or SMS &mdash; letting them know what is happening.</p>
+
+    <p>Think about it from the customer's side. Instead of wondering whether their grandmother's ring has been forgotten in a drawer somewhere, they receive a message saying "Your repair has been diagnosed and a quote is being prepared." A few days later: "Your quote is ready &mdash; please review and approve." Then: "Your repair is in progress." And finally: "Your item is ready for collection."</p>
+
+    <p>Shops that implement automated notifications typically report a 60&ndash;80% reduction in inbound status calls. That is not a small improvement &mdash; it is transformative for a busy workshop where every interruption costs you focus and time at the bench.</p>
+
+    <h2>Quote Management and Approvals</h2>
+
+    <p>Disputes over pricing are one of the most common sources of friction between repair shops and their customers. A proper digital quote system eliminates most of these problems before they start.</p>
+
+    <p>When you create a quote, break it down into individual line items. Instead of "Ring repair &mdash; &pound;120," list it as "Replace two claw tips &mdash; &pound;45, Rhodium plate &mdash; &pound;35, Clean and polish &mdash; &pound;20, New jump ring for pendant bail &mdash; &pound;20." The customer sees exactly what they are paying for, which builds trust and reduces pushback.</p>
+
+    <p>The approval workflow should be simple. The customer receives the quote, reviews it, and either approves or requests changes. Their approval is recorded with a timestamp. If there is a dispute later, you have a clear, dated record that the customer agreed to the price before work began.</p>
+
+    <p>For repairs where the scope changes once you get into the work &mdash; which happens often &mdash; the system should let you send a revised quote for approval before proceeding. This keeps the customer informed and avoids surprises at collection.</p>
+
+    <h2>RepairDesk: Purpose-Built for Jewellers and Watchmakers</h2>
+
+    <p>If you have read this far and thought "this sounds like exactly what I need, but I do not want to cobble it together from generic tools," then <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a> is worth a look.</p>
+
+    <p>RepairDesk was built specifically for jewelry and watch repair shops. It covers everything described above &mdash; the full repair pipeline, photo documentation, automated customer notifications, itemised quotes with approval workflows, and parts tracking. It integrates directly with Shopify, so if you are already running your retail operation on Shopify, your repair workflow lives in the same ecosystem as your sales.</p>
+
+    <p>The interface is designed for workshop environments. You can move tickets through stages with a single tap, attach photos from your phone, and send quotes to customers for approval without leaving the app. Your team can see the full pipeline at a glance, so everyone knows which repairs are in progress, which are waiting on parts, and which are ready to go out.</p>
+
+    <p>Plans start at $9.99 per month. There are no setup fees, no long-term contracts, and you can try it before you commit.</p>
+
+    <h2>Next Steps</h2>
+
+    <p>If you are still running your repair shop on paper tickets, the switch to a digital system does not need to be complicated. Start by mapping out your current repair stages, identify where the bottlenecks are, and look for a tool that fits your workflow rather than forcing you to change it.</p>
+
+    <p>Want to see how RepairDesk could work for your shop? Visit <a href="https://repairdeskapp.net" target="_blank" rel="noopener">repairdeskapp.net</a> to learn more. If you have questions about setting up a repair system or need something more customised for your specific workflow, <a href="../contact.html">get in touch with our team</a> &mdash; we build software for exactly these kinds of problems.</p>
+
+    <p>You can also explore our full range of <a href="../apps.html">services and apps</a> designed for independent retailers and small businesses.</p>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

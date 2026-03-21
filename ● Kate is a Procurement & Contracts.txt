@@ -1,0 +1,166 @@
+● Kate is a Procurement & Contracts Manager — she's evaluating vendors, not building software. Here's your expanded prep
+   in plain language.
+
+  ---
+  Vegrify Call Prep — Friday 20 March, 3:45pm
+
+  Who is Kate?
+
+  Procurement professional at Asiera (public body). Her job is to find the right person for the job at the right price,
+  manage the contract, and make sure public money is spent properly. She'll be checking boxes, not asking about code.
+
+  Your numbers (know these cold)
+
+  ┌─────────────┬───────────────────────────────────────────────────────────────────────────────────┐
+  │             │                                   Plain English                                   │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Total price │ EUR 28,875 for the whole project                                                  │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Daily rate  │ EUR 525 per day                                                                   │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ How long    │ 55 working days, about 10 weeks                                                   │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Broken into │ 6 chunks of work, you get paid after each one (~EUR 4,812 each)                   │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ VAT         │ You're not VAT registered, so the price is what they pay — no 23% added on top    │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Grant       │ They can claim half the cost back from the LEO (~EUR 14,437 back in their pocket) │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Prototype   │ https://vegrify-mvp.vercel.app — a working version you already built              │
+  ├─────────────┼───────────────────────────────────────────────────────────────────────────────────┤
+  │ Ingredients │ 6,413 in the database already                                                     │
+  └─────────────┴───────────────────────────────────────────────────────────────────────────────────┘
+
+  What Kate probably wants to know
+
+  "Tell me about yourself"
+  - I'm a software developer based in Cork. I studied Computer Science at UCC, started my career as a Software Engineer
+  at Sun Microsystems, then ran my own jewellery business for over 20 years. I've come back to software full-time now
+  and have six apps published on the Shopify App Store.
+
+  "Why should we pick you?"
+  - I've already built a working version of what you need. You can try it right now at vegrify-mvp.vercel.app. No other
+  candidate will have done that.
+  - I build and ship real products — six of them live in the Shopify App Store. These aren't hobby projects, they're
+  tools businesses use every day.
+  - You're getting the person who does the work. There's no sales team, no project manager in between, no junior
+  developer doing the actual building. The person you're talking to right now is the person who writes every line.
+
+  "You're a new practice — is that a risk?"
+  - JMS Dev Lab is new as a brand, but I'm not new to building software. I have a Computer Science degree, three years
+  at Sun Microsystems, and I've built six published apps from scratch — design, development, testing, deployment, app
+  store review. The work speaks for itself.
+  - Being small means I'm faster and more accountable. There's nobody to hide behind.
+
+  "Tell me about the prototype"
+  - I built a working version of the Vegrify engine to show you what it would look like. It's live online — you can try
+  it right now.
+  - It has over 6,400 real food ingredients in it. You paste in an ingredient list from any food label, and it tells you
+   instantly whether each ingredient is vegan or not.
+  - The key difference from competitors: it doesn't just say "yes" or "no." It explains why. For example, if you scan
+  gummy sweets, it will say "Gelatin — Not Vegan" and then explain that gelatin comes from animal bones, and suggest
+  vegan alternatives like agar-agar. That's the explainable AI approach that makes Vegrify different.
+  - It works without internet — so it works in a supermarket where your phone signal might be poor.
+  - It gives you an answer in under 10 milliseconds — essentially instant.
+
+  "How does the app actually work?" (simple version)
+  - Step 1: You point your phone camera at a food label
+  - Step 2: The app reads the text automatically
+  - Step 3: It looks up each ingredient against a database of thousands of known ingredients
+  - Step 4: For each ingredient, it tells you if it's vegan, not vegan, or uncertain — and explains why in plain English
+  - Most of this happens on your phone, no internet needed. Only for very rare ingredients it doesn't recognise does it
+  check online.
+
+  "What's your price and how does payment work?"
+  - EUR 28,875 total, broken into 6 payments of about EUR 4,812 each
+  - You only pay after each chunk of work is completed and you're happy with it
+  - I'm not VAT registered (below the threshold), so there's no 23% VAT on top — the price you see is the price you pay.
+   That automatically makes me 23% cheaper than a VAT-registered competitor charging the same rate
+  - The total is structured to work with the LEO Feasibility Grant — you can claim about half of it back
+
+  "What's the LEO grant?"
+  - The LEO Feasibility Grant covers 50% of eligible costs up to EUR 15,000
+  - At my price of EUR 28,875, you'd claim back approximately EUR 14,437
+  - So the effective cost to Vegrify would be around EUR 14,438
+  - I'm happy to help with the paperwork if needed
+
+  "What's the timeline?"
+  - 10 weeks from when we sign the contract
+  - I can start immediately
+  - The work is broken into 6 phases, each about 1-2 weeks
+  - At the end of each phase, I deliver something you can test and approve before we move on
+
+  "What are the 6 phases?"
+  1. Architecture & Setup (2 weeks) — Set up the project foundation, the app structure, the core framework
+  2. Data & Database (1 week) — Build the ingredient database, expand from 6,400 to the full target
+  3. AI Classification Engine (2 weeks) — The brain of the app — the part that figures out what each ingredient is and
+  explains why
+  4. Camera & Image Reading (2 weeks) — Point your phone at a label and the app reads the text automatically
+  5. User Interface & Onboarding (2 weeks) — Making it look beautiful, easy to use, and welcoming for first-time users
+  6. Offline Mode & Infrastructure (1 week) — Making it work without internet, security, getting ready for the App Store
+
+  "What happens if something goes wrong?"
+  - Each phase has a clear deliverable. You test it, and if you're happy, we move on. If not, I fix it before you pay.
+  - I'm one person — there's no miscommunication, no handoff between teams. If something needs changing, I change it.
+
+  "Can you handle this on your own?"
+  - Yes. All six of my published apps were built solo — from the first line of code to the App Store submission. I'm
+  used to working independently and delivering on my own.
+  - Being solo actually means faster decisions and no coordination overhead. What a team of three does in meetings, I
+  just do.
+
+  "Do you have references?"
+  - My six published apps are my references — anyone can download and try them from the Shopify App Store. SmartCash
+  (cashflow forecasting with AI), Jewel Value (valuation certificates), RepairDesk (repair tracking), StaffHub (team
+  training), GrowthMap (marketing planning), and Jewelry Studio Manager.
+  - The prototype I built for this RFQ is itself a reference — it demonstrates exactly the kind of work I'd be doing.
+
+  Questions you should ask Kate
+
+  About the project:
+  - What's the target launch date — is there a specific deadline or event you're working towards?
+  - Who will I be working with day-to-day — yourself or someone from the Vegrify team?
+  - Do you have existing brand guidelines or design for the app, or is that part of what I'd be building?
+  - How large do you want the ingredient database to be for the MVP — and do you have any existing data?
+
+  About the grant:
+  - Has the LEO Feasibility Grant already been approved?
+  - Is the contract dependent on the grant being approved?
+
+  About the process:
+  - Are you speaking with other candidates, or is this just a clarification call?
+  - When are you hoping to make a decision?
+  - Would you prefer regular check-ins — weekly updates, fortnightly demos?
+  - Who signs off on each phase — yourself or someone technical?
+
+  About the app:
+  - iPhone first, Android first, or both at the same time?
+  - Do you have test users lined up who could give feedback during development?
+
+  The golden question:
+  ▎ "What does success look like for this MVP — what would make you say it was worth the investment?"
+
+  This tells you exactly what Kate (and Vegrify) care about most, and lets you tailor everything to that.
+
+  Things to avoid
+
+  - Don't use jargon — no "TypeScript", "React Native", "API", "monorepo", "Cloudflare Workers"
+  - Don't talk about your tech stack unless she asks
+  - Don't mention competitors or other bidders
+  - Don't volunteer that JMS Dev Lab is brand new — your work speaks for itself
+  - Don't oversell — be honest, straightforward, and let the prototype do the talking
+  - Don't talk too much — it's a 20-minute call, let Kate lead
+
+  If she asks you to demo the prototype
+
+  1. Open https://vegrify-mvp.vercel.app on your screen
+  2. Click one of the example labels (e.g. "Gummy Sweets")
+  3. Show how each ingredient gets classified with a colour (green/red/amber)
+  4. Click on an ingredient to show the explanation, alternatives, and "did you know" fact
+  5. Say: "This is what every ingredient looks like — not just a yes or no, but a full explanation in plain English.
+  That's the difference."
+
+  Your closing line
+
+  ▎ "I've already built a working version because I believe in this project. I'd love to be the person who takes it from
+   prototype to product."

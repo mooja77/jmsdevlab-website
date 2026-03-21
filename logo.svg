@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <!-- Icon: rounded blue rectangle with </> -->
+  <rect x="0" y="2" width="36" height="36" rx="8" fill="#2563eb"/>
+  <text x="18" y="27" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="16" fill="#ffffff">&lt;/&gt;</text>
+  <!-- Wordmark -->
+  <text x="44" y="28" font-family="Inter, sans-serif" font-weight="700" font-size="22">
+    <tspan fill="#3b82f6">JMS</tspan>
+    <tspan fill="#0f172a"> Dev Lab</tspan>
+  </text>
+</svg>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StaffHub: Team Training &amp; Management for Shopify Stores - JMS Dev Lab</title>
+  <meta name="description" content="How we built a Shopify staff training and onboarding app — structured training modules, shift scheduling, performance reviews, and team messaging in 5 languages.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/staffhub.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="StaffHub: Team Training & Management for Shopify Stores">
+  <meta property="og:description" content="How we built StaffHub — a Shopify app that gives store owners everything they need to train, schedule, and manage their team.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/staffhub.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="StaffHub: Team Training & Management for Shopify Stores">
+  <meta name="twitter:description" content="How we built StaffHub — a Shopify app that gives store owners everything they need to train, schedule, and manage their team.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "StaffHub: Team Training & Management for Shopify Stores",
+    "description": "How we built StaffHub — a Shopify app that gives store owners everything they need to train, schedule, and manage their team.",
+    "datePublished": "2026-01-27",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/staffhub.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is StaffHub for Shopify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StaffHub is a Shopify app that provides team training and management in one place. It includes structured training modules with progress tracking, shift scheduling, performance reviews with templates and scoring, and centralised team messaging, all inside your Shopify admin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does StaffHub cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StaffHub starts at $4.99 per month on the Shopify App Store. It is designed for any Shopify store owner who manages a team, whether that is 2 people or 200."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What languages does StaffHub support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "StaffHub is available in 5 languages: English, Spanish, French, German, and Portuguese. This ensures staff can use the tool comfortably regardless of their primary language."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do Shopify stores need a staff training app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Without a structured system, store owners spend more time managing their team than growing their business. Training happens ad hoc through WhatsApp groups and shared Google Sheets, schedules get lost, and performance reviews only happen in the owner's head. StaffHub replaces all of these scattered tools with one integrated platform inside Shopify."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">StaffHub</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"StaffHub"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>StaffHub: Team Training &amp; Management for Shopify Stores</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">27 January 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <h2>The Problem</h2>
+    <p>If you run a Shopify store with staff, you know the pain. New hires need training, but there's no structured way to deliver it. Shift schedules live in a WhatsApp group or a shared Google Sheet. Performance reviews? They happen in your head, if they happen at all.</p>
+    <p>Store owners were telling us they spent more time managing their team than actually growing their business. The tools that exist for team management are either enterprise HR platforms that cost a fortune or generic apps that don't integrate with Shopify at all.</p>
+
+    <h2>Why We Built It</h2>
+    <p>We built StaffHub because Shopify store owners deserved a team management tool that lives where they already work &mdash; inside their Shopify admin. Not another standalone platform with another login, another subscription, and another learning curve.</p>
+    <p>The goal was simple: give store owners one place to train new staff, manage schedules, run performance reviews, and communicate with their team &mdash; all without leaving Shopify.</p>
+
+    <h2>What It Does</h2>
+    <p>StaffHub packs everything a store owner needs to manage their team into a single Shopify app:</p>
+    <ul>
+      <li><strong>Structured training modules</strong> &mdash; Create step-by-step training content for new hires and existing staff. Track who's completed what and identify gaps.</li>
+      <li><strong>Shift scheduling</strong> &mdash; Build and share schedules your team can access directly. No more "I didn't see the message" excuses.</li>
+      <li><strong>Performance reviews</strong> &mdash; Run structured reviews with templates, scoring, and historical tracking. Finally have documentation when you need it.</li>
+      <li><strong>Team messaging</strong> &mdash; Centralised communication that keeps work conversations out of personal chat apps.</li>
+    </ul>
+
+    <h2>Available in 5 Languages</h2>
+    <p>Shopify is global, and so are the teams that run on it. StaffHub is available in English, Spanish, French, German, and Portuguese &mdash; because your staff shouldn't have to struggle with a tool that only speaks one language.</p>
+
+    <h2>Who It's For</h2>
+    <p>Any Shopify store owner who manages a team, whether that's 2 people or 200. If you've ever wished you had a better way to onboard new hires, keep track of who's working when, or just have a proper system instead of scattered messages and mental notes &mdash; StaffHub is built for you.</p>
+
+    <p><strong>StaffHub is live on the Shopify App Store, starting at $4.99/mo.</strong></p>
+    <p><a href="https://staffhubapp.com" target="_blank" rel="noopener">Visit the StaffHub website</a> or <a href="../apps.html">see all our apps</a>.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

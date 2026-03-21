@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pitch Side: A Free Coaching Companion for Grassroots Football - JMS Dev Lab</title>
+  <meta name="description" content="How we built a free grassroots football coaching app — squad management, session planning, 75+ drills, formation builder, and match day tools. No account needed, no tracking.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/pitch-side.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Pitch Side: A Free Coaching Companion for Grassroots Football">
+  <meta property="og:description" content="How we built Pitch Side — a completely free app for volunteer grassroots football coaches to plan sessions, manage squads, and run match days.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/pitch-side.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pitch Side: A Free Coaching Companion for Grassroots Football">
+  <meta name="twitter:description" content="How we built Pitch Side — a completely free app for volunteer grassroots football coaches to plan sessions, manage squads, and run match days.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pitch Side: A Free Coaching Companion for Grassroots Football",
+    "description": "How we built Pitch Side — a completely free app for volunteer grassroots football coaches to plan sessions, manage squads, and run match days.",
+    "datePublished": "2026-02-24",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/pitch-side.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Pitch Side?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pitch Side is a completely free web app for volunteer grassroots football coaches. It includes squad management, session planning with drag-and-drop drills, 75+ pre-built drills, a visual formation builder for 5v5 to 11v11, match day tools with lineup selection, and season analytics."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Pitch Side really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Pitch Side is completely free with no subscription, no in-app purchases, and no catch. It does not require an account or email address to use. There is no upsell or free tier with limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Pitch Side collect personal data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Pitch Side does not require account creation or an email address. There is no analytics tracking, no ad tracking, and no data collection. Squad data is stored securely via Firebase and syncs across devices, but no personal data is shared with third parties or used for marketing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is Pitch Side designed for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pitch Side is designed for volunteer grassroots football coaches managing youth teams at any level. This includes parents who stepped up, teachers running after-school clubs, and community coaches running local teams."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Pitch Side</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"Pitch Side"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Pitch Side: A Free Coaching Companion for Grassroots Football</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">24 February 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <h2>The Problem</h2>
+    <p>Grassroots football runs on volunteers. Parents, teachers, and community members who give up their evenings and Saturday mornings to coach kids. They're not professional coaches with sports science degrees and access to elite analysis platforms. They're people who love the game and want to give kids a good experience.</p>
+    <p>But when it comes to tools, these coaches are left with nothing. The coaching apps that exist are built for professional setups with professional price tags. The free options are ad-riddled, half-finished, or require an internet connection that doesn't exist at most local pitches.</p>
+
+    <h2>Why We Built It</h2>
+    <p>Pitch Side exists because grassroots coaches already give enough. They give their time, their energy, and often their own money for kit and equipment. The last thing they need is another subscription fee for a tool that should be basic.</p>
+    <p>We built Pitch Side to be the app we wished existed when we were coaching. Something that doesn't require an account, doesn't track you, and doesn't cost a penny. No catch, no upsell, no "free tier with limitations." Just a genuinely useful tool for people who deserve one.</p>
+
+    <h2>What It Does</h2>
+    <p>Pitch Side packs everything a grassroots coach needs into a single web app:</p>
+    <ul>
+      <li><strong>Squad management</strong> &mdash; Store player names, positions, contact details, and medical notes. Know who's available and who needs what at a glance.</li>
+      <li><strong>Session planning</strong> &mdash; Drag-and-drop drill arrangement with timing and coaching notes. Plan your sessions in advance or build them on the fly. Calendar and list views to see your season at a glance.</li>
+      <li><strong>75+ pre-built drills</strong> &mdash; Covering passing, shooting, dribbling, and defending. Each drill has clear instructions, diagrams, and suggested timing. You can also create your own custom drills.</li>
+      <li><strong>Formation builder</strong> &mdash; Visual pitch layout supporting 5v5, 7v7, 9v9, and 11v11 formats. Drag players into position and see your formation come together.</li>
+      <li><strong>Match day tools</strong> &mdash; Lineup selection, substitution planning, and printable team sheets. Walk onto the pitch prepared, not scrambling.</li>
+      <li><strong>Season analytics</strong> &mdash; Attendance tracking, drill usage statistics, and training frequency insights. See who's showing up and what you've been working on.</li>
+    </ul>
+
+    <h2>Privacy First</h2>
+    <p>Two things mattered more than anything else when building Pitch Side:</p>
+    <p><strong>No accounts, no tracking.</strong> You don't need to create an account or hand over an email address. There's no analytics, no ad tracking, and no data collection. We built it for coaches, not for harvesting user data.</p>
+    <p><strong>Your data stays secure.</strong> Pitch Side uses Firebase to store your data securely in the cloud, which means it syncs across your devices and you won't lose everything if you switch phones. No personal data is shared with third parties or used for marketing. For an app that stores squad details, we think that matters.</p>
+
+    <h2>Who It's For</h2>
+    <p>Volunteer grassroots football coaches managing youth teams at any level. If you're the parent who stepped up, the teacher who started an after-school club, or the local legend who's been running the under-12s for a decade &mdash; this is built for you.</p>
+
+    <p><strong>Pitch Side is completely free. No subscription, no in-app purchases, no catch.</strong></p>
+    <p><a href="https://pitchsideapp.net" target="_blank" rel="noopener">Visit the Pitch Side website</a> or <a href="../apps.html">see all our apps</a>.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

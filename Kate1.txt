@@ -1,0 +1,8 @@
+rent 140
+food 50 
+bills 40
+car 40
+phone/comp/internet 20
+
+
+

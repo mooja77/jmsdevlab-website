@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay Invoice - JMS Dev Lab</title>
+  <meta name="description" content="Pay your JMS Dev Lab invoice securely via Stripe. Learn about our payment process, accepted methods, and milestone schedule for custom development projects.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://jmsdevlab.com/pay.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pay Invoice - JMS Dev Lab">
+  <meta property="og:description" content="Secure payment for custom development projects via Stripe.">
+  <meta property="og:url" content="https://jmsdevlab.com/pay.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pay Invoice - JMS Dev Lab">
+  <meta name="twitter:description" content="Secure payment for custom development projects via Stripe.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="k7OsaJgbYCOwj41rNJgUf2yvt44y8mcp3DLmleNUQE0">
+
+  <!-- No index - this page is for clients, not search traffic -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where is my payment link?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your payment link is included in the invoice email sent to you by JMS Dev Lab. Each link is unique to your project and milestone amount. Check your inbox for an email from hello@jmsdevlab.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods are accepted?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We accept all major credit and debit cards (Visa, Mastercard, American Express) and SEPA Direct Debit for EU bank transfers. All payments are processed securely by Stripe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it safe to pay online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Payments are processed by Stripe, a PCI Level 1 certified payment processor used by millions of businesses worldwide. Your card details never touch our website. All transactions use SCA (Strong Customer Authentication) and 3D Secure where required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the payment schedule work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Projects are split into three milestone payments: 30% deposit to begin work, 40% at the mid-project review, and 30% on completion and sign-off. You receive a separate payment link for each milestone."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="apps.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+              <a href="contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Pay Invoice</li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Pay Your Invoice</h1>
+    <p>Secure payments powered by Stripe. Your payment link was sent to you by email &mdash; click it to pay in under a minute.</p>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Three simple steps to pay your invoice</p>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3>1. Check Your Email</h3>
+          <p>You'll receive an email from <strong>hello@jmsdevlab.com</strong> with your invoice details and a unique Stripe payment link.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </div>
+          <h3>2. Click &amp; Pay</h3>
+          <p>Click the payment link to open Stripe's secure checkout. Enter your card details or choose SEPA Direct Debit. That's it.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>3. Get Your Receipt</h3>
+          <p>Stripe sends an automatic receipt to your email. We're notified instantly and your project milestone moves forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Schedule -->
+  <section class="section section-white">
+    <div class="container">
+      <h2 class="section-title">Payment Schedule</h2>
+      <p class="section-subtitle">Projects are split into three milestone payments</p>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--blue-600);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3>30% Deposit</h3>
+          <p>Due before work begins. Confirms the project and locks in your timeline. Paid after scope agreement and contract signing.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="background: rgba(20, 184, 166, 0.1); color: var(--teal-500);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
+          <h3>40% Mid-Project</h3>
+          <p>Due at the mid-project review. You'll see working progress, provide feedback, and confirm direction before the second payment.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" style="background: rgba(34, 197, 94, 0.1); color: #16a34a;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3>30% On Completion</h3>
+          <p>Due after final delivery and your sign-off. Covered by our scope-match guarantee &mdash; if it doesn't match the agreed scope, you don't pay.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Signals -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Safe &amp; Secure</h2>
+      <p class="section-subtitle">Your payments are protected at every step</p>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>PCI Level 1 Certified</h3>
+          <p>Stripe holds the highest level of payment security certification. Your card details are encrypted and never stored on our servers.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h3>3D Secure &amp; SCA</h3>
+          <p>All card payments use Strong Customer Authentication as required by EU regulations. Your bank verifies every transaction.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>GDPR Compliant</h3>
+          <p>Stripe processes payments in full compliance with EU data protection regulations. Your personal data is handled securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-white">
+    <div class="container" style="max-width: 800px;">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-question">Where is my payment link?</summary>
+          <div class="faq-answer">
+            <p>Your payment link was sent to you by email from <strong>hello@jmsdevlab.com</strong>. Each link is unique to your project and milestone amount. Check your inbox (and spam folder) for the most recent invoice email. If you can't find it, get in touch and we'll resend it.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">What payment methods do you accept?</summary>
+          <div class="faq-answer">
+            <p>We accept all major credit and debit cards (Visa, Mastercard, American Express) and SEPA Direct Debit for EU bank transfers. SEPA is often cheaper for larger amounts.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">Is it safe to pay through the link?</summary>
+          <div class="faq-answer">
+            <p>Yes. The payment link takes you to a Stripe-hosted checkout page. Stripe is a PCI Level 1 certified payment processor &mdash; the same platform used by companies like Shopify, Amazon, and Google. Your card details never touch our website.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">Will I get a receipt?</summary>
+          <div class="faq-answer">
+            <p>Yes. Stripe automatically sends a receipt to the email address you provide during checkout. You can also access your receipt from the Stripe confirmation page immediately after payment.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">Can I pay by bank transfer instead?</summary>
+          <div class="faq-answer">
+            <p>Yes. Choose SEPA Direct Debit on the Stripe checkout page for direct bank payment within the EU. If you need to pay by manual bank transfer, contact us at <a href="mailto:hello@jmsdevlab.com">hello@jmsdevlab.com</a> and we'll provide our bank details.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">What currency are payments in?</summary>
+          <div class="faq-answer">
+            <p>All invoices and payments are in Euro (EUR). If your card is in a different currency, your bank will handle the conversion at their standard rate.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary class="faq-question">What is the scope-match guarantee?</summary>
+          <div class="faq-answer">
+            <p>If the delivered software doesn't match the agreed scope, you don't pay the final instalment. We agree the scope in writing before work starts, so there are no surprises. See our <a href="pricing.html">pricing page</a> for full details.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Can't Find Your Link -->
+  <section class="section section-light">
+    <div class="container" style="max-width: 600px;">
+      <div class="contact-form" style="text-align: center;">
+        <h3>Can't Find Your Payment Link?</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--slate-400);">No problem. Get in touch and we'll resend your invoice with a fresh payment link.</p>
+        <a href="mailto:hello@jmsdevlab.com" class="btn btn-primary">
+          Email Us
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--slate-400);">hello@jmsdevlab.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="case-studies.html">Case Studies</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay in the loop</h3>
+        <p>New tools, insights, and product updates. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2192671/forms/182011083818534198/subscribe" method="POST">
+          <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+          <input type="hidden" name="ml-submit" value="1">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

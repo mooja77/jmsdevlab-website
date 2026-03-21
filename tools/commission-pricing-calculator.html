@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Custom Jewelry Commission Pricing Calculator - JMS Dev Lab</title>
+  <meta name="description" content="Are you charging enough for custom jewelry commissions? Calculate your true costs including design time, consultations, materials, and overhead — and see your real profit margin.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/tools/commission-pricing-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Custom Jewelry Commission Pricing Calculator - JMS Dev Lab">
+  <meta property="og:description" content="Are you charging enough for custom jewelry commissions? Calculate your true costs including design time, consultations, materials, and overhead — and see your real profit margin.">
+  <meta property="og:url" content="https://jmsdevlab.com/tools/commission-pricing-calculator.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Custom Jewelry Commission Pricing Calculator - JMS Dev Lab">
+  <meta name="twitter:description" content="Are you charging enough for custom jewelry commissions? Calculate your true costs including design time, consultations, materials, and overhead — and see your real profit margin.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="k7OsaJgbYCOwj41rNJgUf2yvt44y8mcp3DLmleNUQE0">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Custom Jewelry Commission Pricing Calculator",
+    "url": "https://jmsdevlab.com/tools/commission-pricing-calculator.html",
+    "description": "Calculate your true costs for custom jewelry commissions including design time, consultations, materials, and overhead — and see your real profit margin.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "JMS Dev Lab",
+      "url": "https://jmsdevlab.com"
+    }
+  }
+  </script>
+
+  <style>
+    .calc-form {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .calc-form h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .calc-field {
+      margin-bottom: 1.25rem;
+    }
+    .calc-field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 0.375rem;
+    }
+    .calc-field select,
+    .calc-field input[type="number"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--slate-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--slate-800);
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .calc-field select:focus,
+    .calc-field input[type="number"]:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .calc-field .field-hint {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      margin-top: 0.25rem;
+    }
+    .calc-radio-group {
+      display: flex;
+      gap: 1rem;
+    }
+    .calc-radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .calc-radio-group input[type="radio"] {
+      accent-color: var(--blue-500);
+    }
+    .calc-btn-wrap {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* Results */
+    .calc-results {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      display: none;
+    }
+    .calc-results.visible {
+      display: block;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .result-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .result-card .result-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .result-card .result-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+    .result-card.highlight {
+      border-color: var(--blue-500);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(20, 184, 166, 0.04));
+    }
+    .result-card.highlight .result-value {
+      color: var(--blue-600);
+    }
+    .result-card.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* Margin status card */
+    .result-card.margin-healthy {
+      border-color: #22c55e;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(34, 197, 94, 0.02));
+    }
+    .result-card.margin-healthy .result-value {
+      color: #16a34a;
+    }
+    .result-card.margin-acceptable {
+      border-color: var(--teal-500, #14b8a6);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.06), rgba(20, 184, 166, 0.02));
+    }
+    .result-card.margin-acceptable .result-value {
+      color: var(--teal-600, #0d9488);
+    }
+    .result-card.margin-thin {
+      border-color: #f59e0b;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(245, 158, 11, 0.02));
+    }
+    .result-card.margin-thin .result-value {
+      color: #d97706;
+    }
+    .result-card.margin-loss {
+      border-color: #ef4444;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.06), rgba(239, 68, 68, 0.02));
+    }
+    .result-card.margin-loss .result-value {
+      color: #dc2626;
+    }
+
+    .margin-verdict {
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: none;
+    }
+    .margin-verdict.visible {
+      display: block;
+    }
+    .margin-verdict.healthy {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid #22c55e;
+      color: #16a34a;
+    }
+    .margin-verdict.acceptable {
+      background: rgba(20, 184, 166, 0.08);
+      border: 1px solid #14b8a6;
+      color: #0d9488;
+    }
+    .margin-verdict.thin {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid #f59e0b;
+      color: #d97706;
+    }
+    .margin-verdict.loss {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid #ef4444;
+      color: #dc2626;
+    }
+
+    .results-breakdown {
+      font-size: 0.85rem;
+      color: var(--slate-500);
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .calc-cta {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      display: none;
+    }
+    .calc-cta.visible {
+      display: block;
+    }
+    .calc-cta h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .calc-cta p {
+      color: var(--slate-600);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+    .calc-cta .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .calc-cta .cta-buttons .btn-secondary {
+      background: #fff;
+      color: var(--blue-600);
+      border: 1px solid var(--blue-500);
+      padding: 0.625rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .calc-cta .cta-buttons .btn-secondary:hover {
+      background: var(--blue-500);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../tools/">Free Tools</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Commission Pricing Calculator</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Free Tools","item":"https://jmsdevlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Commission Pricing Calculator"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Custom Jewelry Commission Pricing Calculator</h1>
+    <p>Are you actually making money on custom commissions &mdash; or quietly losing it? Many jewellers undercharge because they forget to account for design time, consultations, revisions, and overhead. Enter the details of a commission below and find out your real profit margin.</p>
+  </section>
+
+  <!-- Calculator -->
+  <section class="section section-light">
+    <div class="container">
+
+      <!-- Form -->
+      <div class="calc-form">
+        <h3>Enter Your Commission Details</h3>
+
+        <div class="calc-field">
+          <label for="calcMaterials">Materials cost for this piece (&euro;)</label>
+          <input type="number" id="calcMaterials" min="0" max="100000" value="200" step="1">
+          <div class="field-hint">Gold, silver, gemstones, findings, casting &mdash; everything that goes into the piece</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcDesignHours">Hours spent on design &amp; consultation</label>
+          <input type="number" id="calcDesignHours" min="0" max="200" value="3" step="0.5">
+          <div class="field-hint">Initial meetings, sketching, CAD work, mood boards, sourcing discussions</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcBenchHours">Hours spent on fabrication / bench work</label>
+          <input type="number" id="calcBenchHours" min="0" max="500" value="8" step="0.5">
+          <div class="field-hint">Actual making time at the bench &mdash; casting, setting, polishing, finishing</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcRevisions">Number of client revisions / approvals expected</label>
+          <select id="calcRevisions">
+            <option value="1">1</option>
+            <option value="2.5" selected>2&ndash;3</option>
+            <option value="4.5">4&ndash;5</option>
+            <option value="7">6+</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcRevisionTime">Time per revision round (hours)</label>
+          <input type="number" id="calcRevisionTime" min="0" max="20" value="0.5" step="0.25">
+          <div class="field-hint">Emails, calls, re-rendering, adjustments per round</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcHourlyRate">Your hourly rate / what you&rsquo;d like to earn per hour (&euro;)</label>
+          <input type="number" id="calcHourlyRate" min="1" max="1000" value="40" step="1">
+          <div class="field-hint">What your time is actually worth &mdash; not what you currently charge</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcOverhead">Overhead percentage</label>
+          <select id="calcOverhead">
+            <option value="0.10">10% &mdash; Home studio</option>
+            <option value="0.20" selected>20% &mdash; Small workshop</option>
+            <option value="0.30">30% &mdash; Retail premises</option>
+            <option value="0.40">40%+ &mdash; High street location</option>
+          </select>
+          <div class="field-hint">Rent, utilities, insurance, tools, consumables, software</div>
+        </div>
+
+        <div class="calc-field">
+          <label>Do you include photography of the finished piece?</label>
+          <div class="calc-radio-group">
+            <label><input type="radio" name="calcPhoto" value="yes"> Yes</label>
+            <label><input type="radio" name="calcPhoto" value="no" checked> No</label>
+          </div>
+          <div class="field-hint">Professional photos for the client or your portfolio &mdash; adds 1 hour if yes</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcPrice">Price you plan to charge the client (&euro;)</label>
+          <input type="number" id="calcPrice" min="0" max="1000000" value="800" step="1">
+          <div class="field-hint">The total amount you&rsquo;ll invoice (or are considering quoting)</div>
+        </div>
+
+        <div class="calc-btn-wrap">
+          <button type="button" class="btn btn-primary" id="calcButton">
+            Calculate My Margins
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="calc-results" id="calcResults">
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-label">Total Labour Hours</div>
+            <div class="result-value" id="resTotalHours">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Total Labour Cost</div>
+            <div class="result-value" id="resLabourCost">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Materials Cost</div>
+            <div class="result-value" id="resMaterials">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Overhead Cost</div>
+            <div class="result-value" id="resOverhead">&mdash;</div>
+          </div>
+          <div class="result-card highlight full-width">
+            <div class="result-label">True Total Cost</div>
+            <div class="result-value" id="resTotalCost">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Your Planned Price</div>
+            <div class="result-value" id="resPrice">&mdash;</div>
+          </div>
+          <div class="result-card" id="resProfitCard">
+            <div class="result-label">Profit / Loss</div>
+            <div class="result-value" id="resProfit">&mdash;</div>
+          </div>
+          <div class="result-card" id="resMarginCard">
+            <div class="result-label">Actual Profit Margin</div>
+            <div class="result-value" id="resMargin">&mdash;</div>
+          </div>
+          <div class="result-card" id="resEffectiveCard">
+            <div class="result-label">Your Effective Hourly Rate</div>
+            <div class="result-value" id="resEffective">&mdash;</div>
+          </div>
+        </div>
+
+        <div class="margin-verdict" id="marginVerdict"></div>
+
+        <div class="results-breakdown" id="resBreakdown"></div>
+      </div>
+
+      <!-- Soft CTA -->
+      <div class="calc-cta" id="calcCta">
+        <h3>Stop Guessing, Start Tracking</h3>
+        <p><strong>JewelryStudioManager</strong> tracks commissions end-to-end: from the initial enquiry and design approval through to materials, time spent at the bench, and final profitability. Every commission is logged so you always know exactly where your money goes &mdash; and whether the price you quoted actually covered your costs.</p>
+        <p>Built specifically for custom jewelry studios. No generic project management tools, no spreadsheets, no guesswork.</p>
+        <div class="cta-buttons">
+          <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener" class="btn btn-primary">
+            Learn About JewelryStudioManager
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="../contact.html" class="btn-secondary">Ask Us a Question</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay in the loop</h3>
+        <p>New tools, insights, and product updates. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2192671/forms/182011083818534198/subscribe" method="POST">
+          <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+          <input type="hidden" name="ml-submit" value="1">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var calcButton = document.getElementById('calcButton');
+    var resultsEl = document.getElementById('calcResults');
+    var ctaEl = document.getElementById('calcCta');
+    var verdictEl = document.getElementById('marginVerdict');
+
+    function formatEur(n) {
+      return '\u20AC' + n.toLocaleString('en-IE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function formatHours(n) {
+      return n.toLocaleString('en-IE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' hrs';
+    }
+
+    calcButton.addEventListener('click', function() {
+      var materials = parseFloat(document.getElementById('calcMaterials').value) || 0;
+      var designHours = parseFloat(document.getElementById('calcDesignHours').value) || 0;
+      var benchHours = parseFloat(document.getElementById('calcBenchHours').value) || 0;
+      var revisions = parseFloat(document.getElementById('calcRevisions').value) || 0;
+      var revisionTime = parseFloat(document.getElementById('calcRevisionTime').value) || 0;
+      var hourlyRate = parseFloat(document.getElementById('calcHourlyRate').value) || 40;
+      var overheadPct = parseFloat(document.getElementById('calcOverhead').value) || 0.20;
+      var includesPhoto = document.querySelector('input[name="calcPhoto"]:checked').value === 'yes';
+      var plannedPrice = parseFloat(document.getElementById('calcPrice').value) || 0;
+
+      // Calculate total hours
+      var revisionHours = revisions * revisionTime;
+      var photoHours = includesPhoto ? 1 : 0;
+      var totalHours = designHours + benchHours + revisionHours + photoHours;
+
+      // Calculate costs
+      var labourCost = totalHours * hourlyRate;
+      var overheadCost = (labourCost + materials) * overheadPct;
+      var totalCost = labourCost + materials + overheadCost;
+
+      // Calculate profit and margins
+      var profit = plannedPrice - totalCost;
+      var marginPct = plannedPrice > 0 ? (profit / plannedPrice) * 100 : 0;
+      var effectiveHourly = totalHours > 0 ? (plannedPrice - materials - overheadCost) / totalHours : 0;
+
+      // Display results
+      document.getElementById('resTotalHours').textContent = formatHours(totalHours);
+      document.getElementById('resLabourCost').textContent = formatEur(labourCost);
+      document.getElementById('resMaterials').textContent = formatEur(materials);
+      document.getElementById('resOverhead').textContent = formatEur(overheadCost);
+      document.getElementById('resTotalCost').textContent = formatEur(totalCost);
+      document.getElementById('resPrice').textContent = formatEur(plannedPrice);
+      document.getElementById('resProfit').textContent = formatEur(profit);
+      document.getElementById('resMargin').textContent = marginPct.toFixed(1) + '%';
+      document.getElementById('resEffective').textContent = formatEur(effectiveHourly) + '/hr';
+
+      // Colour-code profit/margin cards
+      var profitCard = document.getElementById('resProfitCard');
+      var marginCard = document.getElementById('resMarginCard');
+      var effectiveCard = document.getElementById('resEffectiveCard');
+
+      // Reset classes
+      var marginClasses = ['margin-healthy', 'margin-acceptable', 'margin-thin', 'margin-loss'];
+      var verdictClasses = ['healthy', 'acceptable', 'thin', 'loss'];
+      marginClasses.forEach(function(c) {
+        profitCard.classList.remove(c);
+        marginCard.classList.remove(c);
+        effectiveCard.classList.remove(c);
+      });
+      verdictClasses.forEach(function(c) {
+        verdictEl.classList.remove(c);
+      });
+
+      // Determine margin status
+      var marginClass, verdictClass, verdictText;
+      if (marginPct > 30) {
+        marginClass = 'margin-healthy';
+        verdictClass = 'healthy';
+        verdictText = 'Healthy margin \u2014 you\u2019re pricing this commission well. Keep it up.';
+      } else if (marginPct >= 15) {
+        marginClass = 'margin-acceptable';
+        verdictClass = 'acceptable';
+        verdictText = 'Acceptable but tight \u2014 one unexpected revision or material price change could eat your profit.';
+      } else if (marginPct >= 0) {
+        marginClass = 'margin-thin';
+        verdictClass = 'thin';
+        verdictText = 'Dangerously thin \u2014 you\u2019re barely covering your costs. Any overrun means you\u2019re working for free.';
+      } else {
+        marginClass = 'margin-loss';
+        verdictClass = 'loss';
+        verdictText = 'You\u2019re losing money on this piece \u2014 your price doesn\u2019t cover your true costs. Time to re-quote.';
+      }
+
+      profitCard.classList.add(marginClass);
+      marginCard.classList.add(marginClass);
+      effectiveCard.classList.add(marginClass);
+      verdictEl.classList.add(verdictClass);
+      verdictEl.textContent = verdictText;
+
+      // Build breakdown
+      var parts = [];
+      parts.push('Design & consultation: ' + designHours + ' hrs');
+      parts.push('Fabrication / bench work: ' + benchHours + ' hrs');
+      parts.push('Revisions: ' + revisions + ' rounds \u00D7 ' + revisionTime + ' hrs = ' + revisionHours.toFixed(1) + ' hrs');
+      if (includesPhoto) {
+        parts.push('Photography: 1 hr');
+      }
+      parts.push('Total labour: ' + totalHours.toFixed(1) + ' hrs \u00D7 \u20AC' + hourlyRate.toFixed(2) + '/hr = ' + formatEur(labourCost));
+      parts.push('Overhead (' + Math.round(overheadPct * 100) + '% of labour + materials): ' + formatEur(overheadCost));
+      document.getElementById('resBreakdown').innerHTML = parts.join('<br>');
+
+      // Show results, verdict, and CTA
+      resultsEl.classList.add('visible');
+      verdictEl.classList.add('visible');
+      ctaEl.classList.add('visible');
+
+      // Scroll to results
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+  </script>
+
+  <script src="../main.js"></script>
+</body>
+</html>

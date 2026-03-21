@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Repair Turnaround &amp; Revenue Calculator - JMS Dev Lab</title>
+  <meta name="description" content="Calculate how much revenue your jewelry or watch repair shop loses from slow turnaround, forgotten tickets, and poor tracking. See the cost of delays and what you could recover.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/tools/repair-turnaround-calculator.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Repair Turnaround &amp; Revenue Calculator - JMS Dev Lab">
+  <meta property="og:description" content="Calculate how much revenue your jewelry or watch repair shop loses from slow turnaround, forgotten tickets, and poor tracking. See the cost of delays and what you could recover.">
+  <meta property="og:url" content="https://jmsdevlab.com/tools/repair-turnaround-calculator.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free Repair Turnaround &amp; Revenue Calculator - JMS Dev Lab">
+  <meta name="twitter:description" content="Calculate how much revenue your jewelry or watch repair shop loses from slow turnaround, forgotten tickets, and poor tracking. See the cost of delays and what you could recover.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <!-- Google Search Console -->
+  <meta name="google-site-verification" content="k7OsaJgbYCOwj41rNJgUf2yvt44y8mcp3DLmleNUQE0">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Repair Turnaround & Revenue Calculator",
+    "url": "https://jmsdevlab.com/tools/repair-turnaround-calculator.html",
+    "description": "Calculate how much revenue your jewelry or watch repair shop loses from slow turnaround, forgotten tickets, and poor tracking.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "JMS Dev Lab",
+      "url": "https://jmsdevlab.com"
+    }
+  }
+  </script>
+
+  <style>
+    .calc-form {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .calc-form h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .calc-field {
+      margin-bottom: 1.25rem;
+    }
+    .calc-field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      margin-bottom: 0.375rem;
+    }
+    .calc-field select,
+    .calc-field input[type="number"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--slate-300);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--slate-800);
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .calc-field select:focus,
+    .calc-field input[type="number"]:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .calc-field .field-hint {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      margin-top: 0.25rem;
+    }
+    .calc-btn-wrap {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* Results */
+    .calc-results {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      display: none;
+    }
+    .calc-results.visible {
+      display: block;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 480px) {
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .result-card {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .result-card .result-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .result-card .result-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+    .result-card.highlight {
+      border-color: var(--blue-500);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(20, 184, 166, 0.04));
+    }
+    .result-card.highlight .result-value {
+      color: var(--blue-600);
+    }
+    .result-card.savings {
+      border-color: var(--teal-500);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.06), rgba(20, 184, 166, 0.02));
+    }
+    .result-card.savings .result-value {
+      color: var(--teal-600, #0d9488);
+    }
+    .result-card.total {
+      grid-column: 1 / -1;
+      border-color: #ef4444;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.04), rgba(239, 68, 68, 0.01));
+    }
+    .result-card.total .result-value {
+      font-size: 2rem;
+      color: #dc2626;
+    }
+    .savings-section {
+      background: #fff;
+      border: 1px solid var(--teal-500, #14b8a6);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .savings-section h3 {
+      color: var(--teal-600, #0d9488);
+      margin-bottom: 0.5rem;
+    }
+    .savings-section .savings-amount {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--teal-600, #0d9488);
+      margin-bottom: 0.5rem;
+    }
+    .savings-section p {
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    .results-breakdown {
+      font-size: 0.85rem;
+      color: var(--slate-500);
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .calc-cta {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      display: none;
+    }
+    .calc-cta.visible {
+      display: block;
+    }
+    .calc-cta h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .calc-cta p {
+      color: var(--slate-600);
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+    .calc-cta .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .calc-cta .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--blue-500);
+      border-radius: 8px;
+      color: var(--blue-600);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .calc-cta .btn-outline:hover {
+      background: var(--blue-500);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../tools/">Free Tools</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Repair Turnaround Calculator</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Free Tools","item":"https://jmsdevlab.com/tools/"},{"@type":"ListItem","position":3,"name":"Repair Turnaround Calculator"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>Repair Turnaround &amp; Revenue Calculator</h1>
+    <p>Find out how much revenue your repair shop is losing to slow turnaround, forgotten tickets, and manual tracking &mdash; and what you could recover with better systems.</p>
+  </section>
+
+  <!-- Calculator -->
+  <section class="section section-light">
+    <div class="container">
+
+      <!-- Form -->
+      <div class="calc-form">
+        <h3>Tell Us About Your Repair Workshop</h3>
+
+        <div class="calc-field">
+          <label for="calcRepairs">Average number of repairs per month</label>
+          <input type="number" id="calcRepairs" min="1" max="9999" value="30" step="1">
+        </div>
+
+        <div class="calc-field">
+          <label for="calcValue">Average repair value (&euro;)</label>
+          <input type="number" id="calcValue" min="1" max="99999" value="75" step="1">
+          <div class="field-hint">Include parts and labour</div>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcTurnaround">Average turnaround time in days</label>
+          <input type="number" id="calcTurnaround" min="1" max="365" value="14" step="1">
+        </div>
+
+        <div class="calc-field">
+          <label for="calcLate">What percentage of repairs are completed late?</label>
+          <select id="calcLate">
+            <option value="0.05">Less than 10%</option>
+            <option value="0.175" selected>10&ndash;25%</option>
+            <option value="0.375">25&ndash;50%</option>
+            <option value="0.625">More than 50%</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcLost">How many repair tickets get lost or forgotten per month?</label>
+          <select id="calcLost">
+            <option value="0">None</option>
+            <option value="1.5" selected>1&ndash;2</option>
+            <option value="4">3&ndash;5</option>
+            <option value="8">6+</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcTracking">How do you currently track repairs?</label>
+          <select id="calcTracking">
+            <option value="paper">Paper tickets</option>
+            <option value="spreadsheet" selected>Spreadsheet</option>
+            <option value="pos">Basic POS notes</option>
+            <option value="software">Dedicated software</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcChase">Do customers chase you for status updates?</label>
+          <select id="calcChase">
+            <option value="rarely">Rarely</option>
+            <option value="sometimes" selected>Sometimes</option>
+            <option value="often">Often</option>
+            <option value="constantly">Constantly</option>
+          </select>
+        </div>
+
+        <div class="calc-field">
+          <label for="calcComplaint">Average cost of a customer complaint or redo (&euro;)</label>
+          <input type="number" id="calcComplaint" min="0" max="99999" value="50" step="1">
+          <div class="field-hint">Time spent resolving, goodwill discounts, material waste</div>
+        </div>
+
+        <div class="calc-btn-wrap">
+          <button type="button" class="btn btn-primary" id="calcButton">
+            Calculate My Losses
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="calc-results" id="calcResults">
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-label">Monthly Repair Revenue</div>
+            <div class="result-value" id="resMonthly">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Annual Repair Revenue</div>
+            <div class="result-value" id="resAnnual">&mdash;</div>
+          </div>
+          <div class="result-card highlight">
+            <div class="result-label">Revenue Lost to Forgotten Tickets</div>
+            <div class="result-value" id="resLostTickets">&mdash;</div>
+          </div>
+          <div class="result-card highlight">
+            <div class="result-label">Cost of Late Completions</div>
+            <div class="result-value" id="resLateCost">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Time on Status Enquiries</div>
+            <div class="result-value" id="resChaseTime">&mdash;</div>
+          </div>
+          <div class="result-card">
+            <div class="result-label">Manual Tracking Overhead</div>
+            <div class="result-value" id="resTrackingCost">&mdash;</div>
+          </div>
+          <div class="result-card total">
+            <div class="result-label">Total Annual Cost of Inefficiency</div>
+            <div class="result-value" id="resTotalCost">&mdash;</div>
+          </div>
+        </div>
+
+        <div class="savings-section">
+          <h3>Potential Recovery</h3>
+          <div class="savings-amount" id="resSavings">&mdash;</div>
+          <p>Estimated annual recovery with streamlined repair tracking and automated customer notifications (based on 60&ndash;80% inefficiency reduction).</p>
+        </div>
+
+        <div class="results-breakdown" id="resBreakdown"></div>
+      </div>
+
+      <!-- Soft CTA -->
+      <div class="calc-cta" id="calcCta">
+        <h3>What if repairs tracked themselves?</h3>
+        <p>RepairDesk handles the entire repair workflow &mdash; from intake and job tracking to customer notifications and completion. Your customers get automatic status updates, so they stop calling to ask &ldquo;is it ready yet?&rdquo;</p>
+        <p>No more lost tickets, no more forgotten repairs sitting on the bench, and no more scrambling through paper dockets or spreadsheets to find where something is.</p>
+        <div class="cta-buttons">
+          <a href="https://repairdeskapp.net" target="_blank" rel="noopener" class="btn btn-primary">
+            See RepairDesk
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="../contact.html" class="btn-outline">
+            Ask Us a Question
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../partners.html">Partners</a>
+            <a href="../tools/">Free Tools</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay in the loop</h3>
+        <p>New tools, insights, and product updates. No spam, unsubscribe anytime.</p>
+        <form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2192671/forms/182011083818534198/subscribe" method="POST">
+          <input type="email" name="fields[email]" placeholder="you@example.com" required aria-label="Email address">
+          <input type="hidden" name="ml-submit" value="1">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var calcButton = document.getElementById('calcButton');
+    var resultsEl = document.getElementById('calcResults');
+    var ctaEl = document.getElementById('calcCta');
+
+    function formatEur(n) {
+      return '\u20AC' + n.toLocaleString('en-IE', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+
+    calcButton.addEventListener('click', function() {
+      var repairs = parseInt(document.getElementById('calcRepairs').value, 10) || 30;
+      var avgValue = parseFloat(document.getElementById('calcValue').value) || 75;
+      var turnaround = parseInt(document.getElementById('calcTurnaround').value, 10) || 14;
+      var latePct = parseFloat(document.getElementById('calcLate').value);
+      var lostPerMonth = parseFloat(document.getElementById('calcLost').value);
+      var trackingMethod = document.getElementById('calcTracking').value;
+      var chaseFreq = document.getElementById('calcChase').value;
+      var complaintCost = parseFloat(document.getElementById('calcComplaint').value) || 50;
+
+      // Core revenue
+      var monthlyRevenue = repairs * avgValue;
+      var annualRevenue = monthlyRevenue * 12;
+
+      // Revenue lost to forgotten/lost tickets (annual)
+      var lostTicketRevenue = lostPerMonth * avgValue * 12;
+
+      // Cost of late completions (annual)
+      // Late repairs lead to complaints, redos, goodwill discounts
+      var lateRepairsPerMonth = repairs * latePct;
+      var lateCostAnnual = lateRepairsPerMonth * complaintCost * 12;
+
+      // Time spent on status enquiries (hours/month)
+      // Each chase call/visit ~5 mins. Frequency determines what % of repairs trigger chases.
+      var chasePct;
+      switch (chaseFreq) {
+        case 'rarely':     chasePct = 0.05; break;
+        case 'sometimes':  chasePct = 0.15; break;
+        case 'often':      chasePct = 0.35; break;
+        case 'constantly': chasePct = 0.60; break;
+        default:           chasePct = 0.15;
+      }
+      // Average 2 chase contacts per chasing customer, 5 mins each
+      var chaseContactsPerMonth = repairs * chasePct * 2;
+      var chaseHoursPerMonth = (chaseContactsPerMonth * 5) / 60;
+      // Cost at ~25 EUR/hr (blended staff cost)
+      var chaseCostAnnual = chaseHoursPerMonth * 25 * 12;
+
+      // Manual tracking overhead (hours/month based on method)
+      var trackingHoursPerMonth;
+      switch (trackingMethod) {
+        case 'paper':       trackingHoursPerMonth = repairs * 0.25; break; // 15 mins per ticket
+        case 'spreadsheet': trackingHoursPerMonth = repairs * 0.17; break; // 10 mins per ticket
+        case 'pos':         trackingHoursPerMonth = repairs * 0.12; break; // 7 mins per ticket
+        case 'software':    trackingHoursPerMonth = repairs * 0.05; break; // 3 mins per ticket
+        default:            trackingHoursPerMonth = repairs * 0.17;
+      }
+      var trackingCostAnnual = trackingHoursPerMonth * 25 * 12;
+
+      // Total annual cost of inefficiency
+      var totalInefficiency = lostTicketRevenue + lateCostAnnual + chaseCostAnnual + trackingCostAnnual;
+
+      // Potential recovery (60-80%)
+      var recoveryLow = totalInefficiency * 0.60;
+      var recoveryHigh = totalInefficiency * 0.80;
+
+      // Display results
+      document.getElementById('resMonthly').textContent = formatEur(monthlyRevenue);
+      document.getElementById('resAnnual').textContent = formatEur(annualRevenue);
+      document.getElementById('resLostTickets').textContent = formatEur(lostTicketRevenue) + '/yr';
+      document.getElementById('resLateCost').textContent = formatEur(lateCostAnnual) + '/yr';
+      document.getElementById('resChaseTime').textContent = chaseHoursPerMonth.toFixed(1) + ' hrs/mo (' + formatEur(chaseCostAnnual) + '/yr)';
+      document.getElementById('resTrackingCost').textContent = trackingHoursPerMonth.toFixed(1) + ' hrs/mo (' + formatEur(trackingCostAnnual) + '/yr)';
+      document.getElementById('resTotalCost').textContent = formatEur(totalInefficiency) + '/yr';
+      document.getElementById('resSavings').textContent = formatEur(recoveryLow) + ' \u2013 ' + formatEur(recoveryHigh) + ' / year';
+
+      // Breakdown
+      var parts = [];
+      parts.push(repairs + ' repairs/mo \u00D7 ' + formatEur(avgValue) + ' = ' + formatEur(monthlyRevenue) + '/mo (' + formatEur(annualRevenue) + '/yr)');
+      if (lostPerMonth > 0) {
+        parts.push(lostPerMonth + ' lost tickets/mo \u00D7 ' + formatEur(avgValue) + ' \u00D7 12 = ' + formatEur(lostTicketRevenue) + ' lost revenue');
+      }
+      parts.push(Math.round(latePct * 100) + '% late (' + lateRepairsPerMonth.toFixed(1) + '/mo) \u00D7 ' + formatEur(complaintCost) + ' complaint cost = ' + formatEur(lateCostAnnual) + '/yr');
+      parts.push('Status enquiries: ~' + chaseContactsPerMonth.toFixed(0) + ' calls/mo = ' + chaseHoursPerMonth.toFixed(1) + ' hrs/mo (' + formatEur(chaseCostAnnual) + '/yr)');
+      parts.push('Manual tracking: ' + trackingHoursPerMonth.toFixed(1) + ' hrs/mo (' + formatEur(trackingCostAnnual) + '/yr)');
+      document.getElementById('resBreakdown').innerHTML = parts.join('<br>');
+
+      // Show results and CTA
+      resultsEl.classList.add('visible');
+      ctaEl.classList.add('visible');
+
+      // Scroll to results
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+  </script>
+
+  <script src="../main.js"></script>
+</body>
+</html>
