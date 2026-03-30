@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NPTXDRDH');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QualCanvas: A Visual Approach to Qualitative Coding - JMS Dev Lab</title>
+  <meta name="description" content="Why we built QualCanvas — a visual, canvas-based qualitative coding platform for researchers and academics. How it compares to NVivo, ATLAS.ti, and Dedoose.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/qualcanvas-visual-qualitative-coding.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="QualCanvas: A Visual Approach to Qualitative Coding">
+  <meta property="og:description" content="Why we built QualCanvas — a visual, canvas-based qualitative coding platform for researchers and academics. How it compares to NVivo, ATLAS.ti, and Dedoose.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/qualcanvas-visual-qualitative-coding.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QualCanvas: A Visual Approach to Qualitative Coding">
+  <meta name="twitter:description" content="Why we built QualCanvas — a visual, canvas-based qualitative coding platform for researchers and academics. How it compares to NVivo, ATLAS.ti, and Dedoose.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "QualCanvas: A Visual Approach to Qualitative Coding",
+    "description": "Why we built QualCanvas — a visual, canvas-based qualitative coding platform for researchers and academics. How it compares to NVivo, ATLAS.ti, and Dedoose.",
+    "datePublished": "2026-03-24",
+    "dateModified": "2026-03-24",
+    "author": { "@type": "Person", "name": "John Moore", "url": "https://jmsdevlab.com/about.html" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/qualcanvas-visual-qualitative-coding.html"
+  }
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPTXDRDH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+              <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">QualCanvas: A Visual Approach to Qualitative Coding</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"QualCanvas: A Visual Approach to Qualitative Coding"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>QualCanvas: A Visual Approach to Qualitative Coding</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">24 March 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>My name is John Moore. I run <a href="https://jmsdevlab.com">JMS Dev Lab</a> from Cork, Ireland. Most of the software I build is for niche industries where the existing tools are either too expensive, too clunky, or too generic. Qualitative research turned out to be all three.</p>
+
+    <p><a href="https://qualcanvas.com" target="_blank" rel="noopener">QualCanvas</a> is a qualitative coding platform built around an infinite interactive canvas. You import transcripts, code them, discover patterns, and build theory &mdash; all in a visual workspace that you can zoom, pan, and arrange however your analysis demands.</p>
+
+    <h2>Why Qualitative Coding Needed a Rethink</h2>
+
+    <p>If you have ever used NVivo, ATLAS.ti, or similar CAQDAS tools, you already know the landscape. These are powerful applications with decades of development behind them. They are also, for the most part, desktop-first software with steep learning curves, expensive licences, and interfaces that were designed in an era before modern web applications existed.</p>
+
+    <p>NVivo costs upwards of $1,500 for a perpetual licence. ATLAS.ti charges $99 per month. Even for well-funded university departments, these are significant costs. For independent researchers, PhD students, or small research teams in the social sciences, they can be prohibitive.</p>
+
+    <p>But cost is only part of the problem. The bigger issue is the way these tools make you work. Qualitative analysis is inherently spatial. Researchers think in clusters, networks, and hierarchies. They draw diagrams on whiteboards. They spread printed transcripts across tables and physically group related passages. The analysis process is visual and tactile.</p>
+
+    <p>Most qualitative coding software ignores this entirely. You get a list of codes on one side, a transcript on the other, and a tree structure that you navigate by clicking through folders. The spatial dimension of the analysis &mdash; the part where you see how everything connects &mdash; is either missing or bolted on as an afterthought.</p>
+
+    <h2>What QualCanvas Does Differently</h2>
+
+    <p>QualCanvas puts the canvas at the centre of the workflow. Instead of coding in a split-pane interface and then switching to a separate visualisation tool, you do everything on the canvas. Your transcripts, codes, memos, and analysis outputs all live in the same spatial workspace.</p>
+
+    <p>This is not a cosmetic difference. It changes how you interact with your data. You can place two transcripts side by side and code them in context. You can drag a word cloud next to a cluster diagram and see whether the patterns align. You can arrange your codes spatially to reflect theoretical relationships, not just alphabetical order.</p>
+
+    <p>The platform includes 12 analysis tools built in:</p>
+
+    <ul>
+      <li><strong>Word clouds</strong> for quick frequency analysis</li>
+      <li><strong>Co-occurrence matrices</strong> to see which codes appear together</li>
+      <li><strong>Clustering</strong> to identify natural groupings in your data</li>
+      <li><strong>Sentiment analysis</strong> across coded segments</li>
+      <li><strong>Framework matrices</strong> for structured thematic analysis</li>
+      <li><strong>Treemaps</strong> for visualising code hierarchies and coverage</li>
+      <li><strong>Cases and cross-case analysis</strong> for comparative research designs</li>
+      <li><strong>Intercoder reliability</strong> using Cohen's Kappa for team-based coding</li>
+    </ul>
+
+    <p>These are not external add-ons. They render directly on the canvas as interactive elements that you can resize, reposition, and connect to the data they reference.</p>
+
+    <h2>Auto-Coding and AI Assistance</h2>
+
+    <p>Manual coding is the foundation of rigorous qualitative research. But there are legitimate shortcuts that save time without compromising analytical integrity.</p>
+
+    <p>QualCanvas supports auto-coding using keyword matching and regular expressions. If you know that every mention of "funding" or "budget" should be tagged with your "Financial Constraints" code, you can set that up once and apply it across all your transcripts. This handles the mechanical coding so you can focus on the interpretive work.</p>
+
+    <p>For researchers who want to go further, QualCanvas offers AI-assisted coding through a bring-your-own-key (BYOK) model. You connect your own API key &mdash; from OpenAI, Anthropic, or another provider &mdash; and the platform uses it to suggest codes based on the content of your transcripts. You review and approve every suggestion. The AI does not code autonomously.</p>
+
+    <p>The BYOK approach matters for two reasons. First, it means your data is processed through your own API account, giving you control over the data processing relationship. Second, it means we do not need to build AI costs into our subscription pricing, which keeps the plans affordable.</p>
+
+    <h2>Interoperability and Ethics</h2>
+
+    <p>Switching qualitative coding tools is painful. Your codes, memos, and analytical structure represent months or years of work. QualCanvas supports QDPX import and export, the open standard used by NVivo, ATLAS.ti, and other CAQDAS platforms. You can bring your existing project into QualCanvas or export your work back out if you need to.</p>
+
+    <p>For research involving human participants, the platform includes built-in ethics compliance features: consent tracking, audit trails, and data handling controls. These are not afterthoughts &mdash; they are part of the core architecture, because qualitative research with human subjects requires them.</p>
+
+    <h2>Pricing</h2>
+
+    <p>QualCanvas has three tiers:</p>
+
+    <ul>
+      <li><strong>Free:</strong> 1 canvas, 2 transcripts, 5 codes. Enough to evaluate the platform on a real project.</li>
+      <li><strong>Pro:</strong> $12 per month. Full access to all analysis tools, unlimited canvases and transcripts.</li>
+      <li><strong>Team:</strong> $29 per month. Collaboration features, intercoder reliability, shared canvases.</li>
+    </ul>
+
+    <p>Academic users with a .edu email address get a 40% discount on Pro and Team plans. That brings Pro down to $7.20 per month and Team to $17.40 per month.</p>
+
+    <p>Compare that to NVivo at $1,500+ or ATLAS.ti at $99 per month. The pricing difference is not marginal &mdash; it is an order of magnitude.</p>
+
+    <h2>Where We Are</h2>
+
+    <p>QualCanvas is live and functional. It is not a prototype or a landing page collecting email addresses. You can sign up, import transcripts, code your data, run analyses, and export your work today.</p>
+
+    <p>That said, it is a new platform. We do not have the decades of feature accumulation that NVivo has. If you need video coding, geospatial analysis, or some of the more specialised capabilities that mature CAQDAS platforms offer, QualCanvas may not be the right fit yet.</p>
+
+    <p>What it does offer is a fundamentally different way of working with qualitative data &mdash; one that is visual, modern, web-based, and affordable. For many research projects, particularly those centred on interview transcripts and thematic analysis, that is more than enough.</p>
+
+    <h2>Try It</h2>
+
+    <p>The free tier is genuinely free &mdash; not a time-limited trial. You get 1 canvas, 2 transcripts, and 5 codes, which is enough to run a small pilot study or evaluate the platform with real data before committing to a paid plan.</p>
+
+    <p><a href="https://qualcanvas.com" target="_blank" rel="noopener">Visit qualcanvas.com</a> to get started, or <a href="../contact.html">get in touch</a> if you have questions about whether QualCanvas is a good fit for your research project.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+            <a href="https://qualcanvas.com" target="_blank" rel="noopener">QualCanvas</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

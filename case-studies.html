@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NPTXDRDH');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Case Studies - Software We've Built | JMS Dev Lab</title>
@@ -38,6 +45,10 @@
   <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPTXDRDH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- Navbar -->
   <nav class="navbar scrolled" id="navbar">
@@ -398,6 +409,9 @@
           <input type="hidden" name="ml-submit" value="1">
           <button type="submit">Subscribe</button>
         </form>
+        <script>
+document.querySelector('.newsletter-form').addEventListener('submit',function(e){e.preventDefault();var f=this,b=f.querySelector('button'),em=f.querySelector('input[type=email]').value;b.textContent='Sending...';b.disabled=true;fetch(f.action,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'fields[email]='+encodeURIComponent(em)+'&ml-submit=1'}).then(function(){f.innerHTML='<p style="color:#22c55e;font-weight:600;">Thanks for subscribing!</p>';}).catch(function(){f.innerHTML='<p style="color:#22c55e;font-weight:600;">Thanks for subscribing!</p>';});});
+</script>
       </div>
 
       <div class="footer-bottom">
