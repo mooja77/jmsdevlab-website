@@ -36,7 +36,8 @@
     return; // Don't show banner, consent stays denied
   }
 
-  // Create and show banner
+  // Create and show banner after DOM is ready
+  function showBanner() {
   var banner = document.createElement('div');
   banner.id = 'cookie-consent-banner';
   banner.innerHTML =
@@ -65,4 +66,11 @@
     localStorage.setItem('jms_cookie_consent', 'rejected');
     banner.remove();
   });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showBanner);
+  } else {
+    showBanner();
+  }
 })();
