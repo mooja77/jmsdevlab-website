@@ -2406,3 +2406,45 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.6875rem;
   }
 }
+
+/* ========== Cookie Consent Banner ========== */
+#cookie-consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  z-index: 9999;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+  font-size: 0.9rem;
+}
+.cc-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.cc-inner p { margin: 0; line-height: 1.5; }
+.cc-inner a { color: #60a5fa; text-decoration: underline; }
+.cc-buttons { display: flex; gap: 0.75rem; flex-shrink: 0; }
+.cc-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.cc-btn:hover { opacity: 0.85; }
+.cc-btn-accept { background: #2563eb; color: #fff; }
+.cc-btn-reject { background: #475569; color: #e2e8f0; }
+@media (max-width: 640px) {
+  .cc-inner { flex-direction: column; text-align: center; }
+  .cc-buttons { width: 100%; justify-content: center; }
+}

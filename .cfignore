@@ -1,0 +1,12 @@
+*.mp4
+*.xcf
+*.md
+.git
+.claude
+node_modules
+admin-portal
+vegrify
+scripts
+docs
+Kate1.txt
+profile-photo.jpg
