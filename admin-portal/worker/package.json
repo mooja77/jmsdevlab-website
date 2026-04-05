@@ -1,0 +1,18 @@
+{
+  "name": "jms-admin-portal-worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create admin-portal-db",
+    "db:seed": "wrangler d1 execute admin-portal-db --file=schema.sql",
+    "db:seed:local": "wrangler d1 execute admin-portal-db --local --file=schema.sql",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^3.99.0"
+  }
+}

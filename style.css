@@ -1091,6 +1091,41 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+/* ---------- Blog Post CTA ---------- */
+.blog-cta {
+  max-width: 680px;
+  margin: 2.5rem auto 3rem;
+  padding: 2rem 2.5rem;
+  background: var(--slate-900);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.blog-cta h3 {
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.blog-cta p {
+  font-size: 0.9375rem;
+  color: var(--slate-400);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.blog-cta .btn {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .blog-cta {
+    margin: 2rem 1rem 2.5rem;
+    padding: 1.5rem 1.25rem;
+  }
+}
+
 /* ---------- Footer ---------- */
 .footer {
   background: var(--slate-950);

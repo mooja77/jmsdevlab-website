@@ -16,6 +16,7 @@ import Projects from './pages/Projects';
 import Infrastructure from './pages/Infrastructure';
 import Matrices from './pages/Matrices';
 import Settings from './pages/Settings';
+import BarkLeads from './pages/BarkLeads';
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="/costs" element={<Costs />} />
         <Route path="/visitors" element={<Visitors />} />
         <Route path="/leads" element={<Leads />} />
+        <Route path="/bark" element={<BarkLeads />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/infra" element={<Infrastructure />} />
         <Route path="/matrices" element={<Matrices />} />

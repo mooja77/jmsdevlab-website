@@ -468,6 +468,7 @@
             <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
             <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
             <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+            <a href="https://qualcanvas.com" target="_blank" rel="noopener">QualCanvas</a>
           </div>
         </div>
         <div>
@@ -497,6 +498,9 @@
           <input type="hidden" name="ml-submit" value="1">
           <button type="submit">Subscribe</button>
         </form>
+        <script>
+document.querySelector('.newsletter-form').addEventListener('submit',function(e){e.preventDefault();var f=this,b=f.querySelector('button'),em=f.querySelector('input[type=email]').value;b.textContent='Sending...';b.disabled=true;fetch(f.action,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'fields[email]='+encodeURIComponent(em)+'&ml-submit=1'}).then(function(){f.innerHTML='<p style="color:#22c55e;font-weight:600;">Thanks for subscribing!</p>';}).catch(function(){f.innerHTML='<p style="color:#22c55e;font-weight:600;">Thanks for subscribing!</p>';});});
+</script>
       </div>
       <div class="footer-bottom">
         <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>

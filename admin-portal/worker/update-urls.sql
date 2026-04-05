@@ -1,0 +1,10 @@
+UPDATE apps SET api_base_url = 'https://empowering-joy-production.up.railway.app' WHERE id = 'smartcash';
+UPDATE apps SET api_base_url = 'https://canvas-app-production.up.railway.app' WHERE id = 'qualcanvas';
+UPDATE apps SET api_base_url = 'https://repairdeskapp.net' WHERE id = 'repairdesk';
+UPDATE apps SET api_base_url = 'https://api.themesweep.com' WHERE id = 'themesweep';
+UPDATE apps SET api_base_url = 'https://spamshield-production.up.railway.app' WHERE id = 'spamshield';
+UPDATE apps SET api_base_url = 'https://taxmatch-backend-production.up.railway.app' WHERE id = 'taxmatch';
+UPDATE apps SET api_base_url = 'https://accurate-connection-production.up.railway.app' WHERE id = 'profitshield';
+UPDATE apps SET api_base_url = 'https://api.jewelrystudiomanager.com' WHERE id = 'jsm';
+UPDATE apps SET api_base_url = 'https://api.staffhubapp.com' WHERE id = 'staffhub';
+UPDATE apps SET api_base_url = 'https://jewel-value-api-production.up.railway.app' WHERE id = 'jewelvalue';

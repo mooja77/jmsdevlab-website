@@ -1,0 +1,40 @@
+# JMS Dev Lab Master Admin Portal — Cloudflare Worker
+name = "jms-admin-portal"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "admin-portal-db"
+database_id = "9eeb5c30-5c8a-4b6e-b233-5fbd50853328"
+
+[vars]
+PORTAL_NAME = "JMS Dev Lab Admin"
+CACHE_TTL_HEALTH = "300"
+CACHE_TTL_DASHBOARD = "900"
+CACHE_TTL_UPTIME = "600"
+
+# Cron triggers (free tier: 5 max)
+[triggers]
+crons = [
+  "*/5 * * * *",   # Health checks every 5 min
+  "*/15 * * * *",  # Dashboard sync every 15 min
+  "*/10 * * * *",  # Uptime checks every 10 min
+  "*/30 * * * *",  # GitHub status every 30 min
+]
+
+# Secrets (set via `wrangler secret put`):
+# - PORTAL_PASSWORD: Login password for the admin portal
+# - ADMIN_KEY_SMARTCASH, ADMIN_KEY_PROFITSHIELD, etc: Per-app admin API keys
+# - GITHUB_TOKEN: Fine-grained PAT for repo status
+# - STRIPE_API_KEY: Restricted read-only Stripe key
+# - GMAIL_REFRESH_TOKEN: Google OAuth2 offline token
+#
+# Setup steps:
+# 1. wrangler d1 create admin-portal-db
+# 2. Update database_id above
+# 3. wrangler d1 execute admin-portal-db --file=schema.sql
+# 4. wrangler secret put PORTAL_PASSWORD
+# 5. wrangler secret put ADMIN_KEY_SMARTCASH (repeat for each app)
+# 6. wrangler deploy
