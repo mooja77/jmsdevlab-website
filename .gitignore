@@ -29,3 +29,4 @@ token_response.json
 logs/
 *.log
 node_modules/
+admin-portal/worker/.dev.vars
