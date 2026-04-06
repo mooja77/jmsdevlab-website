@@ -246,9 +246,197 @@ async function syncAnalytics(env: Env): Promise<void> {
   ).run();
 }
 
-/** Main entry: run all three sync tasks */
+/** d) Pull dimensional analytics — paths, countries, devices, browsers, status codes, hourly
+ *  Note: clientRefererHost requires Business/Enterprise plan — not available on free.
+ *  Using httpRequestsAdaptiveGroups with `count` for requests and `sum { edgeResponseBytes }` for bandwidth.
+ */
+async function syncDimensions(env: Env): Promise<void> {
+  if (!env.CLOUDFLARE_API_TOKEN) return;
+
+  const zones = await env.DB.prepare(
+    'SELECT domain, cf_zone_id FROM tracking_status WHERE cf_zone_id IS NOT NULL'
+  ).all<{ domain: string; cf_zone_id: string }>();
+
+  if (!zones.results?.length) return;
+
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+
+  const pulls = zones.results.map(async ({ domain, cf_zone_id }) => {
+    try {
+      // Query 1: Paths + Countries
+      const q1 = `query {
+        viewer {
+          zones(filter: { zoneTag: "${cf_zone_id}" }) {
+            paths: httpRequestsAdaptiveGroups(
+              limit: 30, filter: { date: "${yesterday}" }, orderBy: [count_DESC]
+            ) {
+              count
+              dimensions { clientRequestPath }
+              sum { edgeResponseBytes }
+            }
+            countries: httpRequestsAdaptiveGroups(
+              limit: 20, filter: { date: "${yesterday}" }, orderBy: [count_DESC]
+            ) {
+              count
+              dimensions { clientCountryName }
+              sum { edgeResponseBytes }
+            }
+          }
+        }
+      }`;
+
+      // Query 2: Devices + Browsers + Status codes
+      const q2 = `query {
+        viewer {
+          zones(filter: { zoneTag: "${cf_zone_id}" }) {
+            devices: httpRequestsAdaptiveGroups(
+              limit: 5, filter: { date: "${yesterday}" }, orderBy: [count_DESC]
+            ) {
+              count
+              dimensions { clientDeviceType }
+            }
+            browsers: httpRequestsAdaptiveGroups(
+              limit: 8, filter: { date: "${yesterday}" }, orderBy: [count_DESC]
+            ) {
+              count
+              dimensions { userAgentBrowser }
+            }
+            statuses: httpRequestsAdaptiveGroups(
+              limit: 15, filter: { date: "${yesterday}" }, orderBy: [count_DESC]
+            ) {
+              count
+              dimensions { edgeResponseStatus }
+            }
+          }
+        }
+      }`;
+
+      // Query 3: Hourly breakdown
+      const q3 = `query {
+        viewer {
+          zones(filter: { zoneTag: "${cf_zone_id}" }) {
+            hourly: httpRequestsAdaptiveGroups(
+              limit: 24, filter: { date: "${yesterday}" }, orderBy: [datetimeHour_ASC]
+            ) {
+              count
+              dimensions { datetimeHour }
+              sum { edgeResponseBytes }
+            }
+          }
+        }
+      }`;
+
+      const gqlFetch = async (query: string) => {
+        const res = await fetch(`${CF_API}/graphql`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!res.ok) return null;
+        const json = await res.json() as any;
+        return json?.data?.viewer?.zones?.[0];
+      };
+
+      const [r1, r2, r3] = await Promise.all([gqlFetch(q1), gqlFetch(q2), gqlFetch(q3)]);
+
+      // Helper: upsert a dimension row (count = requests, edgeResponseBytes = bytes)
+      const upsertDim = async (dimension: string, dimValue: string, count: number, bytes: number) => {
+        await env.DB.prepare(`
+          INSERT INTO analytics_dimensions (domain, date, dimension, dim_value, requests, page_views, visits, bytes)
+          VALUES (?, ?, ?, ?, ?, 0, 0, ?)
+          ON CONFLICT(domain, date, dimension, dim_value) DO UPDATE SET
+            requests=excluded.requests, bytes=excluded.bytes, fetched_at=datetime('now')
+        `).bind(domain, yesterday, dimension, dimValue || 'unknown', count, bytes).run();
+      };
+
+      // Process Q1: Paths + Countries
+      if (r1) {
+        for (const p of (r1.paths || [])) {
+          await upsertDim('path', p.dimensions?.clientRequestPath || '/', p.count || 0, p.sum?.edgeResponseBytes || 0);
+        }
+        for (const c of (r1.countries || [])) {
+          await upsertDim('country', c.dimensions?.clientCountryName || 'Unknown', c.count || 0, c.sum?.edgeResponseBytes || 0);
+        }
+      }
+
+      // Process Q2: Devices + Browsers + Statuses
+      if (r2) {
+        for (const d of (r2.devices || [])) {
+          await upsertDim('device', d.dimensions?.clientDeviceType || 'unknown', d.count || 0, 0);
+        }
+        for (const b of (r2.browsers || [])) {
+          await upsertDim('browser', b.dimensions?.userAgentBrowser || 'Other', b.count || 0, 0);
+        }
+        for (const s of (r2.statuses || [])) {
+          await upsertDim('status', String(s.dimensions?.edgeResponseStatus || 0), s.count || 0, 0);
+        }
+      }
+
+      // Process Q3: Hourly
+      if (r3) {
+        for (const h of (r3.hourly || [])) {
+          const hourStr = h.dimensions?.datetimeHour;
+          const hour = hourStr ? new Date(hourStr).getUTCHours() : 0;
+          await env.DB.prepare(`
+            INSERT INTO analytics_hourly (domain, date, hour, requests, page_views, visits, bytes)
+            VALUES (?, ?, ?, ?, 0, 0, ?)
+            ON CONFLICT(domain, date, hour) DO UPDATE SET
+              requests=excluded.requests, bytes=excluded.bytes, fetched_at=datetime('now')
+          `).bind(domain, yesterday, hour, h.count || 0, h.sum?.edgeResponseBytes || 0).run();
+        }
+      }
+    } catch {
+      // Individual zone failure — continue
+    }
+  });
+
+  await Promise.allSettled(pulls);
+}
+
+/** e) Roll up old dimensional data and clean up */
+async function rollupAndClean(env: Env): Promise<void> {
+  // Only run once per day
+  const lastRun = await env.DB.prepare(
+    "SELECT value FROM config WHERE key = 'analytics_rollup_last'"
+  ).first<{ value: string }>();
+
+  if (lastRun) {
+    const elapsed = Date.now() - new Date(lastRun.value).getTime();
+    if (elapsed < 86400000) return;
+  }
+
+  // Roll up dimensions older than 30 days into weekly buckets
+  await env.DB.prepare(`
+    INSERT OR REPLACE INTO analytics_weekly_rollup (domain, week_start, dimension, dim_value, requests, page_views, visits, bytes)
+    SELECT domain,
+      date(date, 'weekday 0', '-6 days') as week_start,
+      dimension, dim_value,
+      SUM(requests), SUM(page_views), SUM(visits), SUM(bytes)
+    FROM analytics_dimensions
+    WHERE date < date('now', '-30 days')
+    GROUP BY domain, week_start, dimension, dim_value
+  `).run();
+
+  // Delete old detailed data
+  await env.DB.prepare("DELETE FROM analytics_dimensions WHERE date < date('now', '-30 days')").run();
+  await env.DB.prepare("DELETE FROM analytics_hourly WHERE date < date('now', '-14 days')").run();
+  await env.DB.prepare("DELETE FROM analytics_weekly_rollup WHERE week_start < date('now', '-182 days')").run();
+
+  await env.DB.prepare(`
+    INSERT INTO config (key, value, updated_at) VALUES ('analytics_rollup_last', datetime('now'), datetime('now'))
+    ON CONFLICT(key) DO UPDATE SET value = datetime('now'), updated_at = datetime('now')
+  `).run();
+}
+
+/** Main entry: run all sync tasks */
 export async function runVisitorsSync(env: Env): Promise<void> {
   await syncTrackingTags(env);
   await syncCfZones(env);
   await syncAnalytics(env);
+  await syncDimensions(env);
+  await rollupAndClean(env);
 }
