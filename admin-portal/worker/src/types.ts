@@ -23,12 +23,15 @@ export interface Env {
   ADMIN_KEY_STAFFHUB?: string;
   GITHUB_TOKEN?: string;
   STRIPE_API_KEY?: string;
+  STRIPE_WEBHOOK_SECRET?: string;
+  CLOUDFLARE_ACCOUNT_ID?: string;
   GMAIL_REFRESH_TOKEN?: string;
   CLOUDFLARE_API_TOKEN?: string;
   GOOGLE_CSE_KEY?: string;
   GOOGLE_CSE_CX?: string;
   GOOGLE_CLIENT_ID?: string;
   GOOGLE_CLIENT_SECRET?: string;
+  BRAVE_SEARCH_KEY?: string;
 }
 
 const CORS_HEADERS = {

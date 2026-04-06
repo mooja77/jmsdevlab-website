@@ -83,19 +83,18 @@ function scoreCandidate(c: Candidate, lead: any): number {
   return score;
 }
 
-/** Strategy 1: Google Custom Search */
-async function searchGoogle(lead: any, env: Env): Promise<StrategyResult> {
-  if (!env.GOOGLE_CSE_KEY || !env.GOOGLE_CSE_CX) {
-    return { strategy: 'Google Search', status: 'skipped', reason: 'No API key configured', candidates: [] };
+/** Strategy 1: Brave Web Search */
+async function searchBrave(lead: any, env: Env): Promise<StrategyResult> {
+  if (!env.BRAVE_SEARCH_KEY) {
+    return { strategy: 'Brave Search', status: 'skipped', reason: 'No BRAVE_SEARCH_KEY configured', candidates: [] };
   }
 
   const name = lead.first_name;
   const loc = lead.location || 'Ireland';
   const biz = lead.business_type || lead.bark_category || '';
   const queries = [
-    `"${name}" "${biz}" "${loc}" Ireland`,
-    `"${name}" "${loc}" site:linkedin.com/in`,
-    `"${name}" "${biz}" "${loc}" site:facebook.com`,
+    `${name} ${biz} ${loc} Ireland`,
+    `${name} ${loc} site:linkedin.com`,
   ];
 
   const candidates: Candidate[] = [];
@@ -103,42 +102,47 @@ async function searchGoogle(lead: any, env: Env): Promise<StrategyResult> {
 
   for (const q of queries) {
     try {
-      const url = `https://www.googleapis.com/customsearch/v1?key=${env.GOOGLE_CSE_KEY}&cx=${env.GOOGLE_CSE_CX}&q=${encodeURIComponent(q)}&num=5`;
-      const res = await fetch(url);
+      const url = `https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(q)}&count=5`;
+      const res = await fetch(url, {
+        headers: {
+          'Accept': 'application/json',
+          'X-Subscription-Token': env.BRAVE_SEARCH_KEY,
+        },
+        signal: AbortSignal.timeout(10000),
+      });
       if (!res.ok) { queryResults.push(`"${q}" → error ${res.status}`); continue; }
       const data = await res.json<any>();
-      const items = data.items || [];
+      const items = data.web?.results || [];
       queryResults.push(`"${q}" → ${items.length} results`);
 
       for (const item of items) {
         const c: Candidate = {
           name: '',
-          source: 'google',
+          source: 'brave',
           score: 0,
-          snippet: item.snippet || '',
-          website: item.link || '',
+          snippet: item.description || '',
+          website: item.url || '',
         };
 
         // Extract name from title for LinkedIn results
-        if (item.link?.includes('linkedin.com/in/')) {
-          c.linkedin = item.link;
+        if (item.url?.includes('linkedin.com/in/')) {
+          c.linkedin = item.url;
           const titleMatch = item.title?.match(/^([^-–|]+)/);
           if (titleMatch) c.name = titleMatch[1].trim();
-        } else if (item.link?.includes('facebook.com')) {
+        } else if (item.url?.includes('facebook.com')) {
           const titleMatch = item.title?.match(/^([^-–|]+)/);
           if (titleMatch) c.name = titleMatch[1].trim();
         } else {
-          // Business website — extract contact info from snippet
           c.company = item.title?.replace(/ [-–|].*/, '').trim();
-          c.name = name; // assume name match if search returned it
+          c.name = name;
         }
 
         // Look for email in snippet
-        const emailMatch = (item.snippet || '').match(/[\w.-]+@[\w.-]+\.\w+/);
+        const emailMatch = (item.description || '').match(/[\w.-]+@[\w.-]+\.\w+/);
         if (emailMatch) c.email = emailMatch[0];
 
         // Look for phone in snippet (Irish format)
-        const phoneMatch = (item.snippet || '').match(/(?:0\d{1,2}[\s-]?\d{3}[\s-]?\d{4}|\+353[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{4})/);
+        const phoneMatch = (item.description || '').match(/(?:0\d{1,2}[\s-]?\d{3}[\s-]?\d{4}|\+353[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{4})/);
         if (phoneMatch) c.phone = phoneMatch[0];
 
         if (c.name || c.company) {
@@ -151,7 +155,7 @@ async function searchGoogle(lead: any, env: Env): Promise<StrategyResult> {
     }
   }
 
-  return { strategy: 'Google Search', status: 'ok', queries: queryResults, candidates };
+  return { strategy: 'Brave Search', status: 'ok', queries: queryResults, candidates };
 }
 
 /** Strategy 2: .ie Domain WHOIS via RDAP */
@@ -339,14 +343,14 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
 }> {
   // Run strategies in parallel
   const [google, whois, goldenPages, domainGuess] = await Promise.allSettled([
-    searchGoogle(lead, env),
+    searchBrave(lead, env),
     lookupWhois(lead),
     searchGoldenPages(lead),
     searchDomainGuess(lead),
   ]);
 
   const strategies: StrategyResult[] = [
-    google.status === 'fulfilled' ? google.value : { strategy: 'Google Search', status: 'error' as const, reason: String((google as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
+    google.status === 'fulfilled' ? google.value : { strategy: 'Brave Search', status: 'error' as const, reason: String((google as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
     whois.status === 'fulfilled' ? whois.value : { strategy: 'WHOIS Lookup', status: 'error' as const, reason: String((whois as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
     goldenPages.status === 'fulfilled' ? goldenPages.value : { strategy: 'Golden Pages', status: 'error' as const, reason: String((goldenPages as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
     domainGuess.status === 'fulfilled' ? domainGuess.value : { strategy: 'Domain Guess', status: 'error' as const, reason: String((domainGuess as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
