@@ -24,6 +24,7 @@ import { runDashboardSync } from './cron/dashboard';
 import { runUptimeChecks } from './cron/uptime';
 import { runGitHubSync } from './cron/github';
 import { runVisitorsSync } from './cron/visitors';
+import { runBarkScan } from './cron/bark';
 import { getAllApps } from './lib/d1';
 import { isTestEmail } from './lib/filter';
 
@@ -88,9 +89,9 @@ export default {
         return handleCustomerRoutes(path, url, env);
       }
 
-      // Business costs
-      if (path === '/api/costs') {
-        return handleCostRoutes(path, env);
+      // Business costs (CRUD)
+      if (path.startsWith('/api/costs')) {
+        return handleCostRoutes(path, request, env);
       }
 
       // Usage analytics
@@ -235,6 +236,7 @@ export default {
     if (minute % 30 === 0) {
       ctx.waitUntil(runGitHubSync(env));
       ctx.waitUntil(runVisitorsSync(env));
+      ctx.waitUntil(runBarkScan(env)); // daily check inside the function
     }
   },
 };

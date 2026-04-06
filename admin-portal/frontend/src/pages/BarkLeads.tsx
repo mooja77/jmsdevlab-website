@@ -32,7 +32,15 @@ interface BarkLead {
   search_results_json: string;
   lead_id: string;
   created_at: string;
+  priority_score?: number;
+  priority_label?: 'hot' | 'warm' | 'cold';
 }
+
+const PRIORITY_COLORS: Record<string, string> = {
+  hot: 'bg-red-500/20 text-red-400',
+  warm: 'bg-amber-500/20 text-amber-400',
+  cold: 'bg-gray-500/20 text-gray-500',
+};
 
 interface ResearchCandidate {
   name: string;
@@ -120,6 +128,8 @@ export default function BarkLeads() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [stats, setStats] = useState<Record<string, number>>({});
+  const [lastScan, setLastScan] = useState<string | null>(null);
+  const [scanning, setScanning] = useState(false);
 
   // Editable fields for research
   const [matchName, setMatchName] = useState('');
@@ -136,9 +146,25 @@ export default function BarkLeads() {
   const [researchResults, setResearchResults] = useState<ResearchResults | null>(null);
 
   function loadLeads() {
-    api<{ leads: BarkLead[]; byStatus: Record<string, number> }>('/api/bark')
-      .then(d => { setLeads(d.leads); setStats(d.byStatus); })
+    api<{ leads: BarkLead[]; byStatus: Record<string, number>; lastScan: string | null }>('/api/bark')
+      .then(d => { setLeads(d.leads); setStats(d.byStatus); setLastScan(d.lastScan); })
       .finally(() => setLoading(false));
+  }
+
+  async function scanGmail() {
+    setScanning(true);
+    try {
+      const result = await api<{ scanned: number; newLeads: string[]; errors: string[] }>('/api/bark/scan-gmail', { method: 'POST' });
+      if (result.newLeads.length > 0) {
+        loadLeads();
+      }
+      alert(result.newLeads.length > 0
+        ? `Found ${result.newLeads.length} new leads:\n${result.newLeads.join('\n')}`
+        : `Scanned ${result.scanned} emails. No new leads.${result.errors.length ? '\nErrors: ' + result.errors.join(', ') : ''}`);
+    } catch (e) {
+      alert('Scan failed: ' + String(e));
+    }
+    setScanning(false);
   }
 
   useEffect(() => { loadLeads(); }, []);
@@ -247,9 +273,15 @@ export default function BarkLeads() {
         <div className="px-4 pt-6 pb-3">
           <div className="flex items-center justify-between mb-1">
             <h1 className="text-lg font-semibold text-white">Bark Leads</h1>
-            <span className="text-xs text-gray-500">{leads.length} total</span>
+            <button onClick={scanGmail} disabled={scanning}
+              className="px-2 py-1 text-[10px] font-medium rounded bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition-colors disabled:opacity-50">
+              {scanning ? 'Scanning...' : 'Scan Gmail'}
+            </button>
           </div>
-          <p className="text-[11px] text-gray-500">Find leads from Bark notifications</p>
+          <div className="flex items-center justify-between">
+            <p className="text-[11px] text-gray-500">{leads.length} leads</p>
+            {lastScan && <p className="text-[10px] text-gray-600">Last scan: {timeAgo(lastScan)}</p>}
+          </div>
           {/* Stats row */}
           <div className="flex gap-2 mt-3">
             {Object.entries(stats).map(([s, count]) => (
@@ -272,13 +304,28 @@ export default function BarkLeads() {
               }`}
             >
               <div className="flex items-center justify-between mb-0.5">
-                <span className="text-[13px] font-medium text-white">{lead.first_name}</span>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${STATUS_COLORS[lead.status] || STATUS_COLORS.new}`}>
-                  {lead.status}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="text-[13px] font-medium text-white">{lead.first_name}</span>
+                  {lead.received_at && (Date.now() - new Date(lead.received_at).getTime()) < 86400000 && (
+                    <span className="text-[8px] px-1 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold uppercase">NEW</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-1">
+                  {lead.priority_label && (
+                    <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${PRIORITY_COLORS[lead.priority_label]}`}>
+                      {lead.priority_label}
+                    </span>
+                  )}
+                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-medium ${STATUS_COLORS[lead.status] || STATUS_COLORS.new}`}>
+                    {lead.status}
+                  </span>
+                </div>
               </div>
               <div className="text-[11px] text-gray-500">{lead.location || 'Unknown location'}</div>
-              <div className="text-[11px] text-gray-600">{lead.bark_category || lead.business_type || ''}</div>
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] text-gray-600">{lead.bark_category || lead.business_type || ''}</span>
+                {lead.budget && <span className="text-[10px] text-emerald-500/70">{lead.budget}</span>}
+              </div>
               {lead.received_at && (
                 <div className="text-[10px] text-gray-700 mt-0.5">{timeAgo(lead.received_at)}</div>
               )}

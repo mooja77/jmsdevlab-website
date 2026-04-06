@@ -4,145 +4,16 @@
  */
 
 import { Env, json } from '../types';
+import { parseBarkEmail, decodePartialEmail, decodePartialPhone, decodeDomain, scorePriority, COMMON_DOMAINS } from '../lib/bark-parser';
 
 function generateId(): string {
   return `bark_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
-/** Decode partially masked email domain: y***o.com → yahoo.com */
-function decodeDomain(masked: string): string {
-  const map: Record<string, string> = {
-    'g***l.com': 'gmail.com',
-    'y***o.com': 'yahoo.com',
-    'h*****l.com': 'hotmail.com',
-    'o*****k.com': 'outlook.com',
-    'i****d.com': 'icloud.com',
-    'l**e.com': 'live.com',
-    'p********l.com': 'protonmail.com',
-    'a*l.com': 'aol.com',
-  };
-  for (const [pattern, domain] of Object.entries(map)) {
-    if (masked.length === domain.length) {
-      let match = true;
-      for (let i = 0; i < masked.length; i++) {
-        if (masked[i] !== '*' && masked[i] !== domain[i]) { match = false; break; }
-      }
-      if (match) return domain;
-    }
-  }
-  return masked; // return as-is if no match
-}
+// Re-export parser functions used inline below (keep backwards compat)
+export { parseBarkEmail, decodePartialEmail, decodePartialPhone };
 
-/** Parse partial email like k**********8@y***o.com */
-function decodePartialEmail(partial: string): {
-  firstChar: string; charCount: number; lastChar: string; domain: string; raw: string;
-} | null {
-  if (!partial || !partial.includes('@')) return null;
-  const [local, domainRaw] = partial.split('@');
-  if (!local || !domainRaw) return null;
-  return {
-    firstChar: local[0],
-    charCount: local.length,
-    lastChar: local[local.length - 1],
-    domain: decodeDomain(domainRaw),
-    raw: partial,
-  };
-}
-
-/** Parse partial phone like 086******* */
-function decodePartialPhone(partial: string): { prefix: string; totalDigits: number; raw: string } | null {
-  if (!partial) return null;
-  const cleaned = partial.replace(/[\s\-]/g, '');
-  const digits = cleaned.match(/^(\d{3})/);
-  if (!digits) return null;
-  return {
-    prefix: digits[1],
-    totalDigits: cleaned.replace(/\*/g, '0').length,
-    raw: partial,
-  };
-}
-
-/** Parse a Bark notification email body into structured data */
-function parseBarkEmail(body: string, subject: string): {
-  firstName: string;
-  category: string;
-  location: string;
-  partialPhone: string;
-  partialEmail: string;
-  projectDetails: Record<string, string>;
-  quote: string | null;
-} {
-  const result = {
-    firstName: '',
-    category: '',
-    location: '',
-    partialPhone: '',
-    partialEmail: '',
-    projectDetails: {} as Record<string, string>,
-    quote: null as string | null,
-  };
-
-  // Name + category from subject/body: "Khalid is looking for a Web Designer"
-  const nameMatch = body.match(/🔔\s*(\w+)\s+is looking for a\s+(.+?)[\n📍]/s)
-    || subject.match(/(?:Verified|details):\s*(\w+)\s+is looking for a\s+(.+)/);
-  if (nameMatch) {
-    result.firstName = nameMatch[1].trim();
-    result.category = nameMatch[2].trim();
-  }
-
-  // Location: "📍Dublin: Happy to receive..."
-  const locMatch = body.match(/📍([^:]+?):\s*(?:Happy|Needs)/);
-  if (locMatch) {
-    result.location = locMatch[1].trim();
-  }
-
-  // Partial phone: "086*******" or "085 *** ****"
-  const phoneMatch = body.match(/(0\d{2}[\s*]+[\d*\s]+)/);
-  if (phoneMatch) {
-    result.partialPhone = phoneMatch[1].trim();
-  }
-
-  // Partial email: "k**********8@y***o.com"
-  const emailMatch = body.match(/([a-zA-Z]\*+[a-zA-Z0-9]@[a-zA-Z*]+\.[a-zA-Z.]+)/);
-  if (emailMatch) {
-    result.partialEmail = emailMatch[1].trim();
-  }
-
-  // Quoted text: "Polish, connect and push live my app..."
-  const quoteMatch = body.match(/"([^"]{10,})"/);
-  if (quoteMatch) {
-    result.quote = quoteMatch[1].trim();
-  }
-
-  // Project details: Q&A pairs after "Project Details"
-  const detailsSection = body.split('Project Details')[1];
-  if (detailsSection) {
-    const qaPattern = /(?:Which|What|How|Do you)[^?]+\?\s*([^\n]+)/g;
-    let match;
-    while ((match = qaPattern.exec(detailsSection)) !== null) {
-      const question = match[0].split('?')[0].trim() + '?';
-      const answer = match[1].trim();
-      if (answer && !answer.startsWith('Contact') && !answer.startsWith('You\'ll')) {
-        // Shorten the question key
-        const key = question
-          .replace(/Which of these best describes your\s*/i, '')
-          .replace(/What type of business is this for\?/i, 'Business type')
-          .replace(/What are the objectives.*\?/i, 'Objectives')
-          .replace(/What is your estimated budget.*\?/i, 'Budget')
-          .replace(/How soon would you like.*\?/i, 'Timeline')
-          .replace(/How likely are you to make a hiring decision\?/i, 'Hiring intent')
-          .replace(/What sort of development work.*\?/i, 'Dev work')
-          .replace(/What platform.*\?/i, 'Platform')
-          .replace(/Which programming language.*\?/i, 'Language')
-          .replace(/Do you have a budget.*\?/i, 'Budget')
-          .replace(/\?$/, '');
-        result.projectDetails[key || question] = answer;
-      }
-    }
-  }
-
-  return result;
-}
+// Parsing functions imported from ../lib/bark-parser
 
 // ─── Auto-Research Strategies ────────────────────────────────────
 
@@ -166,7 +37,7 @@ interface StrategyResult {
   candidates: Candidate[];
 }
 
-const COMMON_DOMAINS = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'live.com', 'protonmail.com', 'aol.com'];
+// COMMON_DOMAINS imported from ../lib/bark-parser
 
 function scoreCandidate(c: Candidate, lead: any): number {
   let score = 0;
@@ -499,16 +370,33 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
 
 export async function handleBarkRoutes(path: string, request: Request, env: Env): Promise<Response> {
 
-  // GET /api/bark — list all bark leads
+  // GET /api/bark — list all bark leads with priority scoring
   if (path === '/api/bark' && request.method === 'GET') {
     const result = await env.DB.prepare(
       'SELECT * FROM bark_leads ORDER BY received_at DESC, created_at DESC'
     ).all();
     const byStatus: Record<string, number> = {};
-    result.results.forEach((r: any) => {
+    const leads = result.results.map((r: any) => {
       byStatus[r.status] = (byStatus[r.status] || 0) + 1;
+      const priority = scorePriority(r);
+      return { ...r, priority_score: priority.score, priority_label: priority.label };
     });
-    return json({ leads: result.results, total: result.results.length, byStatus });
+
+    // Get last scan time
+    const lastScan = await env.DB.prepare(
+      "SELECT value FROM config WHERE key = 'bark_scan_last'"
+    ).first<{ value: string }>();
+
+    return json({ leads, total: leads.length, byStatus, lastScan: lastScan?.value || null });
+  }
+
+  // POST /api/bark/scan-gmail — trigger Gmail scan on demand
+  if (path === '/api/bark/scan-gmail' && request.method === 'POST') {
+    const { runBarkScan } = await import('../cron/bark');
+    // Override the daily check for manual trigger
+    await env.DB.prepare("DELETE FROM config WHERE key = 'bark_scan_last'").run();
+    const scanResult = await runBarkScan(env);
+    return json(scanResult);
   }
 
   // GET /api/bark/:id — single lead
@@ -519,14 +407,8 @@ export async function handleBarkRoutes(path: string, request: Request, env: Env)
     return json({ lead });
   }
 
-  // POST /api/bark/scan — scan Gmail for Bark emails and parse them
+  // POST /api/bark/scan — parse pre-fetched Bark emails
   if (path === '/api/bark/scan' && request.method === 'POST') {
-    if (!env.GMAIL_REFRESH_TOKEN) {
-      return json({ error: 'Gmail not configured (GMAIL_REFRESH_TOKEN missing)' }, 400);
-    }
-
-    // For now, accept emails via POST body (parsed client-side or via MCP)
-    // In production, this would call Gmail API with the refresh token
     const body = await request.json<{ emails: Array<{ messageId: string; subject: string; body: string; date: string }> }>();
 
     const results: string[] = [];

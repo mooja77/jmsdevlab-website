@@ -27,6 +27,8 @@ export interface Env {
   CLOUDFLARE_API_TOKEN?: string;
   GOOGLE_CSE_KEY?: string;
   GOOGLE_CSE_CX?: string;
+  GOOGLE_CLIENT_ID?: string;
+  GOOGLE_CLIENT_SECRET?: string;
 }
 
 const CORS_HEADERS = {
