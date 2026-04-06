@@ -17,10 +17,15 @@ import { handleCustomerRoutes } from './routes/customers';
 import { handleCostRoutes } from './routes/costs';
 import { handleMatrixRoutes } from './routes/matrices';
 import { handleBarkRoutes } from './routes/bark';
+import { handleVisitorRoutes } from './routes/visitors';
+import { handleUsageRoutes } from './routes/usage';
 import { runHealthChecks } from './cron/health';
 import { runDashboardSync } from './cron/dashboard';
 import { runUptimeChecks } from './cron/uptime';
 import { runGitHubSync } from './cron/github';
+import { runVisitorsSync } from './cron/visitors';
+import { getAllApps } from './lib/d1';
+import { isTestEmail } from './lib/filter';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -88,6 +93,16 @@ export default {
         return handleCostRoutes(path, env);
       }
 
+      // Usage analytics
+      if (path.startsWith('/api/usage')) {
+        return handleUsageRoutes(path, url, env);
+      }
+
+      // Visitors & Analytics
+      if (path.startsWith('/api/visitors')) {
+        return handleVisitorRoutes(path, url, env);
+      }
+
       // Deploy/infrastructure
       if (path.startsWith('/api/deploy')) {
         return handleDeployRoutes(path, env);
@@ -107,6 +122,84 @@ export default {
         const health = await env.DB.prepare('SELECT MIN(checked_at) as oldest, MAX(checked_at) as newest FROM health_cache').first();
         const dashboard = await env.DB.prepare('SELECT MIN(fetched_at) as oldest, MAX(fetched_at) as newest FROM dashboard_cache').first();
         return json({ health, dashboard });
+      }
+
+      // Debug: user count trace — shows exactly what each app returns
+      if (path === '/api/debug/users') {
+        const apps = await getAllApps(env);
+        const trace: any[] = [];
+
+        for (const app of apps) {
+          const entry: any = { app: app.name, id: app.id, hasAdmin: app.has_admin, apiUrl: app.api_base_url };
+
+          if (!app.has_admin || !app.api_base_url) {
+            entry.skipped = 'no admin or no api_base_url';
+            trace.push(entry);
+            continue;
+          }
+
+          const keyName = app.admin_key_name;
+          const key = keyName ? (env as unknown as Record<string, string>)[keyName] : undefined;
+          entry.keyName = keyName;
+          entry.hasKey = !!key;
+
+          if (!key) {
+            entry.skipped = 'admin key not found: ' + keyName;
+            trace.push(entry);
+            continue;
+          }
+
+          try {
+            const url = `${app.api_base_url}/api/admin/users`;
+            const res = await fetch(url, {
+              headers: { 'x-admin-key': key },
+              signal: AbortSignal.timeout(15000),
+            });
+            entry.httpStatus = res.status;
+
+            if (!res.ok) {
+              entry.error = `HTTP ${res.status}`;
+              trace.push(entry);
+              continue;
+            }
+
+            const raw = await res.json() as any;
+            const extracted = raw?.data || raw;
+            let users: any[];
+            if (Array.isArray(extracted)) {
+              // RepairDesk pattern: { data: [...shops] } — raw.data is the array itself
+              users = extracted;
+            } else {
+              users = (extracted.users || extracted.shops || extracted.stores || []) as any[];
+              if ((!users || !users.length) && Array.isArray(extracted.data)) users = extracted.data;
+            }
+            entry.totalReturned = Array.isArray(users) ? users.length : 'not array';
+
+            if (Array.isArray(users)) {
+              const real: string[] = [];
+              const test: string[] = [];
+              for (const u of users) {
+                const email = String(u.email || u.ownerEmail || u.domain || '');
+                if (isTestEmail(email)) {
+                  test.push(email);
+                } else {
+                  real.push(email);
+                }
+              }
+              entry.realUsers = real;
+              entry.realCount = real.length;
+              entry.testUsers = test;
+              entry.testCount = test.length;
+            }
+          } catch (err) {
+            entry.error = String(err);
+          }
+
+          trace.push(entry);
+        }
+
+        const totalReal = trace.reduce((sum, t) => sum + (t.realCount || 0), 0);
+        return json({ totalRealUsers: totalReal, trace });
       }
 
       // Feature matrices
@@ -141,6 +234,7 @@ export default {
     }
     if (minute % 30 === 0) {
       ctx.waitUntil(runGitHubSync(env));
+      ctx.waitUntil(runVisitorsSync(env));
     }
   },
 };

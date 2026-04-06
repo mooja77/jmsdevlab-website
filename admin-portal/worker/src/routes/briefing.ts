@@ -37,7 +37,15 @@ export async function handleBriefingRoutes(path: string, env: Env): Promise<Resp
       const raw = await fetchAppEndpoint(env, app, 'users');
       if (!raw) return 0;
       const data = extractData(raw);
-      const users = (data.users || data.shops || data.stores || []) as any[];
+      // Handle various response shapes: { users: [] }, { shops: [] }, { data: [] }, or direct array
+      let users: any[];
+      if (Array.isArray(data)) {
+        users = data;
+      } else if (Array.isArray(data.data)) {
+        users = data.data as any[];
+      } else {
+        users = (data.users || data.shops || data.stores || []) as any[];
+      }
       if (!Array.isArray(users)) return 0;
       return users.filter(u => !isTestEmail(String(u.email || u.ownerEmail || u.domain || ''))).length;
     });

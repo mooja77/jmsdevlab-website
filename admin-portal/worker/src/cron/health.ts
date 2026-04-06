@@ -25,7 +25,24 @@ export async function runHealthChecks(env: Env): Promise<void> {
       }
 
       const data = extractData(raw);
-      const status = data.dbConnected ? 'healthy' : 'degraded';
+
+      // Normalize DB connected — handle multiple field names
+      const dbConnected = data.dbConnected ?? data.db_connected ?? null;
+
+      // Normalize status
+      const status = data.status || (dbConnected ? 'healthy' : 'degraded');
+
+      // Normalize memory — handle object {rss, heapUsed} or number or various field names
+      let memoryMb = 0;
+      const memRaw = data.memoryUsageMb ?? data.memory_mb ?? data.memoryMb ?? data.memoryUsage ?? data.memory ?? 0;
+      if (typeof memRaw === 'object' && memRaw !== null) {
+        memoryMb = Number((memRaw as any).rss || (memRaw as any).heapUsed || 0);
+      } else {
+        memoryMb = Number(memRaw) || 0;
+      }
+
+      // Normalize DB response time
+      const dbResponseMs = Number(data.dbResponseMs ?? data.db_response_ms ?? data.dbResponseTime ?? 0);
 
       await env.DB.prepare(
         `INSERT OR REPLACE INTO health_cache
@@ -33,10 +50,10 @@ export async function runHealthChecks(env: Env): Promise<void> {
          VALUES (?, ?, ?, ?, ?, ?, ?, datetime("now"))`
       ).bind(
         app.id,
-        String(data.status || status),
-        data.dbConnected ? 1 : 0,
-        Number(data.dbResponseMs || 0),
-        Number(data.memoryUsageMb || 0),
+        String(status),
+        dbConnected ? 1 : 0,
+        dbResponseMs,
+        Math.round(memoryMb),
         String(data.version || ''),
         JSON.stringify(data)
       ).run();

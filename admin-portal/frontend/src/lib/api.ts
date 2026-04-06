@@ -1,4 +1,8 @@
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = import.meta.env.VITE_API_URL || (
+  typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+    ? 'https://jms-admin-portal.mooja77.workers.dev'
+    : ''
+);
 
 let authToken: string | null = localStorage.getItem('portal_token');
 

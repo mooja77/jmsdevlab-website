@@ -16,6 +16,10 @@ const TEST_WORDS = ['test', 'demo', 'e2e', 'smoke', 'qa', 'cors-', 'fake', 'seed
 
 const INTERNAL_EMAILS = [
   'mooja77@gmail.com', 'john@mooresjewellers.com', 'john@jmsdevlab.com',
+  // JSM demo data for Maz walkthrough
+  'ben.hartley@melbourne-jewellers.com',
+  'anika.sharma@melbourne-jewellers.com',
+  'tara.mckenzie@melbourne-jewellers.com',
 ];
 
 export function isTestEmail(email: string): boolean {

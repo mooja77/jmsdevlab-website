@@ -1,6 +1,7 @@
 /**
- * GitHub sync — fetches latest commit, CI status, and open PRs for each app.
+ * GitHub sync — fetches latest commit for each app.
  * Runs every 30 minutes via cron trigger.
+ * Optimized: parallel fetches, commits only (skip CI/PRs to stay within Worker limits).
  */
 
 import { Env } from '../types';
@@ -11,11 +12,6 @@ interface GitHubCommit {
     message: string;
     committer: { date: string };
   };
-}
-
-interface GitHubCheckSuite {
-  conclusion: string | null;
-  status: string;
 }
 
 export async function runGitHubSync(env: Env): Promise<void> {
@@ -34,82 +30,45 @@ export async function runGitHubSync(env: Env): Promise<void> {
     'User-Agent': 'JMS-Admin-Portal',
   };
 
-  for (const app of apps.results as any[]) {
+  // Fetch all repos in parallel to stay within Worker time limits
+  const fetches = (apps.results as any[]).map(async (app) => {
     try {
       const repo = app.github_repo;
-      if (!repo) continue;
+      if (!repo) return;
 
-      // Fetch latest commit
       const commitRes = await fetch(
         `https://api.github.com/repos/${repo}/commits?per_page=1`,
-        { headers }
+        { headers, signal: AbortSignal.timeout(5000) }
       );
 
       if (!commitRes.ok) {
-        console.error(`GitHub: ${repo} commits failed: ${commitRes.status}`);
-        continue;
+        console.error(`GitHub: ${repo} failed: ${commitRes.status}`);
+        return;
       }
 
       const commits: GitHubCommit[] = await commitRes.json();
-      if (!commits.length) continue;
+      if (!commits.length) return;
 
       const latest = commits[0];
       const commitMsg = latest.commit.message.split('\n')[0].substring(0, 200);
 
-      // Fetch CI status for the latest commit
-      let ciStatus = 'unknown';
-      try {
-        const checkRes = await fetch(
-          `https://api.github.com/repos/${repo}/commits/${latest.sha}/check-suites`,
-          { headers: { ...headers, Accept: 'application/vnd.github.v3+json' } }
-        );
-        if (checkRes.ok) {
-          const checkData: { check_suites: GitHubCheckSuite[] } = await checkRes.json();
-          if (checkData.check_suites.length > 0) {
-            const suite = checkData.check_suites[0];
-            ciStatus = suite.conclusion || suite.status || 'unknown';
-          }
-        }
-      } catch {
-        // CI status is optional — don't fail the whole sync
-      }
-
-      // Fetch open PR count
-      let openPRs = 0;
-      try {
-        const prRes = await fetch(
-          `https://api.github.com/repos/${repo}/pulls?state=open&per_page=1`,
-          { headers }
-        );
-        if (prRes.ok) {
-          // GitHub returns Link header with total count info, but simplest to just count
-          const prs = await prRes.json();
-          openPRs = Array.isArray(prs) ? prs.length : 0;
-        }
-      } catch {
-        // PR count is optional
-      }
-
-      // Upsert into github_cache
       await env.DB.prepare(`
         INSERT OR REPLACE INTO github_cache
         (repo, app_id, last_commit_sha, last_commit_msg, last_commit_date, open_prs, ci_status, raw_json, fetched_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, datetime('now'))
+        VALUES (?, ?, ?, ?, ?, 0, 'unknown', ?, datetime('now'))
       `).bind(
         repo,
         app.id,
         latest.sha.substring(0, 7),
         commitMsg,
         latest.commit.committer.date,
-        openPRs,
-        ciStatus,
-        JSON.stringify({ sha: latest.sha, message: commitMsg, date: latest.commit.committer.date, ci: ciStatus })
+        JSON.stringify({ sha: latest.sha, message: commitMsg, date: latest.commit.committer.date })
       ).run();
-
     } catch (err) {
       console.error(`GitHub sync failed for ${app.id}:`, err);
     }
-  }
+  });
 
-  console.log(`GitHub sync complete: ${apps.results.length} repos checked`);
+  await Promise.allSettled(fetches);
+  console.log(`GitHub sync complete: ${apps.results.length} repos`);
 }

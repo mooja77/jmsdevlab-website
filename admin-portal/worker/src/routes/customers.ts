@@ -29,7 +29,7 @@ interface Customer {
 // isTestEmail imported from ../lib/filter.ts — single source of truth
 
 export async function handleCustomerRoutes(path: string, url: URL, env: Env): Promise<Response> {
-  // GET /api/customers — unified customer list across all apps
+  // GET /api/customers — all real users from all apps (filtered, no test accounts)
   if (path === '/api/customers' && !path.includes('/stripe')) {
     const showTest = url.searchParams.get('includeTest') === 'true';
     const apps = await getAllApps(env);
@@ -44,8 +44,14 @@ export async function handleCustomerRoutes(path: string, url: URL, env: Env): Pr
         if (!raw) return;
 
         const data = extractData(raw);
-        const users = (data.users || data.shops || data.stores || []) as Record<string, unknown>[];
-
+        let users: Record<string, unknown>[];
+        if (Array.isArray(data)) {
+          users = data as Record<string, unknown>[];
+        } else if (Array.isArray(data.data)) {
+          users = data.data as Record<string, unknown>[];
+        } else {
+          users = (data.users || data.shops || data.stores || []) as Record<string, unknown>[];
+        }
         if (!Array.isArray(users)) return;
 
         for (const u of users) {
