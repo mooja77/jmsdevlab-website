@@ -19,6 +19,7 @@ import Settings from './pages/Settings';
 import BarkLeads from './pages/BarkLeads';
 import Usage from './pages/Usage';
 import UTMBuilder from './pages/UTMBuilder';
+import Conversions from './pages/Conversions';
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="/infra" element={<Infrastructure />} />
         <Route path="/matrices" element={<Matrices />} />
         <Route path="/utm" element={<UTMBuilder />} />
+        <Route path="/conversions" element={<Conversions />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
     </Routes>

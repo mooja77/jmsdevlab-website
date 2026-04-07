@@ -18,6 +18,7 @@ const navItems: { to: string; label: string; icon: IconName; shortcut: string }[
   { to: '/usage', label: 'Usage', icon: 'visitors', shortcut: 'g y' },
   { to: '/infra', label: 'Infrastructure', icon: 'infra', shortcut: 'g i' },
   { to: '/matrices', label: 'Matrices', icon: 'apps', shortcut: 'g m' },
+  { to: '/conversions', label: 'Conversions', icon: 'revenue', shortcut: 'g n' },
   { to: '/utm', label: 'UTM Builder', icon: 'visitors', shortcut: 'g t' },
   { to: '/settings', label: 'Settings', icon: 'settings', shortcut: 'g s' },
 ];
@@ -47,6 +48,7 @@ export default function Layout() {
     'g y': () => navigate('/usage'),
     'g i': () => navigate('/infra'),
     'g m': () => navigate('/matrices'),
+    'g n': () => navigate('/conversions'),
     'g s': () => navigate('/settings'),
     'r': () => window.location.reload(),
   }), [navigate]);
