@@ -551,12 +551,15 @@ async function bruteForceEmail(lead: any, env: Env): Promise<StrategyResult> {
   for (const { email, surname } of emailCandidates.slice(0, 20)) {
     tested.push(email);
     try {
-      const res = await fetch(`https://api.quickemailverification.com/v1/verify?email=${encodeURIComponent(email)}&apikey=${env.EMAIL_VERIFY_KEY}`, {
+      const res = await fetch('https://api.reacher.email/v0/check_email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'authorization': env.EMAIL_VERIFY_KEY! },
+        body: JSON.stringify({ to_email: email }),
         signal: AbortSignal.timeout(25000),
       });
       if (!res.ok) continue;
       const data = await res.json() as any;
-      if (data.result === 'valid') {
+      if (data.is_reachable === 'safe' || data.is_reachable === 'risky') {
         const fullName = `${lead.first_name} ${surname.charAt(0).toUpperCase() + surname.slice(1).replace(/^o/, "O'")}`;
         candidates.push({
           name: fullName,
@@ -628,10 +631,15 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
 
         for (const email of testEmails) {
           try {
-            const vRes = await fetch(`https://api.quickemailverification.com/v1/verify?email=${encodeURIComponent(email)}&apikey=${env.EMAIL_VERIFY_KEY}`, { signal: AbortSignal.timeout(25000) });
+            const vRes = await fetch('https://api.reacher.email/v0/check_email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'authorization': env.EMAIL_VERIFY_KEY! },
+              body: JSON.stringify({ to_email: email }),
+              signal: AbortSignal.timeout(25000),
+            });
             if (vRes.ok) {
               const vData = await vRes.json() as any;
-              if (vData.result === 'valid') {
+              if (vData.is_reachable === 'safe' || vData.is_reachable === 'risky') {
                 // Found verified email! Boost the matching candidate
                 const match = unique.find(c => c.name === fullName);
                 if (match) { match.email = email; match.score += 30; }
