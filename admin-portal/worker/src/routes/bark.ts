@@ -551,15 +551,12 @@ async function bruteForceEmail(lead: any, env: Env): Promise<StrategyResult> {
   for (const { email, surname } of emailCandidates.slice(0, 20)) {
     tested.push(email);
     try {
-      const res = await fetch('https://api.reacher.email/v0/check_email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'authorization': env.EMAIL_VERIFY_KEY! },
-        body: JSON.stringify({ to_email: email }),
+      const res = await fetch(`https://api.hunter.io/v2/email-verifier?email=${encodeURIComponent(email)}&api_key=${env.EMAIL_VERIFY_KEY}`, {
         signal: AbortSignal.timeout(25000),
       });
       if (!res.ok) continue;
       const data = await res.json() as any;
-      if (data.is_reachable === 'safe' || data.is_reachable === 'risky') {
+      if (data.data?.result === 'deliverable' || data.data?.result === 'risky') {
         const fullName = `${lead.first_name} ${surname.charAt(0).toUpperCase() + surname.slice(1).replace(/^o/, "O'")}`;
         candidates.push({
           name: fullName,
@@ -631,15 +628,12 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
 
         for (const email of testEmails) {
           try {
-            const vRes = await fetch('https://api.reacher.email/v0/check_email', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'authorization': env.EMAIL_VERIFY_KEY! },
-              body: JSON.stringify({ to_email: email }),
+            const vRes = await fetch(`https://api.hunter.io/v2/email-verifier?email=${encodeURIComponent(email)}&api_key=${env.EMAIL_VERIFY_KEY}`, {
               signal: AbortSignal.timeout(25000),
             });
             if (vRes.ok) {
               const vData = await vRes.json() as any;
-              if (vData.is_reachable === 'safe' || vData.is_reachable === 'risky') {
+              if (vData.data?.result === 'deliverable' || vData.data?.result === 'risky') {
                 // Found verified email! Boost the matching candidate
                 const match = unique.find(c => c.name === fullName);
                 if (match) { match.email = email; match.score += 30; }
