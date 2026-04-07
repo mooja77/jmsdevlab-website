@@ -40,7 +40,17 @@ const PRIORITY_COLORS: Record<string, string> = {
   hot: 'bg-red-500/20 text-red-400',
   warm: 'bg-amber-500/20 text-amber-400',
   cold: 'bg-gray-500/20 text-gray-500',
+  stale: 'bg-gray-800/30 text-gray-600',
 };
+
+function stalenessLabel(receivedAt: string): { label: string; color: string } | null {
+  if (!receivedAt) return null;
+  const ageHours = (Date.now() - new Date(receivedAt).getTime()) / 3600000;
+  if (ageHours < 24) return { label: 'FRESH', color: 'bg-emerald-500/30 text-emerald-300' };
+  if (ageHours > 336) return { label: 'EXPIRED', color: 'bg-red-500/10 text-red-400/50' };
+  if (ageHours > 168) return { label: 'STALE', color: 'bg-gray-500/20 text-gray-500' };
+  return null;
+}
 
 interface ResearchCandidate {
   name: string;
@@ -144,6 +154,7 @@ export default function BarkLeads() {
   const [emailMatch, setEmailMatch] = useState<boolean | null>(null);
   const [researching, setResearching] = useState(false);
   const [researchResults, setResearchResults] = useState<ResearchResults | null>(null);
+  const [emailTemplate, setEmailTemplate] = useState<{ subject: string; body: string } | null>(null);
 
   function loadLeads() {
     api<{ leads: BarkLead[]; byStatus: Record<string, number>; lastScan: string | null }>('/api/bark')
@@ -306,9 +317,10 @@ export default function BarkLeads() {
               <div className="flex items-center justify-between mb-0.5">
                 <div className="flex items-center gap-1.5">
                   <span className="text-[13px] font-medium text-white">{lead.first_name}</span>
-                  {lead.received_at && (Date.now() - new Date(lead.received_at).getTime()) < 86400000 && (
-                    <span className="text-[8px] px-1 py-0.5 rounded bg-blue-500/30 text-blue-300 font-bold uppercase">NEW</span>
-                  )}
+                  {lead.received_at && (() => {
+                    const s = stalenessLabel(lead.received_at);
+                    return s ? <span className={`text-[8px] px-1 py-0.5 rounded font-bold uppercase ${s.color}`}>{s.label}</span> : null;
+                  })()}
                 </div>
                 <div className="flex items-center gap-1">
                   {lead.priority_label && (
@@ -606,10 +618,33 @@ export default function BarkLeads() {
               <button onClick={promote} className="px-4 py-2 text-sm font-medium bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors">
                 Promote to Lead
               </button>
-              <button onClick={() => setSelected(null)} className="px-4 py-2 text-sm font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors">
+              <button onClick={async () => {
+                if (!selected) return;
+                const res = await api<{ template: { subject: string; body: string } }>(`/api/bark/${selected.id}/template`);
+                setEmailTemplate(res.template);
+              }} className="px-4 py-2 text-sm font-medium bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">
+                Draft Email
+              </button>
+              <button onClick={() => { setSelected(null); setEmailTemplate(null); }} className="px-4 py-2 text-sm font-medium bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-colors">
                 Close
               </button>
             </div>
+
+            {/* Email Template */}
+            {emailTemplate && (
+              <div className="mt-4 bg-gray-800/30 rounded-xl p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-medium text-white">Outreach Email Draft</h4>
+                  <button onClick={() => { navigator.clipboard.writeText(`Subject: ${emailTemplate.subject}\n\n${emailTemplate.body}`); }}
+                    className="text-[10px] px-2 py-1 rounded bg-blue-500/20 text-blue-400 hover:bg-blue-500/30">
+                    Copy All
+                  </button>
+                </div>
+                <div className="text-[11px] text-gray-400 mb-2">Subject: <span className="text-gray-300">{emailTemplate.subject}</span></div>
+                <textarea readOnly value={emailTemplate.body}
+                  className="w-full h-48 bg-gray-900/50 border border-gray-700/50 rounded-lg p-3 text-xs text-gray-300 resize-none focus:outline-none" />
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex items-center justify-center h-full text-gray-600">

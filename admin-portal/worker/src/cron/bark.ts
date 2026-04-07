@@ -140,6 +140,21 @@ export async function runBarkScan(env: Env): Promise<{ scanned: number; newLeads
       const emailDecoded = decodePartialEmail(parsed.partialEmail);
       const phoneDecoded = decodePartialPhone(parsed.partialPhone);
 
+      // Duplicate detection — check for matching email pattern
+      let duplicateNote = '';
+      if (emailDecoded) {
+        const dup = await env.DB.prepare(`
+          SELECT id, first_name, bark_category, received_at FROM bark_leads
+          WHERE email_first_char = ? AND email_char_count = ? AND email_last_char = ? AND email_domain = ?
+          ORDER BY received_at DESC LIMIT 1
+        `).bind(emailDecoded.firstChar, emailDecoded.charCount, emailDecoded.lastChar, emailDecoded.domain).first<any>();
+        if (dup) {
+          duplicateNote = `DUPLICATE: matches lead ${dup.id} (${dup.first_name} — ${dup.bark_category})`;
+        }
+      }
+
+      const projectDesc = { ...parsed.projectDetails, quote: parsed.quote, ...(duplicateNote ? { _duplicate: duplicateNote } : {}) };
+
       const leadId = generateId();
       await env.DB.prepare(`
         INSERT OR IGNORE INTO bark_leads (
@@ -152,7 +167,7 @@ export async function runBarkScan(env: Env): Promise<{ scanned: number; newLeads
       `).bind(
         leadId, id, parsed.firstName, parsed.location || null,
         parsed.projectDetails['Business type'] || parsed.projectDetails['Project type'] || null,
-        JSON.stringify({ ...parsed.projectDetails, quote: parsed.quote }),
+        JSON.stringify(projectDesc),
         parsed.projectDetails['Budget'] || null,
         parsed.projectDetails['Timeline'] || null,
         parsed.projectDetails['Hiring intent'] || null,
@@ -164,13 +179,31 @@ export async function runBarkScan(env: Env): Promise<{ scanned: number; newLeads
         date ? new Date(date).toISOString() : new Date().toISOString(),
       ).run();
 
-      result.newLeads.push(`${parsed.firstName} (${parsed.location || 'unknown location'}) — ${parsed.category}`);
+      result.newLeads.push(`${parsed.firstName} (${parsed.location || 'unknown location'}) — ${parsed.category}${duplicateNote ? ' [DUP]' : ''}`);
+
+      // Auto-research the new lead
+      try {
+        const newLead = await env.DB.prepare('SELECT * FROM bark_leads WHERE id = ?').bind(leadId).first<any>();
+        if (newLead) {
+          const { runAutoResearch } = await import('../routes/bark');
+          const research = await runAutoResearch(newLead, env);
+          const resultsJson = JSON.stringify({ ...research, researchedAt: new Date().toISOString() });
+          const topScore = research.topCandidates[0]?.score || 0;
+          await env.DB.prepare('UPDATE bark_leads SET search_results_json = ?, status = ? WHERE id = ?')
+            .bind(resultsJson, topScore >= 80 ? 'found' : 'new', leadId).run();
+        }
+      } catch { /* research failure shouldn't block scan */ }
 
       // Log to activity
       await env.DB.prepare(
         'INSERT INTO activity_log (source, event_type, summary) VALUES (?, ?, ?)'
-      ).bind('bark', 'lead_found', `New Bark lead: ${parsed.firstName} in ${parsed.location || '?'} — ${parsed.category}`).run();
+      ).bind('bark', 'lead_found', `New Bark lead: ${parsed.firstName} in ${parsed.location || '?'} — ${parsed.category}${duplicateNote ? ' [DUPLICATE]' : ''}`).run();
     }
+
+    // Auto-dismiss leads older than 14 days
+    await env.DB.prepare(
+      "UPDATE bark_leads SET status = 'dismissed' WHERE status IN ('new', 'researching') AND received_at < datetime('now', '-14 days')"
+    ).run();
 
     // Update last scan time
     await env.DB.prepare(`

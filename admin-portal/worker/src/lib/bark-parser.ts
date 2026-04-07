@@ -142,14 +142,15 @@ export function parseBarkEmail(body: string, subject: string): {
   return result;
 }
 
-/** Score a lead's business priority (0-100) */
+/** Score a lead's business priority (0-100) with time decay */
 export function scorePriority(lead: {
   budget?: string | null;
   hiring_intent?: string | null;
   timeline?: string | null;
   bark_category?: string | null;
   email_domain?: string | null;
-}): { score: number; label: 'hot' | 'warm' | 'cold' } {
+  received_at?: string | null;
+}): { score: number; label: 'hot' | 'warm' | 'cold' | 'stale' } {
   let score = 0;
 
   // Budget
@@ -176,7 +177,16 @@ export function scorePriority(lead: {
   const common = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'icloud.com', 'live.com'];
   if (lead.email_domain && !common.includes(lead.email_domain)) score += 10;
 
-  const label = score >= 60 ? 'hot' : score >= 30 ? 'warm' : 'cold';
+  // Time decay — fresh leads are more valuable
+  if (lead.received_at) {
+    const ageHours = (Date.now() - new Date(lead.received_at).getTime()) / 3600000;
+    if (ageHours < 24) score += 15;
+    else if (ageHours < 72) score += 5;
+    else if (ageHours > 336) score -= 30;
+    else if (ageHours > 168) score -= 15;
+  }
+
+  const label = score < 0 ? 'stale' : score >= 60 ? 'hot' : score >= 30 ? 'warm' : 'cold';
   return { score, label };
 }
 

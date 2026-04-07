@@ -39,38 +39,56 @@ interface StrategyResult {
 
 // COMMON_DOMAINS imported from ../lib/bark-parser
 
+// Noise patterns — penalise irrelevant results
+const NOISE_URLS = /careers\.|indeed\.|glassdoor\.|monster\.|jobs\.|yelp\.|designrush\.|clutch\.co|sortlist\.|themanifest\.|mobiloud\.|ensun\.|spokeo\.|rocketreach\.|contactout\.|zoominfo\./i;
+const NOISE_TITLES = /top \d+|best \d+|companies in|firms in|agencies in|developers in|rankings|directory/i;
+
+/** Check if an email matches a lead's partial email pattern */
+function matchesPartialEmail(email: string, lead: any): boolean {
+  if (!email || !lead.email_first_char) return false;
+  const [local, domain] = email.toLowerCase().split('@');
+  if (!local || !domain) return false;
+  return local[0] === lead.email_first_char.toLowerCase()
+    && local.length === lead.email_char_count
+    && local[local.length - 1] === (lead.email_last_char || '').toLowerCase()
+    && domain === (lead.email_domain || '').toLowerCase();
+}
+
 function scoreCandidate(c: Candidate, lead: any): number {
   let score = 0;
   const fn = (lead.first_name || '').toLowerCase();
   const loc = (lead.location || '').toLowerCase();
+  const combined = `${c.company || ''} ${c.snippet || ''}`.toLowerCase();
 
-  // Name match
-  if (c.name && c.name.toLowerCase().includes(fn)) score += 30;
+  // Penalties for noise
+  if (NOISE_URLS.test(c.website || '')) score -= 20;
+  if (NOISE_TITLES.test(combined)) score -= 15;
+
+  // Name match — extra for LinkedIn
+  if (c.name && c.name.toLowerCase().includes(fn)) {
+    score += c.linkedin ? 40 : 30;
+  }
 
   // Location match
-  if (c.company && loc) {
-    const combined = `${c.company} ${c.snippet || ''}`.toLowerCase();
-    if (combined.includes(loc.split(',')[0].trim())) score += 20;
-  }
-  if (c.snippet && loc) {
-    if (c.snippet.toLowerCase().includes(loc.split(',')[0].trim())) score += 10;
+  if (loc) {
+    const locTerm = loc.split(',')[0].trim();
+    if (locTerm && combined.includes(locTerm)) score += 20;
   }
 
-  // Business type match
+  // Business type match — check category keywords
   const biz = (lead.business_type || lead.bark_category || '').toLowerCase();
-  if (biz && c.snippet && c.snippet.toLowerCase().includes(biz.split(/[\s,]/)[0])) score += 15;
-
-  // Email pattern match
-  if (c.email && lead.email_first_char) {
-    const [local, domain] = c.email.toLowerCase().split('@');
-    if (local && domain &&
-        local[0] === lead.email_first_char.toLowerCase() &&
-        local.length === lead.email_char_count &&
-        local[local.length - 1] === (lead.email_last_char || '').toLowerCase() &&
-        domain === (lead.email_domain || '').toLowerCase()) {
-      score += 25;
-    }
+  if (biz) {
+    const bizWords = biz.split(/[\s,/]+/).filter((w: string) => w.length > 3);
+    const matchCount = bizWords.filter((w: string) => combined.includes(w)).length;
+    if (matchCount >= 2) score += 20;
+    else if (matchCount >= 1) score += 10;
   }
+
+  // .ie domain bonus
+  if (c.website && /\.ie(\/|$)/.test(c.website)) score += 5;
+
+  // Email pattern match — strongest signal
+  if (c.email && matchesPartialEmail(c.email, lead)) score += 30;
 
   // Phone prefix match
   if (c.phone && lead.phone_prefix) {
@@ -94,7 +112,8 @@ async function searchBrave(lead: any, env: Env): Promise<StrategyResult> {
   const biz = lead.business_type || lead.bark_category || '';
   const queries = [
     `${name} ${biz} ${loc} Ireland`,
-    `${name} ${loc} site:linkedin.com`,
+    `${name} ${loc} Ireland site:linkedin.com/in`,
+    `${biz} ${loc} Ireland`,
   ];
 
   const candidates: Candidate[] = [];
@@ -153,6 +172,39 @@ async function searchBrave(lead: any, env: Env): Promise<StrategyResult> {
     } catch (e) {
       queryResults.push(`"${q}" → error: ${String(e).slice(0, 50)}`);
     }
+  }
+
+  // Second pass: scrape top candidate websites for email/phone that match partial patterns
+  const scrapeable = candidates
+    .filter(c => c.website && !/linkedin|facebook|twitter|indeed|glassdoor/.test(c.website))
+    .slice(0, 3);
+  for (const c of scrapeable) {
+    try {
+      const page = await fetch(c.website!, {
+        headers: { 'User-Agent': 'Mozilla/5.0' },
+        signal: AbortSignal.timeout(5000),
+        redirect: 'follow',
+      });
+      if (!page.ok) continue;
+      const html = await page.text();
+      // Check for email pattern match
+      const emails = html.match(/[\w.-]+@[\w.-]+\.\w{2,}/g) || [];
+      for (const email of emails.filter(e => !/example|wix|wordpress|sentry/.test(e))) {
+        if (matchesPartialEmail(email, lead)) {
+          c.email = email;
+          c.score = scoreCandidate(c, lead); // re-score with email match
+          break;
+        }
+      }
+      // Extract phone if not found
+      if (!c.phone) {
+        const phones = html.match(/(?:0\d{1,2}[\s-]?\d{3}[\s-]?\d{4}|\+353[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{4})/g) || [];
+        if (phones.length > 0) {
+          c.phone = phones[0];
+          c.score = scoreCandidate(c, lead);
+        }
+      }
+    } catch { /* timeout or fetch error — skip */ }
   }
 
   return { strategy: 'Brave Search', status: 'ok', queries: queryResults, candidates };
@@ -550,10 +602,10 @@ export async function handleBarkRoutes(path: string, request: Request, env: Env)
     const top = topCandidates[0];
     const updates: Record<string, unknown> = {
       search_results_json: resultsJson,
-      status: top && top.score >= 60 ? 'found' : 'researching',
+      status: top && top.score >= 80 ? 'found' : 'researching',
       updated_at: new Date().toISOString(),
     };
-    if (top && top.score >= 60) {
+    if (top && top.score >= 80) {
       if (top.name) updates.matched_name = top.name;
       if (top.email) updates.matched_email = top.email;
       if (top.phone) updates.matched_phone = top.phone;
@@ -568,7 +620,34 @@ export async function handleBarkRoutes(path: string, request: Request, env: Env)
     values.push(id);
     await env.DB.prepare(`UPDATE bark_leads SET ${fields.join(', ')} WHERE id = ?`).bind(...values).run();
 
-    return json({ success: true, strategies, topCandidates, autoFilled: top && top.score >= 60 });
+    return json({ success: true, strategies, topCandidates, autoFilled: top && top.score >= 80 });
+  }
+
+  // GET /api/bark/:id/template — generate outreach email
+  const templateMatch = path.match(/^\/api\/bark\/([^/]+)\/template$/);
+  if (templateMatch && request.method === 'GET') {
+    const lead = await env.DB.prepare('SELECT * FROM bark_leads WHERE id = ?').bind(templateMatch[1]).first<any>();
+    if (!lead) return json({ error: 'Not found' }, 404);
+    const details = JSON.parse(lead.project_description || '{}');
+    const isWeb = (lead.bark_category || '').toLowerCase().includes('web');
+
+    return json({ template: {
+      subject: `${lead.bark_category} — I can help, ${lead.first_name}`,
+      body: `Hi ${lead.first_name},
+
+I'm John Moore from JMS Dev Lab, a software development studio based in Ireland. I saw you're looking for a ${lead.bark_category}${lead.location ? ` in ${lead.location}` : ''}.
+
+${details.quote ? `Your project — "${details.quote}" — sounds like something I can help with.\n` : ''}${lead.budget && lead.budget !== 'Unknown' ? `Your budget of ${lead.budget} is within my range. ` : ''}I have experience building ${isWeb ? 'responsive websites, WordPress sites, and custom web applications' : 'mobile apps for iOS and Android, including React Native and native development'}.
+
+You can see my work at https://jmsdevlab.com
+
+Would you be open to a quick 15-minute call to discuss your requirements?
+
+Best regards,
+John Moore
+JMS Dev Lab
+john@jmsdevlab.com`,
+    }});
   }
 
   // DELETE /api/bark/:id
@@ -580,3 +659,6 @@ export async function handleBarkRoutes(path: string, request: Request, env: Env)
 
   return json({ error: 'Not found' }, 404);
 }
+
+// Export for use in cron/bark.ts
+export { runAutoResearch };
