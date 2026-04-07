@@ -32,6 +32,9 @@ export interface Env {
   GOOGLE_CLIENT_ID?: string;
   GOOGLE_CLIENT_SECRET?: string;
   BRAVE_SEARCH_KEY?: string;
+  EMAIL_VERIFY_KEY?: string;
+  CRO_API_KEY?: string;
+  CRO_EMAIL?: string;
 }
 
 const CORS_HEADERS = {

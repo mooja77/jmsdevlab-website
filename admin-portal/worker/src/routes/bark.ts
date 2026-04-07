@@ -111,8 +111,10 @@ async function searchBrave(lead: any, env: Env): Promise<StrategyResult> {
   const loc = lead.location || 'Ireland';
   const biz = lead.business_type || lead.bark_category || '';
   const queries = [
+    `${name} ${biz} ${loc} Ireland site:linkedin.com/in`,
+    `${biz} ${loc} Ireland site:linkedin.com`,
+    `${name} ${biz} ${loc} site:facebook.com`,
     `${name} ${biz} ${loc} Ireland`,
-    `${name} ${loc} Ireland site:linkedin.com/in`,
     `${biz} ${loc} Ireland`,
   ];
 
@@ -388,27 +390,219 @@ async function searchDomainGuess(lead: any): Promise<StrategyResult> {
   return scrapeWebsite(domain, lead);
 }
 
+/** Strategy 5: .ie Domain Cracking */
+async function crackIeDomain(lead: any, env: Env): Promise<StrategyResult> {
+  const partial = lead.partial_email || '';
+  if (!partial.includes('.ie')) {
+    return { strategy: '.ie Domain Crack', status: 'skipped', reason: 'Not a .ie email', candidates: [] };
+  }
+
+  if (!env.BRAVE_SEARCH_KEY) return { strategy: '.ie Domain Crack', status: 'skipped', reason: 'No search key', candidates: [] };
+
+  const [, domainPart] = partial.split('@');
+  if (!domainPart) return { strategy: '.ie Domain Crack', status: 'skipped', reason: 'No domain part', candidates: [] };
+
+  const domainFullLen = domainPart.length;
+  const domainFirst = domainPart[0];
+  const dotIdx = domainPart.lastIndexOf('.');
+  const domainLastBeforeTld = domainPart[dotIdx - 1];
+
+  try {
+    const query = `${lead.first_name} ${lead.location || ''} Ireland site:*.ie`;
+    const res = await fetch(`https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}&count=10`, {
+      headers: { 'Accept': 'application/json', 'X-Subscription-Token': env.BRAVE_SEARCH_KEY },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) return { strategy: '.ie Domain Crack', status: 'error', reason: `HTTP ${res.status}`, candidates: [] };
+
+    const data = await res.json() as any;
+    const candidates: Candidate[] = [];
+
+    for (const item of (data.web?.results || [])) {
+      try {
+        const urlDomain = new URL(item.url).hostname.replace(/^www\./, '');
+        // Check if domain matches the pattern
+        if (urlDomain.length === domainFullLen
+            && urlDomain[0] === domainFirst
+            && urlDomain[dotIdx - 1] === domainLastBeforeTld
+            && urlDomain.endsWith('.ie')) {
+          // MATCH! Scrape the website
+          const c: Candidate = { name: lead.first_name, source: 'ie-domain', score: 0, website: `https://${urlDomain}` };
+          c.company = item.title?.replace(/ [-–|].*/, '').trim();
+
+          // Scrape for contact info
+          try {
+            const page = await fetch(`https://${urlDomain}`, { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(5000), redirect: 'follow' });
+            if (page.ok) {
+              const html = await page.text();
+              const emails = html.match(/[\w.-]+@[\w.-]+\.\w{2,}/g) || [];
+              for (const email of emails) {
+                if (matchesPartialEmail(email, lead)) { c.email = email; break; }
+              }
+              const phones = html.match(/(?:0\d{1,2}[\s-]?\d{3}[\s-]?\d{4}|\+353[\s-]?\d{1,2}[\s-]?\d{3}[\s-]?\d{4})/g) || [];
+              if (phones.length > 0) c.phone = phones[0];
+              const nameMatch = html.match(new RegExp(`(${lead.first_name}\\s+[A-Z][a-z]+)`, 'i'));
+              if (nameMatch) c.name = nameMatch[1];
+            }
+          } catch {}
+
+          // RDAP lookup for registrant
+          try {
+            const rdap = await fetch(`https://rdap.weare.ie/domain/${urlDomain}`, { signal: AbortSignal.timeout(5000) });
+            if (rdap.ok) {
+              const rdapData = await rdap.json() as any;
+              for (const entity of (rdapData.entities || [])) {
+                const vcard = entity.vcardArray?.[1] || [];
+                for (const field of vcard) {
+                  if (field[0] === 'fn' && !c.name.includes(' ')) c.name = field[3];
+                  if (field[0] === 'org') c.company = field[3];
+                }
+              }
+            }
+          } catch {}
+
+          c.score = scoreCandidate(c, lead);
+          if (c.email) c.score += 30; // Huge bonus for domain+email match
+          candidates.push(c);
+        }
+      } catch {}
+    }
+
+    return { strategy: '.ie Domain Crack', status: 'ok', candidates };
+  } catch (e) {
+    return { strategy: '.ie Domain Crack', status: 'error', reason: String(e).slice(0, 100), candidates: [] };
+  }
+}
+
+/** Strategy 6: Bark Profile Search */
+async function searchBarkProfile(lead: any, env: Env): Promise<StrategyResult> {
+  if (!env.BRAVE_SEARCH_KEY) return { strategy: 'Bark Profile', status: 'skipped', reason: 'No search key', candidates: [] };
+
+  const biz = lead.business_type || lead.bark_category || '';
+  const query = `${lead.first_name} ${biz} ${lead.location || ''} site:bark.com`;
+
+  try {
+    const res = await fetch(`https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}&count=3`, {
+      headers: { 'Accept': 'application/json', 'X-Subscription-Token': env.BRAVE_SEARCH_KEY },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) return { strategy: 'Bark Profile', status: 'error', reason: `HTTP ${res.status}`, candidates: [] };
+
+    const data = await res.json() as any;
+    const candidates: Candidate[] = [];
+
+    for (const item of (data.web?.results || [])) {
+      if (item.url?.includes('bark.com/en/') && item.url?.includes('/company/')) {
+        const c: Candidate = {
+          name: lead.first_name,
+          company: item.title?.replace(/ \| Bark.*/, '').trim(),
+          website: item.url,
+          source: 'bark-profile',
+          score: 0,
+          snippet: item.description || '',
+        };
+        c.score = scoreCandidate(c, lead);
+        candidates.push(c);
+      }
+    }
+
+    return { strategy: 'Bark Profile', status: 'ok', candidates };
+  } catch (e) {
+    return { strategy: 'Bark Profile', status: 'error', reason: String(e).slice(0, 100), candidates: [] };
+  }
+}
+
+/** Strategy 7: Brute-force email guessing (last resort) */
+const IRISH_SURNAMES = ['murphy','kelly','walsh','obrien','byrne','ryan','osullivan','oconnor','doyle','mccarthy','gallagher','doherty','kennedy','lynch','murray','quinn','moore','mcloughlin','oconnell','fitzgerald','browne','martin','nolan','power','smith','dunne','brennan','collins','campbell','clarke','johnston','hughes','farrell','okeefe','kavanagh','duffy','oshea','hayes','carroll','buckley','maher','keogh','chambers','foley','fitzpatrick','oneill','daly','mcdonnell','regan','donovan','mcmahon','barry','flood','casey','oreilly','mahon','moloney','burke','maguire','brady','healy','gorman','obyrne','egan','corcoran','moran','whelan','redmond','sweeney','cullen','woods','sheridan','cummins'];
+
+async function bruteForceEmail(lead: any, env: Env): Promise<StrategyResult> {
+  if (!env.EMAIL_VERIFY_KEY) return { strategy: 'Brute Force', status: 'skipped', reason: 'No EMAIL_VERIFY_KEY', candidates: [] };
+  if (!lead.email_first_char || !lead.email_char_count || !lead.email_last_char || !lead.email_domain) {
+    return { strategy: 'Brute Force', status: 'skipped', reason: 'Incomplete email pattern', candidates: [] };
+  }
+
+  const first = lead.first_name.toLowerCase();
+  const fc = lead.email_first_char.toLowerCase();
+  const lc = lead.email_last_char.toLowerCase();
+  const len = lead.email_char_count;
+  const domain = lead.email_domain;
+  const candidates: Candidate[] = [];
+  const tested: string[] = [];
+
+  // Generate candidates matching the exact pattern
+  const emailCandidates: { email: string; surname: string }[] = [];
+
+  for (const surname of IRISH_SURNAMES) {
+    const patterns = [
+      `${first}${surname}`, `${first}.${surname}`, `${first}_${surname}`,
+      `${fc}${surname}`, `${first}${surname[0]}`,
+    ];
+    for (const base of [`${first}${surname}`, `${fc}${surname}`]) {
+      for (const s of ['1','2','3','4','5','01','12','23','99','00']) patterns.push(`${base}${s}`);
+    }
+    for (const p of patterns) {
+      if (p.length === len && p[0] === fc && p[p.length - 1] === lc) {
+        emailCandidates.push({ email: `${p}@${domain}`, surname });
+      }
+    }
+  }
+
+  // Verify top 20
+  for (const { email, surname } of emailCandidates.slice(0, 20)) {
+    tested.push(email);
+    try {
+      const res = await fetch(`https://api.quickemailverification.com/v1/verify?email=${encodeURIComponent(email)}&apikey=${env.EMAIL_VERIFY_KEY}`, {
+        signal: AbortSignal.timeout(25000),
+      });
+      if (!res.ok) continue;
+      const data = await res.json() as any;
+      if (data.result === 'valid') {
+        const fullName = `${lead.first_name} ${surname.charAt(0).toUpperCase() + surname.slice(1).replace(/^o/, "O'")}`;
+        candidates.push({
+          name: fullName,
+          email,
+          source: 'brute-force',
+          score: 90, // Very high — verified email matching pattern
+          snippet: `Verified email matching partial pattern`,
+        });
+        break; // Found it!
+      }
+    } catch {}
+  }
+
+  return {
+    strategy: 'Brute Force',
+    status: 'ok',
+    reason: `Tested ${tested.length} of ${emailCandidates.length} candidates`,
+    queries: tested.slice(0, 5).map(e => `${e} → ${candidates.length > 0 ? 'MATCH' : 'no match'}`),
+    candidates,
+  };
+}
+
 /** Run all strategies and return combined results */
 async function runAutoResearch(lead: any, env: Env): Promise<{
   strategies: StrategyResult[];
   topCandidates: Candidate[];
 }> {
-  // Run strategies in parallel
-  const [google, whois, goldenPages, domainGuess] = await Promise.allSettled([
+  // Phase 1: Broad search (parallel)
+  const phase1 = await Promise.allSettled([
     searchBrave(lead, env),
     lookupWhois(lead),
     searchGoldenPages(lead),
     searchDomainGuess(lead),
+    searchBarkProfile(lead, env),
   ]);
 
-  const strategies: StrategyResult[] = [
-    google.status === 'fulfilled' ? google.value : { strategy: 'Brave Search', status: 'error' as const, reason: String((google as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
-    whois.status === 'fulfilled' ? whois.value : { strategy: 'WHOIS Lookup', status: 'error' as const, reason: String((whois as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
-    goldenPages.status === 'fulfilled' ? goldenPages.value : { strategy: 'Golden Pages', status: 'error' as const, reason: String((goldenPages as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
-    domainGuess.status === 'fulfilled' ? domainGuess.value : { strategy: 'Domain Guess', status: 'error' as const, reason: String((domainGuess as PromiseRejectedResult).reason).slice(0, 100), candidates: [] },
-  ];
+  const strategies: StrategyResult[] = phase1.map((r, i) => {
+    const names = ['Brave Search', 'WHOIS Lookup', 'Golden Pages', 'Domain Guess', 'Bark Profile'];
+    return r.status === 'fulfilled' ? r.value : { strategy: names[i], status: 'error' as const, reason: String((r as PromiseRejectedResult).reason).slice(0, 100), candidates: [] };
+  });
 
-  // Collect all candidates, dedupe by website/email, sort by score
+  // Phase 2: .ie domain cracking (if applicable)
+  const ieDomain = await crackIeDomain(lead, env);
+  strategies.push(ieDomain);
+
+  // Collect all candidates, dedupe, sort
   const allCandidates = strategies.flatMap(s => s.candidates);
   const seen = new Set<string>();
   const unique = allCandidates.filter(c => {
@@ -417,6 +611,48 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
     seen.add(key);
     return true;
   });
+  unique.sort((a, b) => b.score - a.score);
+
+  // Phase 3: Email verification from candidate names (if we have the key)
+  if (env.EMAIL_VERIFY_KEY && lead.email_first_char && COMMON_DOMAINS.includes(lead.email_domain || '')) {
+    const candidateNames = unique.filter(c => c.name && c.name.includes(' ')).map(c => c.name);
+    if (candidateNames.length > 0) {
+      for (const fullName of candidateNames.slice(0, 3)) {
+        const parts = fullName.toLowerCase().replace(/['']/g, '').split(/\s+/);
+        if (parts.length < 2) continue;
+        const [fn, ...rest] = parts;
+        const ln = rest.join('');
+        const testEmails = [`${fn}${ln}`, `${fn}.${rest.join('.')}`, `${fn}${ln[0]}`]
+          .filter(e => e.length === lead.email_char_count && e[0] === lead.email_first_char?.toLowerCase() && e[e.length - 1] === lead.email_last_char?.toLowerCase())
+          .map(e => `${e}@${lead.email_domain}`);
+
+        for (const email of testEmails) {
+          try {
+            const vRes = await fetch(`https://api.quickemailverification.com/v1/verify?email=${encodeURIComponent(email)}&apikey=${env.EMAIL_VERIFY_KEY}`, { signal: AbortSignal.timeout(25000) });
+            if (vRes.ok) {
+              const vData = await vRes.json() as any;
+              if (vData.result === 'valid') {
+                // Found verified email! Boost the matching candidate
+                const match = unique.find(c => c.name === fullName);
+                if (match) { match.email = email; match.score += 30; }
+                else { unique.push({ name: fullName, email, source: 'email-verify', score: 90, snippet: 'Verified email' }); }
+              }
+            }
+          } catch {}
+        }
+      }
+    }
+  }
+
+  // Phase 4: Brute force (only for hot leads with no good matches)
+  const topScore = unique[0]?.score || 0;
+  if (topScore < 50 && env.EMAIL_VERIFY_KEY && lead.email_first_char) {
+    const bf = await bruteForceEmail(lead, env);
+    strategies.push(bf);
+    unique.push(...bf.candidates);
+  } else {
+    strategies.push({ strategy: 'Brute Force', status: 'skipped', reason: topScore >= 50 ? `Top score ${topScore} sufficient` : 'No email verify key', candidates: [] });
+  }
 
   unique.sort((a, b) => b.score - a.score);
   const topCandidates = unique.slice(0, 8);
