@@ -1,6 +1,6 @@
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
-import { useMemo } from 'react';
-import { logout } from '../lib/api';
+import { useMemo, useState, useEffect } from 'react';
+import { logout, api } from '../lib/api';
 import { useKeyboardShortcuts, useShortcutOverlay } from '../lib/keyboard';
 import Icon, { IconName } from './ui/Icon';
 
@@ -15,14 +15,23 @@ const navItems: { to: string; label: string; icon: IconName; shortcut: string }[
   { to: '/leads', label: 'Leads', icon: 'leads', shortcut: 'g l' },
   { to: '/bark', label: 'Bark Finder', icon: 'bark', shortcut: 'g b' },
   { to: '/projects', label: 'Projects', icon: 'projects', shortcut: 'g p' },
+  { to: '/usage', label: 'Usage', icon: 'visitors', shortcut: 'g y' },
   { to: '/infra', label: 'Infrastructure', icon: 'infra', shortcut: 'g i' },
   { to: '/matrices', label: 'Matrices', icon: 'apps', shortcut: 'g m' },
+  { to: '/utm', label: 'UTM Builder', icon: 'visitors', shortcut: 'g t' },
   { to: '/settings', label: 'Settings', icon: 'settings', shortcut: 'g s' },
 ];
 
 export default function Layout() {
   const navigate = useNavigate();
   const { show: showShortcuts, setShow: setShowShortcuts } = useShortcutOverlay();
+  const [appCount, setAppCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    api<{ summary: { totalApps: number }; apps?: any[] }>('/api/aggregate/dashboard')
+      .then(d => setAppCount(d.summary?.totalApps || d.apps?.length || 0))
+      .catch(() => {});
+  }, []);
 
   const shortcuts = useMemo(() => ({
     'g d': () => navigate('/'),
@@ -35,6 +44,7 @@ export default function Layout() {
     'g l': () => navigate('/leads'),
     'g b': () => navigate('/bark'),
     'g p': () => navigate('/projects'),
+    'g y': () => navigate('/usage'),
     'g i': () => navigate('/infra'),
     'g m': () => navigate('/matrices'),
     'g s': () => navigate('/settings'),
@@ -77,7 +87,7 @@ export default function Layout() {
 
         <div className="px-4 py-4 border-t border-gray-800/50">
           <div className="flex items-center justify-between px-1 mb-3">
-            <span className="text-[11px] text-gray-600">12 apps connected</span>
+            <span className="text-[11px] text-gray-600">{appCount ?? '...'} apps connected</span>
             <button
               onClick={() => setShowShortcuts(true)}
               className="text-[10px] text-gray-700 hover:text-gray-400 font-mono border border-gray-800 rounded px-1"
