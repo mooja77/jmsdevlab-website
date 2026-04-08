@@ -579,6 +579,39 @@ async function bruteForceEmail(lead: any, env: Env): Promise<StrategyResult> {
   };
 }
 
+/** Strategy 8: CRO (Companies Registration Office Ireland) company search */
+async function searchCRO(lead: any, env: Env): Promise<StrategyResult> {
+  const candidates: Candidate[] = [];
+  if (!env.CRO_API_KEY || !env.CRO_EMAIL) {
+    return { strategy: 'CRO Lookup', status: 'skipped', reason: 'No CRO API credentials', candidates: [] };
+  }
+  const searchName = lead.company_name || lead.first_name;
+  if (!searchName) return { strategy: 'CRO Lookup', status: 'skipped', reason: 'No company/name to search', candidates: [] };
+  try {
+    const auth = btoa(`${env.CRO_EMAIL}:${env.CRO_API_KEY}`);
+    const res = await fetch(`https://services.cro.ie/cws/companies?company_name=${encodeURIComponent(searchName)}&skip=0&max=5`, {
+      headers: { 'Authorization': `Basic ${auth}`, 'Content-Type': 'application/json' },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) return { strategy: 'CRO Lookup', status: 'error', reason: `HTTP ${res.status}`, candidates: [] };
+    const data = await res.json() as any[];
+    if (!Array.isArray(data)) return { strategy: 'CRO Lookup', status: 'ok', reason: 'No results', candidates: [], queries: [searchName] };
+    for (const co of data.slice(0, 3)) {
+      if (co.company_status_desc?.toLowerCase() === 'dissolved') continue;
+      candidates.push({
+        name: co.company_name || searchName,
+        company: co.company_name,
+        source: 'cro',
+        score: 25,
+        snippet: `CRO #${co.company_num} — ${co.company_status_desc || 'Active'} — ${co.company_addr_1 || ''}`,
+      });
+    }
+    return { strategy: 'CRO Lookup', status: 'ok', reason: `Found ${candidates.length} companies`, candidates, queries: [searchName] };
+  } catch (err) {
+    return { strategy: 'CRO Lookup', status: 'error', reason: String(err).slice(0, 100), candidates: [] };
+  }
+}
+
 /** Run all strategies and return combined results */
 async function runAutoResearch(lead: any, env: Env): Promise<{
   strategies: StrategyResult[];
@@ -591,10 +624,11 @@ async function runAutoResearch(lead: any, env: Env): Promise<{
     searchGoldenPages(lead),
     searchDomainGuess(lead),
     searchBarkProfile(lead, env),
+    searchCRO(lead, env),
   ]);
 
   const strategies: StrategyResult[] = phase1.map((r, i) => {
-    const names = ['Brave Search', 'WHOIS Lookup', 'Golden Pages', 'Domain Guess', 'Bark Profile'];
+    const names = ['Brave Search', 'WHOIS Lookup', 'Golden Pages', 'Domain Guess', 'Bark Profile', 'CRO Lookup'];
     return r.status === 'fulfilled' ? r.value : { strategy: names[i], status: 'error' as const, reason: String((r as PromiseRejectedResult).reason).slice(0, 100), candidates: [] };
   });
 
