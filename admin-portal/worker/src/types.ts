@@ -35,6 +35,7 @@ export interface Env {
   EMAIL_VERIFY_KEY?: string;
   CRO_API_KEY?: string;
   CRO_EMAIL?: string;
+  ANTHROPIC_API_KEY?: string;
 }
 
 const ALLOWED_ORIGINS = [

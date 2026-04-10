@@ -30,10 +30,13 @@ import { isTestEmail } from './lib/filter';
 import { handleStripeWebhook } from './routes/stripe-webhook';
 import { handleErrorRoutes } from './routes/errors';
 import { handleEventIngest } from './routes/ingest';
+import { handleAgentRoutes } from './routes/agents';
+import { handleChatRoutes } from './routes/chat';
 import { runCustomerHealthScores } from './cron/customer-health';
 import { runConversionSync } from './cron/conversions';
 import { runSnapshotSync } from './cron/snapshots';
 import { runCriticalPathChecks } from './cron/critical-paths';
+import { runAgentCron } from './cron/agents';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -65,6 +68,11 @@ export default {
         return handleEventIngest(request, env);
       }
 
+      // Chat widget (public — no auth, cross-origin)
+      if (path.startsWith('/api/chat') && !path.startsWith('/api/chat/conversations')) {
+        return handleChatRoutes(path, request, url, env);
+      }
+
       // Auth routes
       if (path.startsWith('/api/auth/')) {
         return handleAuth(path, request, env);
@@ -89,6 +97,16 @@ export default {
       // Aggregate routes
       if (path.startsWith('/api/aggregate')) {
         return handleAggregateRoutes(path, env);
+      }
+
+      // Chat conversations (authenticated — Command Centre)
+      if (path.startsWith('/api/chat/conversations')) {
+        return handleChatRoutes(path, request, url, env);
+      }
+
+      // Agent harness
+      if (path.startsWith('/api/agents')) {
+        return handleAgentRoutes(path, request, url, env);
       }
 
       // Lead pipeline
@@ -459,6 +477,7 @@ export default {
       ctx.waitUntil(runVisitorsSync(env));
       ctx.waitUntil(runBarkScan(env)); // daily check inside the function
       ctx.waitUntil(runConversionSync(env));
+      ctx.waitUntil(runAgentCron(env)); // budget reset, stale task recovery, schedules
     }
   },
 };

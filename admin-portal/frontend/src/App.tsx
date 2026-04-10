@@ -21,6 +21,8 @@ import Usage from './pages/Usage';
 import UTMBuilder from './pages/UTMBuilder';
 import Conversions from './pages/Conversions';
 import Status from './pages/Status';
+import Agents from './pages/Agents';
+import ChatLog from './pages/ChatLog';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function EB({ children }: { children: React.ReactNode }) {
@@ -71,6 +73,8 @@ export default function App() {
         <Route path="/utm" element={<EB><UTMBuilder /></EB>} />
         <Route path="/conversions" element={<EB><Conversions /></EB>} />
         <Route path="/settings" element={<EB><Settings /></EB>} />
+        <Route path="/agents" element={<EB><Agents /></EB>} />
+        <Route path="/chat" element={<EB><ChatLog /></EB>} />
         <Route path="/status" element={<EB><Status /></EB>} />
       </Route>
     </Routes>
