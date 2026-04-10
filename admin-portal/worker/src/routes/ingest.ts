@@ -6,6 +6,7 @@
 import { Env, json } from '../types';
 import { getAllApps, getAdminKey } from '../lib/d1';
 import { isTestEmail } from '../lib/filter';
+import { constantTimeEqual } from '../lib/crypto';
 
 interface IngestEvent {
   name: string;
@@ -41,7 +42,9 @@ export async function handleEventIngest(request: Request, env: Env): Promise<Res
   if (!app || !app.admin_key_name) return json({ error: 'Unknown app_id' }, 404);
 
   const expectedKey = getAdminKey(env, app.admin_key_name);
-  if (!expectedKey || adminKey !== expectedKey) return json({ error: 'Invalid admin key' }, 403);
+  if (!expectedKey) return json({ error: 'Admin key not configured' }, 500);
+  const keyMatch = await constantTimeEqual(adminKey, expectedKey);
+  if (!keyMatch) return json({ error: 'Invalid admin key' }, 403);
 
   // Process events (max 50 per request)
   const events = body.events.slice(0, 50);

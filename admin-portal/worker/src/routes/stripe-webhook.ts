@@ -4,6 +4,7 @@
  */
 
 import { Env, json } from '../types';
+import { constantTimeEqual } from '../lib/crypto';
 
 export async function handleStripeWebhook(request: Request, env: Env): Promise<Response> {
   if (request.method !== 'POST') return json({ error: 'Method not allowed' }, 405);
@@ -11,11 +12,15 @@ export async function handleStripeWebhook(request: Request, env: Env): Promise<R
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
 
-  // Verify webhook signature
-  if (env.STRIPE_WEBHOOK_SECRET && signature) {
-    const isValid = await verifyStripeSignature(body, signature, env.STRIPE_WEBHOOK_SECRET);
-    if (!isValid) return json({ error: 'Invalid signature' }, 400);
+  // Verify webhook signature — REQUIRED
+  if (!env.STRIPE_WEBHOOK_SECRET) {
+    return json({ error: 'Webhook signing not configured' }, 500);
   }
+  if (!signature) {
+    return json({ error: 'Missing stripe-signature header' }, 400);
+  }
+  const isValid = await verifyStripeSignature(body, signature, env.STRIPE_WEBHOOK_SECRET);
+  if (!isValid) return json({ error: 'Invalid signature' }, 400);
 
   const event = JSON.parse(body);
   const type = event.type;
@@ -160,7 +165,7 @@ async function verifyStripeSignature(payload: string, signature: string, secret:
     const expected = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(signedPayload));
     const expectedHex = Array.from(new Uint8Array(expected)).map(b => b.toString(16).padStart(2, '0')).join('');
 
-    return expectedHex === sig;
+    return constantTimeEqual(expectedHex, sig);
   } catch {
     return false;
   }

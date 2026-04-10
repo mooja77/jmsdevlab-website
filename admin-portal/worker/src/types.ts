@@ -37,10 +37,27 @@ export interface Env {
   CRO_EMAIL?: string;
 }
 
+const ALLOWED_ORIGINS = [
+  'https://admin.jmsdevlab.com',
+  'https://jms-admin-portal.pages.dev',
+  'http://localhost:5173',
+];
+
+export function getCorsHeaders(request?: Request): Record<string, string> {
+  const origin = request?.headers.get('Origin') || '';
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Portal-Key, x-admin-key, stripe-signature',
+  };
+}
+
+// Keep backward compat for places that don't have request context
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://admin.jmsdevlab.com',
   'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Portal-Key',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Portal-Key, x-admin-key, stripe-signature',
 };
 
 export function json(data: unknown, status = 200): Response {

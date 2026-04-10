@@ -92,6 +92,28 @@ test_endpoint "/api/cache/status"
 test_endpoint "/api/debug/users"
 
 echo ""
+echo "Security checks:"
+# Wrong password
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 -X POST -H "Content-Type: application/json" -d '{"password":"wrong"}' "$BASE/api/auth/login")
+if [ "$STATUS" = "401" ]; then PASS=$((PASS+1)); echo "  PASS  Login rejects wrong password";
+else FAIL=$((FAIL+1)); echo "  FAIL  Login should reject wrong password (got HTTP $STATUS)"; fi
+
+# No auth
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 "$BASE/api/briefing")
+if [ "$STATUS" = "401" ]; then PASS=$((PASS+1)); echo "  PASS  Endpoints require auth";
+else FAIL=$((FAIL+1)); echo "  FAIL  Endpoints accessible without auth (got HTTP $STATUS)"; fi
+
+# Invalid admin key
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 -X POST -H "x-admin-key: wrong" -H "Content-Type: application/json" -d '{"app_id":"smartcash","events":[{"name":"test"}]}' "$BASE/api/events/ingest")
+if [ "$STATUS" = "403" ]; then PASS=$((PASS+1)); echo "  PASS  Ingest rejects bad admin key";
+else FAIL=$((FAIL+1)); echo "  FAIL  Ingest should reject bad key (got HTTP $STATUS)"; fi
+
+# Stripe webhook without signature
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 -X POST -H "Content-Type: application/json" -d '{"type":"test"}' "$BASE/api/webhooks/stripe")
+if [ "$STATUS" = "400" ] || [ "$STATUS" = "500" ]; then PASS=$((PASS+1)); echo "  PASS  Stripe webhook rejects unsigned request";
+else FAIL=$((FAIL+1)); echo "  FAIL  Stripe webhook should reject unsigned (got HTTP $STATUS)"; fi
+
+echo ""
 echo "========================="
 echo "Results: $PASS passed, $FAIL failed ($(($PASS + $FAIL)) total)"
 

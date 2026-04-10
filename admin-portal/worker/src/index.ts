@@ -248,9 +248,9 @@ export default {
                   real.push(email);
                 }
               }
-              entry.realUsers = real;
+              entry.realUsers = real.map((e: string) => e.replace(/^(.{2}).*(@.*)$/, '$1***$2'));
               entry.realCount = real.length;
-              entry.testUsers = test;
+              entry.testUsers = test.map((e: string) => e.replace(/^(.{2}).*(@.*)$/, '$1***$2'));
               entry.testCount = test.length;
             }
           } catch (err) {
@@ -426,7 +426,8 @@ export default {
       return json({ error: 'Not found' }, 404);
     } catch (error) {
       console.error('Worker error:', error);
-      return json({ error: 'Internal server error', message: String(error) }, 500);
+      console.error('Worker error:', error);
+      return json({ error: 'Internal server error' }, 500);
     }
   },
 

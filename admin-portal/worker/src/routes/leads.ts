@@ -13,10 +13,12 @@ export async function handleLeadRoutes(path: string, request: Request, env: Env)
   if (path === '/api/leads' && request.method === 'GET') {
     const url = new URL(request.url);
     const status = url.searchParams.get('status');
+    const VALID_STATUSES = ['new', 'contacted', 'qualified', 'proposal', 'won', 'lost'];
 
     let query = 'SELECT * FROM leads';
     const params: string[] = [];
     if (status) {
+      if (!VALID_STATUSES.includes(status)) return json({ error: 'Invalid status' }, 400);
       query += ' WHERE status = ?';
       params.push(status);
     }
