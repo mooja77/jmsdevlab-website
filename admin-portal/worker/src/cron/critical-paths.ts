@@ -28,9 +28,9 @@ function buildCheckRegistry(): Check[] {
     { appId: 'profitshield', type: 'register', url: 'https://profitshield.app/auth/register', expect: ['sign up', 'create', 'register'] },
     { appId: 'profitshield', type: 'pricing', url: 'https://profitshield.app/pricing', expect: ['price', '$', 'plan'] },
 
-    // JewelValue
+    // JewelValue (login is at /login, not /auth/login — Next.js route group)
     { appId: 'jewelvalue', type: 'homepage', url: 'https://jewelvalue.app', expect: ['jewelvalue', 'valuation'] },
-    { appId: 'jewelvalue', type: 'login', url: 'https://jewelvalue.app/auth/login', expect: ['password', 'sign in', 'email'] },
+    { appId: 'jewelvalue', type: 'login', url: 'https://jewelvalue.app/login', expect: ['password', 'sign in', 'email'] },
 
     // RepairDesk (Vite SPA)
     { appId: 'repairdesk', type: 'homepage', url: 'https://repairdeskapp.net', expect: ['repairdesk', 'root'] },
@@ -42,8 +42,10 @@ function buildCheckRegistry(): Check[] {
     { appId: 'qualcanvas', type: 'login', url: 'https://qualcanvas.com/login', expect: ['root', 'script'] },
     { appId: 'qualcanvas', type: 'pricing', url: 'https://qualcanvas.com/pricing', expect: ['root', 'script'] },
 
-    // ThemeSweep (themesweep.com is the marketing site, app is at app.themesweep.app)
+    // ThemeSweep (SPA at themesweep.com with catch-all routing)
     { appId: 'themesweep', type: 'homepage', url: 'https://themesweep.com', expect: ['themesweep', 'shopify'] },
+    { appId: 'themesweep', type: 'login', url: 'https://themesweep.com/login', expect: ['root', 'script'] },
+    { appId: 'themesweep', type: 'register', url: 'https://themesweep.com/signup', expect: ['root', 'script'] },
 
     // SpamShield (Vite SPA)
     { appId: 'spamshield', type: 'homepage', url: 'https://spamshield.dev', expect: ['spamshield', 'root'] },
