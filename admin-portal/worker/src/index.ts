@@ -44,6 +44,14 @@ export default {
     const path = url.pathname;
 
     if (request.method === 'OPTIONS') {
+      // Chat widget endpoints — wildcard CORS (called from all 13 sites)
+      if (path.startsWith('/api/chat') && !path.startsWith('/api/chat/conversations')) {
+        return new Response(null, { headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }});
+      }
       return new Response(null, { headers: CORS_HEADERS });
     }
 
