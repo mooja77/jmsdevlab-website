@@ -53,18 +53,27 @@ export default function Customers() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [stripe, setStripe] = useState<StripeData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [slow, setSlow] = useState(false);
   const [showTest, setShowTest] = useState(false);
   const [activeTab, setActiveTab] = useState<'users' | 'stripe' | 'catalog'>('users');
 
   useEffect(() => {
+    setLoading(true);
+    setSlow(false);
+    const timer = setTimeout(() => setSlow(true), 8000);
     Promise.all([
       api<{ customers: Customer[]; realCustomers: number; testAccounts: number }>(`/api/customers?includeTest=${showTest}`)
         .then(d => setCustomers(d.customers)),
       api<StripeData>('/api/customers/stripe').then(setStripe),
-    ]).finally(() => setLoading(false));
+    ]).finally(() => { setLoading(false); clearTimeout(timer); });
+    return () => clearTimeout(timer);
   }, [showTest]);
 
-  if (loading) return <div className="text-gray-400">Loading customers...</div>;
+  if (loading) return (
+    <div className="text-gray-400 text-sm">
+      {slow ? 'Still loading — fetching live data from all apps...' : 'Loading customers...'}
+    </div>
+  );
 
   const realCustomers = customers.filter(c => !c.isTest);
   const appBreakdown = realCustomers.reduce<Record<string, number>>((acc, c) => {

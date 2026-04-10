@@ -21,9 +21,23 @@ interface AppUsage {
 }
 
 export async function handleUsageRoutes(path: string, url: URL, env: Env): Promise<Response> {
-  // GET /api/usage — aggregate usage from all apps
+  // GET /api/usage — aggregate usage from all apps (cached, refreshed every 15 min)
   if (path === '/api/usage') {
     const period = url.searchParams.get('period') || '30d';
+    const fresh = url.searchParams.get('fresh') === 'true';
+
+    // Try cache first (unless ?fresh=true)
+    if (!fresh) {
+      const cached = await env.DB.prepare(
+        `SELECT data_json, fetched_at FROM snapshot_cache WHERE key = 'snapshot:usage' AND fetched_at > datetime('now', '-20 minutes')`
+      ).first<{ data_json: string; fetched_at: string }>();
+      if (cached) {
+        const data = JSON.parse(cached.data_json);
+        data._cached = cached.fetched_at;
+        return json(data);
+      }
+    }
+
     const apps = await getAllApps(env);
 
     const appUsages: AppUsage[] = [];

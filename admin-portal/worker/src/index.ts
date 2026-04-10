@@ -32,6 +32,7 @@ import { handleErrorRoutes } from './routes/errors';
 import { handleEventIngest } from './routes/ingest';
 import { runCustomerHealthScores } from './cron/customer-health';
 import { runConversionSync } from './cron/conversions';
+import { runSnapshotSync } from './cron/snapshots';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -142,6 +143,7 @@ export default {
           runUptimeChecks(env),
           runCustomerHealthScores(env),
           runConversionSync(env),
+          runSnapshotSync(env),
         ]);
         return json({ status: 'refreshed', timestamp: new Date().toISOString() });
       }
@@ -404,6 +406,7 @@ export default {
     }
     if (minute % 15 === 0) {
       ctx.waitUntil(runDashboardSync(env));
+      ctx.waitUntil(runSnapshotSync(env));
     }
     if (minute % 10 === 0) {
       ctx.waitUntil(runUptimeChecks(env));

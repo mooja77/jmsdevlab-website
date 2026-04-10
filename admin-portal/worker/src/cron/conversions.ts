@@ -14,12 +14,20 @@ function determineStage(user: any): string {
   const mrr = Number(user.mrr || 0);
 
   if (status === 'cancelled' || status === 'canceled' || status === 'deleted' || status === 'expired') return 'churned';
-  // Only mark as "paid" if there's clear evidence of payment (Stripe ID, MRR, or explicit paid status)
   if (hasStripe && (status === 'active' || status === 'paid')) return 'paid';
   if (mrr > 0) return 'paid';
   if (status === 'trialing' || plan === 'trial') return 'trial';
-  // Plans that indicate payment: pro, business, enterprise, team, agency (not free/starter/basic-free)
   if (['pro', 'professional', 'business', 'enterprise', 'team', 'agency'].includes(plan) && status === 'active') return 'paid';
+
+  // Filter stale accounts: created >90 days ago AND never active or inactive >180 days → inactive
+  const now = Date.now();
+  const created = new Date(String(user.createdAt || user.created_at || user.installedAt || '')).getTime();
+  const lastActive = new Date(String(user.lastLoginAt || user.lastActive || user.lastLogin || '')).getTime();
+  const daysSinceCreated = isNaN(created) ? 999 : (now - created) / 86400000;
+  const daysSinceActive = isNaN(lastActive) ? 999 : (now - lastActive) / 86400000;
+
+  if (daysSinceCreated > 90 && daysSinceActive > 180) return 'inactive';
+
   return 'signup';
 }
 

@@ -18,9 +18,15 @@ export async function runHealthChecks(env: Env): Promise<void> {
           'INSERT OR REPLACE INTO health_cache (app_id, status, checked_at) VALUES (?, ?, datetime("now"))'
         ).bind(app.id, 'down').run();
 
-        await env.DB.prepare(
-          'INSERT INTO activity_log (source, event_type, summary) VALUES (?, ?, ?)'
-        ).bind(app.id, 'health_check_failed', `${app.name} health check failed`).run();
+        // Only log first failure — don't flood activity feed with repeated alerts
+        const lastFailure = await env.DB.prepare(
+          `SELECT id FROM activity_log WHERE source = ? AND event_type = 'health_check_failed' AND created_at > datetime('now', '-1 hour') LIMIT 1`
+        ).bind(app.id).first();
+        if (!lastFailure) {
+          await env.DB.prepare(
+            'INSERT INTO activity_log (source, event_type, summary) VALUES (?, ?, ?)'
+          ).bind(app.id, 'health_check_failed', `${app.name} health check failed`).run();
+        }
         return;
       }
 

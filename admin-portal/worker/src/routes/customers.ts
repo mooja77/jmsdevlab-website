@@ -28,28 +28,47 @@ interface Customer {
 // isTestEmail imported from ../lib/filter.ts — single source of truth
 
 export async function handleCustomerRoutes(path: string, url: URL, env: Env): Promise<Response> {
-  // GET /api/customers — all real users from all apps (filtered, no test accounts)
+  // GET /api/customers — all real users from all apps (cached, refreshed every 15 min)
   if (path === '/api/customers' && !path.includes('/stripe')) {
     const showTest = url.searchParams.get('includeTest') === 'true';
+    const fresh = url.searchParams.get('fresh') === 'true';
+
+    // Try cache first (unless ?fresh=true)
+    if (!fresh) {
+      const cached = await env.DB.prepare(
+        `SELECT data_json, fetched_at FROM snapshot_cache WHERE key = 'snapshot:customers' AND fetched_at > datetime('now', '-20 minutes')`
+      ).first<{ data_json: string; fetched_at: string }>();
+
+      if (cached) {
+        const data = JSON.parse(cached.data_json);
+        let customers = data.customers || [];
+        if (!showTest) customers = customers.filter((c: any) => !c.isTest);
+        customers.sort((a: any, b: any) => {
+          if (a.isTest !== b.isTest) return a.isTest ? 1 : -1;
+          return (b.createdAt || '').localeCompare(a.createdAt || '');
+        });
+        return json({
+          customers,
+          total: customers.length,
+          realCustomers: customers.filter((c: any) => !c.isTest).length,
+          testAccounts: customers.filter((c: any) => c.isTest).length,
+          _cached: cached.fetched_at,
+        });
+      }
+    }
+
+    // Live fetch (fallback or ?fresh=true)
     const apps = await getAllApps(env);
-
     const allCustomers: Customer[] = [];
-
-    // Fetch users from each app in parallel (shared function)
     const fetches = apps
       .filter(app => app.has_admin && app.api_base_url)
       .map(async app => {
         const result = await fetchUsersFromApp(env, app);
         if (result.error) return;
-
         for (const u of result.users) {
           if (!showTest && u.isTest) continue;
-
           allCustomers.push({
-            email: u.email,
-            name: u.name,
-            app: app.name,
-            appId: app.id,
+            email: u.email, name: u.name, app: app.name, appId: app.id,
             plan: String(u.plan || u.subscriptionTier || u.subscriptionPlan || u.status || 'unknown'),
             isTest: u.isTest,
             createdAt: String(u.createdAt || u.created_at || ''),
@@ -57,24 +76,14 @@ export async function handleCustomerRoutes(path: string, url: URL, env: Env): Pr
           });
         }
       });
-
     await Promise.allSettled(fetches);
-
-    // Sort: real customers first, then by most recent
     allCustomers.sort((a, b) => {
       if (a.isTest !== b.isTest) return a.isTest ? 1 : -1;
       return (b.createdAt || '').localeCompare(a.createdAt || '');
     });
-
     const realCount = allCustomers.filter(c => !c.isTest).length;
     const testCount = allCustomers.filter(c => c.isTest).length;
-
-    return json({
-      customers: allCustomers,
-      total: allCustomers.length,
-      realCustomers: realCount,
-      testAccounts: testCount,
-    });
+    return json({ customers: allCustomers, total: allCustomers.length, realCustomers: realCount, testAccounts: testCount });
   }
 
   // GET /api/customers/stripe — Stripe-specific data

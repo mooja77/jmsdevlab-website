@@ -108,5 +108,25 @@ export async function handleDeployRoutes(path: string, env: Env): Promise<Respon
     return json({ performance: byApp });
   }
 
+  // GET /api/deploy/history — deployment history
+  if (path === '/api/deploy/history') {
+    const days = 30;
+    const deploys = await env.DB.prepare(
+      `SELECT d.*, a.name as app_name FROM deployments d
+       LEFT JOIN apps a ON d.app_id = a.id
+       WHERE d.created_at > datetime('now', '-' || ? || ' days')
+       ORDER BY d.created_at DESC LIMIT 100`
+    ).bind(days).all();
+    const summary = await env.DB.prepare(`
+      SELECT
+        COUNT(*) as total,
+        SUM(CASE WHEN status = 'success' THEN 1 ELSE 0 END) as successes,
+        SUM(CASE WHEN status = 'failure' THEN 1 ELSE 0 END) as failures,
+        COUNT(DISTINCT app_id) as apps_deployed
+      FROM deployments WHERE created_at > datetime('now', '-' || ? || ' days')
+    `).bind(days).first();
+    return json({ deployments: deploys.results, summary });
+  }
+
   return json({ error: 'Not found' }, 404);
 }

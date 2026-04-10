@@ -20,6 +20,12 @@ import BarkLeads from './pages/BarkLeads';
 import Usage from './pages/Usage';
 import UTMBuilder from './pages/UTMBuilder';
 import Conversions from './pages/Conversions';
+import Status from './pages/Status';
+import ErrorBoundary from './components/ErrorBoundary';
+
+function EB({ children }: { children: React.ReactNode }) {
+  return <ErrorBoundary>{children}</ErrorBoundary>;
+}
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
@@ -48,23 +54,24 @@ export default function App() {
       <Route element={
         authenticated ? <Layout /> : <Navigate to="/login" />
       }>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/apps" element={<Apps />} />
-        <Route path="/apps/:id" element={<AppDetail />} />
-        <Route path="/revenue" element={<Revenue />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/costs" element={<Costs />} />
-        <Route path="/visitors" element={<Visitors />} />
-        <Route path="/leads" element={<Leads />} />
-        <Route path="/bark" element={<BarkLeads />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/usage" element={<Usage />} />
-        <Route path="/infra" element={<Infrastructure />} />
-        <Route path="/matrices" element={<Matrices />} />
-        <Route path="/utm" element={<UTMBuilder />} />
-        <Route path="/conversions" element={<Conversions />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/" element={<EB><Dashboard /></EB>} />
+        <Route path="/apps" element={<EB><Apps /></EB>} />
+        <Route path="/apps/:id" element={<EB><AppDetail /></EB>} />
+        <Route path="/revenue" element={<EB><Revenue /></EB>} />
+        <Route path="/users" element={<EB><Users /></EB>} />
+        <Route path="/customers" element={<EB><Customers /></EB>} />
+        <Route path="/costs" element={<EB><Costs /></EB>} />
+        <Route path="/visitors" element={<EB><Visitors /></EB>} />
+        <Route path="/leads" element={<EB><Leads /></EB>} />
+        <Route path="/bark" element={<EB><BarkLeads /></EB>} />
+        <Route path="/projects" element={<EB><Projects /></EB>} />
+        <Route path="/usage" element={<EB><Usage /></EB>} />
+        <Route path="/infra" element={<EB><Infrastructure /></EB>} />
+        <Route path="/matrices" element={<EB><Matrices /></EB>} />
+        <Route path="/utm" element={<EB><UTMBuilder /></EB>} />
+        <Route path="/conversions" element={<EB><Conversions /></EB>} />
+        <Route path="/settings" element={<EB><Settings /></EB>} />
+        <Route path="/status" element={<EB><Status /></EB>} />
       </Route>
     </Routes>
   );
