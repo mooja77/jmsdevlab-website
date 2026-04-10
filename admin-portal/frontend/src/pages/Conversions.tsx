@@ -4,6 +4,9 @@ import { api } from '../lib/api';
 interface FunnelData {
   stages: Record<string, number>;
   conversions: Record<string, string>;
+  trend?: { date: string; visitors: number; signups: number; trials: number; paid: number }[];
+  byApp?: { appId: string; signups: number; trials: number; paid: number }[];
+  bySource?: { utm_source: string; utm_medium: string; signups: number; paid: number; revenue_cents: number }[];
 }
 
 interface HealthSummary {
@@ -77,8 +80,13 @@ export default function Conversions() {
   const revSummary = revenue?.summary || {};
   const apps = revenue?.apps || [];
 
+  const trend = funnel?.trend || [];
+  const byApp = funnel?.byApp || [];
+  const bySource = funnel?.bySource || [];
+
   // Funnel visualization data
   const funnelStages = [
+    { key: 'visitor', label: 'Visitors (30d)', count: stages.visitor || 0, color: 'bg-gray-500' },
     { key: 'lead', label: 'Leads', count: stages.lead || 0, color: 'bg-blue-500' },
     { key: 'signup', label: 'Sign-ups', count: stages.signup || 0, color: 'bg-indigo-500' },
     { key: 'trial', label: 'Trials', count: stages.trial || 0, color: 'bg-violet-500' },
@@ -105,8 +113,8 @@ export default function Conversions() {
         <KPICard label="MRR" value={`$${(revSummary.totalMrr || 0).toFixed(2)}`} accent />
         <KPICard label="Paying Users" value={revSummary.totalPaying || 0} />
         <KPICard label="Trial Users" value={revSummary.totalTrials || 0} />
-        <KPICard label="Total Leads" value={stages.lead || 0} />
-        <KPICard label="Lead → Paid" value={conv.trialToPaid || '0%'} sub="trial conversion" />
+        <KPICard label="Visitors (30d)" value={stages.visitor || 0} />
+        <KPICard label="Visitor → Signup" value={conv.visitorToSignup || '0%'} sub="conversion rate" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -209,47 +217,89 @@ export default function Conversions() {
         </div>
       )}
 
-      {/* Event Tracking Status */}
-      <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
-        <h2 className="text-sm font-medium text-white mb-1">GA4 Event Tracking</h2>
-        <p className="text-xs text-gray-600 mb-4">Events configured via gtag() across all apps</p>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="text-gray-500 text-left uppercase tracking-wider">
-                <th className="pb-2 pr-3">Event</th>
-                <th className="pb-2 pr-3">SmartCash</th>
-                <th className="pb-2 pr-3">ProfitShield</th>
-                <th className="pb-2 pr-3">TaxMatch</th>
-                <th className="pb-2 pr-3">SpamShield</th>
-                <th className="pb-2 pr-3">ThemeSweep</th>
-                <th className="pb-2 pr-3">StaffHub</th>
-                <th className="pb-2 pr-3">QualCanvas</th>
-                <th className="pb-2 pr-3">GrowthMap</th>
-                <th className="pb-2">PitchSide</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { event: 'sign_up', apps: [1,1,1,1,1,1,1,1,1] },
-                { event: 'login', apps: [1,1,1,1,1,1,1,1,1] },
-                { event: 'pricing_viewed', apps: [0,1,1,0,0,0,0,0,0] },
-                { event: 'purchase', apps: [0,0,0,0,0,0,0,0,0] },
-                { event: 'generate_lead', apps: [0,0,0,0,0,0,0,0,0] },
-              ].map(row => (
-                <tr key={row.event} className="border-t border-gray-800/30">
-                  <td className="py-1.5 pr-3 text-gray-300 font-mono">{row.event}</td>
-                  {row.apps.map((v, i) => (
-                    <td key={i} className="py-1.5 pr-3 text-center">
-                      {v ? <span className="text-emerald-400">✓</span> : <span className="text-gray-700">—</span>}
-                    </td>
-                  ))}
+      {/* Per-App Funnel Breakdown */}
+      {byApp.length > 0 && (
+        <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+          <h2 className="text-sm font-medium text-white mb-4">Funnel by App</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gray-500 text-left text-xs uppercase tracking-wider">
+                  <th className="pb-2 pr-4">App</th>
+                  <th className="pb-2 pr-4 text-right">Sign-ups</th>
+                  <th className="pb-2 pr-4 text-right">Trials</th>
+                  <th className="pb-2 text-right">Paid</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {byApp.filter(a => a.signups > 0 || a.trials > 0 || a.paid > 0).map(app => (
+                  <tr key={app.appId} className="border-t border-gray-800/30">
+                    <td className="py-2 pr-4 text-gray-300">{app.appId}</td>
+                    <td className="py-2 pr-4 text-right font-mono text-indigo-400">{app.signups}</td>
+                    <td className="py-2 pr-4 text-right font-mono text-violet-400">{app.trials}</td>
+                    <td className="py-2 text-right font-mono text-emerald-400">{app.paid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* UTM Attribution */}
+      {bySource.length > 0 && (
+        <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+          <h2 className="text-sm font-medium text-white mb-4">Channel Attribution</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gray-500 text-left text-xs uppercase tracking-wider">
+                  <th className="pb-2 pr-4">Source</th>
+                  <th className="pb-2 pr-4">Medium</th>
+                  <th className="pb-2 pr-4 text-right">Sign-ups</th>
+                  <th className="pb-2 pr-4 text-right">Paid</th>
+                  <th className="pb-2 text-right">Revenue</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bySource.map((s, i) => (
+                  <tr key={i} className="border-t border-gray-800/30">
+                    <td className="py-2 pr-4 text-gray-300">{s.utm_source || '(direct)'}</td>
+                    <td className="py-2 pr-4 text-gray-500">{s.utm_medium || '—'}</td>
+                    <td className="py-2 pr-4 text-right font-mono text-indigo-400">{s.signups}</td>
+                    <td className="py-2 pr-4 text-right font-mono text-emerald-400">{s.paid}</td>
+                    <td className="py-2 text-right font-mono text-emerald-400">
+                      {s.revenue_cents ? `$${(s.revenue_cents / 100).toFixed(2)}` : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Conversion Trend (last 30 days) */}
+      {trend.length > 0 && (
+        <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+          <h2 className="text-sm font-medium text-white mb-4">Daily Conversions (30 days)</h2>
+          <div className="flex items-end gap-[2px] h-32">
+            {trend.map((d, i) => {
+              const maxV = Math.max(...trend.map(t => t.signups + t.trials + t.paid), 1);
+              const h = ((d.signups + d.trials + d.paid) / maxV) * 100;
+              return (
+                <div key={i} className="flex-1 flex flex-col justify-end" title={`${d.date}: ${d.signups}s ${d.trials}t ${d.paid}p`}>
+                  <div className="bg-indigo-500/60 rounded-t" style={{ height: `${Math.max(h, 2)}%` }} />
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex justify-between mt-1">
+            <span className="text-[10px] text-gray-600">{trend[0]?.date}</span>
+            <span className="text-[10px] text-gray-600">{trend[trend.length - 1]?.date}</span>
+          </div>
+        </div>
+      )}
 
       {/* Recent Revenue Events */}
       <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
