@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 
 export default function Settings() {
   const [refreshing, setRefreshing] = useState(false);
   const [message, setMessage] = useState('');
+  const [appCount, setAppCount] = useState({ total: 0, healthy: 0 });
+
+  useEffect(() => {
+    api<{ summary: { totalApps: number; healthy: number } }>('/api/aggregate/dashboard')
+      .then(d => setAppCount({ total: d.summary?.totalApps || 0, healthy: d.summary?.healthy || 0 }))
+      .catch(() => {});
+  }, []);
 
   async function refreshCache() {
     setRefreshing(true);
@@ -64,7 +71,7 @@ export default function Settings() {
           </div>
           <div className="flex justify-between py-2">
             <span className="text-gray-400">Connected Apps</span>
-            <span className="text-gray-200">10 / 12</span>
+            <span className="text-gray-200">{appCount.healthy} / {appCount.total}</span>
           </div>
         </div>
       </div>

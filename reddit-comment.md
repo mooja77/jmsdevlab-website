@@ -1,0 +1,702 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+    - generic [ref=e4]: Skip to main content
+  - generic [ref=e7]:
+    - generic:
+      - generic:
+        - generic [ref=e8]:
+          - generic: "How are small businesses reducing operational costs effectively : r/smallbusiness"
+        - banner [ref=e11]:
+          - navigation [ref=e12]:
+            - link "Home" [ref=e16] [cursor=pointer]:
+              - /url: /
+              - img [ref=e18]
+            - search [ref=e35]:
+              - generic [ref=e37]:
+                - img [ref=e40]
+                - generic "Remove r/smallbusiness filter and expand search to all of Reddit" [ref=e43] [cursor=pointer]:
+                  - button [pressed] [ref=e44]:
+                    - img [ref=e46]
+                    - generic [ref=e49]: r/smallbusiness
+                  - img [ref=e51]
+                - textbox "Remove r/smallbusiness filter and expand search to all of Reddit" [ref=e54]:
+                  - /placeholder: Search in r/smallbusiness
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - link "Advertise on Reddit" [ref=e62] [cursor=pointer]:
+                  - /url: https://ads.reddit.com/register?utm_source=web3x_consumer&utm_name=nav_cta
+                  - img [ref=e65]
+                  - generic [ref=e67]:
+                    - generic: Advertise on Reddit
+                - button "Open chat" [ref=e73] [cursor=pointer]:
+                  - img [ref=e76]
+                  - generic [ref=e78]:
+                    - generic: Open chat
+                - link "Create post" [ref=e83] [cursor=pointer]:
+                  - /url: /r/smallbusiness/submit/
+                  - generic [ref=e84]:
+                    - img [ref=e86]
+                    - generic [ref=e88]: Create
+                  - generic [ref=e89]:
+                    - generic: Create post
+                - link "Open inbox" [ref=e93] [cursor=pointer]:
+                  - /url: /notifications
+                  - img [ref=e96]
+                  - generic [ref=e98]:
+                    - generic: Open inbox
+              - button "User Avatar Expand user menu" [ref=e103] [cursor=pointer]:
+                - img "User Avatar" [ref=e111]
+                - generic [ref=e113]:
+                  - generic: Expand user menu
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - generic:
+                - generic:
+                  - link "Skip to Navigation" [ref=e117] [cursor=pointer]:
+                    - /url: "#left-sidebar-container"
+                  - link "Skip to Right Sidebar" [ref=e118] [cursor=pointer]:
+                    - /url: "#right-sidebar-container"
+            - generic [ref=e119]:
+              - main [ref=e120]:
+                - 'generic "How are small businesses reducing operational costs effectively : r/smallbusiness"'
+                - generic [ref=e121]:
+                  - generic [ref=e122]:
+                    - generic [ref=e123]:
+                      - button "Back" [ref=e125] [cursor=pointer]:
+                        - img [ref=e128]
+                        - generic [ref=e130]:
+                          - generic: Back
+                      - link "Go to smallbusiness" [ref=e133] [cursor=pointer]:
+                        - /url: /r/smallbusiness/
+                        - img [ref=e137]
+                        - generic [ref=e139]:
+                          - generic: Go to smallbusiness
+                      - group [ref=e140]:
+                        - generic [ref=e141]:
+                          - link "r/smallbusiness" [ref=e145] [cursor=pointer]:
+                            - /url: /r/smallbusiness/
+                          - generic [ref=e146]: •
+                          - time [ref=e148]: 19m ago
+                        - 'link "Author: Complete_Word6158" [ref=e154] [cursor=pointer]':
+                          - /url: /user/Complete_Word6158/
+                          - text: Complete_Word6158
+                    - button "Open user actions" [ref=e159] [cursor=pointer]:
+                      - img [ref=e162]
+                  - 'heading "Post Title: How are small businesses reducing operational costs effectively" [level=1] [ref=e166]': How are small businesses reducing operational costs effectively
+                  - generic [ref=e170]:
+                    - paragraph [ref=e171]: Many small businesses struggle with managing operations, hiring employees, and controlling costs.
+                    - paragraph [ref=e172]: I have been exploring different ways to improve efficiency without increasing expenses. One approach that seems effective is outsourcing certain tasks like accounting, data management, and operations.
+                    - paragraph [ref=e173]: This helps reduce costs, save time, and allows businesses to focus more on core activities.
+                    - paragraph [ref=e174]: I wanted to ask other business owners here
+                    - paragraph [ref=e175]:
+                      - text: What methods have you used to reduce operational costs
+                      - text: Have you tried outsourcing and did it work for you
+                  - generic "Actions available for this post" [ref=e176]:
+                    - generic [ref=e179]:
+                      - button "Upvote" [ref=e180] [cursor=pointer]:
+                        - img [ref=e182]
+                        - generic [ref=e184]:
+                          - generic: Upvote
+                      - generic [ref=e186]: "0"
+                      - button "Downvote" [ref=e187] [cursor=pointer]:
+                        - img [ref=e189]
+                        - generic [ref=e191]:
+                          - generic: Downvote
+                    - button "4 Go to comments" [ref=e192] [cursor=pointer]:
+                      - generic [ref=e193]:
+                        - img [ref=e195]
+                        - generic [ref=e198]: "4"
+                      - generic [ref=e199]:
+                        - generic: Go to comments
+                    - button "Give award" [ref=e201] [cursor=pointer]:
+                      - img [ref=e204]
+                    - button "Share" [ref=e209] [cursor=pointer]:
+                      - generic [ref=e210]:
+                        - img [ref=e212]
+                        - generic [ref=e214]: Share
+                - generic "Language is still the bottleneck for Shopify stores." [ref=e215]:
+                  - generic [ref=e216]:
+                    - 'generic "Advertisement: Language is still the bottleneck for Shopify stores." [ref=e217]':
+                      - 'link "Advertisement: Language is still the bottleneck for Shopify stores." [ref=e218] [cursor=pointer]':
+                        - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                    - generic [ref=e219]:
+                      - generic [ref=e220]:
+                        - link "u/Weglot avatar Weglot" [ref=e223] [cursor=pointer]:
+                          - /url: /user/Weglot/
+                          - img "u/Weglot avatar" [ref=e228]
+                          - generic [ref=e229]: Weglot
+                        - generic [ref=e230]: •
+                        - link "Promoted" [ref=e232] [cursor=pointer]:
+                          - /url: /user/Weglot/
+                          - generic [ref=e233]: Promoted
+                        - link [ref=e235] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                      - button "Open user actions" [ref=e240] [cursor=pointer]:
+                        - img [ref=e243]
+                    - generic [ref=e246]:
+                      - generic [ref=e247]:
+                        - link "Language is still the bottleneck for Shopify stores." [ref=e249] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                          - generic: Language is still the bottleneck for Shopify stores.
+                        - generic [ref=e250]:
+                          - link [ref=e252] [cursor=pointer]:
+                            - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                          - generic [ref=e253]:
+                            - link "Learn More" [ref=e255] [cursor=pointer]:
+                              - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                              - generic [ref=e257]:
+                                - generic: Learn More
+                            - link "weglot.com" [ref=e260] [cursor=pointer]:
+                              - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                              - generic: weglot.com
+                      - 'link "Thumbnail image: Language is still the bottleneck for Shopify stores." [ref=e263] [cursor=pointer]':
+                        - /url: https://alb.reddit.com/cr?za=TNO3rOeGSkV-URAfDK52nMrdM6uYWkG5mlQXvMRAXcLTQylsOXAgRYBm6s9Vl0_VpQTpXIxPPFp1Zlc8sELtMofnIiK-s1nPvfPgq4dqY-EHg6-CDCgXQZyfqOaiD3F-pmLRap1VkMBR-TbgG3LvfRVymIEAEgnIcD7zXiXFjVPM_t7nT1aVvClRvtOie1cZgroDsSEWoJaM0Kmri9MtanHZMc-3sIkFatqCZ3SmnP9nZjEjSXshfccbio9eZA_CmjZGSA-djePS0WMci_Jqk3v_vv4sFtEZeDj6ZU8SYC4-FqKoa6k7odIUMOtguTk60jQWPLoErq8G2snUacxZCrMdbCKe3_-ZVnkSq9LnDBMQbQVPFbPMbzPfwd7ffkWQ6KZ5Fl2QZqWZx4BLIL193Mzi8_K_ScEPerpiLVwnadiryrkVs4AY2fkL1-LI5d0hrUEdVnvmJM0erPuHuorO1XOgqKuWGaJJTcQsvGlA0c9A5nGjGQjY9EIFhUgIuNLdUyu2IQf1pZsEYDwzy8OhaWVAqej66PwK9UyE2SetWBsND8NvY_RqFX_Tl51Sr1zijkWFWA9SemzWoq1N9RhTcbYZ4uJ1c1OSIp2OGKE3PK2TxXYg0Rjc2eO0vTGOnAerKlA7OcXkRg1W89iYrFxFz3x_mjTdIhVlQ3LcpPZxDJAJnICKmhhOeQvfsoLtg_nIeV6L4Zpx9353iDrQOcLUWtUXv_KSXkuCsS3fcJ6verxSDOCqnLL9CucgEcWdE1f4yQ&zp=spBkfGUH1qiRribSqKOoba81kUDZcSv_rtGEs4jebd7RQeExjBCXX1odyO5cFRUlnaK-qCFPQpGLPWypzMndrldMEv449rGZwkDCB2f_OFjcy2NJ9LyFcpiFqFQFhnLK67dJAR2wGrKS9AoqdYxWEAAoXPrXNNhWpK_6y7LbWfELpM-QSRNICuBssmIWXNyuYXBUbOWyFj6Wu9SdJET-PCPRkbuCTzfbFRivgW3N9yQS7PjV4Icg7f9hToMQTPSAHDo1vy_ZF3F9xqkzMS-slra8NEajNnP8SSWoCh-7lplG11BK70c55N4hEUx-v00vIsr5i89LtW7Xwb27aPclz9kRRqnoHU1pLCA
+                        - 'img "Thumbnail image: Language is still the bottleneck for Shopify stores." [ref=e264]'
+                - generic [ref=e267]:
+                  - generic:
+                    - textbox [ref=e277]:
+                      - /placeholder: Join the conversation
+                    - generic [ref=e283]:
+                      - generic [ref=e285]:
+                        - generic [ref=e286]: "Sort by:"
+                        - button "Sort by Best" [ref=e291] [cursor=pointer]:
+                          - generic [ref=e293]: Best
+                      - button "Search Comments Expand comment search" [ref=e300] [cursor=pointer]:
+                        - generic [ref=e301]:
+                          - img [ref=e304]
+                          - generic [ref=e307]: Search Comments
+                        - generic [ref=e308]:
+                          - generic: Expand comment search
+                - region "Comments" [ref=e312]:
+                  - heading "Comments Section" [level=1] [ref=e313]
+                  - generic:
+                    - article "Comment from AutoModerator 19 minutes ago" [ref=e315]:
+                      - generic "Metadata for AutoModerator's comment" [ref=e316]:
+                        - button [ref=e318] [cursor=pointer]:
+                          - img [ref=e321]
+                        - generic [ref=e327]:
+                          - link "AutoModerator's profile" [ref=e330] [cursor=pointer]:
+                            - /url: /user/AutoModerator/
+                            - text: AutoModerator
+                          - generic "Comment distinguished by moderator" [ref=e333]: MOD
+                          - generic [ref=e334]: •
+                          - link "19m ago" [ref=e335] [cursor=pointer]:
+                            - /url: /r/smallbusiness/comments/1s1f356/comment/oc05ic3/
+                            - time [ref=e336]: 19m ago
+                          - generic [ref=e337]:
+                            - generic [ref=e338]: •
+                            - img "Locked comment" [ref=e339]
+                            - img "Stickied comment" [ref=e341]
+                    - article "Comment from JMSDevLab 7 minutes ago" [ref=e345]:
+                      - generic "Metadata for JMSDevLab's comment" [ref=e346]:
+                        - link "JMSDevLab's profile --- avatar" [ref=e352] [cursor=pointer]:
+                          - /url: /user/JMSDevLab/
+                          - img "u/JMSDevLab avatar" [ref=e355]
+                        - generic [ref=e360]:
+                          - link "JMSDevLab's profile" [ref=e364] [cursor=pointer]:
+                            - /url: /user/JMSDevLab/
+                            - text: JMSDevLab
+                          - generic [ref=e365]: •
+                          - link "7m ago" [ref=e366] [cursor=pointer]:
+                            - /url: /r/smallbusiness/comments/1s1f356/comment/oc07ert/
+                            - time [ref=e367]: 7m ago
+                      - generic [ref=e369]:
+                        - generic [ref=e375]:
+                          - paragraph [ref=e376]: Ran a multi-site retail business for 22 years. The biggest cost reductions I found weren't from outsourcing — they were from eliminating things that shouldn't have existed in the first place.
+                          - paragraph [ref=e377]: "Three that made the biggest difference:"
+                          - list [ref=e378]:
+                            - listitem [ref=e379]:
+                              - paragraph [ref=e380]: Audit every recurring subscription and service. We found we were paying for three different things that did overlapping jobs. Cancelled two, saved about 4K a year without noticing.
+                            - listitem [ref=e381]:
+                              - paragraph [ref=e382]: Cross-train your staff. When one person is the only one who can do a task, you end up paying overtime or hiring extra just to cover gaps. We got everyone competent in at least two roles. Scheduling became much easier and cheaper.
+                            - listitem [ref=e383]:
+                              - paragraph [ref=e384]: Stop doing things manually that should be automated. We used to spend hours every week on admin that turned out to be solvable with basic tools. The time cost of manual processes is invisible until you actually measure it.
+                          - paragraph [ref=e385]: Outsourcing can help for specialist tasks like accounting, but for core operations I'd focus on simplifying first. Most small businesses have more waste in their existing processes than they realise.
+                        - generic [ref=e393]:
+                          - generic [ref=e395]:
+                            - button "Upvote" [pressed] [ref=e396] [cursor=pointer]:
+                              - img [ref=e398]
+                              - generic [ref=e400]:
+                                - generic: Upvote
+                            - generic [ref=e402]: "1"
+                            - button "Downvote" [ref=e403] [cursor=pointer]:
+                              - img [ref=e405]
+                              - generic [ref=e407]:
+                                - generic: Downvote
+                          - button "Reply" [ref=e409] [cursor=pointer]:
+                            - generic [ref=e410]:
+                              - img [ref=e412]
+                              - generic [ref=e414]: Reply
+                          - button "Give award" [ref=e416] [cursor=pointer]:
+                            - generic [ref=e417]:
+                              - img [ref=e419]
+                              - generic [ref=e422]: Award
+                          - button "Share" [ref=e425] [cursor=pointer]:
+                            - generic [ref=e426]:
+                              - img [ref=e428]
+                              - generic [ref=e430]: Share
+                          - link "1" [ref=e431] [cursor=pointer]:
+                            - /url: /commentstats/t1_oc07ert
+                            - button "1" [ref=e432]:
+                              - generic [ref=e433]:
+                                - img [ref=e435]
+                                - generic [ref=e437]: "1"
+                          - button "Open user actions" [ref=e441] [cursor=pointer]:
+                            - img [ref=e444]
+              - generic [ref=e446]:
+                - complementary "Community information" [ref=e450]:
+                  - generic [ref=e451]:
+                    - generic [ref=e453]:
+                      - heading "Community Info Section" [level=1] [ref=e454]
+                      - generic [ref=e455]:
+                        - link "r/smallbusiness" [ref=e457] [cursor=pointer]:
+                          - /url: /r/smallbusiness/
+                          - generic [ref=e458]: r/smallbusiness
+                        - button "Joined" [ref=e462] [cursor=pointer]
+                      - generic [ref=e463]:
+                        - generic [ref=e464]: "smallbusiness: Questions about starting, owning and growing a small business"
+                        - generic [ref=e465]: This sub is not for advertisements! Questions and answers about starting, owning, and growing a small business only.
+                        - generic [ref=e466]:
+                          - generic [ref=e468]:
+                            - img [ref=e469]
+                            - text: Created Jan 8, 2009
+                          - generic [ref=e472]:
+                            - img [ref=e473]
+                            - text: Public
+                        - button "Community Guide" [ref=e476] [cursor=pointer]:
+                          - generic [ref=e477]:
+                            - img [ref=e479]
+                            - generic [ref=e482]: Community Guide
+                      - generic [ref=e483]:
+                        - generic [ref=e484]:
+                          - strong [ref=e486]:
+                            - generic: 456K
+                          - generic [ref=e487]: Weekly visitors
+                        - generic [ref=e488]:
+                          - strong [ref=e490]:
+                            - generic: 17K
+                          - generic [ref=e491]: Weekly contributions
+                    - separator [ref=e492]
+                    - generic [ref=e493]:
+                      - heading "r/smallbusiness Rules" [level=2] [ref=e495]:
+                        - generic [ref=e496]: r/smallbusiness Rules
+                      - generic [ref=e497]:
+                        - group [ref=e499]:
+                          - generic "1 Post only questions about small business." [ref=e500] [cursor=pointer]:
+                            - generic [ref=e502]:
+                              - generic [ref=e503]:
+                                - generic [ref=e505]: "1"
+                                - heading "Post only questions about small business." [level=2] [ref=e509]
+                              - img [ref=e512]
+                        - group [ref=e515]:
+                          - generic "2 No blog links, blog content, or SEO shaping." [ref=e516] [cursor=pointer]:
+                            - generic [ref=e518]:
+                              - generic [ref=e519]:
+                                - generic [ref=e521]: "2"
+                                - heading "No blog links, blog content, or SEO shaping." [level=2] [ref=e525]
+                              - img [ref=e528]
+                        - group [ref=e531]:
+                          - generic "3 No business promotion posts" [ref=e532] [cursor=pointer]:
+                            - generic [ref=e534]:
+                              - generic [ref=e535]:
+                                - generic [ref=e537]: "3"
+                                - heading "No business promotion posts" [level=2] [ref=e541]
+                              - img [ref=e544]
+                        - generic [ref=e547]:
+                          - generic [ref=e549]: "4"
+                          - heading "No personal attacks." [level=2] [ref=e553]
+                        - group [ref=e555]:
+                          - generic "5 No market research posts - not for developing apps, not for AI, not for business offerings" [ref=e556] [cursor=pointer]:
+                            - generic [ref=e558]:
+                              - generic [ref=e559]:
+                                - generic [ref=e561]: "5"
+                                - heading "No market research posts - not for developing apps, not for AI, not for business offerings" [level=2] [ref=e565]
+                              - img [ref=e568]
+                    - separator [ref=e570]
+                    - generic [ref=e571]:
+                      - heading "Related subreddits" [level=2] [ref=e573]:
+                        - generic [ref=e574]: Related subreddits
+                      - generic [ref=e576]:
+                        - img [ref=e581]
+                        - generic [ref=e583]:
+                          - link "r/advancedentrepreneur" [ref=e586] [cursor=pointer]:
+                            - /url: /r/advancedentrepreneur
+                          - generic [ref=e587]: 70,950 members
+                      - generic [ref=e589]:
+                        - img [ref=e594]
+                        - generic [ref=e596]:
+                          - link "r/Bookkeeping" [ref=e599] [cursor=pointer]:
+                            - /url: /r/Bookkeeping
+                          - generic [ref=e600]: 75,701 members
+                      - generic [ref=e602]:
+                        - img [ref=e607]
+                        - generic [ref=e609]:
+                          - link "r/business" [ref=e612] [cursor=pointer]:
+                            - /url: /r/business
+                          - generic [ref=e613]: 2,551,253 members
+                      - generic [ref=e620]:
+                        - link "r/Entrepreneur" [ref=e623] [cursor=pointer]:
+                          - /url: /r/Entrepreneur
+                        - generic [ref=e624]: 5,117,354 members
+                      - generic [ref=e631]:
+                        - link "r/Entrepreneurship" [ref=e634] [cursor=pointer]:
+                          - /url: /r/Entrepreneurship
+                        - generic [ref=e635]: 127,038 members
+                      - generic [ref=e642]:
+                        - link "r/EntrepreneurRideAlong" [ref=e645] [cursor=pointer]:
+                          - /url: /r/EntrepreneurRideAlong
+                        - generic [ref=e646]: 670,213 members
+                      - generic [ref=e653]:
+                        - link "r/growmybusiness" [ref=e656] [cursor=pointer]:
+                          - /url: /r/growmybusiness
+                        - generic [ref=e657]: 92,439 members
+                      - generic [ref=e659]:
+                        - img [ref=e664]
+                        - generic [ref=e666]:
+                          - link "r/indiebiz" [ref=e669] [cursor=pointer]:
+                            - /url: /r/indiebiz
+                          - generic [ref=e670]: 33,161 members
+                    - separator [ref=e671]
+                    - generic [ref=e672]:
+                      - heading "Small business network" [level=2] [ref=e674]:
+                        - generic [ref=e675]: Small business network
+                      - generic [ref=e682]:
+                        - link "r/AdspaceMarket" [ref=e685] [cursor=pointer]:
+                          - /url: /r/AdspaceMarket
+                        - generic [ref=e686]: 4,623 members
+                      - generic [ref=e693]:
+                        - link "r/ArtisanGifts" [ref=e696] [cursor=pointer]:
+                          - /url: /r/ArtisanGifts
+                        - generic [ref=e697]: 195,860 members
+                      - generic [ref=e704]:
+                        - link "r/techsupport" [ref=e707] [cursor=pointer]:
+                          - /url: /r/techsupport
+                        - generic [ref=e708]: 3,349,606 members
+                    - separator [ref=e709]
+                    - generic [ref=e710]:
+                      - heading "Location Specific Subs" [level=2] [ref=e712]:
+                        - generic [ref=e713]: Location Specific Subs
+                      - generic [ref=e720]:
+                        - link "r/canadasmallbusiness" [ref=e723] [cursor=pointer]:
+                          - /url: /r/canadasmallbusiness
+                        - generic [ref=e724]: 19,443 members
+                    - separator [ref=e725]
+                    - generic [ref=e726]:
+                      - heading "Moderators" [level=2] [ref=e728]:
+                        - generic [ref=e729]: Moderators
+                      - link "Message Mods" [ref=e731] [cursor=pointer]:
+                        - /url: https://www.reddit.com/message/compose?to=r/smallbusiness
+                        - generic [ref=e732]:
+                          - img [ref=e734]
+                          - generic [ref=e736]: Message Mods
+                      - generic [ref=e738]:
+                        - img "u/Charice avatar" [ref=e743]
+                        - link "u/Charice" [ref=e747] [cursor=pointer]:
+                          - /url: /user/Charice/
+                      - generic [ref=e749]:
+                        - img "u/BigSlowTarget avatar" [ref=e754]
+                        - generic [ref=e757]:
+                          - link "u/BigSlowTarget" [ref=e758] [cursor=pointer]:
+                            - /url: /user/BigSlowTarget/
+                          - 'generic "Flair: Moderator" [ref=e760]': Moderator
+                      - generic [ref=e762]:
+                        - img "u/purge-user avatar" [ref=e767]
+                        - link "u/purge-user" [ref=e771] [cursor=pointer]:
+                          - /url: /user/purge-user/
+                      - generic [ref=e773]:
+                        - img "u/floodassistant avatar" [ref=e778]
+                        - link "u/floodassistant" [ref=e782] [cursor=pointer]:
+                          - /url: /user/floodassistant/
+                      - generic [ref=e784]:
+                        - img "u/sub-stats-bot avatar" [ref=e789]
+                        - link "u/sub-stats-bot" [ref=e793] [cursor=pointer]:
+                          - /url: /user/sub-stats-bot/
+                      - generic [ref=e795]:
+                        - img "u/manipulation-pi avatar" [ref=e800]
+                        - link "u/manipulation-pi" [ref=e804] [cursor=pointer]:
+                          - /url: /user/manipulation-pi/
+                      - generic [ref=e806]:
+                        - img "u/admin-tattler avatar" [ref=e811]
+                        - link "u/admin-tattler" [ref=e815] [cursor=pointer]:
+                          - /url: /user/admin-tattler/
+                      - generic [ref=e817]:
+                        - img "u/spotlight-app avatar" [ref=e822]
+                        - generic [ref=e825]:
+                          - link "u/spotlight-app" [ref=e826] [cursor=pointer]:
+                            - /url: /user/spotlight-app/
+                          - 'generic "Flair: Mod Bot 🤖" [ref=e828]': Mod Bot 🤖
+                      - generic [ref=e830]:
+                        - img "u/bot-bouncer avatar" [ref=e835]
+                        - link "u/bot-bouncer" [ref=e839] [cursor=pointer]:
+                          - /url: /user/bot-bouncer/
+                      - link "View all moderators" [ref=e840] [cursor=pointer]:
+                        - /url: /mod/smallbusiness/moderators/
+                        - generic [ref=e842]: View all moderators
+                    - separator [ref=e843]
+                    - generic [ref=e844]:
+                      - heading "Installed Apps" [level=2] [ref=e846]:
+                        - generic [ref=e847]: Installed Apps
+                      - link "Subreddit Statistics" [ref=e848] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/sub-stats-bot
+                        - generic [ref=e851]: Subreddit Statistics
+                        - img [ref=e854]
+                      - link "Admin Tattler" [ref=e856] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/admin-tattler
+                        - generic [ref=e859]: Admin Tattler
+                        - img [ref=e862]
+                      - link "Flooding Assistant" [ref=e864] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/floodassistant
+                        - generic [ref=e867]: Flooding Assistant
+                        - img [ref=e870]
+                      - link "Manipulation Detector" [ref=e872] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/manipulation-pi
+                        - generic [ref=e875]: Manipulation Detector
+                        - img [ref=e878]
+                      - link "Spotlight" [ref=e880] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/spotlight-app
+                        - generic [ref=e883]: Spotlight
+                        - img [ref=e886]
+                      - link "Remove Macro" [ref=e888] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/purge-user
+                        - generic [ref=e891]: Remove Macro
+                        - img [ref=e894]
+                      - link "Bot Bouncer" [ref=e896] [cursor=pointer]:
+                        - /url: https://developers.reddit.com/apps/bot-bouncer
+                        - generic [ref=e899]: Bot Bouncer
+                        - img [ref=e902]
+                - generic [ref=e905]:
+                  - link "Reddit Rules" [ref=e908] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/policies/content-policy
+                  - link "Privacy Policy" [ref=e911] [cursor=pointer]:
+                    - /url: https://www.reddit.com/policies/privacy-policy
+                  - link "User Agreement" [ref=e914] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/policies/user-agreement
+                  - link "Accessibility" [ref=e917] [cursor=pointer]:
+                    - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+                  - link "Reddit, Inc. © 2026. All rights reserved." [ref=e919] [cursor=pointer]:
+                    - /url: https://redditinc.com
+          - generic [ref=e921]:
+            - button "Collapse Navigation" [ref=e924] [cursor=pointer]:
+              - img [ref=e927]
+              - generic [ref=e929]:
+                - generic: Collapse Navigation
+            - navigation "Primary" [ref=e934]:
+              - generic [ref=e936]:
+                - link "Home" [ref=e938] [cursor=pointer]:
+                  - /url: /?feed=home
+                  - generic [ref=e939]:
+                    - img [ref=e941]
+                    - generic [ref=e944]: Home
+                - link "Popular" [ref=e946] [cursor=pointer]:
+                  - /url: /r/popular/
+                  - generic [ref=e947]:
+                    - img [ref=e949]
+                    - generic [ref=e952]: Popular
+                - link "News" [ref=e953] [cursor=pointer]:
+                  - /url: /?feed=news
+                  - generic [ref=e954]:
+                    - img [ref=e956]
+                    - generic [ref=e960]: News
+                - link "Explore" [ref=e962] [cursor=pointer]:
+                  - /url: /explore/
+                  - generic [ref=e963]:
+                    - img [ref=e965]
+                    - generic [ref=e968]: Explore
+                - button "Start a community" [ref=e969] [cursor=pointer]:
+                  - generic [ref=e970]:
+                    - img [ref=e972]
+                    - generic [ref=e975]: Start a community
+              - separator [ref=e976]
+              - group [ref=e980]:
+                - generic "GAMES ON REDDIT" [ref=e981] [cursor=pointer]:
+                  - generic [ref=e982]:
+                    - generic [ref=e987]:
+                      - generic: GAMES ON REDDIT
+                    - img [ref=e990]
+                - generic [ref=e993]:
+                  - link "Featured Game" [ref=e997] [cursor=pointer]:
+                    - /url: https://www.reddit.com/r/BattleBirds/comments/1rzphjk?entry_point=games_drawer_featured_game
+                    - generic [ref=e999]:
+                      - generic [ref=e1003]:
+                        - heading "BattleBirds" [level=3] [ref=e1004]
+                        - paragraph [ref=e1005]: Guard your nest
+                      - generic [ref=e1008]: NEW
+                  - generic [ref=e1010]:
+                    - link "Color Puzzle" [ref=e1012] [cursor=pointer]:
+                      - /url: https://www.reddit.com/r/ColorPuzzleGame/comments/1s11pfj?entry_point=games_drawer_personalized_game
+                      - generic [ref=e1013]:
+                        - img [ref=e1018]
+                        - generic [ref=e1022]: Color Puzzle
+                    - link "Arrows Puzzle" [ref=e1024] [cursor=pointer]:
+                      - /url: https://www.reddit.com/r/arrowspuzzle/comments/1s181hx?entry_point=games_drawer_personalized_game
+                      - generic [ref=e1025]:
+                        - img [ref=e1030]
+                        - generic [ref=e1034]: Arrows Puzzle
+                    - link "Spottit" [ref=e1036] [cursor=pointer]:
+                      - /url: https://www.reddit.com/r/Spottit/comments/1s0ec0s?entry_point=games_drawer_personalized_game
+                      - generic [ref=e1037]:
+                        - img [ref=e1042]
+                        - generic [ref=e1046]: Spottit
+                  - link "Discover More" [ref=e1048] [cursor=pointer]:
+                    - /url: /r/GamesOnReddit
+                    - generic [ref=e1049]:
+                      - img [ref=e1051]
+                      - generic [ref=e1055]: Discover More
+              - separator [ref=e1056]
+              - group [ref=e1058]:
+                - generic "CUSTOM FEEDS" [ref=e1059] [cursor=pointer]:
+                  - generic [ref=e1061]:
+                    - generic [ref=e1064]: CUSTOM FEEDS
+                    - img [ref=e1067]
+                - button "Create Custom Feed" [ref=e1073] [cursor=pointer]:
+                  - generic [ref=e1074]:
+                    - img [ref=e1076]
+                    - generic [ref=e1079]: Create Custom Feed
+              - separator [ref=e1080]
+              - generic [ref=e1082]:
+                - group [ref=e1084]:
+                  - generic "RECENT" [ref=e1085]:
+                    - generic [ref=e1087] [cursor=pointer]:
+                      - generic [ref=e1091]: RECENT
+                      - img [ref=e1094]
+                  - link "r/smallbusiness" [ref=e1098] [cursor=pointer]:
+                    - /url: /r/smallbusiness/
+                    - generic [ref=e1099]:
+                      - img [ref=e1105]
+                      - generic [ref=e1109]: r/smallbusiness
+                - separator [ref=e1110]
+              - group [ref=e1112]:
+                - generic "COMMUNITIES" [ref=e1113] [cursor=pointer]:
+                  - generic [ref=e1115]:
+                    - generic [ref=e1118]: COMMUNITIES
+                    - img [ref=e1121]
+                - generic [ref=e1124]:
+                  - link "Manage Communities" [ref=e1125] [cursor=pointer]:
+                    - /url: /user/JMSDevLab/communities
+                    - generic [ref=e1126]:
+                      - img [ref=e1128]
+                      - generic [ref=e1131]: Manage Communities
+                  - generic [ref=e1133]:
+                    - link "r/ecommerce" [ref=e1135] [cursor=pointer]:
+                      - /url: /r/ecommerce/
+                      - generic [ref=e1136]:
+                        - img [ref=e1141]
+                        - generic [ref=e1144]: r/ecommerce
+                      - button "Add community to favorites" [ref=e1147]:
+                        - img [ref=e1150]
+                    - link "r/Entrepreneur" [ref=e1153] [cursor=pointer]:
+                      - /url: /r/Entrepreneur/
+                      - generic [ref=e1154]:
+                        - img [ref=e1159]
+                        - generic [ref=e1162]: r/Entrepreneur
+                      - button "Add community to favorites" [ref=e1165]:
+                        - img [ref=e1168]
+                    - link "r/jewelers" [ref=e1171] [cursor=pointer]:
+                      - /url: /r/jewelers/
+                      - generic [ref=e1172]:
+                        - img [ref=e1177]
+                        - generic [ref=e1180]: r/jewelers
+                      - button "Add community to favorites" [ref=e1183]:
+                        - img [ref=e1186]
+                    - link "r/jewelry" [ref=e1189] [cursor=pointer]:
+                      - /url: /r/jewelry/
+                      - generic [ref=e1190]:
+                        - img [ref=e1195]
+                        - generic [ref=e1198]: r/jewelry
+                      - button "Add community to favorites" [ref=e1201]:
+                        - img [ref=e1204]
+                    - link "r/SaaS" [ref=e1207] [cursor=pointer]:
+                      - /url: /r/SaaS/
+                      - generic [ref=e1208]:
+                        - img [ref=e1213]
+                        - generic [ref=e1216]: r/SaaS
+                      - button "Add community to favorites" [ref=e1219]:
+                        - img [ref=e1222]
+                    - link "r/smallbusiness" [ref=e1225] [cursor=pointer]:
+                      - /url: /r/smallbusiness/
+                      - generic [ref=e1226]:
+                        - img [ref=e1232]
+                        - generic [ref=e1236]: r/smallbusiness
+                      - button "Add community to favorites" [ref=e1239]:
+                        - img [ref=e1242]
+              - separator [ref=e1244]
+              - navigation "Reddit resources" [ref=e1245]:
+                - group [ref=e1247]:
+                  - generic "RESOURCES" [ref=e1248] [cursor=pointer]:
+                    - generic [ref=e1250]:
+                      - generic [ref=e1253]: RESOURCES
+                      - img [ref=e1256]
+                  - generic [ref=e1259]:
+                    - link "About Reddit" [ref=e1261] [cursor=pointer]:
+                      - /url: https://www.redditinc.com
+                      - generic [ref=e1262]:
+                        - img [ref=e1264]
+                        - generic [ref=e1268]: About Reddit
+                    - link "Advertise" [ref=e1270] [cursor=pointer]:
+                      - /url: https://ads.reddit.com/register?utm_source=web3x_consumer&utm_name=left_nav_cta
+                      - generic [ref=e1271]:
+                        - img [ref=e1273]
+                        - generic [ref=e1277]: Advertise
+                    - link "Developer Platform" [ref=e1279] [cursor=pointer]:
+                      - /url: https://developers.reddit.com/?utm_source=reddit&utm_medium=left_nav_resources
+                      - generic [ref=e1280]:
+                        - img [ref=e1282]
+                        - generic [ref=e1286]: Developer Platform
+                    - link "Reddit Pro BETA" [ref=e1288] [cursor=pointer]:
+                      - /url: /reddit-pro?utm_source=reddit&utm_medium=left_nav_resources
+                      - generic [ref=e1289]:
+                        - img [ref=e1291]
+                        - generic [ref=e1295]:
+                          - generic [ref=e1296]: Reddit Pro
+                          - generic [ref=e1297]: BETA
+                    - link "Help" [ref=e1299] [cursor=pointer]:
+                      - /url: https://support.reddithelp.com/hc?utm_source=reddit&utm_medium=footer&utm_campaign=evergreen
+                      - generic [ref=e1300]:
+                        - img [ref=e1302]
+                        - generic [ref=e1306]: Help
+                    - link "Blog" [ref=e1308] [cursor=pointer]:
+                      - /url: https://redditblog.com/
+                      - generic [ref=e1309]:
+                        - img [ref=e1311]
+                        - generic [ref=e1315]: Blog
+                    - link "Careers" [ref=e1317] [cursor=pointer]:
+                      - /url: https://www.redditinc.com/careers
+                      - generic [ref=e1318]:
+                        - img [ref=e1320]
+                        - generic [ref=e1324]: Careers
+                    - link "Press" [ref=e1326] [cursor=pointer]:
+                      - /url: https://www.redditinc.com/press
+                      - generic [ref=e1327]:
+                        - img [ref=e1329]
+                        - generic [ref=e1333]: Press
+                    - separator [ref=e1334]
+                    - link "Best of Reddit" [ref=e1336] [cursor=pointer]:
+                      - /url: https://www.reddit.com/posts/2026/global/
+                      - generic [ref=e1337]:
+                        - img [ref=e1339]
+                        - generic [ref=e1344]: Best of Reddit
+                    - separator [ref=e1345]
+                    - link "Reddit Rules" [ref=e1347] [cursor=pointer]:
+                      - /url: https://www.redditinc.com/policies/content-policy
+                      - generic [ref=e1348]:
+                        - img [ref=e1350]
+                        - generic [ref=e1354]: Reddit Rules
+                    - link "Privacy Policy" [ref=e1356] [cursor=pointer]:
+                      - /url: https://www.reddit.com/policies/privacy-policy
+                      - generic [ref=e1357]:
+                        - img [ref=e1359]
+                        - generic [ref=e1363]: Privacy Policy
+                    - link "User Agreement" [ref=e1365] [cursor=pointer]:
+                      - /url: https://www.redditinc.com/policies/user-agreement
+                      - generic [ref=e1366]:
+                        - img [ref=e1368]
+                        - generic [ref=e1372]: User Agreement
+                    - link "Accessibility" [ref=e1374] [cursor=pointer]:
+                      - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+                      - generic [ref=e1375]:
+                        - img [ref=e1377]
+                        - generic [ref=e1382]: Accessibility
+              - link "Reddit, Inc. © 2026. All rights reserved." [ref=e1384] [cursor=pointer]:
+                - /url: https://redditinc.com

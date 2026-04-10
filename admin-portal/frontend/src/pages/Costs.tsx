@@ -48,14 +48,19 @@ export default function Costs() {
   const [data, setData] = useState<CostData | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const [mrr, setMrr] = useState(0);
+
   useEffect(() => {
-    api<CostData>('/api/costs').then(setData).finally(() => setLoading(false));
+    Promise.all([
+      api<CostData>('/api/costs').then(setData),
+      api<{ summary: { totalMrr: number } }>('/api/aggregate/revenue').then(d => setMrr(d.summary?.totalMrr || 0)),
+    ]).finally(() => setLoading(false));
   }, []);
 
   if (loading) return <div className="text-gray-400">Loading costs...</div>;
   if (!data) return null;
 
-  const currentMrr = 98; // TODO: pull from /api/aggregate/revenue dynamically
+  const currentMrr = mrr;
   const revenueGap = data.totalMonthlyUsd;
 
   return (
@@ -106,7 +111,7 @@ export default function Costs() {
       <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-medium text-white">Revenue vs Costs</h2>
-          <span className="text-sm text-red-400 tabular-nums">-${(data.totalMonthlyUsd - 98).toFixed(0)}/mo net</span>
+          <span className="text-sm text-red-400 tabular-nums">-${(data.totalMonthlyUsd - currentMrr).toFixed(0)}/mo net</span>
         </div>
         <div className="space-y-3">
           <div>
@@ -115,7 +120,7 @@ export default function Costs() {
               <span className="text-xs text-emerald-400 tabular-nums">${currentMrr}</span>
             </div>
             <div className="w-full bg-gray-800 rounded-full h-2">
-              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${Math.min((98 / data.totalMonthlyUsd) * 100, 100)}%` }} />
+              <div className="bg-emerald-500 h-2 rounded-full" style={{ width: `${Math.min((currentMrr / data.totalMonthlyUsd) * 100, 100)}%` }} />
             </div>
           </div>
           <div>
@@ -129,7 +134,7 @@ export default function Costs() {
           </div>
         </div>
         <p className="text-[11px] text-gray-600 mt-3">
-          Revenue covers {((98 / data.totalMonthlyUsd) * 100).toFixed(0)}% of costs. Need ${data.totalMonthlyUsd - 98} more MRR to break even.
+          Revenue covers {((currentMrr / data.totalMonthlyUsd) * 100).toFixed(0)}% of costs. Need ${data.totalMonthlyUsd - 98} more MRR to break even.
         </p>
       </div>
 

@@ -5,8 +5,7 @@
  */
 
 import { Env, json } from '../types';
-import { getAllApps, fetchAppEndpoint } from '../lib/d1';
-import { extractData } from '../lib/normalize';
+import { getAllApps, fetchUsersFromApp } from '../lib/d1';
 import { isTestEmail } from '../lib/filter';
 
 interface Customer {
@@ -36,36 +35,23 @@ export async function handleCustomerRoutes(path: string, url: URL, env: Env): Pr
 
     const allCustomers: Customer[] = [];
 
-    // Fetch users from each app in parallel
+    // Fetch users from each app in parallel (shared function)
     const fetches = apps
       .filter(app => app.has_admin && app.api_base_url)
       .map(async app => {
-        const raw = await fetchAppEndpoint(env, app, 'users');
-        if (!raw) return;
+        const result = await fetchUsersFromApp(env, app);
+        if (result.error) return;
 
-        const data = extractData(raw);
-        let users: Record<string, unknown>[];
-        if (Array.isArray(data)) {
-          users = data as Record<string, unknown>[];
-        } else if (Array.isArray(data.data)) {
-          users = data.data as Record<string, unknown>[];
-        } else {
-          users = (data.users || data.shops || data.stores || []) as Record<string, unknown>[];
-        }
-        if (!Array.isArray(users)) return;
-
-        for (const u of users) {
-          const email = String(u.email || u.ownerEmail || u.domain || '');
-          const test = isTestEmail(email);
-          if (!showTest && test) continue;
+        for (const u of result.users) {
+          if (!showTest && u.isTest) continue;
 
           allCustomers.push({
-            email,
-            name: String(u.name || u.firstName || u.displayName || u.shopName || '').trim() || email.split('@')[0],
+            email: u.email,
+            name: u.name,
             app: app.name,
             appId: app.id,
             plan: String(u.plan || u.subscriptionTier || u.subscriptionPlan || u.status || 'unknown'),
-            isTest: test,
+            isTest: u.isTest,
             createdAt: String(u.createdAt || u.created_at || ''),
             lastLogin: String(u.lastLogin || u.lastLoginAt || u.last_login || ''),
           });

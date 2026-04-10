@@ -88,5 +88,25 @@ export async function handleDeployRoutes(path: string, env: Env): Promise<Respon
     return json({ errors: byApp });
   }
 
+  // GET /api/deploy/performance — response time trending (hourly)
+  if (path === '/api/deploy/performance') {
+    const days = parseInt(new URL('http://x' + path).searchParams?.get('days') || '7');
+    const result = await env.DB.prepare(`
+      SELECT p.app_id, a.name as app_name, p.hour, p.avg_ms, p.p95_ms, p.max_ms, p.check_count
+      FROM performance_history p
+      JOIN apps a ON p.app_id = a.id
+      WHERE p.hour > datetime('now', '-' || ? || ' days')
+      ORDER BY p.app_id, p.hour
+    `).bind(Math.min(days, 90)).all();
+
+    const byApp: Record<string, Array<{ hour: string; avg_ms: number; max_ms: number }>> = {};
+    result.results.forEach((r: any) => {
+      if (!byApp[r.app_id]) byApp[r.app_id] = [];
+      byApp[r.app_id].push({ hour: r.hour, avg_ms: r.avg_ms, max_ms: r.max_ms });
+    });
+
+    return json({ performance: byApp });
+  }
+
   return json({ error: 'Not found' }, 404);
 }

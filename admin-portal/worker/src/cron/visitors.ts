@@ -7,7 +7,10 @@ import { getAllApps } from '../lib/d1';
 
 const MAIN_DOMAIN = 'jmsdevlab.com';
 const CF_API = 'https://api.cloudflare.com/client/v4';
-const CF_ACCOUNT = 'fe8383fe03ab5000c8fc4b13e4e2f0a8';
+
+function getCfAccount(env: any): string {
+  return env.CLOUDFLARE_ACCOUNT_ID || 'fe8383fe03ab5000c8fc4b13e4e2f0a8';
+}
 
 /** Extract domain from a URL like https://smartcashapp.net */
 function domainFromUrl(url: string): string {

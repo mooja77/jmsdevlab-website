@@ -1,0 +1,275 @@
+- generic [ref=e4]:
+  - generic [ref=e9]:
+    - generic [ref=e12]:
+      - link "Instagram" [ref=e17] [cursor=pointer]:
+        - /url: /
+        - img "Instagram" [ref=e22]
+      - generic [ref=e25]:
+        - link "Home" [ref=e30] [cursor=pointer]:
+          - /url: /
+          - img "Home" [ref=e35]
+        - link "Reels" [ref=e40] [cursor=pointer]:
+          - /url: /reels/
+          - img "Reels" [ref=e45]
+        - link "Messages" [ref=e52] [cursor=pointer]:
+          - /url: /direct/inbox/
+          - img "Messages" [ref=e57]
+        - link "Search" [ref=e63] [cursor=pointer]:
+          - /url: "#"
+          - img "Search" [ref=e68]
+        - link "Explore" [ref=e74] [cursor=pointer]:
+          - /url: /explore/
+          - img "Explore" [ref=e79]
+        - link "Notifications" [ref=e87] [cursor=pointer]:
+          - /url: "#"
+          - img "Notifications" [ref=e92]
+        - link "New post" [ref=e100] [cursor=pointer]:
+          - /url: "#"
+          - img "New post" [ref=e105]
+        - link "Professional dashboard" [ref=e110] [cursor=pointer]:
+          - /url: "#"
+          - img "Professional dashboard" [ref=e115]
+        - link "jmsdevlab's profile picture" [ref=e122] [cursor=pointer]:
+          - /url: /jmsdevlab/
+          - link "jmsdevlab's profile picture" [ref=e128]:
+            - img "jmsdevlab's profile picture" [ref=e129]
+      - generic [ref=e130]:
+        - link "Settings" [ref=e133] [cursor=pointer]:
+          - /url: "#"
+          - img "Settings" [ref=e138]
+        - link "Also from Meta" [ref=e141] [cursor=pointer]:
+          - /url: "#"
+          - img "Also from Meta" [ref=e146]
+    - generic [ref=e149]:
+      - main [ref=e150]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - generic [ref=e158]:
+                - button "Note..." [ref=e159] [cursor=pointer]:
+                  - generic [ref=e165]: Note...
+                - button "Change profile photo" [ref=e171] [cursor=pointer]:
+                  - img "Change profile photo" [ref=e172]
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - generic [ref=e175]:
+                    - link "jmsdevlab" [ref=e177] [cursor=pointer]:
+                      - /url: "#"
+                      - heading "jmsdevlab" [level=2] [ref=e178]:
+                        - generic [ref=e179]: jmsdevlab
+                    - button "Options" [ref=e180] [cursor=pointer]:
+                      - img "Options" [ref=e182]
+                  - generic [ref=e186]: JMS Dev Lab
+                  - generic [ref=e187]:
+                    - generic [ref=e189]:
+                      - generic [ref=e190]: "8"
+                      - text: posts
+                    - link "1 follower" [ref=e192] [cursor=pointer]:
+                      - /url: /jmsdevlab/followers/
+                      - generic [ref=e193]:
+                        - generic [ref=e194]: "1"
+                        - text: follower
+                    - link "0 following" [ref=e196] [cursor=pointer]:
+                      - /url: /jmsdevlab/following/
+                      - generic [ref=e197]:
+                        - generic [ref=e198]: "0"
+                        - text: following
+                - generic [ref=e200]:
+                  - generic [ref=e202]: Software company
+                  - generic [ref=e203]:
+                    - button "Custom software for growing businesses Shopify Apps | Web Apps | Mobile Apps 8 production apps built & shipped Cork," [ref=e204] [cursor=pointer]:
+                      - generic [ref=e205]:
+                        - text: Custom software for growing businesses
+                        - text: Shopify Apps | Web Apps | Mobile Apps
+                        - text: 8 production apps built & shipped
+                        - text: Cork,
+                    - generic [ref=e206]:
+                      - text: ...
+                      - button "more" [ref=e207] [cursor=pointer]:
+                        - generic [ref=e208]: more
+                  - heading [level=1]
+            - generic [ref=e213]:
+              - link "Edit Profile" [ref=e215] [cursor=pointer]:
+                - /url: /accounts/edit/
+              - link "View archive" [ref=e217] [cursor=pointer]:
+                - /url: /archive/stories/
+            - menu [ref=e219]:
+              - list [ref=e223]:
+                - listitem [ref=e224]
+                - listitem [ref=e225]
+                - listitem [ref=e226]:
+                  - button "Plus icon New" [ref=e229] [cursor=pointer]:
+                    - img "Plus icon" [ref=e233]
+                    - generic [ref=e237]: New
+          - generic [ref=e238]:
+            - tablist [ref=e239]:
+              - link "Posts" [ref=e241] [cursor=pointer]:
+                - /url: /jmsdevlab/
+                - img "Posts" [ref=e243]
+              - link "Reels" [ref=e254] [cursor=pointer]:
+                - /url: /jmsdevlab/reels/
+                - img "Reels" [ref=e256]
+              - link "Saved" [ref=e259] [cursor=pointer]:
+                - /url: /jmsdevlab/saved/
+                - img "Saved" [ref=e261]
+              - link "Tagged" [ref=e264] [cursor=pointer]:
+                - /url: /jmsdevlab/tagged/
+                - img "Tagged" [ref=e266]
+            - tabpanel
+          - generic [ref=e354]:
+            - generic [ref=e355]:
+              - link [ref=e357] [cursor=pointer]:
+                - /url: /jmsdevlab/reel/DWizq0zguGM/
+                - img [ref=e360]
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Clip"
+              - 'link "ProfitShield — AI-powered cash flow forecasting for small businesses. Stop guessing where your money''s going. ProfitShield connects to your accounts, analyses your spending patterns, and forecasts your cash position so you can plan ahead with confidence. 15+ AI-powered insights. Real-time cash position tracking. Revenue trend analysis. Expense categorisation. Cash runway forecasting. 14-day free trial. No credit card required. #cashflow #smallbusiness #fintech #businessfinance #cashflowforecast #accounting #startuplife #entrepreneur #saas #softwaredev #cork #ireland #ai #financeapp Clip" [ref=e363] [cursor=pointer]':
+                - /url: /jmsdevlab/reel/DWZl9TDAqGm/
+                - 'img "ProfitShield — AI-powered cash flow forecasting for small businesses. Stop guessing where your money''s going. ProfitShield connects to your accounts, analyses your spending patterns, and forecasts your cash position so you can plan ahead with confidence. 15+ AI-powered insights. Real-time cash position tracking. Revenue trend analysis. Expense categorisation. Cash runway forecasting. 14-day free trial. No credit card required. #cashflow #smallbusiness #fintech #businessfinance #cashflowforecast #accounting #startuplife #entrepreneur #saas #softwaredev #cork #ireland #ai #financeapp" [ref=e366]'
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Clip"
+              - 'link "Pitch Side — a free coaching companion for grassroots football. We built this for the volunteer coaches who give up their Saturday mornings. Plan training sessions, manage your squad, build formations, and track your season. 75+ ready-made drills. Formation builder for 5v5 to 11v11. Match day lineups and printable team sheets. Completely free. No subscriptions. No ads. No catch. #grassrootsfootball #footballcoaching #coaching #soccercoach #youthfootball #footballdrills #coachingapp #freeapp #softwaredev #cork #ireland #gaa #fai Clip" [ref=e369] [cursor=pointer]':
+                - /url: /jmsdevlab/reel/DWZlQzUAqrW/
+                - 'img "Pitch Side — a free coaching companion for grassroots football. We built this for the volunteer coaches who give up their Saturday mornings. Plan training sessions, manage your squad, build formations, and track your season. 75+ ready-made drills. Formation builder for 5v5 to 11v11. Match day lineups and printable team sheets. Completely free. No subscriptions. No ads. No catch. #grassrootsfootball #footballcoaching #coaching #soccercoach #youthfootball #footballdrills #coachingapp #freeapp #softwaredev #cork #ireland #gaa #fai" [ref=e372]'
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Clip"
+              - 'link "Introducing QualCanvas — qualitative coding made visual. Most qualitative research tools make you work in split panes and folder trees. QualCanvas puts everything on an infinite, interactive canvas. Code transcripts, discover patterns, and build theory — all in one visual workspace. 12 built-in analysis tools. Auto-coding. AI-assisted analysis. QDPX import/export for NVivo and ATLAS.ti compatibility. Free tier available. Pro from $12/mo. 40% academic discount. #qualitativeresearch #academicresearch #phdlife #researchtools #qualitativecoding #nvivo #atlasti #thematicanalysis #socialscience #saas #softwaredev #cork #ireland Clip" [ref=e375] [cursor=pointer]':
+                - /url: /jmsdevlab/reel/DWSQBxUAphM/
+                - 'img "Introducing QualCanvas — qualitative coding made visual. Most qualitative research tools make you work in split panes and folder trees. QualCanvas puts everything on an infinite, interactive canvas. Code transcripts, discover patterns, and build theory — all in one visual workspace. 12 built-in analysis tools. Auto-coding. AI-assisted analysis. QDPX import/export for NVivo and ATLAS.ti compatibility. Free tier available. Pro from $12/mo. 40% academic discount. #qualitativeresearch #academicresearch #phdlife #researchtools #qualitativecoding #nvivo #atlasti #thematicanalysis #socialscience #saas #softwaredev #cork #ireland" [ref=e378]'
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Clip"
+            - generic [ref=e380]:
+              - 'link "We built JewelryStudioManager because jewelers deserve better than spreadsheets and generic CRMs. Track commissions from inquiry to delivery. Manage client preferences down to ring sizes and metal choices. Schedule consultations. Give your clients a branded portal to follow their piece''s progress. Built specifically for how custom jewelry studios actually work. 14-day free trial, no credit card required. #jewelry #jewelrydesigner #customjewelry #shopifyapps #crm #jewelrybusiness #handmadejewelry #softwaredev #cork #ireland #shopify Clip" [ref=e382] [cursor=pointer]':
+                - /url: /jmsdevlab/reel/DWSPmiZApB8/
+                - 'img "We built JewelryStudioManager because jewelers deserve better than spreadsheets and generic CRMs. Track commissions from inquiry to delivery. Manage client preferences down to ring sizes and metal choices. Schedule consultations. Give your clients a branded portal to follow their piece''s progress. Built specifically for how custom jewelry studios actually work. 14-day free trial, no credit card required. #jewelry #jewelrydesigner #customjewelry #shopifyapps #crm #jewelrybusiness #handmadejewelry #softwaredev #cork #ireland #shopify" [ref=e385]'
+                - generic:
+                  - generic:
+                    - generic:
+                      - img "Clip"
+              - 'link "Photo by JMS Dev Lab on March 23, 2026. May be an image of ‎wrist watch, jewelry, screen and ‎text that says ''‎Features Demo Pricing FAQ Log In The #1 repair management app for Shopify pair management built for jewelle & watchmakers From intake to invoice - manage repair ticket, quote, payment, and customer notification in one place. Purpose-built for Shopify merchants who offer repair services. Get Started Free → Install on Shopify 14-day free trial D Watch Demo سل 5-minute setup Built for Shopify 0 GDPR compliant SEE IT IN ACTION econds Watch RepairDesk in action Full app walkthrough‎''‎‎." [ref=e388] [cursor=pointer]':
+                - /url: /jmsdevlab/p/DWPFioLDMgr/
+                - 'img "Photo by JMS Dev Lab on March 23, 2026. May be an image of ‎wrist watch, jewelry, screen and ‎text that says ''‎Features Demo Pricing FAQ Log In The #1 repair management app for Shopify pair management built for jewelle & watchmakers From intake to invoice - manage repair ticket, quote, payment, and customer notification in one place. Purpose-built for Shopify merchants who offer repair services. Get Started Free → Install on Shopify 14-day free trial D Watch Demo سل 5-minute setup Built for Shopify 0 GDPR compliant SEE IT IN ACTION econds Watch RepairDesk in action Full app walkthrough‎''‎‎." [ref=e391]'
+              - link "Photo by JMS Dev Lab on March 23, 2026. May be an image of jewelry, magazine and text that says 'Features Pricing About Help Contact sộ Trusted by jewelers in 13 languages Professional Jewelry Valuations Made Simple Create stunning valuation certificates in 13 languages and 14 currencies. Live .Livemetal metal pricing, insurance submissions, and a customer portal everything modern jewelers need. Star Free Trial Learn More 14-day free trial included with every plan. No credit card required.'." [ref=e394] [cursor=pointer]:
+                - /url: /jmsdevlab/p/DWPFVjgDKQj/
+                - img "Photo by JMS Dev Lab on March 23, 2026. May be an image of jewelry, magazine and text that says 'Features Pricing About Help Contact sộ Trusted by jewelers in 13 languages Professional Jewelry Valuations Made Simple Create stunning valuation certificates in 13 languages and 14 currencies. Live .Livemetal metal pricing, insurance submissions, and a customer portal everything modern jewelers need. Star Free Trial Learn More 14-day free trial included with every plan. No credit card required.'." [ref=e397]
+              - link "Photo by JMS Dev Lab on March 23, 2026. May be an image of text that says 'Features How It Works Pricing FAQ Log n Start Free 14-Day Trial Nocredit.cardrequired No credit card required ASH POSITION $24,830 $24, +12.4% MONTHLYREVENUE MONTHLY REVENUE $8,420 420 8.2% EXPENSES $3,190 -3.1% CASH RUNWAY 7.8 mo Revenue Trend Healthy Forecast 15+ Al-Powered Real-time time 14 days'." [ref=e400] [cursor=pointer]:
+                - /url: /jmsdevlab/p/DWPFIZdDHYK/
+                - img "Photo by JMS Dev Lab on March 23, 2026. May be an image of text that says 'Features How It Works Pricing FAQ Log n Start Free 14-Day Trial Nocredit.cardrequired No credit card required ASH POSITION $24,830 $24, +12.4% MONTHLYREVENUE MONTHLY REVENUE $8,420 420 8.2% EXPENSES $3,190 -3.1% CASH RUNWAY 7.8 mo Revenue Trend Healthy Forecast 15+ Al-Powered Real-time time 14 days'." [ref=e403]
+      - contentinfo [ref=e284]:
+        - generic [ref=e285]:
+          - generic [ref=e287]:
+            - link "Meta" [ref=e289] [cursor=pointer]:
+              - /url: https://about.meta.com/
+              - generic [ref=e290]: Meta
+            - link "About" [ref=e292] [cursor=pointer]:
+              - /url: https://about.instagram.com/
+              - generic [ref=e293]: About
+            - link "Blog" [ref=e295] [cursor=pointer]:
+              - /url: https://about.instagram.com/blog/
+              - generic [ref=e296]: Blog
+            - link "Jobs" [ref=e298] [cursor=pointer]:
+              - /url: https://about.instagram.com/about-us/careers
+              - generic [ref=e299]: Jobs
+            - link "Help" [ref=e301] [cursor=pointer]:
+              - /url: https://help.instagram.com/
+              - generic [ref=e302]: Help
+            - link "API" [ref=e304] [cursor=pointer]:
+              - /url: https://developers.facebook.com/docs/instagram
+              - generic [ref=e305]: API
+            - link "Privacy" [ref=e307] [cursor=pointer]:
+              - /url: /legal/privacy/
+              - generic [ref=e308]: Privacy
+            - link "Terms" [ref=e310] [cursor=pointer]:
+              - /url: /legal/terms/
+              - generic [ref=e311]: Terms
+            - link "Locations" [ref=e313] [cursor=pointer]:
+              - /url: /explore/locations/
+              - generic [ref=e314]: Locations
+            - link "Instagram Lite" [ref=e316] [cursor=pointer]:
+              - /url: /web/lite/
+              - generic [ref=e317]: Instagram Lite
+            - link "Meta AI" [ref=e319] [cursor=pointer]:
+              - /url: https://www.meta.ai/?utm_source=foa_web_footer
+              - generic [ref=e320]: Meta AI
+            - link "Threads" [ref=e322] [cursor=pointer]:
+              - /url: https://www.threads.com/
+              - generic [ref=e323]: Threads
+            - link "Contact uploading and non-users" [ref=e325] [cursor=pointer]:
+              - /url: https://www.facebook.com/help/instagram/261704639352628
+              - generic [ref=e326]: Contact uploading and non-users
+            - link "Meta Verified" [ref=e328] [cursor=pointer]:
+              - /url: /accounts/meta_verified/?entrypoint=web_footer
+              - generic [ref=e329]: Meta Verified
+          - generic [ref=e330]:
+            - generic [ref=e331] [cursor=pointer]:
+              - generic [ref=e332]:
+                - generic [ref=e333]: English (UK)
+                - img "Down Chevron Icon" [ref=e336]
+              - combobox "Switch display language" [ref=e338]:
+                - option "Afrikaans"
+                - option "العربية"
+                - option "Čeština"
+                - option "Dansk"
+                - option "Deutsch"
+                - option "Ελληνικά"
+                - option "English"
+                - option "English (UK)" [selected]
+                - option "Español (España)"
+                - option "Español"
+                - option "فارسی"
+                - option "Suomi"
+                - option "Français"
+                - option "עברית"
+                - option "Bahasa Indonesia"
+                - option "Italiano"
+                - option "日本語"
+                - option "한국어"
+                - option "Bahasa Melayu"
+                - option "Norsk"
+                - option "Nederlands"
+                - option "Polski"
+                - option "Português (Brasil)"
+                - option "Português (Portugal)"
+                - option "Русский"
+                - option "Svenska"
+                - option "ภาษาไทย"
+                - option "Filipino"
+                - option "Türkçe"
+                - option "中文(简体)"
+                - option "中文(台灣)"
+                - option "বাংলা"
+                - option "ગુજરાતી"
+                - option "हिन्दी"
+                - option "Hrvatski"
+                - option "Magyar"
+                - option "ಕನ್ನಡ"
+                - option "മലയാളം"
+                - option "मराठी"
+                - option "नेपाली"
+                - option "ਪੰਜਾਬੀ"
+                - option "සිංහල"
+                - option "Slovenčina"
+                - option "தமிழ்"
+                - option "తెలుగు"
+                - option "اردو"
+                - option "Tiếng Việt"
+                - option "中文(香港)"
+                - option "Български"
+                - option "Français (Canada)"
+                - option "Română"
+                - option "Српски"
+                - option "Українська"
+            - generic [ref=e340]: © 2026 Instagram from Meta
+  - button "Messages" [ref=e407] [cursor=pointer]:
+    - generic "Messages" [ref=e408]:
+      - generic [ref=e409]:
+        - img "Messages" [ref=e412]
+        - generic [ref=e415]: Messages

@@ -1,0 +1,851 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+    - generic [ref=e4]: Skip to main content
+  - generic [ref=e6]:
+    - generic:
+      - generic [ref=e7]:
+        - generic: Shopify
+      - banner [ref=e10]:
+        - navigation [ref=e11]:
+          - link "Home" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e17]
+          - search [ref=e34]:
+            - generic [ref=e36]:
+              - img [ref=e39]
+              - generic "Remove r/shopify filter and expand search to all of Reddit" [ref=e42] [cursor=pointer]:
+                - button [pressed] [ref=e43]:
+                  - generic [ref=e47]: r/shopify
+                - img [ref=e49]
+              - textbox "Remove r/shopify filter and expand search to all of Reddit" [ref=e52]:
+                - /placeholder: Search in r/shopify
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - link "Advertise on Reddit" [ref=e60] [cursor=pointer]:
+                - /url: https://ads.reddit.com/register?utm_source=web3x_consumer&utm_name=nav_cta
+                - img [ref=e63]
+                - generic [ref=e65]:
+                  - generic: Advertise on Reddit
+              - button "Open chat" [ref=e71] [cursor=pointer]:
+                - img [ref=e74]
+                - generic [ref=e76]:
+                  - generic: Open chat
+              - link "Create post" [ref=e81] [cursor=pointer]:
+                - /url: /r/shopify/submit/
+                - img [ref=e84]
+                - generic [ref=e86]:
+                  - generic: Create post
+              - link "Open inbox" [ref=e90] [cursor=pointer]:
+                - /url: /notifications
+                - img [ref=e93]
+                - generic [ref=e95]:
+                  - generic: Open inbox
+            - button "User Avatar Expand user menu" [ref=e100] [cursor=pointer]:
+              - img "User Avatar" [ref=e108]
+              - generic [ref=e110]:
+                - generic: Expand user menu
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - region "Community actions" [ref=e116]:
+            - generic [ref=e117]:
+              - heading "r/shopify" [level=1] [ref=e123]
+              - generic [ref=e124]:
+                - link "Create Post" [ref=e128] [cursor=pointer]:
+                  - /url: /r/shopify/submit
+                  - generic [ref=e129]:
+                    - img [ref=e131]
+                    - generic [ref=e133]: Create Post
+                - generic [ref=e135]:
+                  - button "Join" [ref=e138] [cursor=pointer]
+                  - button "Open overflow menu" [ref=e141] [cursor=pointer]:
+                    - img [ref=e144]
+          - generic [ref=e146]:
+            - generic:
+              - generic:
+                - link "Skip to Navigation" [ref=e147] [cursor=pointer]:
+                  - /url: "#left-sidebar-container"
+                - link "Skip to Right Sidebar" [ref=e148] [cursor=pointer]:
+                  - /url: "#right-sidebar-container"
+          - generic [ref=e149]:
+            - main [ref=e150]:
+              - generic [ref=e153]:
+                - generic "Sort by" [ref=e157]:
+                  - 'button "Sort by: Best" [ref=e159] [cursor=pointer]':
+                    - generic [ref=e161]: Best
+                - generic "View" [ref=e167]:
+                  - 'button "View: Card" [ref=e169] [cursor=pointer]'
+              - generic [ref=e175]:
+                - button "collapse/expand community highlights" [ref=e176] [cursor=pointer]:
+                  - heading "Community highlights" [level=3] [ref=e177]:
+                    - img [ref=e178]
+                    - generic [ref=e180]: Community highlights
+                  - button "collapse/expand community highlights" [ref=e182]:
+                    - img [ref=e185]
+                - list [ref=e189]:
+                  - generic:
+                    - listitem [ref=e190]:
+                      - link "ONGOING ISSUES - Please read our Group Rules before posting / commenting 68 votes • 26 comments" [ref=e191] [cursor=pointer]:
+                        - /url: /r/shopify/comments/1mx9got/ongoing_issues_please_read_our_group_rules_before/
+                        - generic [ref=e195]:
+                          - generic [ref=e196]:
+                            - heading "ONGOING ISSUES - Please read our Group Rules before posting / commenting" [level=2] [ref=e199]
+                            - generic [ref=e202]:
+                              - generic [ref=e203]: "68"
+                              - text: votes •
+                              - generic [ref=e204]: "26"
+                              - text: comments
+                          - img [ref=e213]
+                    - listitem [ref=e215]:
+                      - link "Why Does This Sub Suck Lately? (Moderator Update) 96 votes • 52 comments" [ref=e216] [cursor=pointer]:
+                        - /url: /r/shopify/comments/1s53y17/why_does_this_sub_suck_lately_moderator_update/
+                        - generic [ref=e220]:
+                          - generic [ref=e221]:
+                            - heading "Why Does This Sub Suck Lately? (Moderator Update)" [level=2] [ref=e224]
+                            - generic [ref=e227]:
+                              - generic [ref=e228]: "96"
+                              - text: votes •
+                              - generic [ref=e229]: "52"
+                              - text: comments
+                          - img [ref=e238]
+              - generic [ref=e240]:
+                - generic "Shopify"
+                - separator [ref=e241]
+                - generic [ref=e242]:
+                  - heading "Feed" [level=1] [ref=e244]
+                  - generic:
+                    - article "Am I the only one that hates immediate discount popups?" [ref=e245]:
+                      - generic [ref=e246] [cursor=pointer]:
+                        - link "Am I the only one that hates immediate discount popups?" [ref=e247]:
+                          - /url: /r/shopify/comments/1s867z4/am_i_the_only_one_that_hates_immediate_discount/
+                          - generic [ref=e248]:
+                            - generic: Am I the only one that hates immediate discount popups?
+                        - generic [ref=e249]:
+                          - generic [ref=e250]:
+                            - 'link "Author: u/TFDangerzone2017" [ref=e255]':
+                              - /url: /user/TFDangerzone2017/
+                              - generic [ref=e256]:
+                                - img [ref=e261]
+                                - generic [ref=e263]: u/TFDangerzone2017
+                            - generic [ref=e264]: •
+                            - time [ref=e266]: 13 hr. ago
+                          - button "Open user actions" [ref=e271]:
+                            - img [ref=e274]
+                        - generic [ref=e277]:
+                          - heading "Am I the only one that hates immediate discount popups?" [level=2] [ref=e278]:
+                            - link "Am I the only one that hates immediate discount popups?" [ref=e279]:
+                              - /url: /r/shopify/comments/1s867z4/am_i_the_only_one_that_hates_immediate_discount/
+                              - text: Am I the only one that hates immediate discount popups?
+                          - generic [ref=e280]:
+                            - generic:
+                              - link "This is an open letter to anyone who hasn't delayed their discount popup and is still accosting visitors as soon as they arrive. It's super annoying and if your visitors are like me, they will close that popup if it arrives within the first 10 seconds and be slightly more annoyed than they were before it arrived, even if they legitimately wanted a discount. Do this instead. Check your analytics to find your visitor time on page. Subtract 5-10 seconds. Set that length of time as the delay before your popup shows. This way, the bulk of your visitors still see the discount but they've had a chance to learn about your offer and start weighing up if the cost is worth it. I've tested the change for three clients and it's resulted in a positive conversion rate change each time, so I'd strongly recommend at least giving it a try. At the very least, you'll piss off fewer visitors.":
+                                - /url: /r/shopify/comments/1s867z4/am_i_the_only_one_that_hates_immediate_discount/
+                                - generic:
+                                  - generic:
+                                    - paragraph: This is an open letter to anyone who hasn't delayed their discount popup and is still accosting visitors as soon as they arrive.
+                                    - paragraph: It's super annoying and if your visitors are like me, they will close that popup if it arrives within the first 10 seconds and be slightly more annoyed than they were before it arrived, even if they legitimately wanted a discount.
+                                    - paragraph: Do this instead.
+                                    - list:
+                                      - listitem:
+                                        - paragraph: Check your analytics to find your visitor time on page.
+                                      - listitem:
+                                        - paragraph: Subtract 5-10 seconds.
+                                      - listitem:
+                                        - paragraph: Set that length of time as the delay before your popup shows.
+                                    - paragraph: This way, the bulk of your visitors still see the discount but they've had a chance to learn about your offer and start weighing up if the cost is worth it.
+                                    - paragraph: I've tested the change for three clients and it's resulted in a positive conversion rate change each time, so I'd strongly recommend at least giving it a try. At the very least, you'll piss off fewer visitors.
+                          - 'link "Flair: Marketing" [ref=e283]':
+                            - /url: /r/shopify/?f=flair_name%3A%22Marketing%22
+                            - 'generic "Flair: Marketing" [ref=e285]': Marketing
+                        - generic "Actions available for this post" [ref=e286]:
+                          - generic [ref=e289]:
+                            - button "Upvote" [ref=e290]:
+                              - img [ref=e292]
+                              - generic [ref=e294]:
+                                - generic: Upvote
+                            - generic [ref=e296]: "53"
+                            - button "Downvote" [ref=e297]:
+                              - img [ref=e299]
+                              - generic [ref=e301]:
+                                - generic: Downvote
+                          - link "49 Go to comments" [ref=e302]:
+                            - /url: /r/shopify/comments/1s867z4/am_i_the_only_one_that_hates_immediate_discount/
+                            - generic [ref=e303]:
+                              - img [ref=e305]
+                              - generic [ref=e308]: "49"
+                            - generic [ref=e309]:
+                              - generic: Go to comments
+                          - button "Give award" [ref=e311]:
+                            - img [ref=e314]
+                          - button "Share" [ref=e319]:
+                            - generic [ref=e320]:
+                              - img [ref=e322]
+                              - generic [ref=e324]: Share
+                    - separator [ref=e325]
+                    - generic [ref=e326]:
+                      - 'generic "Advertisement: Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [ref=e327]':
+                        - 'link "Advertisement: Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [ref=e328] [cursor=pointer]':
+                          - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                      - generic [ref=e329]:
+                        - generic [ref=e330]:
+                          - link "u/RedditforBusiness avatar u/RedditforBusiness" [ref=e333] [cursor=pointer]:
+                            - /url: /user/RedditforBusiness/
+                            - img "u/RedditforBusiness avatar" [ref=e338]
+                            - generic [ref=e339]: u/RedditforBusiness
+                          - generic [ref=e340]: •
+                          - link "Promoted" [ref=e342] [cursor=pointer]:
+                            - /url: /user/RedditforBusiness/
+                            - generic [ref=e343]: Promoted
+                          - link [ref=e345] [cursor=pointer]:
+                            - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                        - button "Open user actions" [ref=e350] [cursor=pointer]:
+                          - img [ref=e353]
+                      - heading "Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [level=2] [ref=e357]:
+                        - link "Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [ref=e360] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                          - generic: Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition.
+                      - generic [ref=e361]:
+                        - link "Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [ref=e365] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                          - img "Set up your campaign in just five minutes. Reach 100K communities searching for your products. 10x your brand awareness compared to your competition." [ref=e367]
+                        - separator [ref=e368]
+                        - generic [ref=e369]:
+                          - link [ref=e371] [cursor=pointer]:
+                            - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                          - generic [ref=e372]:
+                            - link "ads.reddit.com" [ref=e375] [cursor=pointer]:
+                              - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                              - generic: ads.reddit.com
+                            - link "Sign Up" [ref=e377] [cursor=pointer]:
+                              - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                              - generic [ref=e379]:
+                                - generic: Sign Up
+                      - generic "Actions available for this post" [ref=e380]:
+                        - generic [ref=e383]:
+                          - button "Upvote" [ref=e384] [cursor=pointer]:
+                            - img [ref=e386]
+                            - generic [ref=e388]:
+                              - generic: Upvote
+                          - text: Vote
+                          - button "Downvote" [ref=e389] [cursor=pointer]:
+                            - img [ref=e391]
+                            - generic [ref=e393]:
+                              - generic: Downvote
+                        - link "0 Go to comments" [ref=e394] [cursor=pointer]:
+                          - /url: /user/RedditforBusiness/comments/1nxbscu/set_up_your_campaign_in_just_five_minutes_reach/?p=1&impressionid=5226402636101640842
+                          - generic [ref=e395]:
+                            - img [ref=e397]
+                            - generic [ref=e400]: "0"
+                          - generic [ref=e401]:
+                            - generic: Go to comments
+                        - button "Share" [ref=e405] [cursor=pointer]:
+                          - generic [ref=e406]:
+                            - img [ref=e408]
+                            - generic [ref=e410]: Share
+                        - link [ref=e412] [cursor=pointer]:
+                          - /url: https://alb.reddit.com/cr?za=rDTGaVhlRRXeDs_Cp3STIOWg3uXb9OZy3ffgz808GKDaQ8a058aopdORG8bJ4CMHHSbfSpyxgvupObnjAaonpYGdo5EWrg3izOR2PqI4_uoo0S0DYYLUY3YV6aava5cx_g9Z2YJWTlR0j3-bQcWkLwEcOcHtdEl530C7-xC38pgfDQ93jbsefePGSMps3QV6ATiB6pD3ngcxaZapG5tDnLuCoiMLZtq0pb-0Lv18XYSCkOD2e9slHFv_ACGR9bKX8UNGutqlT8YwJE0nKKY3SpO0CDtVCRhOvABd6J5TtKYYqu2fYs1DUlkbhYoYVAniHRBWQzfTSOXfXIEssWlhkoNcp4AwPoqEteowWvlN0vmy4-mv5RoHKBqN0zcyFqg-BR6d-TwRjG1G5JoMVmVsQUPmKLn_Asl8VYvEENdTGYkakr6544AzZR26exOGUok1_7iPoDeph0YiBP2RhwziR61N3bUlWNKHp-qlJ1OCRk8RnCzRscLE9SBJG1r_aneyflZptj4plig8vPad6X2Hc4t2GANsa8TtpKw-iCYk52CavhaLmBJ5PzZXD0DdXqlZ7HlG5t9zytpKubNLrGrCUZY2H3IA0JSoRJbPELQ9Y-OaxL9srr45HzZqJi28qfUoDb5Ll-Vx6pd1pu-ME6Gzsay7hUfW8Mq2umQ5ACX4sjiV4iul-prb2uxyfdF8rrPwF6QJAuPYCq0KpX6k9_izRVv_A0Yg9w&zp=HEoITnEs8gj-LT-hcTQpaHEukm1RuWVCdgUF6yq1mwRJp9LZ30qTk3_CKmWyxWq0ASQP10DG-ihbb32BaZvwgr2MV4pBb1gh83T5zJsIWRcxA4HKkZxTPVVxgaxG8taFzd4OZjuHDGHb-hm5FFTx0U0tLaelkIiOR7eAP_GUixjFSDjEC5wU1fKnLYE6wkaNsV6jzFqBeDZg7D0kOVmjCSTXWBjAtk9czymFXKVko1gqR9cGe9Mod395Ui3XSiQ5-xD292LqtjquSkVNRV6PrVcCFHTrBv9lWnOAhlLcR9HPRriB08maDFvt3rNlj1-RrEyR0_ki7WNrJzqzEX-9VVJa62i_0zcGwmKtOLglJeG2k0Jr7eMjqhMnqbXa5rF6EKOQRv1nVBUQpuTphlbot33L_f_zpjrbEwGzNNNCl4pK_E392dobF9hrsv_4Tk9oP6SOyKlrnuZrdZ_Tbb-9vo0Y2h_-DsjYF15jtXIdXlzQpIe97FKkNY9t4QFysXo5
+                    - separator [ref=e413]
+                    - article "why would a $6B brand pass on Shopify Plus for a platform nobody's heard of" [ref=e414]:
+                      - generic [ref=e415] [cursor=pointer]:
+                        - link "why would a $6B brand pass on Shopify Plus for a platform nobody's heard of" [ref=e416]:
+                          - /url: /r/shopify/comments/1rt637h/why_would_a_6b_brand_pass_on_shopify_plus_for_a/
+                          - generic [ref=e417]:
+                            - generic: why would a $6B brand pass on Shopify Plus for a platform nobody's heard of
+                        - generic [ref=e418]:
+                          - generic [ref=e419]:
+                            - 'link "Author: u/LevelDisastrous945" [ref=e424]':
+                              - /url: /user/LevelDisastrous945/
+                              - generic [ref=e425]:
+                                - img [ref=e430]
+                                - generic [ref=e432]: u/LevelDisastrous945
+                            - generic [ref=e433]: •
+                            - time [ref=e435]: 17 days ago
+                          - button "Open user actions" [ref=e440]:
+                            - img [ref=e443]
+                        - generic [ref=e446]:
+                          - heading "why would a $6B brand pass on Shopify Plus for a platform nobody's heard of" [level=2] [ref=e447]:
+                            - link "why would a $6B brand pass on Shopify Plus for a platform nobody's heard of" [ref=e448]:
+                              - /url: /r/shopify/comments/1rt637h/why_would_a_6b_brand_pass_on_shopify_plus_for_a/
+                          - generic [ref=e449]:
+                            - generic:
+                              - link:
+                                - /url: /r/shopify/comments/1rt637h/why_would_a_6b_brand_pass_on_shopify_plus_for_a/
+                                - generic:
+                                  - generic:
+                                    - paragraph: saw this today and i got confused. Levi's is migrating levi.com across the US, Canada and Europe to some commerce platform out of Hamburg that came out of the Zalando group (guess it's called SCAYLE or SCALE).
+                                    - paragraph: they apparently evaluated Salesforce, SAP, Shopify Plus and went with this instead.
+                                    - paragraph: What Shopify Plus is missing at that scale that would push a brand like that to go with a platform most people in ecom haven't heard of?
+                                    - paragraph: "Edit: ok so based on the comments i was clearly wrong about the \"nobody's heard of it\" thing. did more digging and apparently SCAYLE runs Deichmann (€9B revenue), Harrods, Manchester United, FC Bayern Munich, and ABOUT YOU which does like €2B+ in GMV. so not exactly a no-name vendor, i just wasn't in the right circles to know about them since they go after enterprise deals and don't really market to people like us."
+                                    - paragraph: the other thing that's clear from reading your comments is that at Levi's scale the decision probably had nothing to do with what the storefront looks like. it's about backend integration, how well the platform connects to their warehouse systems and ERPs and payment processors across multiple countries.
+                                    - paragraph: Shopify Plus honestly doesn't offer that much over regular Shopify plans beyond checkout customization and better processing rates, and a brand doing $6B was almost certainly not using Shopify as their processor anyway. so it’s not really about features you can see, but more about the operational stuff underneath that needs to work across the US, Canada and Europe simultaneously.
+                                    - paragraph: basically i was comparing apples to oranges. Shopify is incredible for what most of us are building but once you're managing international supply chains and need native integrations with dozens of enterprise systems, you're shopping in a completely different category.
+                          - 'link "Flair: Shopify General Discussion" [ref=e452]':
+                            - /url: /r/shopify/?f=flair_name%3A%22Shopify%20General%20Discussion%22
+                            - 'generic "Flair: Shopify General Discussion" [ref=e454]': Shopify General Discussion
+                        - generic "Actions available for this post" [ref=e455]:
+                          - generic [ref=e458]:
+                            - button "Upvote" [ref=e459]:
+                              - img [ref=e461]
+                              - generic [ref=e463]:
+                                - generic: Upvote
+                            - generic [ref=e465]: "70"
+                            - button "Downvote" [ref=e466]:
+                              - img [ref=e468]
+                              - generic [ref=e470]:
+                                - generic: Downvote
+                          - link "104 Go to comments" [ref=e471]:
+                            - /url: /r/shopify/comments/1rt637h/why_would_a_6b_brand_pass_on_shopify_plus_for_a/
+                            - generic [ref=e472]:
+                              - img [ref=e474]
+                              - generic [ref=e477]: "104"
+                            - generic [ref=e478]:
+                              - generic: Go to comments
+                          - button "Give award" [ref=e480]:
+                            - img [ref=e483]
+                          - button "Share" [ref=e488]:
+                            - generic [ref=e489]:
+                              - img [ref=e491]
+                              - generic [ref=e493]: Share
+                    - separator [ref=e494]
+                    - article "Product Importing Help Required" [ref=e495]:
+                      - generic [ref=e496] [cursor=pointer]:
+                        - link "Product Importing Help Required" [ref=e497]:
+                          - /url: /r/shopify/comments/1s8j100/product_importing_help_required/
+                          - generic [ref=e498]:
+                            - generic: Product Importing Help Required
+                        - generic [ref=e499]:
+                          - generic [ref=e500]:
+                            - 'link "Author: u/Ok_Jello_8592" [ref=e505]':
+                              - /url: /user/Ok_Jello_8592/
+                              - generic [ref=e506]:
+                                - img "u/Ok_Jello_8592 avatar" [ref=e509]
+                                - generic [ref=e510]: u/Ok_Jello_8592
+                            - generic [ref=e511]: •
+                            - time [ref=e513]: 2 hr. ago
+                          - button "Open user actions" [ref=e518]:
+                            - img [ref=e521]
+                        - generic [ref=e524]:
+                          - heading "Product Importing Help Required" [level=2] [ref=e525]:
+                            - link "Product Importing Help Required" [ref=e526]:
+                              - /url: /r/shopify/comments/1s8j100/product_importing_help_required/
+                          - generic [ref=e527]:
+                            - generic:
+                              - 'link "So, I have a list of products in a google sheet provided to me by the owner. I need to list them in shopify. Here''s the problem: There are dozens of rows with product details but the images for each products are in a google drive link. I will have to download, extract, and name each files for each product. Previously I had a folder of images which I would rename with a powershell script, upload it to shopify, import products, and then assign images to products. In my present condition, each product images are in a google drive link. I would have to visit each links, download all images of that product, rename them, then move to next product. Do you guys have any idea on how I can accelerate this process? This seems redundant, boring, and time consuming."':
+                                - /url: /r/shopify/comments/1s8j100/product_importing_help_required/
+                                - generic:
+                                  - generic:
+                                    - paragraph: "So, I have a list of products in a google sheet provided to me by the owner. I need to list them in shopify. Here's the problem:"
+                                    - paragraph: There are dozens of rows with product details but the images for each products are in a google drive link. I will have to download, extract, and name each files for each product.
+                                    - paragraph: Previously I had a folder of images which I would rename with a powershell script, upload it to shopify, import products, and then assign images to products.
+                                    - paragraph: In my present condition, each product images are in a google drive link. I would have to visit each links, download all images of that product, rename them, then move to next product.
+                                    - paragraph: Do you guys have any idea on how I can accelerate this process? This seems redundant, boring, and time consuming.
+                          - 'link "Flair: Shopify General Discussion" [ref=e530]':
+                            - /url: /r/shopify/?f=flair_name%3A%22Shopify%20General%20Discussion%22
+                            - 'generic "Flair: Shopify General Discussion" [ref=e532]': Shopify General Discussion
+                        - generic "Actions available for this post" [ref=e533]:
+                          - generic [ref=e536]:
+                            - button "Upvote" [ref=e537]:
+                              - img [ref=e539]
+                              - generic [ref=e541]:
+                                - generic: Upvote
+                            - generic [ref=e543]: "3"
+                            - button "Downvote" [ref=e544]:
+                              - img [ref=e546]
+                              - generic [ref=e548]:
+                                - generic: Downvote
+                          - link "7 Go to comments" [ref=e549]:
+                            - /url: /r/shopify/comments/1s8j100/product_importing_help_required/
+                            - generic [ref=e550]:
+                              - img [ref=e552]
+                              - generic [ref=e555]: "7"
+                            - generic [ref=e556]:
+                              - generic: Go to comments
+                          - button "Give award" [ref=e558]:
+                            - img [ref=e561]
+                          - button "Share" [ref=e566]:
+                            - generic [ref=e567]:
+                              - img [ref=e569]
+                              - generic [ref=e571]: Share
+                    - separator [ref=e572]
+                  - img [ref=e578]
+            - generic [ref=e591]:
+              - complementary "Community information" [ref=e595]:
+                - generic [ref=e596]:
+                  - generic [ref=e598]:
+                    - heading "Community Info Section" [level=1] [ref=e599]
+                    - generic [ref=e600]:
+                      - generic [ref=e601]: Shopify
+                      - generic [ref=e602]: This subreddit is a forum to ask or seek any information regarding Shopify. Developers for Shopify can ask any code related questions. Store owners can discuss any Shopify issues or success stories.
+                      - generic [ref=e603]:
+                        - generic [ref=e605]:
+                          - img [ref=e606]
+                          - text: Created Jul 15, 2011
+                        - generic [ref=e609]:
+                          - img [ref=e610]
+                          - text: Public
+                    - generic [ref=e612]:
+                      - generic [ref=e613]:
+                        - strong [ref=e615]:
+                          - generic: 73K
+                        - generic [ref=e616]: Owners
+                      - generic [ref=e617]:
+                        - strong [ref=e619]:
+                          - generic: 3.4K
+                        - generic [ref=e620]: Building
+                  - separator [ref=e621]
+                  - generic [ref=e622]:
+                    - heading "User flair" [level=2] [ref=e624]:
+                      - generic [ref=e625]: User flair
+                    - button "u/JMSDevLab avatar JMSDevLab" [ref=e627]:
+                      - generic [ref=e629]:
+                        - img "u/JMSDevLab avatar" [ref=e634]
+                        - generic [ref=e636]: JMSDevLab
+                  - separator [ref=e637]
+                  - generic [ref=e638]:
+                    - heading "Community Bookmarks" [level=2] [ref=e640]:
+                      - generic [ref=e641]: Community Bookmarks
+                    - link "Shopify Help Center" [ref=e644] [cursor=pointer]:
+                      - /url: https://help.shopify.com/
+                      - generic [ref=e647]: Shopify Help Center
+                  - separator [ref=e648]
+                  - generic [ref=e649]:
+                    - heading "r/shopify Rules" [level=2] [ref=e651]:
+                      - generic [ref=e652]: r/shopify Rules
+                    - generic [ref=e653]:
+                      - group [ref=e655]:
+                        - generic "1 All Posts must be related to Shopify Exclusively" [ref=e656] [cursor=pointer]:
+                          - generic [ref=e658]:
+                            - generic [ref=e659]:
+                              - generic [ref=e661]: "1"
+                              - heading "All Posts must be related to Shopify Exclusively" [level=2] [ref=e665]
+                            - img [ref=e668]
+                      - group [ref=e671]:
+                        - generic "2 No Store or App Reviews / Feedback" [ref=e672] [cursor=pointer]:
+                          - generic [ref=e674]:
+                            - generic [ref=e675]:
+                              - generic [ref=e677]: "2"
+                              - heading "No Store or App Reviews / Feedback" [level=2] [ref=e681]
+                            - img [ref=e684]
+                      - group [ref=e687]:
+                        - generic "3 No Success Stories / Guides / How-To / Blogspam / AI" [ref=e688] [cursor=pointer]:
+                          - generic [ref=e690]:
+                            - generic [ref=e691]:
+                              - generic [ref=e693]: "3"
+                              - heading "No Success Stories / Guides / How-To / Blogspam / AI" [level=2] [ref=e697]
+                            - img [ref=e700]
+                      - group [ref=e703]:
+                        - generic "4 Soliciting, Promotion, or Direct Soliciting via DM" [ref=e704] [cursor=pointer]:
+                          - generic [ref=e706]:
+                            - generic [ref=e707]:
+                              - generic [ref=e709]: "4"
+                              - heading "Soliciting, Promotion, or Direct Soliciting via DM" [level=2] [ref=e713]
+                            - img [ref=e716]
+                      - group [ref=e719]:
+                        - generic "5 Store, Course, or Illegal Theme Resale" [ref=e720] [cursor=pointer]:
+                          - generic [ref=e722]:
+                            - generic [ref=e723]:
+                              - generic [ref=e725]: "5"
+                              - heading "Store, Course, or Illegal Theme Resale" [level=2] [ref=e729]
+                            - img [ref=e732]
+                      - group [ref=e735]:
+                        - generic "6 No spamming or links to external content." [ref=e736] [cursor=pointer]:
+                          - generic [ref=e738]:
+                            - generic [ref=e739]:
+                              - generic [ref=e741]: "6"
+                              - heading "No spamming or links to external content." [level=2] [ref=e745]
+                            - img [ref=e748]
+                      - group [ref=e751]:
+                        - generic "7 We are all grown ups (well, most of us...)." [ref=e752] [cursor=pointer]:
+                          - generic [ref=e754]:
+                            - generic [ref=e755]:
+                              - generic [ref=e757]: "7"
+                              - heading "We are all grown ups (well, most of us...)." [level=2] [ref=e761]
+                            - img [ref=e764]
+                      - group [ref=e767]:
+                        - generic "8 No 'Dev Research' or App Developer posts" [ref=e768] [cursor=pointer]:
+                          - generic [ref=e770]:
+                            - generic [ref=e771]:
+                              - generic [ref=e773]: "8"
+                              - heading "No 'Dev Research' or App Developer posts" [level=2] [ref=e777]
+                            - img [ref=e780]
+                      - group [ref=e783]:
+                        - generic "9 Account Requirements" [ref=e784] [cursor=pointer]:
+                          - generic [ref=e786]:
+                            - generic [ref=e787]:
+                              - generic [ref=e789]: "9"
+                              - heading "Account Requirements" [level=2] [ref=e793]
+                            - img [ref=e796]
+                      - group [ref=e799]:
+                        - generic "10 No AI or Suspected AI Slop" [ref=e800] [cursor=pointer]:
+                          - generic [ref=e802]:
+                            - generic [ref=e803]:
+                              - generic [ref=e805]: "10"
+                              - heading "No AI or Suspected AI Slop" [level=2] [ref=e809]
+                            - img [ref=e812]
+                  - separator [ref=e814]
+                  - generic [ref=e815]:
+                    - heading "Related Subreddits" [level=2] [ref=e817]:
+                      - generic [ref=e818]: Related Subreddits
+                    - generic [ref=e820]:
+                      - img [ref=e825]
+                      - generic [ref=e827]:
+                        - link "r/smallbusiness" [ref=e830] [cursor=pointer]:
+                          - /url: /r/smallbusiness
+                        - generic [ref=e831]: 2,425,002 members
+                    - generic [ref=e838]:
+                      - link "r/Entrepreneur" [ref=e841] [cursor=pointer]:
+                        - /url: /r/Entrepreneur
+                      - generic [ref=e842]: 5,126,522 members
+                    - generic [ref=e844]:
+                      - img [ref=e849]
+                      - generic [ref=e851]:
+                        - link "r/business" [ref=e854] [cursor=pointer]:
+                          - /url: /r/business
+                        - generic [ref=e855]: 2,553,325 members
+                    - generic [ref=e862]:
+                      - link "r/PPC" [ref=e865] [cursor=pointer]:
+                        - /url: /r/PPC
+                      - generic [ref=e866]: 256,545 members
+                    - generic [ref=e873]:
+                      - link "r/ecommerce" [ref=e876] [cursor=pointer]:
+                        - /url: /r/ecommerce
+                      - generic [ref=e877]: 626,629 members
+                    - generic [ref=e884]:
+                      - link "r/Printify" [ref=e887] [cursor=pointer]:
+                        - /url: /r/Printify
+                      - generic [ref=e888]: 25,830 members
+                    - generic [ref=e895]:
+                      - link "r/printful" [ref=e898] [cursor=pointer]:
+                        - /url: /r/printful
+                      - generic [ref=e899]: 19,394 members
+                    - generic [ref=e906]:
+                      - link "r/dropship" [ref=e909] [cursor=pointer]:
+                        - /url: /r/dropship
+                      - generic [ref=e910]: 343,428 members
+                    - generic [ref=e912]:
+                      - img [ref=e917]
+                      - generic [ref=e919]:
+                        - link "r/Bookkeeping" [ref=e922] [cursor=pointer]:
+                          - /url: /r/Bookkeeping
+                        - generic [ref=e923]: 76,119 members
+                    - generic [ref=e930]:
+                      - link "r/marketing" [ref=e933] [cursor=pointer]:
+                        - /url: /r/marketing
+                      - generic [ref=e934]: 1,924,038 members
+                  - separator [ref=e935]
+                  - generic [ref=e936]:
+                    - heading "Helpful Links" [level=2] [ref=e938]:
+                      - generic [ref=e939]: Helpful Links
+                    - generic [ref=e940]:
+                      - link "Review My Store Review My Store" [ref=e941] [cursor=pointer]:
+                        - /url: https://www.reddit.com/r/reviewmyshopify/
+                        - generic [ref=e944]: Review My Store
+                        - generic [ref=e945]:
+                          - generic: Review My Store
+                      - link "Shopify Themes Shopify Themes" [ref=e946] [cursor=pointer]:
+                        - /url: https://themes.shopify.com/
+                        - generic [ref=e949]: Shopify Themes
+                        - generic [ref=e950]:
+                          - generic: Shopify Themes
+                      - link "Shopify Status Shopify Status" [ref=e951] [cursor=pointer]:
+                        - /url: https://status.shopify.com/
+                        - generic [ref=e954]: Shopify Status
+                        - generic [ref=e955]:
+                          - generic: Shopify Status
+                      - link "Shopify Partners Shopify Partners" [ref=e956] [cursor=pointer]:
+                        - /url: https://www.shopify.co.uk/partners
+                        - generic [ref=e959]: Shopify Partners
+                        - generic [ref=e960]:
+                          - generic: Shopify Partners
+                      - link "Shopify Slate Shopify Slate" [ref=e961] [cursor=pointer]:
+                        - /url: https://github.com/Shopify/slate/wiki
+                        - generic [ref=e964]: Shopify Slate
+                        - generic [ref=e965]:
+                          - generic: Shopify Slate
+                      - link "Liquid Cheat Sheet Liquid Cheat Sheet" [ref=e966] [cursor=pointer]:
+                        - /url: https://www.shopify.co.uk/partners/shopify-cheat-sheet
+                        - generic [ref=e969]: Liquid Cheat Sheet
+                        - generic [ref=e970]:
+                          - generic: Liquid Cheat Sheet
+                      - link "Liquid Code Examples Liquid Code Examples" [ref=e971] [cursor=pointer]:
+                        - /url: https://shopify.github.io/liquid-code-examples/
+                        - generic [ref=e974]: Liquid Code Examples
+                        - generic [ref=e975]:
+                          - generic: Liquid Code Examples
+                  - separator [ref=e976]
+                  - generic [ref=e977]:
+                    - heading "Moderators" [level=2] [ref=e979]:
+                      - generic [ref=e980]: Moderators
+                    - link "Message Mods" [ref=e982] [cursor=pointer]:
+                      - /url: https://www.reddit.com/message/compose?to=r/shopify
+                      - generic [ref=e983]:
+                        - img [ref=e985]
+                        - generic [ref=e987]: Message Mods
+                    - generic [ref=e989]:
+                      - img "u/ficklebeast avatar" [ref=e994]
+                      - generic [ref=e997]:
+                        - link "u/ficklebeast" [ref=e998] [cursor=pointer]:
+                          - /url: /user/ficklebeast/
+                        - 'generic "Flair: Shopify Developer" [ref=e1000]': Shopify Developer
+                    - generic [ref=e1002]:
+                      - img [ref=e1009]
+                      - generic [ref=e1013]:
+                        - link "u/qverb" [ref=e1014] [cursor=pointer]:
+                          - /url: /user/qverb/
+                        - 'generic "Flair: Group Moderator" [ref=e1016]': Group Moderator
+                    - generic [ref=e1018]:
+                      - img "u/adventurepaul avatar" [ref=e1023]
+                      - generic [ref=e1024]:
+                        - link "u/adventurepaul" [ref=e1027] [cursor=pointer]:
+                          - /url: /user/adventurepaul/
+                        - generic [ref=e1029]: Paul
+                    - generic [ref=e1031]:
+                      - img [ref=e1038]
+                      - link "u/pjmg2020" [ref=e1043] [cursor=pointer]:
+                        - /url: /user/pjmg2020/
+                    - link "View all moderators" [ref=e1044] [cursor=pointer]:
+                      - /url: /mod/shopify/moderators/
+                      - generic [ref=e1046]: View all moderators
+              - generic [ref=e1048]:
+                - link "Reddit Rules" [ref=e1051] [cursor=pointer]:
+                  - /url: https://www.redditinc.com/policies/content-policy
+                - link "Privacy Policy" [ref=e1054] [cursor=pointer]:
+                  - /url: https://www.reddit.com/policies/privacy-policy
+                - link "User Agreement" [ref=e1057] [cursor=pointer]:
+                  - /url: https://www.redditinc.com/policies/user-agreement
+                - link "Accessibility" [ref=e1060] [cursor=pointer]:
+                  - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+                - link "Reddit, Inc. © 2026. All rights reserved." [ref=e1062] [cursor=pointer]:
+                  - /url: https://redditinc.com
+        - generic [ref=e1064]:
+          - button "Collapse Navigation" [ref=e1067] [cursor=pointer]:
+            - img [ref=e1070]
+            - generic [ref=e1072]:
+              - generic: Collapse Navigation
+          - navigation "Primary" [ref=e1077]:
+            - generic [ref=e1079]:
+              - link "Home" [ref=e1081] [cursor=pointer]:
+                - /url: /?feed=home
+                - generic [ref=e1082]:
+                  - img [ref=e1084]
+                  - generic [ref=e1087]: Home
+              - link "Popular" [ref=e1089] [cursor=pointer]:
+                - /url: /r/popular/
+                - generic [ref=e1090]:
+                  - img [ref=e1092]
+                  - generic [ref=e1095]: Popular
+              - link "News" [ref=e1096] [cursor=pointer]:
+                - /url: /news/
+                - generic [ref=e1097]:
+                  - img [ref=e1099]
+                  - generic [ref=e1103]: News
+              - link "Explore" [ref=e1105] [cursor=pointer]:
+                - /url: /explore/
+                - generic [ref=e1106]:
+                  - img [ref=e1108]
+                  - generic [ref=e1111]: Explore
+              - button "Start a community" [ref=e1112] [cursor=pointer]:
+                - generic [ref=e1113]:
+                  - img [ref=e1115]
+                  - generic [ref=e1118]: Start a community
+            - separator [ref=e1119]
+            - group [ref=e1123]:
+              - generic "GAMES ON REDDIT" [ref=e1124] [cursor=pointer]:
+                - generic [ref=e1125]:
+                  - generic [ref=e1130]:
+                    - generic: GAMES ON REDDIT
+                  - img [ref=e1133]
+              - generic [ref=e1136]:
+                - link "Featured Game" [ref=e1140] [cursor=pointer]:
+                  - /url: https://www.reddit.com/r/pocketgrids/comments/1s7pwmo?entry_point=games_drawer_featured_game
+                  - generic [ref=e1142]:
+                    - generic [ref=e1146]:
+                      - heading "Pocket Grids" [level=3] [ref=e1147]
+                      - paragraph [ref=e1148]: Mini crosswords
+                      - paragraph [ref=e1149]:
+                        - generic [ref=e1150]: 407K
+                        - text: monthly players
+                    - generic [ref=e1153]: NEW
+                - generic [ref=e1155]:
+                  - link "BattleBirds" [ref=e1157] [cursor=pointer]:
+                    - /url: https://www.reddit.com/r/BattleBirds/comments/1s80qoo?entry_point=games_drawer_personalized_game
+                    - generic [ref=e1158]:
+                      - img [ref=e1163]
+                      - generic [ref=e1167]: BattleBirds
+                  - link "Pipe Panic" [ref=e1169] [cursor=pointer]:
+                    - /url: https://www.reddit.com/r/pipepanic/comments/1s892ce?entry_point=games_drawer_personalized_game
+                    - generic [ref=e1170]:
+                      - img [ref=e1175]
+                      - generic [ref=e1179]: Pipe Panic
+                  - link "romkerl" [ref=e1181] [cursor=pointer]:
+                    - /url: https://www.reddit.com/r/romkerl/comments/1s84b36?entry_point=games_drawer_personalized_game
+                    - generic [ref=e1182]:
+                      - img [ref=e1187]
+                      - generic [ref=e1191]: romkerl
+                - link "Discover More" [ref=e1193] [cursor=pointer]:
+                  - /url: /r/GamesOnReddit
+                  - generic [ref=e1194]:
+                    - img [ref=e1196]
+                    - generic [ref=e1200]: Discover More
+            - separator [ref=e1201]
+            - group [ref=e1203]:
+              - generic "CUSTOM FEEDS" [ref=e1204] [cursor=pointer]:
+                - generic [ref=e1206]:
+                  - generic [ref=e1209]: CUSTOM FEEDS
+                  - img [ref=e1212]
+              - button "Create Custom Feed" [ref=e1218] [cursor=pointer]:
+                - generic [ref=e1219]:
+                  - img [ref=e1221]
+                  - generic [ref=e1224]: Create Custom Feed
+            - separator [ref=e1225]
+            - generic [ref=e1227]:
+              - group [ref=e1229]:
+                - generic "RECENT" [ref=e1230]:
+                  - generic [ref=e1232] [cursor=pointer]:
+                    - generic [ref=e1236]: RECENT
+                    - img [ref=e1239]
+                - generic [ref=e1242]:
+                  - link "r/shopify" [ref=e1243] [cursor=pointer]:
+                    - /url: /r/shopify/
+                    - generic [ref=e1244]:
+                      - img [ref=e1249]
+                      - generic [ref=e1252]: r/shopify
+                  - link "r/smallbusiness" [ref=e1253] [cursor=pointer]:
+                    - /url: /r/smallbusiness/
+                    - generic [ref=e1254]:
+                      - img [ref=e1260]
+                      - generic [ref=e1264]: r/smallbusiness
+              - separator [ref=e1265]
+            - group [ref=e1267]:
+              - generic "COMMUNITIES" [ref=e1268] [cursor=pointer]:
+                - generic [ref=e1270]:
+                  - generic [ref=e1273]: COMMUNITIES
+                  - img [ref=e1276]
+              - generic [ref=e1279]:
+                - link "Manage Communities" [ref=e1280] [cursor=pointer]:
+                  - /url: /user/JMSDevLab/communities
+                  - generic [ref=e1281]:
+                    - img [ref=e1283]
+                    - generic [ref=e1286]: Manage Communities
+                - generic [ref=e1288]:
+                  - link "r/ecommerce" [ref=e1290] [cursor=pointer]:
+                    - /url: /r/ecommerce/
+                    - generic [ref=e1291]:
+                      - img [ref=e1296]
+                      - generic [ref=e1299]: r/ecommerce
+                    - button "Add community to favorites" [ref=e1302]:
+                      - img [ref=e1305]
+                  - link "r/Entrepreneur" [ref=e1308] [cursor=pointer]:
+                    - /url: /r/Entrepreneur/
+                    - generic [ref=e1309]:
+                      - img [ref=e1314]
+                      - generic [ref=e1317]: r/Entrepreneur
+                    - button "Add community to favorites" [ref=e1320]:
+                      - img [ref=e1323]
+                  - link "r/jewelers" [ref=e1326] [cursor=pointer]:
+                    - /url: /r/jewelers/
+                    - generic [ref=e1327]:
+                      - img [ref=e1332]
+                      - generic [ref=e1335]: r/jewelers
+                    - button "Add community to favorites" [ref=e1338]:
+                      - img [ref=e1341]
+                  - link "r/jewelry" [ref=e1344] [cursor=pointer]:
+                    - /url: /r/jewelry/
+                    - generic [ref=e1345]:
+                      - img [ref=e1350]
+                      - generic [ref=e1353]: r/jewelry
+                    - button "Add community to favorites" [ref=e1356]:
+                      - img [ref=e1359]
+                  - link "r/SaaS" [ref=e1362] [cursor=pointer]:
+                    - /url: /r/SaaS/
+                    - generic [ref=e1363]:
+                      - img [ref=e1368]
+                      - generic [ref=e1371]: r/SaaS
+                    - button "Add community to favorites" [ref=e1374]:
+                      - img [ref=e1377]
+                  - link "r/smallbusiness" [ref=e1380] [cursor=pointer]:
+                    - /url: /r/smallbusiness/
+                    - generic [ref=e1381]:
+                      - img [ref=e1387]
+                      - generic [ref=e1391]: r/smallbusiness
+                    - button "Add community to favorites" [ref=e1394]:
+                      - img [ref=e1397]
+            - separator [ref=e1399]
+            - navigation "Reddit resources" [ref=e1400]:
+              - group [ref=e1402]:
+                - generic "RESOURCES" [ref=e1403] [cursor=pointer]:
+                  - generic [ref=e1405]:
+                    - generic [ref=e1408]: RESOURCES
+                    - img [ref=e1411]
+                - generic [ref=e1414]:
+                  - link "About Reddit" [ref=e1416] [cursor=pointer]:
+                    - /url: https://www.redditinc.com
+                    - generic [ref=e1417]:
+                      - img [ref=e1419]
+                      - generic [ref=e1423]: About Reddit
+                  - link "Advertise" [ref=e1425] [cursor=pointer]:
+                    - /url: https://ads.reddit.com/register?utm_source=web3x_consumer&utm_name=left_nav_cta
+                    - generic [ref=e1426]:
+                      - img [ref=e1428]
+                      - generic [ref=e1432]: Advertise
+                  - link "Developer Platform" [ref=e1434] [cursor=pointer]:
+                    - /url: https://developers.reddit.com/?utm_source=reddit&utm_medium=left_nav_resources
+                    - generic [ref=e1435]:
+                      - img [ref=e1437]
+                      - generic [ref=e1441]: Developer Platform
+                  - link "Reddit Pro BETA" [ref=e1443] [cursor=pointer]:
+                    - /url: /reddit-pro?utm_source=reddit&utm_medium=left_nav_resources
+                    - generic [ref=e1444]:
+                      - img [ref=e1446]
+                      - generic [ref=e1450]:
+                        - generic [ref=e1451]: Reddit Pro
+                        - generic [ref=e1452]: BETA
+                  - link "Help" [ref=e1454] [cursor=pointer]:
+                    - /url: https://support.reddithelp.com/hc?utm_source=reddit&utm_medium=footer&utm_campaign=evergreen
+                    - generic [ref=e1455]:
+                      - img [ref=e1457]
+                      - generic [ref=e1461]: Help
+                  - link "Blog" [ref=e1463] [cursor=pointer]:
+                    - /url: https://redditblog.com/
+                    - generic [ref=e1464]:
+                      - img [ref=e1466]
+                      - generic [ref=e1470]: Blog
+                  - link "Careers" [ref=e1472] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/careers
+                    - generic [ref=e1473]:
+                      - img [ref=e1475]
+                      - generic [ref=e1479]: Careers
+                  - link "Press" [ref=e1481] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/press
+                    - generic [ref=e1482]:
+                      - img [ref=e1484]
+                      - generic [ref=e1488]: Press
+                  - separator [ref=e1489]
+                  - link "Best of Reddit" [ref=e1491] [cursor=pointer]:
+                    - /url: https://www.reddit.com/posts/2026/global/
+                    - generic [ref=e1492]:
+                      - img [ref=e1494]
+                      - generic [ref=e1499]: Best of Reddit
+                  - separator [ref=e1500]
+                  - link "Reddit Rules" [ref=e1502] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/policies/content-policy
+                    - generic [ref=e1503]:
+                      - img [ref=e1505]
+                      - generic [ref=e1509]: Reddit Rules
+                  - link "Privacy Policy" [ref=e1511] [cursor=pointer]:
+                    - /url: https://www.reddit.com/policies/privacy-policy
+                    - generic [ref=e1512]:
+                      - img [ref=e1514]
+                      - generic [ref=e1518]: Privacy Policy
+                  - link "User Agreement" [ref=e1520] [cursor=pointer]:
+                    - /url: https://www.redditinc.com/policies/user-agreement
+                    - generic [ref=e1521]:
+                      - img [ref=e1523]
+                      - generic [ref=e1527]: User Agreement
+                  - link "Accessibility" [ref=e1529] [cursor=pointer]:
+                    - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+                    - generic [ref=e1530]:
+                      - img [ref=e1532]
+                      - generic [ref=e1537]: Accessibility
+            - link "Reddit, Inc. © 2026. All rights reserved." [ref=e1539] [cursor=pointer]:
+              - /url: https://redditinc.com

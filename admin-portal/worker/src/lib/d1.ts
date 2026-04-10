@@ -3,6 +3,8 @@
  */
 
 import { Env } from '../types';
+import { extractData } from './normalize';
+import { isTestEmail } from './filter';
 
 export interface AppRecord {
   id: string;
@@ -54,4 +56,62 @@ export async function fetchAppEndpoint(
   } catch {
     return null;
   }
+}
+
+/**
+ * Shared user extraction — single source of truth.
+ * Handles all response shapes: { users: [] }, { shops: [] }, { data: [] }, direct array.
+ * Returns { users, realCount, testCount, error? }
+ */
+export interface ExtractedUser {
+  email: string;
+  name: string;
+  isTest: boolean;
+  [key: string]: unknown;
+}
+
+export interface UserFetchResult {
+  users: ExtractedUser[];
+  realCount: number;
+  testCount: number;
+  total: number;
+  error?: string;
+}
+
+export async function fetchUsersFromApp(env: Env, app: AppRecord, limit = 100): Promise<UserFetchResult> {
+  const empty: UserFetchResult = { users: [], realCount: 0, testCount: 0, total: 0 };
+
+  const raw = await fetchAppEndpoint(env, app, `users?limit=${limit}`);
+  if (!raw) return { ...empty, error: 'fetch failed' };
+
+  const data = extractData(raw);
+
+  // Handle all response shapes
+  let rawUsers: any[];
+  if (Array.isArray(data)) {
+    rawUsers = data;
+  } else if (Array.isArray(data.data)) {
+    rawUsers = data.data;
+  } else {
+    rawUsers = (data.users || data.shops || data.stores || []) as any[];
+  }
+
+  if (!Array.isArray(rawUsers)) return { ...empty, error: 'not array' };
+
+  const users: ExtractedUser[] = rawUsers.map(u => {
+    const email = String(u.email || u.ownerEmail || u.domain || '');
+    return {
+      ...u,
+      email,
+      name: String(u.name || u.firstName || u.displayName || u.shopName || '').trim() || email.split('@')[0],
+      isTest: isTestEmail(email),
+    };
+  });
+
+  return {
+    users,
+    realCount: users.filter(u => !u.isTest).length,
+    testCount: users.filter(u => u.isTest).length,
+    total: users.length,
+  };
 }

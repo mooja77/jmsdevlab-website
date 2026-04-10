@@ -58,7 +58,7 @@ export async function handleAggregateRoutes(path: string, env: Env): Promise<Res
   // GET /api/aggregate/health
   if (path === '/api/aggregate/health') {
     const results = await env.DB.prepare(`
-      SELECT a.id, a.name, a.frontend_url, a.has_admin,
+      SELECT a.id, a.name, a.frontend_url, a.has_admin, a.hosting,
              h.status, h.db_connected, h.db_response_ms, h.memory_mb, h.version, h.checked_at
       FROM apps a
       LEFT JOIN health_cache h ON a.id = h.app_id

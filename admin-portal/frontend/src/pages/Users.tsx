@@ -23,24 +23,21 @@ interface AppDashboard {
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
-  const [appStats, setAppStats] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [showTest, setShowTest] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   useEffect(() => {
-    Promise.all([
-      api<{ customers: User[] }>(`/api/customers?includeTest=${showTest}`).then(d => setUsers(d.customers)),
-      // Also get per-app dashboard data for usage context
-      api<{ apps: any[] }>('/api/aggregate/dashboard').then(d => {
-        const stats: Record<string, any> = {};
-        d.apps.forEach((a: any) => { stats[a.id] = a; });
-        setAppStats(stats);
-      }),
-    ]).finally(() => setLoading(false));
+    setError(null);
+    api<{ customers: User[] }>(`/api/customers?includeTest=${showTest}`)
+      .then(d => setUsers(d.customers || []))
+      .catch(e => setError('Failed to load users: ' + String(e)))
+      .finally(() => setLoading(false));
   }, [showTest]);
 
   if (loading) return <div className="text-gray-400">Loading users...</div>;
+  if (error) return <div className="text-red-400">{error}</div>;
 
   const realUsers = users.filter(u => !u.isTest);
   const testUsers = users.filter(u => u.isTest);
@@ -182,15 +179,6 @@ function DetailField({ label, value, children }: { label: string; value?: string
     <div>
       <div className="text-[11px] text-gray-500 font-medium uppercase tracking-wider">{label}</div>
       <div className="mt-1 text-sm text-gray-200">{children || value || '-'}</div>
-    </div>
-  );
-}
-
-function MiniStat({ label, value }: { label: string; value: string | number }) {
-  return (
-    <div className="bg-gray-800/30 rounded-lg px-3 py-2">
-      <div className="text-[10px] text-gray-600">{label}</div>
-      <div className="text-sm text-gray-300 font-medium tabular-nums">{value}</div>
     </div>
   );
 }

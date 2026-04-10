@@ -49,10 +49,14 @@ export async function api<T = unknown>(path: string, options?: RequestInit): Pro
 }
 
 export async function login(password: string): Promise<boolean> {
-  const result = await api<{ success: boolean; token: string }>('/api/auth/login', {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  const response = await fetch(`${API_BASE}/api/auth/login`, {
     method: 'POST',
+    headers,
     body: JSON.stringify({ password }),
   });
+  if (!response.ok) return false;
+  const result = await response.json() as { success: boolean; token: string };
   if (result.success && result.token) {
     setToken(result.token);
     return true;

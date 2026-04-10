@@ -16,26 +16,6 @@ export function extractData(response: unknown): Record<string, unknown> {
   return obj;
 }
 
-export interface NormalizedHealth {
-  status: 'healthy' | 'degraded' | 'down' | 'unknown';
-  dbConnected: boolean;
-  dbResponseMs: number;
-  memoryMb: number;
-  version: string;
-  uptime: number;
-}
-
-export function normalizeHealth(raw: Record<string, unknown>): NormalizedHealth {
-  return {
-    status: ((raw.status as string) || (raw.dbConnected ? 'healthy' : 'degraded')) as NormalizedHealth['status'],
-    dbConnected: Boolean(raw.dbConnected ?? raw.db_connected),
-    dbResponseMs: Number(raw.dbResponseMs ?? raw.db_response_ms ?? 0),
-    memoryMb: Number(raw.memoryUsageMb ?? raw.memory_mb ?? raw.memoryMb ?? 0),
-    version: String(raw.version ?? 'unknown'),
-    uptime: Number(raw.uptime ?? 0),
-  };
-}
-
 export interface NormalizedDashboard {
   totalUsers: number;
   activeUsers: number;

@@ -1,0 +1,121 @@
+- generic [ref=e1]:
+  - generic [ref=e12]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - button "Facebook" [ref=e385] [cursor=pointer]:
+          - generic [ref=e391]:
+            - generic
+            - img "Facebook" [ref=e393]
+        - generic [ref=e24]:
+          - button "Edit cover photo" [ref=e41] [cursor=pointer]:
+            - generic [ref=e44]
+          - generic [ref=e52]:
+            - generic [ref=e53]
+            - button "Facebook followers Facebook 1" [ref=e91] [cursor=pointer]
+      - generic [ref=e112]:
+        - button "Create post" [ref=e114] [cursor=pointer]:
+          - generic [ref=e119]: Create post
+        - button "Create ad" [ref=e121] [cursor=pointer]:
+          - generic [ref=e126]: Create ad
+        - button "Create reel" [ref=e128] [cursor=pointer]:
+          - generic [ref=e133]: Create reel
+        - button "Create story" [ref=e135] [cursor=pointer]:
+          - generic [ref=e140]: Create story
+        - button "More" [ref=e141] [cursor=pointer]:
+          - generic [ref=e144]:
+            - generic [ref=e145]: More
+            - img [ref=e146]
+      - generic [ref=e157]:
+        - generic [ref=e172]:
+          - heading "To-do list" [level=1] [ref=e174]
+          - generic [ref=e175]: Check unread messages, comments and other things that may require your attention.
+        - generic [ref=e190]: You’re up to date on your to-do list.
+        - generic [ref=e415]:
+          - generic [ref=e417]:
+            - generic [ref=e420]
+            - generic [ref=e450]
+          - generic [ref=e466]:
+            - button "Publish one ad 0 / 1" [ref=e470] [cursor=pointer]
+            - button "Publish 12 posts on Facebook 1 / 12" [ref=e486] [cursor=pointer]
+            - button "Publish one story on Facebook 0 / 1" [ref=e502] [cursor=pointer]
+        - generic [ref=e529]:
+          - heading "Manage your marketing content" [level=1] [ref=e531]
+          - generic [ref=e532]: See your recent and upcoming posts, stories and ads, and schedule content to plan ahead.
+        - generic [ref=e546]:
+          - tablist [ref=e547]:
+            - tab "Planner" [ref=e549] [cursor=pointer]
+            - tab "Posts & reels" [selected] [ref=e554] [cursor=pointer]
+            - tab "Stories" [ref=e559] [cursor=pointer]
+          - generic [ref=e563]:
+            - generic [ref=e564]: See your posts & reels from the last 60 days.
+            - generic [ref=e565]
+            - link "See all posts & reels" [ref=e740] [cursor=pointer]:
+              - /url: https://business.facebook.com/latest/posts/published_posts?asset_id=1071256529396881
+        - generic [ref=e760]:
+          - heading "Recent ads" [level=2] [ref=e761]
+          - generic [ref=e764]:
+            - generic [ref=e765]
+            - heading "Get started with your first ad" [level=2] [ref=e768]
+            - generic [ref=e769]: New, active and completed ads from the last 60 days will appear here. Running ads on a regular basis can help people remember and recall your business.
+            - button "Create ad" [ref=e770] [cursor=pointer]
+        - progressbar [ref=e193]
+    - generic [ref=e217]:
+      - generic [ref=e219]:
+        - button "Meta Business Suite" [ref=e220] [cursor=pointer]:
+          - generic [ref=e222]: Meta Business Suite
+        - combobox "Facebook JMS Dev Lab" [ref=e234] [cursor=pointer]:
+          - generic [ref=e242]:
+            - generic [ref=e243]
+            - img [ref=e250]
+      - navigation "Links" [ref=e256]:
+        - generic [ref=e257]: Links
+        - list [ref=e258]:
+          - generic [ref=e259]:
+            - listitem [ref=e263]
+            - listitem [ref=e271]
+            - listitem [ref=e280]
+            - listitem [ref=e288]
+            - listitem [ref=e297]
+            - listitem [ref=e305]
+            - listitem [ref=e313]
+            - listitem [ref=e322]
+            - listitem [ref=e331]
+            - listitem [ref=e339]
+            - button "Edit sidebar navigation" [ref=e346] [cursor=pointer]
+      - generic [ref=e354]:
+        - listitem [ref=e357]:
+          - generic [ref=e359]:
+            - link "Search" [ref=e360] [cursor=pointer]
+            - generic
+            - generic
+        - navigation "Links" [ref=e362]:
+          - generic [ref=e363]: Links
+          - list [ref=e364]:
+            - listitem [ref=e368]
+        - listitem [ref=e379]:
+          - generic [ref=e381]:
+            - link "Help" [ref=e382] [cursor=pointer]
+            - generic
+            - generic
+  - dialog "Connect to Instagram" [ref=e777]:
+    - generic "Connect to Instagram" [ref=e778]:
+      - generic [ref=e779]:
+        - generic [ref=e780]:
+          - heading "Connect to Instagram" [level=3] [ref=e783]
+          - button "Close" [active] [ref=e786] [cursor=pointer]:
+            - generic [ref=e788]
+        - generic [ref=e796]:
+          - img "Facebook" [ref=e803]
+          - generic [ref=e813]:
+            - img [ref=e815]
+            - generic [ref=e821]: Only an Instagram professional account can be connected to a Facebook Page, and this connection may be viewable by others.
+          - generic [ref=e822]:
+            - generic [ref=e825]
+            - generic [ref=e829]: "Depending on people's assigned access, these tasks may include:"
+            - generic [ref=e830]
+            - generic [ref=e849]
+        - generic [ref=e852]:
+          - button "Create a new Instagram profile" [ref=e853] [cursor=pointer]:
+            - generic [ref=e857]: Create a new Instagram profile
+          - button "Log into Instagram" [ref=e858] [cursor=pointer]:
+            - generic [ref=e862]: Log into Instagram

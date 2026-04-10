@@ -45,8 +45,29 @@ export async function runUptimeChecks(env: Env): Promise<void> {
 
   await Promise.allSettled(checks);
 
+  // Aggregate into performance_history (hourly buckets)
+  try {
+    await env.DB.prepare(`
+      INSERT OR REPLACE INTO performance_history (app_id, hour, avg_ms, p95_ms, max_ms, check_count)
+      SELECT app_id,
+        strftime('%Y-%m-%d %H:00', checked_at) as hour,
+        CAST(AVG(response_ms) AS INTEGER) as avg_ms,
+        CAST(response_ms AS INTEGER) as p95_ms,
+        MAX(response_ms) as max_ms,
+        COUNT(*) as check_count
+      FROM uptime_checks
+      WHERE checked_at > datetime('now', '-2 hours')
+      GROUP BY app_id, hour
+    `).run();
+  } catch { /* non-critical */ }
+
   // Clean up old uptime records (keep last 7 days)
   await env.DB.prepare(
     'DELETE FROM uptime_checks WHERE checked_at < datetime("now", "-7 days")'
+  ).run();
+
+  // Clean up old performance history (keep last 90 days)
+  await env.DB.prepare(
+    'DELETE FROM performance_history WHERE hour < datetime("now", "-90 days")'
   ).run();
 }

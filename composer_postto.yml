@@ -1,0 +1,192 @@
+- generic [ref=e12]:
+  - generic [ref=e1041]:
+    - generic [ref=e1044]:
+      - heading "Create post" [level=1] [ref=e1045]
+      - generic:
+        - toolbar
+    - generic [ref=e1048]:
+      - generic [ref=e1050]:
+        - generic [ref=e1051]:
+          - generic "Post to" [ref=e1052]:
+            - generic [ref=e1053]:
+              - heading "Post to" [level=3] [ref=e1057]
+              - generic [ref=e1061]:
+                - generic [ref=e1067]: Post to
+                - combobox "Post to JMS Dev Lab and jmsdevlab" [expanded] [ref=e1072] [cursor=pointer]
+          - generic "Media" [ref=e1101]:
+            - generic [ref=e1102]:
+              - generic [ref=e1105]:
+                - heading "Media" [level=3] [ref=e1106]
+                - generic [ref=e1107]: Share photos and videos. Instagram posts can't exceed 10 photos.
+              - button "Add photo/video" [ref=e1114] [cursor=pointer]:
+                - generic [ref=e1117]
+          - generic "Post details" [ref=e1124]:
+            - generic [ref=e1125]:
+              - heading "Post details" [level=3] [ref=e1129]
+              - generic [ref=e1132]:
+                - generic [ref=e1134]
+                - generic [ref=e1145]
+                - generic [ref=e1191]
+          - generic [ref=e1245]:
+            - heading "Schedule" [level=3] [ref=e1246]
+            - generic [ref=e1248]:
+              - generic [ref=e1251] [cursor=pointer]: Set date and time
+              - switch "Set date and time" [ref=e1253] [cursor=pointer]
+          - generic [ref=e1264]:
+            - generic [ref=e1265]:
+              - heading "Share to your story" [level=3] [ref=e1267]
+              - switch "Share to your story" [ref=e1270] [cursor=pointer]
+            - generic [ref=e1274]: This is for Facebook only. Your story privacy is set to Public. Anyone on Facebook can see your story.
+          - generic "Privacy settings" [ref=e1308]:
+            - generic [ref=e1309]:
+              - generic [ref=e1312]:
+                - heading "Privacy settings" [level=3] [ref=e1313]
+                - generic [ref=e1314]: Adjust your privacy settings to control who can see your post in Feed, Watch, search results and on your profile.
+              - grid [ref=e1320]:
+                - row "Public Anyone on or off Facebook will be able to see your post." [ref=e1321]
+                - row "Restricted Choose certain people on Facebook who can see your post." [ref=e1338]
+        - generic [ref=e1361]:
+          - generic [ref=e1365]:
+            - switch "Boost" [ref=e1367] [cursor=pointer]
+            - generic [ref=e1373] [cursor=pointer]: Boost
+          - generic [ref=e1375]:
+            - generic [ref=e1376]:
+              - button "Cancel" [ref=e1377] [cursor=pointer]:
+                - generic [ref=e1381]: Cancel
+              - button "Finish later" [disabled] [ref=e1382]:
+                - generic [ref=e1386]: Finish later
+            - button "Publish" [disabled] [ref=e1387]:
+              - generic [ref=e1391]: Publish
+      - generic [ref=e1396]:
+        - generic [ref=e1397]:
+          - button "Facebook Feed preview" [ref=e1400] [cursor=pointer]:
+            - generic [ref=e1403]:
+              - generic [ref=e1404]: Facebook Feed preview
+              - img [ref=e1405]
+          - group [ref=e1408]:
+            - button [disabled] [ref=e1409]
+            - button [disabled] [ref=e1415]
+        - generic [ref=e1422]:
+          - generic [ref=e1426]:
+            - img [ref=e1428]
+            - generic [ref=e1432]:
+              - generic [ref=e1434]: JMS Dev Lab
+              - generic [ref=e1436]: Just now
+          - generic [ref=e1446]:
+            - strong [ref=e1450]: Like
+            - strong [ref=e1454]: Comment
+            - strong [ref=e1458]: Share
+  - generic [ref=e366]:
+    - generic [ref=e368]:
+      - button "Meta Business Suite" [ref=e369] [cursor=pointer]:
+        - generic [ref=e371]: Meta Business Suite
+      - button "Pressable" [ref=e1488] [cursor=pointer]:
+        - generic [ref=e1491]:
+          - img "Instagram" [ref=e1496]
+          - img "Facebook" [ref=e1501]
+    - navigation "Links" [ref=e413]:
+      - generic [ref=e414]: Links
+      - list [ref=e415]:
+        - generic [ref=e416]:
+          - listitem [ref=e420]:
+            - generic [ref=e422]:
+              - link "Home" [ref=e423] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/home?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e424]: Home
+              - generic:
+                - generic
+          - listitem [ref=e428]:
+            - generic [ref=e430]:
+              - link "Notifications" [ref=e431] [cursor=pointer]:
+                - generic [ref=e432]: Notifications
+              - generic:
+                - generic
+          - listitem [ref=e437]:
+            - generic [ref=e439]:
+              - link "Ads Manager" [ref=e440] [cursor=pointer]:
+                - generic [ref=e441]: Ads Manager
+              - generic:
+                - generic
+          - listitem [ref=e445]:
+            - generic [ref=e447]:
+              - link "Inbox" [ref=e448] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/inbox?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e449]: Inbox
+              - generic:
+                - generic
+          - listitem [ref=e454]:
+            - generic [ref=e456]:
+              - link "Content" [ref=e457] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/posts?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e458]: Content
+              - generic:
+                - generic
+          - listitem [ref=e462]:
+            - generic [ref=e464]:
+              - link "Creator marketplace" [ref=e465] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/creator_marketplace?business_id=1927283174658334&asset_id=1071256529396881&cm_entrypoint=biz_kit_nav_route_item
+                - generic [ref=e466]: Creator marketplace
+              - generic:
+                - generic
+          - listitem [ref=e470]:
+            - generic [ref=e472]:
+              - link "Planner" [ref=e473] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/content_calendar?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e474]: Planner
+              - generic:
+                - generic
+          - listitem [ref=e479]:
+            - generic [ref=e481]:
+              - link "Ads" [ref=e482] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/ad_center/ads_summary?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e483]: Ads
+              - generic:
+                - generic
+          - listitem [ref=e488]:
+            - generic [ref=e490]:
+              - link "Insights" [ref=e491] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/insights?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e492]: Insights
+              - generic:
+                - generic
+          - listitem [ref=e496]:
+            - generic [ref=e498]:
+              - link "All tools" [ref=e499] [cursor=pointer]:
+                - generic [ref=e500]: All tools
+              - generic:
+                - generic
+          - button "Edit sidebar navigation" [ref=e503] [cursor=pointer]:
+            - generic [ref=e507]: Edit
+    - generic [ref=e511]:
+      - listitem [ref=e514]:
+        - generic [ref=e516]:
+          - link "Search" [ref=e517] [cursor=pointer]:
+            - generic [ref=e518]: Search
+          - generic:
+            - generic:
+              - generic:
+                - generic: Search
+          - generic:
+            - generic:
+              - img
+      - navigation "Links" [ref=e519]:
+        - generic [ref=e520]: Links
+        - list [ref=e521]:
+          - listitem [ref=e525]:
+            - generic [ref=e527]:
+              - link "Settings" [ref=e528] [cursor=pointer]:
+                - /url: https://business.facebook.com/latest/settings/business_users?business_id=1927283174658334&asset_id=1071256529396881
+                - generic [ref=e529]: Settings
+              - generic:
+                - generic
+      - listitem [ref=e536]:
+        - generic [ref=e538]:
+          - link "Help" [ref=e539] [cursor=pointer]:
+            - generic [ref=e540]: Help
+          - generic:
+            - generic:
+              - generic:
+                - generic: Help
+          - generic:
+            - generic:
+              - img

@@ -1,0 +1,188 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Pitch Side" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img [ref=e6]
+          - generic [ref=e8]: Pitch Side
+        - navigation [ref=e9]:
+          - link "Features" [ref=e10] [cursor=pointer]:
+            - /url: /features
+          - link "Pricing" [ref=e11] [cursor=pointer]:
+            - /url: /pricing
+          - link "About" [ref=e12] [cursor=pointer]:
+            - /url: /about
+          - link "Contact" [ref=e13] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=e14]:
+          - link "Log In" [ref=e15] [cursor=pointer]:
+            - /url: /dashboard
+          - link "Open the App" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - generic: ⚽
+        - generic: ⚽
+        - generic: ⚽
+        - generic [ref=e20]:
+          - heading "For the coaches who give up their Saturday mornings" [level=1] [ref=e21]
+          - paragraph [ref=e22]: Pitch Side is a free coaching companion for grassroots football. Plan your sessions, organise your squad, and get match day sorted — all in one place, right on your phone.
+          - generic [ref=e23]:
+            - link "Open the App" [ref=e24] [cursor=pointer]:
+              - /url: /dashboard
+            - link "See What's Inside" [ref=e25] [cursor=pointer]:
+              - /url: /features
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: Free to Use
+          - paragraph [ref=e31]: Get started without paying a thing — no trial, no credit card
+        - generic [ref=e32]:
+          - paragraph [ref=e33]: Runs in the Browser
+          - paragraph [ref=e34]: Phone, tablet, or laptop — no app store needed
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Your Data, Secure
+          - paragraph [ref=e37]: Stored safely with Firebase. No ads, no analytics tracking
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - heading "Meet Pitch Side" [level=2] [ref=e41]
+          - paragraph [ref=e42]: A quick hello from the touchline.
+        - iframe [ref=e48]:
+          - generic [active] [ref=f25e1]:
+            - generic "YouTube Video Player" [ref=f25e3]
+            - generic [ref=f25e5]:
+              - generic:
+                - generic:
+                  - button "Play video" [ref=f25e10] [cursor=pointer]:
+                    - generic [ref=f25e13]:
+                      - img
+                  - button "Hide player controls" [ref=f25e14] [cursor=pointer]
+                  - generic [ref=f25e21]:
+                    - generic [ref=f25e22]:
+                      - link "Pitch Side — Free Coaching App for Grassroots Football" [ref=f25e23] [cursor=pointer]:
+                        - /url: https://www.youtube.com/shorts/r560qQFFYiU
+                      - link "Pitch Side App" [ref=f25e24] [cursor=pointer]:
+                        - /url: /channel/UChS2-uEqYLQOhuQChN3s13w
+                        - generic [ref=f25e25]: Pitch Side App
+                    - generic [ref=f25e26]:
+                      - button [ref=f25e27] [cursor=pointer]
+                      - generic [ref=f25e28]:
+                        - generic [ref=f25e29]:
+                          - generic: Pitch Side App
+                          - generic: 2 subscribers
+                        - generic [ref=f25e37]:
+                          - generic [ref=f25e38]:
+                            - generic:
+                              - generic:
+                                - img
+                            - button "Subscribe" [ref=f25e41] [cursor=pointer]:
+                              - generic [ref=f25e42]: Subscribe
+                          - generic:
+                            - generic:
+                              - img
+      - generic [ref=e51]:
+        - generic [ref=e52]:
+          - heading "What's in the Bag" [level=2] [ref=e53]
+          - paragraph [ref=e54]: All the bits and pieces that help you stay organised through the season.
+        - generic [ref=e55]:
+          - generic [ref=e57]:
+            - img [ref=e59]
+            - heading "Your Squad" [level=3] [ref=e64]
+            - paragraph [ref=e65]: Keep all your players in one place — names, positions, contacts, medical notes. Everything you need on match day or at training.
+          - generic [ref=e67]:
+            - img [ref=e69]
+            - heading "Session Planning" [level=3] [ref=e72]
+            - paragraph [ref=e73]: Drag drills into a session plan, set timings, and add coaching points. See your week in a calendar or list — whatever suits you.
+          - generic [ref=e75]:
+            - img [ref=e77]
+            - heading "Drill Library" [level=3] [ref=e79]
+            - paragraph [ref=e80]: 75+ ready-made drills covering passing, shooting, dribbling, defending, and more. Or create your own and build up a library over time.
+          - generic [ref=e82]:
+            - img [ref=e84]
+            - heading "Formations" [level=3] [ref=e88]
+            - paragraph [ref=e89]: Drag players around the pitch to build your shape. Works for 5v5, 7v7, 9v9, or 11v11. Save different setups for different games.
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - heading "Match Day" [level=3] [ref=e99]
+            - paragraph [ref=e100]: Pick your starting lineup, plan your subs rotation, and print a team sheet. Make sure everyone gets a fair run out.
+          - generic [ref=e102]:
+            - img [ref=e104]
+            - heading "Season Overview" [level=3] [ref=e106]
+            - paragraph [ref=e107]: See attendance trends, which drills you've used most, and how often you're training. Handy for reflecting on the season.
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - heading "From the Touchline" [level=2] [ref=e111]
+          - paragraph [ref=e112]: Built alongside real grassroots coaches.
+        - generic [ref=e113]:
+          - img [ref=e115]
+          - paragraph [ref=e119]: We're just getting started.
+          - paragraph [ref=e120]: Pitch Side is new and we're building it alongside real grassroots coaches. If you're using it with your team, we'd love to hear how it's going.
+          - link "Share your experience" [ref=e121] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - heading "Ready in Minutes" [level=2] [ref=e125]
+          - paragraph [ref=e126]: No lengthy setup. No tutorials needed.
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - generic [ref=e129]: "1"
+            - heading "Set Up Your Team" [level=3] [ref=e130]
+            - paragraph [ref=e131]: Create a free account, add your team name and age group, and you're away. Takes less than a minute.
+          - generic [ref=e132]:
+            - generic [ref=e133]: "2"
+            - heading "Add Your Players" [level=3] [ref=e134]
+            - paragraph [ref=e135]: Pop in your squad with positions, contact details, and any notes you need on hand.
+          - generic [ref=e136]:
+            - generic [ref=e137]: "3"
+            - heading "Plan Your Week" [level=3] [ref=e138]
+            - paragraph [ref=e139]: Pick drills, build your session, set your formation — and you're ready for the pitch.
+      - generic [ref=e141]:
+        - heading "Less time on the clipboard, more time on the grass" [level=2] [ref=e142]
+        - paragraph [ref=e143]: Pitch Side is free to get started — because grassroots coaches already give enough.
+        - link "Open Pitch Side" [ref=e144] [cursor=pointer]:
+          - /url: /dashboard
+    - contentinfo [ref=e145]:
+      - generic [ref=e146]:
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - link "Pitch Side" [ref=e149] [cursor=pointer]:
+              - /url: /
+              - img [ref=e150]
+              - generic [ref=e152]: Pitch Side
+            - paragraph [ref=e153]: A free coaching companion for grassroots football. Plan sessions, manage your squad, and get match day sorted.
+          - generic [ref=e154]:
+            - heading "Product" [level=3] [ref=e155]
+            - navigation [ref=e156]:
+              - link "Features" [ref=e157] [cursor=pointer]:
+                - /url: /features
+              - link "Pricing" [ref=e158] [cursor=pointer]:
+                - /url: /pricing
+              - link "Open the App" [ref=e159] [cursor=pointer]:
+                - /url: /dashboard
+          - generic [ref=e160]:
+            - heading "Company" [level=3] [ref=e161]
+            - navigation [ref=e162]:
+              - link "About" [ref=e163] [cursor=pointer]:
+                - /url: /about
+              - link "Contact" [ref=e164] [cursor=pointer]:
+                - /url: /contact
+              - link "Privacy Policy" [ref=e165] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms of Use" [ref=e166] [cursor=pointer]:
+                - /url: /terms
+          - generic [ref=e167]:
+            - heading "Community" [level=3] [ref=e168]
+            - navigation [ref=e169]:
+              - link "GitHub" [ref=e170] [cursor=pointer]:
+                - /url: https://github.com/mooja77/Football-Coaching-App
+                - img [ref=e171]
+                - text: GitHub
+              - link "Get in Touch" [ref=e174] [cursor=pointer]:
+                - /url: /contact
+                - img [ref=e175]
+                - text: Get in Touch
+        - paragraph [ref=e179]:
+          - text: Made with ❤️ for grassroots football · © 2026 Pitch Side · Made by
+          - link "JMS Dev Lab" [ref=e180] [cursor=pointer]:
+            - /url: https://www.jmsdevlab.com/
+  - alert [ref=e181]

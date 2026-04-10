@@ -27,10 +27,12 @@ interface Briefing {
 export default function Dashboard() {
   const [data, setData] = useState<Briefing | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     api<Briefing>('/api/briefing')
       .then(setData)
+      .catch(e => setError('Failed to load: ' + String(e)))
       .finally(() => setLoading(false));
   }, []);
 
@@ -45,6 +47,7 @@ export default function Dashboard() {
       </div>
     );
   }
+  if (error) return <div className="text-red-400 bg-red-500/[0.06] border border-red-500/20 rounded-lg p-4">{error}</div>;
   if (!data) return null;
 
   const { summary } = data;
@@ -86,6 +89,9 @@ export default function Dashboard() {
         <StatCard label="New Leads" value={summary.newLeads} link="/leads" />
         <StatCard label="Pipeline" value={summary.pipelineValue > 0 ? `EUR ${(summary.pipelineValue / 1000).toFixed(0)}k` : '-'} link="/projects" />
       </div>
+
+      {/* Customer Health + Funnel */}
+      <CustomerHealthSummary />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Activity Feed — takes 2 columns */}
@@ -209,6 +215,77 @@ function AppHealthGrid() {
           </div>
         </Link>
       ))}
+    </div>
+  );
+}
+
+function CustomerHealthSummary() {
+  const [health, setHealth] = useState<{ summary: any; scores: any[] } | null>(null);
+  const [funnel, setFunnel] = useState<{ stages: any; conversions: any } | null>(null);
+
+  useEffect(() => {
+    Promise.all([
+      api<any>('/api/health-scores').then(setHealth).catch(() => {}),
+      api<any>('/api/funnel').then(setFunnel).catch(() => {}),
+    ]);
+  }, []);
+
+  if (!health?.summary) return null;
+
+  const s = health.summary;
+  const colors: Record<string, string> = {
+    champions: 'text-emerald-400', healthy: 'text-blue-400',
+    atRisk: 'text-amber-400', churning: 'text-red-400', new: 'text-gray-400'
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Customer Health */}
+      <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+        <h3 className="text-sm font-medium text-white mb-3 flex items-center gap-2">
+          <Icon name="leads" className="w-4 h-4 text-indigo-400" />
+          Customer Health
+        </h3>
+        <div className="flex gap-4">
+          {Object.entries(s).map(([label, count]) => (
+            <div key={label} className="text-center">
+              <div className={`text-xl font-bold tabular-nums ${colors[label] || 'text-white'}`}>{String(count)}</div>
+              <div className="text-[10px] text-gray-500 uppercase mt-0.5">{label === 'atRisk' ? 'At Risk' : label}</div>
+            </div>
+          ))}
+        </div>
+        {health.scores.filter((u: any) => u.label === 'at_risk').length > 0 && (
+          <div className="mt-3 pt-3 border-t border-gray-800/30">
+            <p className="text-[11px] text-amber-400">
+              At risk: {health.scores.filter((u: any) => u.label === 'at_risk').map((u: any) => u.email.split('@')[0]).join(', ')}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Funnel */}
+      {funnel && (
+        <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+          <h3 className="text-sm font-medium text-white mb-3 flex items-center gap-2">
+            <Icon name="revenue" className="w-4 h-4 text-emerald-400" />
+            Conversion Funnel
+          </h3>
+          <div className="flex items-center gap-2">
+            {['lead', 'signup', 'trial', 'paid'].map((stage, i) => (
+              <div key={stage} className="flex items-center gap-2">
+                <div className="text-center">
+                  <div className="text-lg font-bold text-white tabular-nums">{funnel.stages[stage] || 0}</div>
+                  <div className="text-[10px] text-gray-500 uppercase">{stage === 'lead' ? 'Leads' : stage === 'signup' ? 'Signups' : stage === 'trial' ? 'Trials' : 'Paid'}</div>
+                </div>
+                {i < 3 && <span className="text-gray-700 text-xs">→</span>}
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 text-[10px] text-gray-600">
+            Lead→Signup: {funnel.conversions.leadToSignup} | Trial→Paid: {funnel.conversions.trialToPaid}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

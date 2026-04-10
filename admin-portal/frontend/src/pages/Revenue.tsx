@@ -4,10 +4,14 @@ import Icon from '../components/ui/Icon';
 
 export default function Revenue() {
   const [data, setData] = useState<any>(null);
+  const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api('/api/aggregate/revenue').then(setData).finally(() => setLoading(false));
+    Promise.all([
+      api('/api/aggregate/revenue').then(setData),
+      api<{ events: any[] }>('/api/revenue/events').then(d => setEvents(d.events || [])).catch(() => {}),
+    ]).finally(() => setLoading(false));
   }, []);
 
   if (loading) return <div className="text-gray-400">Loading revenue...</div>;
@@ -24,7 +28,7 @@ export default function Revenue() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-semibold text-white">Revenue</h1>
-        <p className="text-sm text-gray-400 mt-1">Across all 12 apps (test accounts excluded)</p>
+        <p className="text-sm text-gray-400 mt-1">Stripe source of truth (test accounts excluded)</p>
       </div>
 
       {/* Revenue Cards */}
@@ -53,20 +57,50 @@ export default function Revenue() {
         <p className="text-[11px] text-gray-600 mt-2">{progress.toFixed(0)}% of the way there</p>
       </div>
 
+      {/* Revenue Events Timeline */}
+      <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-gray-800/50">
+          <h2 className="text-sm font-medium text-white">Revenue Events</h2>
+        </div>
+        {events.length > 0 ? (
+          <div className="divide-y divide-gray-800/20">
+            {events.slice(0, 20).map((e: any, i: number) => (
+              <div key={i} className="px-5 py-3 flex items-center gap-3">
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                  e.event_type.includes('succeeded') || e.event_type.includes('created') ? 'bg-emerald-400' :
+                  e.event_type.includes('deleted') || e.event_type.includes('refunded') ? 'bg-red-400' : 'bg-amber-400'
+                }`} />
+                <span className="text-xs text-gray-500 w-32">{e.event_type.replace('customer.subscription.', '').replace('invoice.payment_', '')}</span>
+                <span className="text-sm text-gray-300 flex-1">{e.customer_email || e.stripe_customer_id}</span>
+                <span className="text-sm font-medium text-white tabular-nums">
+                  {e.amount_cents > 0 ? `$${(e.amount_cents / 100).toFixed(2)}` : '-'}
+                </span>
+                <span className="text-[10px] text-gray-600">{e.created_at?.split('T')[0]}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="px-5 py-8 text-center">
+            <p className="text-sm text-gray-500">No revenue events yet.</p>
+            <p className="text-xs text-gray-600 mt-1">
+              Events will appear here in real-time when customers subscribe via Stripe.
+              {!summary.totalMrr && ' Register the Stripe webhook to enable this.'}
+            </p>
+          </div>
+        )}
+      </div>
+
       {/* Revenue Source */}
       <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
         <h2 className="text-sm font-medium text-white mb-3">Revenue Source</h2>
         <p className="text-sm text-gray-400">
           All revenue data comes from <strong className="text-gray-300">Stripe</strong> (source of truth).
           {summary.totalMrr === 0 ? (
-            <span> No active Stripe subscriptions currently. Revenue will appear here when real customers subscribe to any of the 12 apps.</span>
+            <span> No active Stripe subscriptions currently. Revenue will appear here when real customers subscribe.</span>
           ) : (
             <span> Active subscriptions are generating ${summary.totalMrr.toFixed(2)}/month.</span>
           )}
         </p>
-        {summary.note && (
-          <p className="text-xs text-gray-600 mt-2">{summary.note}</p>
-        )}
       </div>
     </div>
   );

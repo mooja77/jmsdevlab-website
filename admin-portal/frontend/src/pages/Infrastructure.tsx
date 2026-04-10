@@ -27,14 +27,28 @@ export default function Infrastructure() {
   const [sparklines, setSparklines] = useState<Record<string, Array<{ hour: string; is_up: number; avg_ms: number }>>>({});
   const [responseTimes, setResponseTimes] = useState<ResponseTime[]>([]);
   const [github, setGithub] = useState<any[]>([]);
+  const [health, setHealth] = useState<any[]>([]);
+  const [deployments, setDeployments] = useState<any[]>([]);
+  const [deploySummary, setDeploySummary] = useState<any>(null);
+  const [errors, setErrors] = useState<any[]>([]);
+  const [errorSummary, setErrorSummary] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all([
       api<{ checks: UptimeCheck[] }>('/api/deploy/uptime').then(d => setUptime(d.checks)),
       api<{ sparklines: any }>('/api/deploy/uptime/sparkline').then(d => setSparklines(d.sparklines)),
+      api<{ apps: any[] }>('/api/aggregate/health').then(d => setHealth(d.apps || [])),
       api<{ responseTimes: ResponseTime[] }>('/api/deploy/response-times').then(d => setResponseTimes(d.responseTimes)),
       api<{ repos: any[] }>('/api/deploy/github').then(d => setGithub(d.repos)),
+      api<{ deployments: any[]; summary: any }>('/api/deploy/history').then(d => {
+        setDeployments(d.deployments || []);
+        setDeploySummary(d.summary);
+      }).catch(() => {}),
+      api<{ errors: any[]; summary: any }>('/api/errors').then(d => {
+        setErrors(d.errors || []);
+        setErrorSummary(d.summary);
+      }).catch(() => {}),
     ]).finally(() => setLoading(false));
   }, []);
 
@@ -162,16 +176,77 @@ export default function Infrastructure() {
         </div>
       )}
 
-      {/* Hosting Providers */}
+      {/* Error Monitoring */}
+      {errorSummary && (errorSummary.total > 0 || errors.length > 0) && (
+        <div className="bg-gray-900/50 rounded-xl border border-gray-800/50 overflow-hidden">
+          <div className="px-5 py-4 border-b border-gray-800/50 flex items-center justify-between">
+            <h2 className="text-sm font-medium text-white">Error Log ({errorSummary?.unresolved || 0} unresolved)</h2>
+          </div>
+          <div className="divide-y divide-gray-800/20">
+            {errors.slice(0, 10).map((e: any, i: number) => (
+              <div key={i} className="px-5 py-3 flex items-start gap-3">
+                <span className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${e.resolved ? 'bg-gray-600' : 'bg-red-400'}`} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-500">{e.app_name}</span>
+                    <span className="text-xs text-gray-700">×{e.count}</span>
+                  </div>
+                  <p className="text-sm text-gray-300 truncate">{e.message}</p>
+                  <p className="text-[10px] text-gray-600 mt-0.5">{e.endpoint} — {e.error_type}</p>
+                </div>
+              </div>
+            ))}
+            {errors.length === 0 && (
+              <div className="px-5 py-6 text-center text-sm text-gray-600">No errors reported. Apps will send errors here when they occur.</div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Deployment History */}
+      {deployments.length > 0 && (
+        <div className="bg-gray-900/50 rounded-xl border border-gray-800/50 overflow-hidden">
+          <div className="px-5 py-4 border-b border-gray-800/50 flex items-center justify-between">
+            <h2 className="text-sm font-medium text-white">Recent Deployments</h2>
+            {deploySummary && (
+              <span className="text-xs text-gray-500">
+                {deploySummary.successes || 0} passed, {deploySummary.failures || 0} failed (30d)
+              </span>
+            )}
+          </div>
+          <div className="divide-y divide-gray-800/20">
+            {deployments.slice(0, 8).map((d: any, i: number) => (
+              <div key={i} className="px-5 py-3 flex items-center gap-3">
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                  d.status === 'success' ? 'bg-emerald-400' : d.status === 'failure' ? 'bg-red-400' : 'bg-amber-400'
+                }`} />
+                <span className="text-xs text-gray-500 w-24 truncate">{d.app_name}</span>
+                <span className="text-xs text-gray-400 font-mono">{d.commit_sha}</span>
+                <span className="text-xs text-gray-300 truncate flex-1">{d.commit_message}</span>
+                <span className="text-[10px] text-gray-600">{d.duration_seconds ? `${d.duration_seconds}s` : ''}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Hosting Providers — computed from app data */}
       <div>
         <h2 className="text-sm font-medium text-white mb-3">Hosting Providers</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { name: 'Cloudflare', count: 2, desc: 'Pages + Workers + DNS' },
-            { name: 'Railway', count: 6, desc: 'Express backends + PostgreSQL' },
-            { name: 'Vercel', count: 6, desc: 'Next.js/React frontends' },
-            { name: 'Firebase', count: 1, desc: 'PitchSide (Auth + RTDB)' },
-          ].map(p => (
+          {(() => {
+            // Compute hosting counts from health data
+            const counts: Record<string, number> = {};
+            (health || []).forEach((a: any) => {
+              const hosting = a.hosting || 'unknown';
+              const providers = hosting.split(/[+,]/);
+              providers.forEach((p: string) => {
+                const name = p.trim().replace('-pages', '').replace(/^\w/, (c: string) => c.toUpperCase());
+                if (name) counts[name] = (counts[name] || 0) + 1;
+              });
+            });
+            return Object.entries(counts).sort(([,a],[,b]) => b - a).map(([name, count]) => ({ name, count, desc: '' }));
+          })().map(p => (
             <div key={p.name} className="bg-gray-900/30 border border-gray-800/30 rounded-lg px-4 py-3">
               <div className="text-sm text-gray-300 font-medium">{p.name}</div>
               <div className="text-lg font-semibold text-indigo-400 mt-0.5 tabular-nums">{p.count}</div>

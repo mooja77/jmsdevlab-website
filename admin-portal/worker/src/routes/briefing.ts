@@ -8,9 +8,7 @@
  */
 
 import { Env, json } from '../types';
-import { getAllApps, fetchAppEndpoint } from '../lib/d1';
-import { extractData } from '../lib/normalize';
-import { isTestEmail } from '../lib/filter';
+import { getAllApps, fetchUsersFromApp } from '../lib/d1';
 
 export async function handleBriefingRoutes(path: string, env: Env): Promise<Response> {
   if (path !== '/api/briefing') return json({ error: 'Not found' }, 404);
@@ -30,24 +28,14 @@ export async function handleBriefingRoutes(path: string, env: Env): Promise<Resp
   `).first<{ total: number; healthy: number; down: number; degraded: number }>();
 
   // REAL user count — live fetch, filtered, NO FALLBACK
+  const apps = await getAllApps(env);
   let realUserCount = 0;
+  const failedApps: string[] = [];
   try {
-    const apps = await getAllApps(env);
     const fetches = apps.filter(a => a.has_admin && a.api_base_url).map(async app => {
-      const raw = await fetchAppEndpoint(env, app, 'users');
-      if (!raw) return 0;
-      const data = extractData(raw);
-      // Handle various response shapes: { users: [] }, { shops: [] }, { data: [] }, or direct array
-      let users: any[];
-      if (Array.isArray(data)) {
-        users = data;
-      } else if (Array.isArray(data.data)) {
-        users = data.data as any[];
-      } else {
-        users = (data.users || data.shops || data.stores || []) as any[];
-      }
-      if (!Array.isArray(users)) return 0;
-      return users.filter(u => !isTestEmail(String(u.email || u.ownerEmail || u.domain || ''))).length;
+      const result = await fetchUsersFromApp(env, app);
+      if (result.error) { failedApps.push(app.name); return 0; }
+      return result.realCount;
     });
     const counts = await Promise.allSettled(fetches);
     realUserCount = counts.reduce((sum, r) => sum + (r.status === 'fulfilled' ? r.value : 0), 0);
@@ -153,11 +141,12 @@ export async function handleBriefingRoutes(path: string, env: Env): Promise<Resp
       totalUsers: realUserCount,
       totalMrr: realMrr,
       healthyApps: healthResult?.healthy || 0,
-      totalApps: 12,
+      totalApps: apps.length,
       newLeads: newLeads?.count || 0,
       pipelineValue: activeProjects.results.reduce((sum: number, p: any) => sum + (p.value || 0), 0),
     },
     attentionItems,
+    _warnings: failedApps.length > 0 ? [`User count may be incomplete — failed to reach: ${failedApps.join(', ')}`] : [],
     recentActivity: recentActivity.results,
     milestones: { achieved: achievedMilestones.results, next: nextMilestones.results },
     activeProjects: activeProjects.results,

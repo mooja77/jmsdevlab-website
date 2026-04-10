@@ -1,0 +1,250 @@
+- generic [ref=e1]:
+  - link [ref=e2] [cursor=pointer]:
+    - /url: "#"
+    - text: ___
+  - navigation [ref=e4]:
+    - link "Bark Logo" [ref=e5] [cursor=pointer]:
+      - /url: /sellers/dashboard/
+      - img "Bark Logo" [ref=e6]
+    - list [ref=e8]:
+      - listitem [ref=e9]:
+        - link "Dashboard" [ref=e10] [cursor=pointer]:
+          - /url: /sellers/home/
+      - listitem [ref=e11]:
+        - link "Leads" [ref=e12] [cursor=pointer]:
+          - /url: /sellers/dashboard/
+      - listitem [ref=e13]:
+        - link "My Responses" [ref=e14] [cursor=pointer]:
+          - /url: /sellers/my-barks/
+      - listitem [ref=e15]:
+        - link "Settings" [ref=e16] [cursor=pointer]:
+          - /url: /settings/
+      - listitem [ref=e17]:
+        - link "Help" [ref=e18] [cursor=pointer]:
+          - /url: https://help.bark.com/hc/en-ie/
+      - listitem:
+        - button
+      - listitem [ref=e19]:
+        - button "J" [ref=e20] [cursor=pointer]:
+          - generic [ref=e21]: J
+          - img [ref=e23]
+  - generic [ref=e34]:
+    - status [ref=e35]:
+      - generic [ref=e36]: Loading...
+    - heading "Please wait ..." [level=4] [ref=e37]
+  - generic [ref=e42]:
+    - link "Settings" [ref=e45] [cursor=pointer]:
+      - /url: /settings
+      - img [ref=e47]
+      - generic [ref=e51]: Settings
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e57]: Your profile is 33% complete
+        - progressbar [ref=e59]:
+          - img [ref=e61]
+        - paragraph [ref=e65]: Take two minutes to improve your profile
+        - paragraph [ref=e66]: Make the best first impression with a great profile — this is what customers will look at first when choosing which professional to hire.
+      - link "View public profile" [ref=e68] [cursor=pointer]:
+        - /url: https://www.bark.com/en/ie/company/jms-dev-lab/ON0Nze/
+    - generic [ref=e71]:
+      - generic [ref=e72]:
+        - generic [ref=e73] [cursor=pointer]:
+          - generic [ref=e74]:
+            - generic [ref=e75]: About
+            - paragraph [ref=e417]: You have unsaved changes
+          - generic [ref=e76]:
+            - img [ref=e79]
+            - img [ref=e85]
+        - generic "About You have unsaved changes" [ref=e418]:
+          - generic [ref=e230]:
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - heading "Company name & logo" [level=4] [ref=e233]
+                - paragraph [ref=e234]:
+                  - text: This is the first thing customers will see when searching for a professional.
+                  - text: As a sole-trader, you can just enter your name.
+              - generic [ref=e235]:
+                - generic [ref=e236]:
+                  - img [ref=e238]
+                  - link "Upload new picture" [ref=e240] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=e242]: Upload new picture
+                - generic [ref=e244]:
+                  - generic [ref=e245]: Company name
+                  - textbox "Company name" [ref=e246]: JMS Dev Lab
+            - generic [ref=e247]:
+              - generic [ref=e248]:
+                - heading "Name and profile picture" [level=4] [ref=e249]
+                - paragraph [ref=e250]: This is the person who will be communicating with customers on Bark. The photo will appear alongside your messages with customers.
+              - generic [ref=e251]:
+                - generic [ref=e252]:
+                  - img [ref=e254]
+                  - generic [ref=e255]:
+                    - link "Upload new picture" [ref=e256] [cursor=pointer]:
+                      - /url: "#"
+                      - generic [ref=e258]: Upload new picture
+                    - link "Upload using Webcam" [ref=e259] [cursor=pointer]:
+                      - /url: "#"
+                      - generic [ref=e261]: Upload using Webcam
+                - generic [ref=e264]:
+                  - generic [ref=e265]: Name
+                  - textbox "Name" [ref=e266]: John Moore
+            - generic [ref=e267]:
+              - generic [ref=e268]:
+                - heading "Company contact details" [level=4] [ref=e269]
+                - paragraph [ref=e270]:
+                  - text: This information will be seen by customers on Bark. Change the details Bark uses to contact you privately in
+                  - link "Account Details" [ref=e271] [cursor=pointer]:
+                    - /url: /settings/profile/account_details/
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - generic [ref=e274]:
+                    - generic [ref=e275]: Company email address
+                    - textbox "Company email address" [ref=e276]:
+                      - /placeholder: Company e-mail address
+                      - text: john@jmsdevlab.com
+                  - generic [ref=e277]:
+                    - generic [ref=e278]: Company phone number
+                    - textbox "Company phone number" [ref=e279]: 086 811 3687
+                - generic [ref=e281]:
+                  - generic [ref=e282]: Website
+                  - textbox "Website" [ref=e283]:
+                    - /placeholder: Company website
+                    - text: https://jmsdevlab.com
+            - generic [ref=e284]:
+              - generic [ref=e285]:
+                - heading "Company location" [level=4] [ref=e286]
+                - alert [ref=e287]:
+                  - paragraph [ref=e288]: This will not affect the areas where you offer or provide services.
+                - paragraph [ref=e289]: Use a specific address to help customers searching for a local business.
+              - generic [ref=e290]:
+                - generic [ref=e292]:
+                  - generic [ref=e293]: What's the business location?
+                  - textbox "What's the business location?" [active] [ref=e294]:
+                    - /placeholder: Enter the company's address
+                    - text: Carrigaline, Cork, Ireland
+                - generic [ref=e298]:
+                  - generic:
+                    - button "Keyboard shortcuts"
+                  - region "Map" [ref=e299]
+                  - generic [ref=e300]:
+                    - iframe [ref=e352]:
+                      
+                    - link "Open this area in Google Maps (opens a new window)" [ref=e354] [cursor=pointer]:
+                      - /url: https://maps.google.com/maps?ll=53.460811,-7.955967&z=7&t=m&hl=en&gl=IE&mapclient=apiv3
+                      - img "Google" [ref=e356]
+                    - generic [ref=e357]:
+                      - button "Keyboard shortcuts" [ref=e363] [cursor=pointer]
+                      - generic [ref=e368]: Map data ©2026 GeoBasis-DE/BKG (©2009), Google
+                      - link "Terms (opens in new tab)" [ref=e373] [cursor=pointer]:
+                        - /url: https://www.google.com/intl/en_IE/help/terms_maps.html
+                        - text: Terms
+                      - link "Report a map error" [ref=e378] [cursor=pointer]:
+                        - /url: https://www.google.com/maps/@53.460811,-7.955967,7z/data=!10m1!1e1!12b1?source=apiv3&rapsrc=apiv3
+                - generic [ref=e381]:
+                  - checkbox "Don't show this on my profile" [disabled] [ref=e382]
+                  - generic [ref=e383]: Don't show this on my profile
+                  - link [ref=e384] [cursor=pointer]:
+                    - /url: javascript:;
+                    - img [ref=e386]
+                - separator [ref=e390]
+                - generic [ref=e392]:
+                  - generic [ref=e393]: Can't give us a particular location?
+                  - combobox "Can't give us a particular location?" [ref=e394]:
+                    - option "Select a reason" [disabled] [selected]
+                    - option "No location"
+                    - option "Multiple locations"
+                    - option "Online only"
+            - generic [ref=e395]:
+              - generic [ref=e396]:
+                - heading "About the company" [level=4] [ref=e397]
+                - paragraph [ref=e398]: Introduce the company to your customers.
+              - generic [ref=e400]:
+                - generic [ref=e401]:
+                  - generic [ref=e402]: Company size
+                  - combobox "Company size" [ref=e403]:
+                    - option "Select one" [disabled]
+                    - option "Self-employed / sole-trader" [selected]
+                    - option "2-10 employees"
+                    - option "11-50 employees"
+                    - option "51-200 employees"
+                    - option "Over 200 employees"
+                - generic [ref=e404]:
+                  - generic [ref=e405]: Years in business
+                  - textbox "Years in business" [ref=e406]:
+                    - /placeholder: Number of years
+                    - text: "1"
+                - generic [ref=e407]:
+                  - generic [ref=e408]: Describe your company
+                  - textbox "Describe your company" [ref=e409]:
+                    - /placeholder: What sets you apart from other businesses?
+                    - text: "JMS Dev Lab is a software development practice based in Cork, Ireland, founded by John Moore — a computer science graduate (UCC) and former Sun Microsystems engineer with 20+ years of business experience. We specialise in building custom web applications, Shopify apps, and mobile apps for small and medium businesses. Our portfolio includes 7 production Shopify apps covering cashflow management, staff training, CRM, repair tracking, and more. We work directly with clients to understand their needs and deliver practical, well-built software. Whether you need a new website, a custom business tool, a mobile app, or a Shopify integration — we can help. Tech stack: TypeScript, React, Next.js, Node.js, React Native, PostgreSQL, MongoDB, Cloudflare, Vercel."
+                  - paragraph [ref=e410]: Minimum 30 characters
+                - link "Here's our tips for writing a great description" [ref=e412] [cursor=pointer]:
+                  - /url: https://help.bark.com/topic/profile/
+                  - generic [ref=e413]: Here's our tips for writing a great description
+            - generic [ref=e415]:
+              - generic [ref=e416] [cursor=pointer]: Cancel
+              - link "Save" [ref=e419] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e421]: Save
+      - generic [ref=e91] [cursor=pointer]:
+        - generic [ref=e93]: Reviews
+        - generic [ref=e94]:
+          - img [ref=e97]
+          - img [ref=e103]
+      - generic [ref=e109] [cursor=pointer]:
+        - generic [ref=e111]: Services
+        - generic [ref=e112]:
+          - img [ref=e115]
+          - img [ref=e121]
+      - generic [ref=e127] [cursor=pointer]:
+        - generic [ref=e129]: Photos
+        - generic [ref=e130]:
+          - img [ref=e133]
+          - img [ref=e139]
+      - generic [ref=e145] [cursor=pointer]:
+        - generic [ref=e147]: Social media & links
+        - generic [ref=e148]:
+          - img [ref=e151]
+          - img [ref=e157]
+      - generic [ref=e163] [cursor=pointer]:
+        - generic [ref=e165]: Accreditations
+        - generic [ref=e166]:
+          - img [ref=e169]
+          - img [ref=e175]
+      - generic [ref=e181] [cursor=pointer]:
+        - generic [ref=e183]: Q&As
+        - generic [ref=e184]:
+          - img [ref=e187]
+          - img [ref=e193]
+  - iframe [ref=e200]:
+    - generic [ref=f114e2]:
+      - generic [ref=f114e5]:
+        - link "Privacy" [ref=f114e6] [cursor=pointer]:
+          - /url: https://www.google.com/intl/en/policies/privacy/
+        - text: "-"
+        - link "Terms" [ref=f114e7] [cursor=pointer]:
+          - /url: https://www.google.com/intl/en/policies/terms/
+      - generic [ref=f114e8]:
+        - generic [ref=f114e9]:
+          - text: protected by
+          - strong [ref=f114e10]: reCAPTCHA
+        - generic [ref=f114e11]: "-"
+  - generic: More Options
+  - generic [ref=e422]:
+    - generic [ref=e423]:
+      - generic [ref=e425]: Carrigaline
+      - generic [ref=e426]: Cork, Ireland
+    - generic [ref=e427]:
+      - generic [ref=e429]: Bank of Ireland (Banc na hÉireann)
+      - generic [ref=e430]: Main Street, Kilnaglery, Carrigaline, Cork
+    - generic [ref=e431]:
+      - generic [ref=e433]: Old Carrigaline Road
+      - generic [ref=e434]: Douglas, Cork, Ireland
+    - generic [ref=e435]:
+      - generic [ref=e437]: Cork Road
+      - generic [ref=e438]: Carrigaline West, Carrigaline, County Cork, Ireland
+    - generic [ref=e439]:
+      - generic [ref=e441]: Carrigaline Road
+      - generic [ref=e442]: Ardarrig, Cork, Ireland

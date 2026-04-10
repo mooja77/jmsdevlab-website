@@ -1,0 +1,82 @@
+- generic [ref=e1]:
+  - generic [ref=e12]:
+    - generic [ref=e1041]:
+      - generic [ref=e1044]:
+        - heading "Create post" [level=1] [ref=e1045]
+        - generic:
+          - toolbar
+      - generic [ref=e1048]:
+        - generic [ref=e1050]:
+          - generic [ref=e1051]:
+            - generic "Post to" [ref=e1052]
+            - generic "Media" [ref=e1101]
+            - generic "Post details" [ref=e1124]
+            - generic [ref=e1245]
+          - generic [ref=e1361]:
+            - generic [ref=e1365]
+            - generic [ref=e1375]
+        - generic [ref=e1396]:
+          - heading "Instagram Feed preview" [level=3] [ref=e1582]
+          - article [ref=e1820]:
+            - generic [ref=e1822]
+    - generic [ref=e366]:
+      - generic [ref=e368]:
+        - button "Meta Business Suite" [ref=e369] [cursor=pointer]:
+          - generic [ref=e371]: Meta Business Suite
+        - button "Pressable" [ref=e1488] [cursor=pointer]:
+          - generic [ref=e1491]:
+            - img "Instagram" [ref=e1496]
+            - img "Facebook" [ref=e1501]
+      - navigation "Links" [ref=e413]:
+        - generic [ref=e414]: Links
+        - list [ref=e415]:
+          - generic [ref=e416]:
+            - listitem [ref=e420]
+            - listitem [ref=e428]
+            - listitem [ref=e437]
+            - listitem [ref=e445]
+            - listitem [ref=e454]
+            - listitem [ref=e462]
+            - listitem [ref=e470]
+            - listitem [ref=e479]
+            - listitem [ref=e488]
+            - listitem [ref=e496]
+            - button "Edit sidebar navigation" [ref=e503] [cursor=pointer]
+      - generic [ref=e511]:
+        - listitem [ref=e514]:
+          - generic [ref=e516]:
+            - link "Search" [ref=e517] [cursor=pointer]
+            - generic
+            - generic
+        - navigation "Links" [ref=e519]:
+          - generic [ref=e520]: Links
+          - list [ref=e521]:
+            - listitem [ref=e525]
+        - listitem [ref=e536]:
+          - generic [ref=e538]:
+            - link "Help" [ref=e539] [cursor=pointer]
+            - generic
+            - generic
+  - dialog "Edit photo" [ref=e1841]:
+    - generic "Edit photo" [ref=e1842]:
+      - generic [ref=e1843]:
+        - generic [ref=e1845]:
+          - heading "Edit photo" [level=3] [ref=e1848]
+          - button "Close" [active] [ref=e1851] [cursor=pointer]:
+            - generic [ref=e1853]
+        - generic [ref=e1861]:
+          - generic [ref=e1864]:
+            - heading "Creative tools" [level=3] [ref=e1866]
+            - generic "Crop, button" [ref=e1867]
+            - generic "Filter, button" [ref=e1879]
+            - generic "Text, button" [ref=e1891]
+            - generic "Sticker, button" [ref=e1903]
+            - generic "Crop, button" [ref=e1915]
+          - generic [ref=e1948]:
+            - generic [ref=e1949]
+            - table [ref=e2020]
+        - generic [ref=e2047]:
+          - button "Cancel" [ref=e2048] [cursor=pointer]:
+            - generic [ref=e2052]: Cancel
+          - button "Apply" [ref=e2053] [cursor=pointer]:
+            - generic [ref=e2057]: Apply

@@ -8,13 +8,18 @@ import { Env } from '../types';
 import { getAllApps, fetchUsersFromApp, ExtractedUser } from '../lib/d1';
 
 function determineStage(user: any): string {
-  const status = String(user.subscriptionStatus || user.status || user.planStatus || user.plan || '').toLowerCase();
+  const status = String(user.subscriptionStatus || user.planStatus || '').toLowerCase();
   const plan = String(user.plan || user.tier || user.planTier || '').toLowerCase();
+  const hasStripe = !!(user.stripeCustomerId || user.stripe_customer_id || user.stripeSubscriptionId);
+  const mrr = Number(user.mrr || 0);
 
   if (status === 'cancelled' || status === 'canceled' || status === 'deleted' || status === 'expired') return 'churned';
-  if (status === 'active' || status === 'paid') return 'paid';
-  if (status === 'trialing' || plan === 'trial' || status === 'trial') return 'trial';
-  if (plan === 'free' || plan === 'starter' || plan === '') return 'signup';
+  // Only mark as "paid" if there's clear evidence of payment (Stripe ID, MRR, or explicit paid status)
+  if (hasStripe && (status === 'active' || status === 'paid')) return 'paid';
+  if (mrr > 0) return 'paid';
+  if (status === 'trialing' || plan === 'trial') return 'trial';
+  // Plans that indicate payment: pro, business, enterprise, team, agency (not free/starter/basic-free)
+  if (['pro', 'professional', 'business', 'enterprise', 'team', 'agency'].includes(plan) && status === 'active') return 'paid';
   return 'signup';
 }
 

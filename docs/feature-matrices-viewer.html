@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JMS Dev Lab — Feature Matrices Viewer</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --green: #22c55e;
+    --green-bg: #052e16;
+    --yellow: #eab308;
+    --yellow-bg: #422006;
+    --red: #ef4444;
+    --red-bg: #450a0a;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --na: #64748b;
+    --na-bg: #1e293b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+  .container { max-width: 1600px; margin: 0 auto; padding: 2rem 1rem; }
+  h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem; }
+  .controls { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .controls button { padding: 0.4rem 0.8rem; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.15s; }
+  .controls button:hover { border-color: var(--blue); color: var(--blue); }
+  .controls button.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .legend { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--text-muted); flex-wrap: wrap; }
+  .legend span { display: flex; align-items: center; gap: 0.3rem; }
+  .legend .dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .dot-green { background: var(--green); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-red { background: var(--red); }
+  .dot-na { background: var(--na); }
+  .matrix-section { margin-bottom: 3rem; }
+  .matrix-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .matrix-title .num { background: var(--blue); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+  .critical { background: var(--red-bg); border: 1px solid var(--red); border-radius: 6px; padding: 0.5rem 0.75rem; margin-bottom: 0.75rem; font-size: 0.8rem; color: var(--red); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.75rem; table-layout: fixed; }
+  thead th { position: sticky; top: 0; background: var(--surface); z-index: 10; padding: 0.5rem 0.3rem; text-align: center; border-bottom: 2px solid var(--border); white-space: nowrap; font-weight: 600; }
+  thead th:first-child { text-align: left; width: 180px; min-width: 180px; }
+  tbody td { padding: 0.4rem 0.3rem; text-align: center; border-bottom: 1px solid var(--border); }
+  tbody td:first-child { text-align: left; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  tbody tr:hover { background: rgba(59, 130, 246, 0.05); }
+  .cell-done { background: var(--green-bg); color: var(--green); font-weight: 600; }
+  .cell-partial { background: var(--yellow-bg); color: var(--yellow); }
+  .cell-missing { background: var(--red-bg); color: var(--red); }
+  .cell-na { background: var(--na-bg); color: var(--na); font-style: italic; }
+  .score-row td { font-weight: 700; border-top: 2px solid var(--border); background: var(--surface); }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+  .summary-card .app-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .summary-card .score { font-size: 2rem; font-weight: 800; }
+  .summary-card .detail { font-size: 0.75rem; color: var(--text-muted); }
+  .score-green { color: var(--green); }
+  .score-yellow { color: var(--yellow); }
+  .score-red { color: var(--red); }
+  .bar { height: 6px; border-radius: 3px; background: var(--border); margin-top: 0.5rem; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+  .priority-section { margin-top: 2rem; }
+  .priority-section h3 { font-size: 1rem; margin-bottom: 0.75rem; }
+  .p-tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-right: 0.5rem; }
+  .p0 { background: var(--red); color: #fff; }
+  .p1 { background: var(--yellow); color: #000; }
+  .p2 { background: var(--blue); color: #fff; }
+  .p3 { background: var(--na); color: #fff; }
+  .action-list { list-style: none; }
+  .action-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .action-list li:last-child { border-bottom: none; }
+  .app-tag { background: var(--surface); border: 1px solid var(--border); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.7rem; white-space: nowrap; }
+  .overflow-x { overflow-x: auto; }
+  @media (max-width: 768px) {
+    .container { padding: 1rem 0.5rem; }
+    thead th:first-child { width: 120px; min-width: 120px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>JMS Dev Lab — Feature Matrices</h1>
+  <p class="subtitle">12 matrices, 117 features, 12 apps — last updated 26 March 2026</p>
+
+  <div class="legend">
+    <span><span class="dot dot-green"></span> Implemented</span>
+    <span><span class="dot dot-yellow"></span> Partial</span>
+    <span><span class="dot dot-red"></span> Missing</span>
+    <span><span class="dot dot-na"></span> N/A</span>
+  </div>
+
+  <div class="controls" id="matrixTabs"></div>
+
+  <div id="matrices"></div>
+
+  <div class="priority-section" id="priorities"></div>
+</div>
+
+<script>
+const APPS = ['JSM','StaffHub','SmartCash','ProfitShield','JewelValue','RepairDesk','GrowthMap','SpamShield','ThemeSweep','TaxMatch','PitchSide','QualCanvas'];
+
+const D='done',P='partial',M='missing',N='na';
+
+const matrices = [
+  { id:1, title:'16-Point Audit Compliance', rows:[
+    ['Monorepo',P,M,D,D,D,P,M,D,D,D,M,D],
+    ['Web SaaS',D,D,D,D,D,D,D,D,D,D,D,D],
+    ['Google Login',D,M,D,M,D,D,M,D,D,D,M,D],
+    ['Guided Tour',D,D,D,P,D,M,D,M,M,M,D,P],
+    ['Tutorial',D,D,P,P,P,M,P,M,M,M,P,P],
+    ['Billing Enforcement',D,P,D,D,P,D,P,M,P,P,N,D],
+    ['Pricing Tiers',D,D,D,D,D,D,D,D,D,D,N,D],
+    ['GDPR Webhooks',M,D,M,D,P,M,M,P,P,M,N,N],
+    ['Responsive',D,D,D,D,P,D,D,D,D,P,D,D],
+    ['Mascot/Logo',P,M,D,D,P,P,M,M,D,M,M,P],
+    ['Promo Video',D,M,D,M,D,D,M,M,M,M,M,D],
+    ['Marketing Website',D,D,D,D,D,D,D,M,D,M,D,D],
+    ['Screencast',M,M,D,D,D,P,M,M,M,M,P,D],
+    ['Test Plan',D,P,D,D,M,P,M,M,P,M,M,P],
+    ['Geo Requirements',P,M,D,D,P,P,D,D,D,M,N,N],
+    ['JMS Footer',M,D,D,D,D,D,D,D,M,M,D,D],
+  ], scores:[10,9,15,14,13,11,10,11,12,10,9,12]},
+  { id:2, title:'Authentication & Security', rows:[
+    ['Shopify Session Tokens',D,D,D,D,P,D,D,D,D,D,N,N],
+    ['Google OAuth',D,M,D,M,D,D,M,D,D,D,M,D],
+    ['Email/Password',D,D,M,D,D,D,M,D,D,D,M,D],
+    ['JWT Tokens',D,D,D,D,D,D,D,D,D,D,M,D],
+    ['2FA/TOTP',M,M,M,M,M,D,M,M,M,M,M,M],
+    ['Magic Links',M,M,M,M,M,M,D,M,M,M,M,M],
+    ['RBAC/Roles',D,D,P,P,D,D,M,M,M,M,M,P],
+    ['CSRF Protection',D,P,D,P,P,P,M,M,M,M,M,M],
+    ['Security Headers',D,P,D,D,P,D,P,D,D,D,M,D],
+    ['Rate Limiting',D,D,D,D,M,M,M,D,D,D,M,D],
+    ['API Key Auth',M,D,M,D,D,D,M,D,M,M,M,M],
+  ]},
+  { id:3, title:'Billing & Monetisation', critical:'SpamShield billing not enforced \u2014 shows pricing but doesn\u2019t gate features.', rows:[
+    ['Shopify Billing API',M,D,D,D,M,M,M,D,D,M,N,N],
+    ['Stripe',D,D,M,D,M,D,D,D,D,D,N,D],
+    ['Stripe Connect',M,M,M,M,M,D,M,M,M,M,N,M],
+    ['Free Trial (14-day)',D,D,D,D,D,D,P,P,P,P,N,D],
+    ['Tiered Plans',D,D,D,D,D,D,D,D,D,D,N,D],
+    ['Plan Enforcement',D,P,D,D,P,D,P,M,P,P,N,D],
+    ['Usage-Based Billing',M,M,M,D,M,M,M,M,M,M,N,M],
+    ['Subscription Webhooks',M,P,M,D,M,D,M,P,D,M,N,M],
+  ]},
+  { id:4, title:'GDPR & Data Compliance', critical:'RepairDesk missing all 3 mandatory GDPR webhooks. SmartCash also missing all 3.', rows:[
+    ['customers/data_request',M,D,M,D,P,M,M,P,P,M,N,N],
+    ['customers/redact',M,D,M,D,P,M,M,P,P,M,N,N],
+    ['shop/redact',M,D,M,D,P,M,M,P,P,M,N,N],
+    ['Web Data Export',D,D,D,D,M,D,M,D,M,M,M,D],
+    ['Web Data Deletion',M,D,M,D,M,M,M,D,M,M,M,M],
+    ['Audit Logging',D,D,D,D,M,M,M,D,D,M,M,P],
+    ['Privacy Policy Page',D,D,D,D,D,D,P,P,P,M,D,D],
+    ['Data Retention Policy',M,P,M,P,M,M,M,M,M,M,M,M],
+  ]},
+  { id:5, title:'Onboarding & UX', rows:[
+    ['Guided Tour',D,D,D,P,D,M,D,M,M,M,D,P],
+    ['Setup Wizard',D,D,D,M,D,D,D,M,M,M,M,M],
+    ['Demo Mode',P,M,P,M,M,M,M,M,M,M,M,M],
+    ['Tutorial System',D,D,P,M,P,M,P,M,M,M,P,P],
+    ['Loading States',D,D,D,D,D,D,D,D,D,P,D,D],
+    ['Empty States',D,D,D,D,P,D,D,P,D,P,D,D],
+    ['Error States',D,D,D,D,P,D,D,P,D,P,D,D],
+    ['Error Boundaries',D,P,D,D,P,D,D,P,P,M,M,D],
+    ['Offline Support',D,M,M,M,M,M,M,M,M,M,P,D],
+  ]},
+  { id:6, title:'Testing & Quality', rows:[
+    ['Unit Tests',D,D,D,D,M,D,D,D,D,P,M,D],
+    ['Integration Tests',D,D,D,D,M,D,D,P,P,M,M,P],
+    ['E2E (Playwright)',D,D,D,D,M,D,D,D,D,M,M,D],
+    ['Test Plan Doc',D,P,D,D,M,P,M,M,P,M,M,P],
+    ['CI/CD Pipeline',D,D,D,D,M,D,P,D,D,P,P,D],
+    ['Pre-commit Hooks',D,M,D,P,M,M,M,M,M,M,M,M],
+    ['Type Checking',D,D,D,D,D,D,D,D,D,D,D,D],
+    ['Lint Config',D,D,D,D,D,D,D,D,D,D,P,D],
+    ['Coverage Reports',D,M,D,D,M,P,P,P,P,M,M,P],
+    ['Lighthouse CI',D,M,M,M,M,M,M,M,M,M,M,M],
+  ]},
+  { id:7, title:'Communication & Notifications', rows:[
+    ['Transactional Email',D,D,D,D,M,D,M,D,D,M,M,D],
+    ['SMS (Twilio)',M,M,M,M,M,D,M,M,M,M,M,M],
+    ['Push Notifications',P,D,P,M,M,M,M,M,M,M,M,M],
+    ['In-App Notifications',D,D,M,M,M,D,M,M,M,M,M,D],
+    ['Scheduled Reports',M,D,D,M,M,M,M,P,M,M,M,M],
+    ['Webhook Outbound',M,D,M,D,M,D,M,D,D,M,M,M],
+    ['Real-time (Socket.io)',D,D,D,M,M,D,M,M,M,M,M,D],
+  ]},
+  { id:8, title:'Data & Export', rows:[
+    ['CSV Export',D,D,D,D,D,D,M,D,M,M,M,D],
+    ['PDF Export',D,D,D,M,D,D,M,M,M,D,M,P],
+    ['Excel/XLSX',D,M,D,M,M,M,M,M,M,M,M,M],
+    ['JSON Export',P,D,D,D,P,P,P,P,P,P,P,P],
+    ['QDPX Export',N,N,N,N,N,N,N,N,N,D,N,D],
+    ['Calendar/iCal',D,M,M,M,M,M,M,M,M,M,M,M],
+    ['Data Import',M,D,M,M,M,M,M,M,D,M,M,D],
+    ['Backup/Restore',M,M,M,M,M,M,M,M,D,M,M,M],
+  ]},
+  { id:9, title:'Infrastructure & Architecture', rows:[
+    ['Monorepo Structure',P,M,D,D,D,P,M,D,D,D,M,D],
+    ['PostgreSQL+Prisma',D,M,D,D,D,D,M,D,D,D,M,D],
+    ['MongoDB+Mongoose',M,D,M,M,M,M,M,M,M,M,M,M],
+    ['Firebase',M,M,M,M,M,M,M,M,M,M,D,M],
+    ['Supabase',M,M,M,M,M,M,D,M,M,M,M,M],
+    ['Redis/BullMQ',M,M,M,D,M,M,M,M,D,D,M,M],
+    ['Node-cron',D,D,D,M,M,M,M,D,M,M,M,M],
+    ['Docker',D,D,D,D,M,D,M,D,D,M,M,D],
+    ['Railway',M,D,D,M,M,D,M,D,D,M,M,D],
+    ['Vercel',M,M,D,D,M,M,D,D,M,M,D,P],
+    ['Cloudflare Pages',P,P,P,M,M,M,M,M,M,M,M,D],
+  ]},
+  { id:10, title:'Frontend & Design', rows:[
+    ['Responsive',D,D,D,D,P,D,D,D,D,P,D,D],
+    ['Dark Mode',M,M,M,M,M,P,M,M,P,M,M,D],
+    ['i18n/Multi-language',M,D,M,M,M,D,M,P,M,M,M,M],
+    ['Polaris (Shopify)',M,D,M,D,N,M,N,M,D,N,N,N],
+    ['Shadcn/Radix',M,M,D,D,M,D,D,M,D,M,M,D],
+    ['Charts (Recharts)',P,D,D,D,M,D,M,M,M,M,M,M],
+    ['Rich Text Editor',D,P,M,M,M,M,M,M,M,M,M,M],
+    ['Drag-and-Drop',D,M,M,M,M,M,M,M,M,M,D,D],
+    ['Calendar Component',D,P,M,M,M,M,M,M,M,M,M,M],
+    ['Client Portal',D,D,M,M,M,D,M,M,M,M,M,M],
+  ]},
+  { id:11, title:'API & Integration', rows:[
+    ['REST API',D,D,D,D,D,D,D,D,D,D,D,D],
+    ['GraphQL',M,M,M,M,M,M,M,M,M,M,M,M],
+    ['Shopify GraphQL API',D,D,D,D,N,D,N,D,D,D,N,N],
+    ['API Documentation',M,D,M,D,D,D,M,M,M,M,M,M],
+    ['Versioned API',M,M,M,P,M,M,M,M,M,M,M,M],
+    ['Webhook Verification',P,D,P,D,P,P,P,D,D,P,P,P],
+    ['AI Integration',D,M,M,M,M,M,D,D,M,M,M,D],
+    ['File Upload (Multer)',D,D,M,M,M,D,M,M,P,M,M,D],
+    ['Cloud Storage',P,D,M,M,M,D,M,M,M,M,M,D],
+  ]},
+  { id:12, title:'SEO & Marketing Website', rows:[
+    ['Marketing Website',D,D,D,D,D,D,D,M,D,M,D,D],
+    ['robots.txt',M,D,D,M,M,D,M,M,M,M,D,M],
+    ['sitemap.xml',M,D,D,M,M,D,M,M,M,M,M,M],
+    ['Meta Tags',P,P,D,M,D,P,M,M,M,M,D,M],
+    ['OG/Twitter Cards',M,M,D,M,P,M,M,M,M,M,D,M],
+    ['Structured Data',M,M,D,M,M,M,M,M,M,M,M,M],
+    ['Canonical Tags',M,M,D,M,M,M,M,M,M,M,M,M],
+    ['GSC Verified',P,M,D,P,M,M,M,M,P,M,M,M],
+    ['Analytics (Plausible)',M,M,D,M,M,M,M,M,M,M,M,M],
+    ['Pages Indexed',M,M,D,M,M,M,M,M,M,M,M,M],
+  ]},
+];
+
+const priorities = [
+  {level:'P0',label:'Blockers',cls:'p0',items:[
+    {app:'RepairDesk',text:'Implement 3 GDPR webhooks (customers/data_request, customers/redact, shop/redact)'},
+    {app:'SpamShield',text:'Implement billing enforcement middleware \u2014 app lacks payment gating'},
+    {app:'StaffHub',text:'Fix 4 Shopify review issues (Ref 102157)'},
+    {app:'TaxMatch',text:'Satisfy US/IRS geographic requirement (section 4.3.8)'},
+  ]},
+  {level:'P1',label:'Revenue',cls:'p1',items:[
+    {app:'Multiple',text:'Add Shopify Billing API to apps targeting App Store distribution'},
+    {app:'GrowthMap',text:'Add Google OAuth alongside Supabase auth'},
+    {app:'SpamShield',text:'Create marketing website (only Shopify app without one)'},
+  ]},
+  {level:'P2',label:'Quality',cls:'p2',items:[
+    {app:'All apps',text:'Add demo mode for screencast/promo video recording'},
+    {app:'8 apps',text:'Create mascot characters for brand identity'},
+    {app:'7 apps',text:'Write and record promo video scripts'},
+    {app:'SmartCash',text:'Add GDPR webhooks (missing despite best SEO)'},
+    {app:'All apps',text:'Consider adding multi-language support'},
+  ]},
+  {level:'P3',label:'Growth',cls:'p3',items:[
+    {app:'7 of 8 domains',text:'Zero Google indexing \u2014 add robots.txt, sitemap.xml, structured data'},
+    {app:'All apps',text:'Add Plausible analytics to marketing sites'},
+    {app:'All apps',text:'Create formal test plan documents'},
+  ]},
+];
+
+function cellClass(v) {
+  if(v===D) return 'cell-done';
+  if(v===P) return 'cell-partial';
+  if(v===M) return 'cell-missing';
+  return 'cell-na';
+}
+function cellText(v) {
+  if(v===D) return '\u2705';
+  if(v===P) return '\u26A0\uFE0F';
+  if(v===M) return '\u274C';
+  return 'N/A';
+}
+
+function renderMatrix(m) {
+  let html = `<div class="matrix-section" data-matrix="${m.id}">`;
+  html += `<div class="matrix-title"><span class="num">${m.id}</span>${m.title}</div>`;
+  if(m.critical) html += `<div class="critical">\u26A0\uFE0F CRITICAL: ${m.critical}</div>`;
+  html += '<div class="overflow-x"><table><thead><tr><th>Feature</th>';
+  APPS.forEach(a => html += `<th>${a}</th>`);
+  html += '</tr></thead><tbody>';
+  m.rows.forEach(row => {
+    html += `<tr><td>${row[0]}</td>`;
+    for(let i=1;i<=12;i++) html += `<td class="${cellClass(row[i])}">${cellText(row[i])}</td>`;
+    html += '</tr>';
+  });
+  if(m.scores) {
+    html += '<tr class="score-row"><td><strong>Score</strong></td>';
+    m.scores.forEach(s => html += `<td><strong>${s}/16</strong></td>`);
+    html += '</tr>';
+  }
+  // Totals row
+  let totals = APPS.map((_,i) => {
+    let d=0,p=0,mi=0,na=0;
+    m.rows.forEach(r => { let v=r[i+1]; if(v===D) d++; else if(v===P) p++; else if(v===M) mi++; else na++; });
+    return {d,p,mi,na,total:m.rows.length-na};
+  });
+  html += '<tr class="score-row"><td><strong>Totals</strong></td>';
+  totals.forEach(t => {
+    let pct = t.total>0 ? Math.round(t.d/t.total*100) : 0;
+    let cls = pct>=70?'score-green':pct>=40?'score-yellow':'score-red';
+    html += `<td class="${cls}"><strong>${t.d}/${t.total}</strong><br><small>${pct}%</small></td>`;
+  });
+  html += '</tr>';
+  html += '</tbody></table></div></div>';
+  return html;
+}
+
+function renderSummary() {
+  let appScores = APPS.map((app,i) => {
+    let totalD=0, totalAll=0;
+    matrices.forEach(m => {
+      m.rows.forEach(r => {
+        let v = r[i+1];
+        if(v!==N) { totalAll++; if(v===D) totalD++; }
+      });
+    });
+    let pct = Math.round(totalD/totalAll*100);
+    return {app, totalD, totalAll, pct};
+  });
+  appScores.sort((a,b) => b.pct - a.pct);
+
+  let html = '<div class="matrix-section"><div class="matrix-title"><span class="num">\u03A3</span>Overall Feature Coverage</div>';
+  html += '<div class="summary-grid">';
+  appScores.forEach(s => {
+    let cls = s.pct>=70?'score-green':s.pct>=40?'score-yellow':'score-red';
+    let barCls = s.pct>=70?'var(--green)':s.pct>=40?'var(--yellow)':'var(--red)';
+    html += `<div class="summary-card">
+      <div class="app-name">${s.app}</div>
+      <div class="score ${cls}">${s.pct}%</div>
+      <div class="detail">${s.totalD} of ${s.totalAll} features</div>
+      <div class="bar"><div class="bar-fill" style="width:${s.pct}%;background:${barCls}"></div></div>
+    </div>`;
+  });
+  html += '</div></div>';
+  return html;
+}
+
+function renderPriorities() {
+  let html = '<h2 style="margin-bottom:1rem">Priority Actions</h2>';
+  priorities.forEach(p => {
+    html += `<div style="margin-bottom:1.5rem"><h3><span class="p-tag ${p.cls}">${p.level}</span>${p.label}</h3><ul class="action-list">`;
+    p.items.forEach(it => {
+      html += `<li><span class="app-tag">${it.app}</span>${it.text}</li>`;
+    });
+    html += '</ul></div>';
+  });
+  return html;
+}
+
+// Render tabs
+let tabsHtml = '<button class="active" data-show="all">All</button>';
+tabsHtml += '<button data-show="summary">Summary</button>';
+matrices.forEach(m => tabsHtml += `<button data-show="${m.id}">${m.id}. ${m.title.split(' ').slice(0,2).join(' ')}</button>`);
+document.getElementById('matrixTabs').innerHTML = tabsHtml;
+
+// Render all matrices
+let allHtml = '';
+matrices.forEach(m => allHtml += renderMatrix(m));
+allHtml += renderSummary();
+document.getElementById('matrices').innerHTML = allHtml;
+document.getElementById('priorities').innerHTML = renderPriorities();
+
+// Tab switching
+document.querySelectorAll('.controls button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let show = btn.dataset.show;
+    document.querySelectorAll('.matrix-section').forEach(s => {
+      if(show==='all') s.style.display='';
+      else if(show==='summary') s.style.display = s.querySelector('.summary-grid') ? '' : 'none';
+      else s.style.display = s.dataset.matrix==show ? '' : 'none';
+    });
+    document.getElementById('priorities').style.display = (show==='all'||show==='summary') ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+Verifying feature matrices for 12 apps...
+{
+  "verifiedAt": "2026-03-30T20:45:49Z",
+  "apps": {
+    "smartcash": {
+      "name": "SmartCash",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "yes",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "yes",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 18, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "no", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 9, "max": 13
+      }
+    }
+  SmartCash: 18/18 (Shopify: 9/13)
+,
+    "profitshield": {
+      "name": "ProfitShield",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "no",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 16, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "no", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 9, "max": 13
+      }
+    }
+  ProfitShield: 16/18 (Shopify: 9/13)
+,
+    "jewelvalue": {
+      "name": "JewelValue",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "no", "guided_tour": "yes",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "no", "clean_claims": "yes",
+        "score": 15, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "no", "app_bridge": "yes", "session_tokens": "yes", "polaris": "no",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 8, "max": 13
+      }
+    }
+  JewelValue: 15/18 (Shopify: 8/13)
+,
+    "repairdesk": {
+      "name": "RepairDesk",
+      "audit": {
+        "monorepo": "no", "web_saas": "yes", "google_oauth": "no", "guided_tour": "no",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 14, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "no", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "yes", "graphql": "yes",
+        "on_store": "yes", "store_link": "yes", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 12, "max": 13
+      }
+    }
+  RepairDesk: 14/18 (Shopify: 12/13)
+,
+    "growthmap": {
+      "name": "GrowthMap",
+      "audit": {
+        "monorepo": "no", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "yes",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 16, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "no", "app_bridge": "yes", "session_tokens": "yes", "polaris": "no",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 8, "max": 13
+      }
+    }
+  GrowthMap: 16/18 (Shopify: 8/13)
+,
+    "spamshield": {
+      "name": "SpamShield",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "no",
+        "tutorial": "yes", "billing": "no", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 15, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "yes", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 11, "max": 13
+      }
+    }
+  SpamShield: 15/18 (Shopify: 11/13)
+,
+    "themesweep": {
+      "name": "ThemeSweep",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "no",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "no", "marketing_site": "yes",
+        "screencast": "no", "tests": "yes", "geo_req": "no", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 14, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "no", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "no",
+        "score": 8, "max": 13
+      }
+    }
+  ThemeSweep: 14/18 (Shopify: 8/13)
+,
+    "taxmatch": {
+      "name": "TaxMatch",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "yes", "guided_tour": "yes",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "no", "marketing_site": "no",
+        "screencast": "no", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 15, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 10, "max": 13
+      }
+    }
+  TaxMatch: 15/18 (Shopify: 10/13)
+,
+    "jsm": {
+      "name": "JSM",
+      "audit": {
+        "monorepo": "no", "web_saas": "yes", "google_oauth": "no", "guided_tour": "no",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "yes",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 15, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "no", "app_bridge": "no", "session_tokens": "no", "polaris": "no",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "yes", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "yes", "web_embedded": "no",
+        "geo_req": "yes",
+        "score": 6, "max": 13
+      }
+    }
+  JSM: 15/18 (Shopify: 6/13)
+,
+    "staffhub": {
+      "name": "StaffHub",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "no", "guided_tour": "no",
+        "tutorial": "yes", "billing": "yes", "pricing": "yes", "gdpr": "yes",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "yes",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 16, "max": 18
+      },
+      "shopify": {
+        "embedded_dir": "yes", "app_bridge": "yes", "session_tokens": "yes", "polaris": "yes",
+        "billing_api": "yes", "gdpr_webhooks": "yes", "app_proxy": "no", "graphql": "yes",
+        "on_store": "no", "store_link": "no", "shopify_cli": "no", "web_embedded": "yes",
+        "geo_req": "yes",
+        "score": 9, "max": 13
+      }
+    }
+  StaffHub: 16/18 (Shopify: 9/13)
+,
+    "pitchside": {
+      "name": "PitchSide",
+      "audit": {
+        "monorepo": "no", "web_saas": "yes", "google_oauth": "no", "guided_tour": "yes",
+        "tutorial": "yes", "billing": "na", "pricing": "na", "gdpr": "na",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "yes",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 13, "max": 15
+      },
+      "shopify": {
+        "embedded_dir": "na", "app_bridge": "na", "session_tokens": "na", "polaris": "na",
+        "billing_api": "na", "gdpr_webhooks": "na", "app_proxy": "na", "graphql": "na",
+        "on_store": "na", "store_link": "na", "shopify_cli": "na", "web_embedded": "na",
+        "geo_req": "na",
+        "score": 0, "max": 0
+      }
+    }
+  PitchSide: 13/15 (Shopify: 0/0)
+,
+    "qualcanvas": {
+      "name": "QualCanvas",
+      "audit": {
+        "monorepo": "yes", "web_saas": "yes", "google_oauth": "no", "guided_tour": "no",
+        "tutorial": "yes", "billing": "no", "pricing": "yes", "gdpr": "na",
+        "responsive": "yes", "mascot": "yes", "promo_video": "yes", "marketing_site": "no",
+        "screencast": "yes", "tests": "yes", "geo_req": "yes", "jms_footer": "yes",
+        "admin_portal": "yes", "clean_claims": "yes",
+        "score": 13, "max": 17
+      },
+      "shopify": {
+        "embedded_dir": "na", "app_bridge": "na", "session_tokens": "na", "polaris": "na",
+        "billing_api": "na", "gdpr_webhooks": "na", "app_proxy": "na", "graphql": "na",
+        "on_store": "na", "store_link": "na", "shopify_cli": "na", "web_embedded": "na",
+        "geo_req": "na",
+        "score": 0, "max": 0
+      }
+    }
+  QualCanvas: 13/17 (Shopify: 0/0)
+
+  }
+}
+Results written to stdout. Redirect to /c/JM Programs/JMS Dev Lab/scripts/matrices-verified.json

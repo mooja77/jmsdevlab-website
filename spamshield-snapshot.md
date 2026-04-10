@@ -1,0 +1,519 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e4]
+  - generic [ref=e5]:
+    - banner [ref=e6]:
+      - generic [ref=e7]:
+        - link "TaxMatch — Home" [ref=e8] [cursor=pointer]:
+          - /url: /landing
+          - generic [ref=e10]: T
+          - generic [ref=e11]: TaxMatch
+        - navigation [ref=e12]:
+          - link "Features" [ref=e13] [cursor=pointer]:
+            - /url: /landing#features
+          - link "How It Works" [ref=e14] [cursor=pointer]:
+            - /url: /landing#how-it-works
+          - link "Pricing" [ref=e15] [cursor=pointer]:
+            - /url: /pricing
+          - link "Sign In" [ref=e16] [cursor=pointer]:
+            - /url: /auth/login
+          - link "Start Free Trial" [ref=e17] [cursor=pointer]:
+            - /url: /auth/register
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: 2026 tax season — reconcile your 1099-K before April 15
+        - heading "Your 1099-K says $90,690. You actually earned $74,209." [level=1] [ref=e25]:
+          - text: Your 1099-K says $90,690.
+          - text: You actually earned $74,209.
+        - paragraph [ref=e26]: Refunds, chargebacks, processing fees, and sales tax inflate your 1099-K by 15-30%. TaxMatch reconciles the gap and generates an IRS-ready worksheet in minutes.
+        - generic [ref=e27]:
+          - link "Start 14-Day Free Trial" [ref=e28] [cursor=pointer]:
+            - /url: /auth/register
+            - text: Start 14-Day Free Trial
+            - img [ref=e29]
+          - link "View Pricing" [ref=e31] [cursor=pointer]:
+            - /url: /pricing
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - paragraph [ref=e34]: $20K
+            - paragraph [ref=e35]: Federal 1099-K threshold
+          - generic [ref=e36]:
+            - paragraph [ref=e37]: 3M+
+            - paragraph [ref=e38]: Sellers receive 1099-Ks
+          - generic [ref=e39]:
+            - paragraph [ref=e40]: 15-30%
+            - paragraph [ref=e41]: Avg 1099-K gap
+          - generic [ref=e42]:
+            - paragraph [ref=e43]: <5 min
+            - paragraph [ref=e44]: Time to reconcile
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - paragraph [ref=e49]: 1,000+
+          - paragraph [ref=e50]: Sellers Trust TaxMatch
+        - generic [ref=e51]:
+          - paragraph [ref=e52]: $2.4M+
+          - paragraph [ref=e53]: Adjustments Found
+        - generic [ref=e54]:
+          - paragraph [ref=e55]: 50,000+
+          - paragraph [ref=e56]: Transactions Processed
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - img [ref=e60]
+          - generic [ref=e62]: AES-256 encrypted
+        - generic [ref=e63]:
+          - img [ref=e64]
+          - generic [ref=e66]: SOC 2 infrastructure
+        - generic [ref=e67]:
+          - img [ref=e68]
+          - generic [ref=e70]: Bank-level security
+        - generic [ref=e71]:
+          - img [ref=e72]
+          - generic [ref=e74]: CPA-approved worksheet
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - text: The Problem
+          - heading "The 1099-K problem" [level=2] [ref=e78]
+          - paragraph [ref=e79]: Payment processors report your gross volume to the IRS. But that number includes refunds, chargebacks, fees, and sales tax — money you never kept. The result? Your 1099-K can be 15-30% higher than your actual taxable income.
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - generic [ref=e84]:
+                - img [ref=e86]
+                - generic [ref=e88]:
+                  - paragraph [ref=e89]: What the IRS sees
+                  - paragraph [ref=e90]: Form 1099-K
+              - generic [ref=e91]:
+                - paragraph [ref=e92]: $90,690.00
+                - paragraph [ref=e93]: Gross payment volume reported by Shopify Payments, PayPal, and Stripe combined.
+                - generic [ref=e94]:
+                  - paragraph [ref=e95]: "Shopify Payments: $52,410.00"
+                  - paragraph [ref=e96]: "PayPal: $26,180.00"
+                  - paragraph [ref=e97]: "Stripe: $12,100.00"
+            - generic [ref=e98]:
+              - generic [ref=e100]:
+                - img [ref=e102]
+                - generic [ref=e104]:
+                  - paragraph [ref=e105]: Your actual income
+                  - paragraph [ref=e106]: After TaxMatch reconciliation
+              - generic [ref=e107]:
+                - paragraph [ref=e108]: $74,209.41
+                - paragraph [ref=e109]: Actual taxable income after all IRS-recognized adjustments.
+                - generic [ref=e110]:
+                  - generic [ref=e111]:
+                    - generic [ref=e112]: Refunds & Returns
+                    - generic [ref=e113]: "-$8,412.30"
+                  - generic [ref=e114]:
+                    - generic [ref=e115]: Processing Fees
+                    - generic [ref=e116]: "-$3,620.70"
+                  - generic [ref=e117]:
+                    - generic [ref=e118]: Sales Tax Collected
+                    - generic [ref=e119]: "-$2,894.00"
+                  - generic [ref=e120]:
+                    - generic [ref=e121]: Chargebacks
+                    - generic [ref=e122]: "-$1,553.59"
+                  - generic [ref=e123]:
+                    - generic [ref=e124]: Total Adjustments
+                    - generic [ref=e125]: "-$16,480.59"
+          - generic [ref=e127]:
+            - img [ref=e128]
+            - paragraph [ref=e130]: Without reconciliation, you could overpay taxes on $16,480.59 of non-income payments.
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - text: Features
+          - heading "Everything you need for 1099-K reconciliation" [level=2] [ref=e134]
+          - paragraph [ref=e135]: Built for e-commerce sellers who are tired of guessing why their 1099-K doesn't match their actual income.
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - img [ref=e139]
+            - heading "Multi-Processor Reconciliation" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Connect Shopify Payments, PayPal, and Stripe. TaxMatch consolidates all your 1099-K forms into one reconciliation.
+          - generic [ref=e143]:
+            - img [ref=e145]
+            - heading "IRS-Ready Worksheet" [level=3] [ref=e147]
+            - paragraph [ref=e148]: Generate a professional PDF reconciliation worksheet you can hand to your CPA or attach to your tax filing.
+          - generic [ref=e149]:
+            - img [ref=e151]
+            - heading "Automatic Adjustments" [level=3] [ref=e153]
+            - paragraph [ref=e154]: TaxMatch deducts refunds, chargebacks, processing fees, and sales tax — showing why your 1099-K is higher than actual income.
+          - generic [ref=e155]:
+            - img [ref=e157]
+            - heading "Discrepancy Detection" [level=3] [ref=e159]
+            - paragraph [ref=e160]: Automatically finds and explains differences between your 1099-K and calculated gross, with severity ratings.
+          - generic [ref=e161]:
+            - img [ref=e163]
+            - heading "Quarterly Pre-Checks" [level=3] [ref=e165]
+            - paragraph [ref=e166]: Don't wait until tax season. Get quarterly snapshots so you're never surprised by a discrepancy.
+          - generic [ref=e167]:
+            - img [ref=e169]
+            - heading "Works With or Without Shopify" [level=3] [ref=e171]
+            - paragraph [ref=e172]: Use as a Shopify embedded app or as a standalone web SaaS. Same data, same experience.
+      - generic [ref=e175]:
+        - generic [ref=e176]:
+          - img [ref=e178]
+          - heading "256-bit SSL" [level=3] [ref=e180]
+          - paragraph [ref=e181]: All data encrypted in transit
+        - generic [ref=e182]:
+          - img [ref=e184]
+          - heading "IRS-Accepted Formats" [level=3] [ref=e186]
+          - paragraph [ref=e187]: PDF worksheets ready to file
+        - generic [ref=e188]:
+          - img [ref=e190]
+          - heading "Bank-Level Security" [level=3] [ref=e192]
+          - paragraph [ref=e193]: AES-256-GCM encryption at rest
+        - generic [ref=e194]:
+          - img [ref=e196]
+          - heading "SOC 2 Readiness" [level=3] [ref=e198]
+          - paragraph [ref=e199]: Enterprise compliance standards
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - text: How it works
+          - heading "Three steps to tax clarity" [level=2] [ref=e203]
+          - paragraph [ref=e204]: Go from confused about your 1099-K to handing your CPA a professional worksheet in under 5 minutes.
+        - generic [ref=e205]:
+          - generic [ref=e207]:
+            - generic [ref=e209]: "1"
+            - heading "Connect" [level=3] [ref=e210]
+            - paragraph [ref=e211]: Link your payment processors or upload transaction data. Shopify Payments, PayPal, and Stripe auto-connect in seconds.
+          - generic [ref=e212]:
+            - generic [ref=e214]: "2"
+            - heading "Reconcile" [level=3] [ref=e215]
+            - paragraph [ref=e216]: TaxMatch maps your 1099-K gross to actual income — deducting refunds, fees, chargebacks, and sales tax automatically.
+          - generic [ref=e217]:
+            - generic [ref=e219]: "3"
+            - heading "Report" [level=3] [ref=e220]
+            - paragraph [ref=e221]: Download an IRS-ready reconciliation worksheet (PDF + CSV) to hand to your CPA or attach directly to your filing.
+      - generic [ref=e223]:
+        - generic [ref=e224]:
+          - text: Dashboard
+          - heading "See the full picture at a glance" [level=2] [ref=e225]
+          - paragraph [ref=e226]: Your reconciliation summary, processor breakdown, and IRS worksheet — all in one clean dashboard.
+        - generic [ref=e227]:
+          - generic [ref=e234]: taxmatch-web.vercel.app/dashboard
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - generic [ref=e237]:
+                - paragraph [ref=e238]: Reconciliation Overview
+                - paragraph [ref=e239]: Tax Year 2025 — 3 processors connected
+              - generic [ref=e240]: All Reconciled
+            - generic [ref=e241]:
+              - generic [ref=e242]:
+                - paragraph [ref=e243]: 1099-K Gross
+                - paragraph [ref=e244]: $90,690.00
+                - paragraph [ref=e245]: Reported by processors
+              - generic [ref=e246]:
+                - paragraph [ref=e247]: Actual Income
+                - paragraph [ref=e248]: $74,209.41
+                - paragraph [ref=e249]: After adjustments
+              - generic [ref=e250]:
+                - paragraph [ref=e251]: Total Adjustments
+                - paragraph [ref=e252]: "-$16,480.59"
+                - paragraph [ref=e253]: 18.2% of gross
+              - generic [ref=e254]:
+                - paragraph [ref=e255]: Discrepancies
+                - paragraph [ref=e256]: "0"
+                - paragraph [ref=e257]: All clear
+            - generic [ref=e258]:
+              - heading "Adjustment Breakdown" [level=4] [ref=e259]
+              - generic [ref=e260]:
+                - generic [ref=e262]:
+                  - generic [ref=e263]: Refunds & Returns
+                  - generic [ref=e264]: "-$8,412.30"
+                - generic [ref=e268]:
+                  - generic [ref=e269]: Processing Fees
+                  - generic [ref=e270]: "-$3,620.70"
+                - generic [ref=e274]:
+                  - generic [ref=e275]: Sales Tax Collected
+                  - generic [ref=e276]: "-$2,894.00"
+                - generic [ref=e280]:
+                  - generic [ref=e281]: Chargebacks
+                  - generic [ref=e282]: "-$1,553.59"
+              - generic [ref=e285]:
+                - generic [ref=e286]:
+                  - generic [ref=e287]: Reconciled
+                  - generic [ref=e288]: 3 processors connected
+                - generic [ref=e289]: "Last synced: 2 min ago"
+      - generic [ref=e291]:
+        - generic [ref=e292]:
+          - text: Pricing
+          - heading "Simple, transparent pricing" [level=2] [ref=e293]
+          - paragraph [ref=e294]: Pick the plan that fits your business. Upgrade or downgrade anytime.
+        - generic [ref=e295]:
+          - generic [ref=e296]:
+            - generic [ref=e297]:
+              - heading "Standard" [level=3] [ref=e298]
+              - paragraph [ref=e299]: For individual sellers with one store.
+              - generic [ref=e300]: $9.99/mo
+            - list [ref=e301]:
+              - listitem [ref=e302]:
+                - img [ref=e303]
+                - text: Up to 2 payment processors
+              - listitem [ref=e305]:
+                - img [ref=e306]
+                - text: Annual reconciliation worksheet
+              - listitem [ref=e308]:
+                - img [ref=e309]
+                - text: PDF + CSV export
+              - listitem [ref=e311]:
+                - img [ref=e312]
+                - text: Email support
+            - link "Start Free Trial" [ref=e314] [cursor=pointer]:
+              - /url: /auth/register
+          - generic [ref=e315]:
+            - generic [ref=e316]: Most Popular
+            - generic [ref=e317]:
+              - heading "Pro" [level=3] [ref=e318]
+              - paragraph [ref=e319]: For growing sellers with multiple processors.
+              - generic [ref=e320]: $19.99/mo
+            - list [ref=e321]:
+              - listitem [ref=e322]:
+                - img [ref=e323]
+                - text: Unlimited payment processors
+              - listitem [ref=e325]:
+                - img [ref=e326]
+                - text: Quarterly pre-checks
+              - listitem [ref=e328]:
+                - img [ref=e329]
+                - text: Discrepancy detection
+              - listitem [ref=e331]:
+                - img [ref=e332]
+                - text: CPA sharing & collaboration
+              - listitem [ref=e334]:
+                - img [ref=e335]
+                - text: Priority support
+            - link "Start Free Trial" [ref=e337] [cursor=pointer]:
+              - /url: /auth/register
+          - generic [ref=e338]:
+            - generic [ref=e339]:
+              - heading "Premium" [level=3] [ref=e340]
+              - paragraph [ref=e341]: For high-volume sellers and agencies.
+              - generic [ref=e342]: $24.99/mo
+            - list [ref=e343]:
+              - listitem [ref=e344]:
+                - img [ref=e345]
+                - text: Everything in Pro
+              - listitem [ref=e347]:
+                - img [ref=e348]
+                - text: Multi-store management
+              - listitem [ref=e350]:
+                - img [ref=e351]
+                - text: API access
+              - listitem [ref=e353]:
+                - img [ref=e354]
+                - text: Custom report branding
+              - listitem [ref=e356]:
+                - img [ref=e357]
+                - text: Dedicated account manager
+            - link "Start Free Trial" [ref=e359] [cursor=pointer]:
+              - /url: /auth/register
+        - paragraph [ref=e360]: All plans include a 14-day free trial. No commitment required.
+      - generic [ref=e362]:
+        - generic [ref=e363]:
+          - text: Testimonials
+          - heading "Sellers love TaxMatch" [level=2] [ref=e364]
+        - generic [ref=e365]:
+          - generic [ref=e366]:
+            - generic [ref=e367]:
+              - img [ref=e368]
+              - img [ref=e370]
+              - img [ref=e372]
+              - img [ref=e374]
+              - img [ref=e376]
+            - paragraph [ref=e378]: “I was off by $14,000 on my 2025 filing and had no idea why. TaxMatch found the gap in under 5 minutes — it was refunds and Stripe fees I forgot to account for. My CPA was impressed.”
+            - generic [ref=e379]:
+              - generic [ref=e380]: SC
+              - generic [ref=e381]:
+                - paragraph [ref=e382]: Sarah Chen
+                - paragraph [ref=e383]: Velvet & Vine Boutique
+                - paragraph [ref=e384]: Founder & Owner
+              - generic [ref=e385]: Verified
+          - generic [ref=e386]:
+            - generic [ref=e387]:
+              - img [ref=e388]
+              - img [ref=e390]
+              - img [ref=e392]
+              - img [ref=e394]
+              - img [ref=e396]
+            - paragraph [ref=e398]: “We sell on Shopify and Amazon. Two 1099-Ks, hundreds of refunds. TaxMatch reconciled both processors and gave me a clean worksheet. Worth every penny.”
+            - generic [ref=e399]:
+              - generic [ref=e400]: MT
+              - generic [ref=e401]:
+                - paragraph [ref=e402]: Marcus Thompson
+                - paragraph [ref=e403]: GearUp Outdoors
+                - paragraph [ref=e404]: E-Commerce Director
+              - generic [ref=e405]: Verified
+          - generic [ref=e406]:
+            - generic [ref=e407]:
+              - img [ref=e408]
+              - img [ref=e410]
+              - img [ref=e412]
+              - img [ref=e414]
+              - img [ref=e416]
+            - paragraph [ref=e418]: “I used to spend 4+ hours in spreadsheets every tax season. Now I connect my Shopify Payments, click reconcile, and hand the PDF to my accountant. Done.”
+            - generic [ref=e419]:
+              - generic [ref=e420]: ER
+              - generic [ref=e421]:
+                - paragraph [ref=e422]: Emily Rodriguez
+                - paragraph [ref=e423]: Lumos Candle Co.
+                - paragraph [ref=e424]: Owner
+              - generic [ref=e425]: Verified
+      - generic [ref=e427]:
+        - generic [ref=e428]:
+          - text: Comparison
+          - heading "TaxMatch vs manual reconciliation" [level=2] [ref=e429]
+          - paragraph [ref=e430]: Stop wrestling with spreadsheets. See why sellers switch to TaxMatch.
+        - generic [ref=e431]:
+          - generic [ref=e432]:
+            - generic [ref=e433]: Category
+            - generic [ref=e434]: TaxMatch
+            - generic [ref=e435]: Manual / CPA
+          - generic [ref=e436]:
+            - generic [ref=e437]: Time to reconcile
+            - generic [ref=e439]:
+              - img [ref=e440]
+              - text: Under 5 minutes
+            - generic [ref=e442]: 4+ hours
+          - generic [ref=e443]:
+            - generic [ref=e444]: Accuracy
+            - generic [ref=e446]:
+              - img [ref=e447]
+              - text: 99.9%
+            - generic [ref=e449]: Varies
+          - generic [ref=e450]:
+            - generic [ref=e451]: Cost
+            - generic [ref=e453]:
+              - img [ref=e454]
+              - text: From $9.99/mo
+            - generic [ref=e456]: $200+/hr (CPA)
+          - generic [ref=e457]:
+            - generic [ref=e458]: Payment processors
+            - generic [ref=e460]:
+              - img [ref=e461]
+              - text: Unlimited (Pro+)
+            - generic [ref=e463]: Manual tracking
+          - generic [ref=e464]:
+            - generic [ref=e465]: IRS-ready worksheet
+            - generic [ref=e467]:
+              - img [ref=e468]
+              - text: Auto-generated
+            - generic [ref=e470]: Build from scratch
+          - generic [ref=e471]:
+            - generic [ref=e472]: Quarterly checks
+            - generic [ref=e474]:
+              - img [ref=e475]
+              - text: Automated
+            - generic [ref=e477]: Not practical
+          - generic [ref=e478]:
+            - generic [ref=e479]: Discrepancy alerts
+            - generic [ref=e481]:
+              - img [ref=e482]
+              - text: Real-time
+            - generic [ref=e484]: End of year surprise
+          - generic [ref=e485]:
+            - generic [ref=e486]: CPA collaboration
+            - generic [ref=e488]:
+              - img [ref=e489]
+              - text: Built-in sharing
+            - generic [ref=e491]: Email back and forth
+      - generic [ref=e493]:
+        - generic [ref=e494]:
+          - text: FAQ
+          - heading "Frequently asked questions" [level=2] [ref=e495]
+          - paragraph [ref=e496]: Everything you need to know about 1099-K reconciliation and TaxMatch.
+        - generic [ref=e497]:
+          - group [ref=e498]:
+            - generic "What is 1099-K reconciliation?" [ref=e499] [cursor=pointer]:
+              - generic [ref=e500]: What is 1099-K reconciliation?
+              - img [ref=e501]
+          - group [ref=e503]:
+            - generic "Do I need a Shopify store?" [ref=e504] [cursor=pointer]:
+              - generic [ref=e505]: Do I need a Shopify store?
+              - img [ref=e506]
+          - group [ref=e508]:
+            - generic "How does the 14-day free trial work?" [ref=e509] [cursor=pointer]:
+              - generic [ref=e510]: How does the 14-day free trial work?
+              - img [ref=e511]
+          - group [ref=e513]:
+            - generic "Is my financial data secure?" [ref=e514] [cursor=pointer]:
+              - generic [ref=e515]: Is my financial data secure?
+              - img [ref=e516]
+          - group [ref=e518]:
+            - generic "What payment processors are supported?" [ref=e519] [cursor=pointer]:
+              - generic [ref=e520]: What payment processors are supported?
+              - img [ref=e521]
+          - group [ref=e523]:
+            - generic "Can my CPA access my data?" [ref=e524] [cursor=pointer]:
+              - generic [ref=e525]: Can my CPA access my data?
+              - img [ref=e526]
+          - group [ref=e528]:
+            - generic "What happens after my trial expires?" [ref=e529] [cursor=pointer]:
+              - generic [ref=e530]: What happens after my trial expires?
+              - img [ref=e531]
+          - group [ref=e533]:
+            - generic "How accurate is the reconciliation?" [ref=e534] [cursor=pointer]:
+              - generic [ref=e535]: How accurate is the reconciliation?
+              - img [ref=e536]
+      - generic [ref=e539]:
+        - heading "Stop guessing. Start reconciling." [level=2] [ref=e540]
+        - paragraph [ref=e541]: The average Shopify seller has a $12,400 gap between their 1099-K and actual income. TaxMatch explains every dollar.
+        - generic [ref=e542]:
+          - link "Start Your 14-Day Free Trial" [ref=e543] [cursor=pointer]:
+            - /url: /auth/register
+            - text: Start Your 14-Day Free Trial
+            - img [ref=e544]
+          - link "Sign In" [ref=e546] [cursor=pointer]:
+            - /url: /auth/login
+        - paragraph [ref=e547]: 14-day free trial on every plan. Full access. No commitment.
+    - contentinfo [ref=e548]:
+      - generic [ref=e549]:
+        - generic [ref=e550]:
+          - generic [ref=e551]:
+            - link "T TaxMatch" [ref=e552] [cursor=pointer]:
+              - /url: /landing
+              - generic [ref=e554]: T
+              - generic [ref=e555]: TaxMatch
+            - paragraph [ref=e556]: 1099-K reconciliation for e-commerce sellers. Know exactly why your 1099-K is higher than your actual income.
+          - generic [ref=e557]:
+            - paragraph [ref=e558]: Product
+            - list [ref=e559]:
+              - listitem [ref=e560]:
+                - link "Features" [ref=e561] [cursor=pointer]:
+                  - /url: /landing#features
+              - listitem [ref=e562]:
+                - link "Pricing" [ref=e563] [cursor=pointer]:
+                  - /url: /pricing
+          - generic [ref=e564]:
+            - paragraph [ref=e565]: Resources
+            - list [ref=e566]:
+              - listitem [ref=e567]:
+                - link "Help Center" [ref=e568] [cursor=pointer]:
+                  - /url: /help
+          - generic [ref=e569]:
+            - paragraph [ref=e570]: Legal
+            - list [ref=e571]:
+              - listitem [ref=e572]:
+                - link "Privacy Policy" [ref=e573] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e574]:
+                - link "Terms of Service" [ref=e575] [cursor=pointer]:
+                  - /url: /terms
+          - generic [ref=e576]:
+            - paragraph [ref=e577]: Company
+            - list [ref=e578]:
+              - listitem [ref=e579]:
+                - link "About" [ref=e580] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e581]:
+                - link "Contact" [ref=e582] [cursor=pointer]:
+                  - /url: /contact
+        - generic [ref=e583]:
+          - generic [ref=e584]:
+            - link "Twitter / X" [ref=e585] [cursor=pointer]:
+              - /url: https://x.com/jmsdevlab
+              - img [ref=e586]
+            - link "LinkedIn" [ref=e588] [cursor=pointer]:
+              - /url: https://linkedin.com/company/jmsdevlab
+              - img [ref=e589]
+            - link "GitHub" [ref=e591] [cursor=pointer]:
+              - /url: https://github.com/jmsdevlab
+              - img [ref=e592]
+          - paragraph [ref=e594]: Made for e-commerce sellers
+        - paragraph [ref=e596]: © 2026 TaxMatch by JMS Dev Lab. All rights reserved.
