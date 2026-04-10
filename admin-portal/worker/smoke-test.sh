@@ -79,6 +79,10 @@ test_endpoint "/api/health-scores"
 test_endpoint "/api/revenue/events"
 
 echo ""
+echo "Status & Monitoring:"
+test_endpoint "/api/status/critical-paths"
+
+echo ""
 echo "Infrastructure:"
 test_endpoint "/api/deploy/history"
 test_endpoint "/api/errors"

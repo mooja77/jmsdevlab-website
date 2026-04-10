@@ -23,6 +23,8 @@ export default function Status() {
   const [health, setHealth] = useState<HealthApp[]>([]);
   const [uptime, setUptime] = useState<UptimeCheck[]>([]);
   const [cache, setCache] = useState<any>(null);
+  const [criticalPaths, setCriticalPaths] = useState<Record<string, any[]>>({});
+  const [cpSummary, setCpSummary] = useState<any>(null);
   const [apiOk, setApiOk] = useState<boolean | null>(null);
   const [apiMs, setApiMs] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -33,6 +35,9 @@ export default function Status() {
       api<{ apps: HealthApp[] }>('/api/aggregate/health').then(d => setHealth(d.apps || [])),
       api<{ checks: UptimeCheck[] }>('/api/aggregate/uptime').then(d => setUptime(d.checks || [])),
       api('/api/cache/status').then(setCache),
+      api<{ checks: Record<string, any[]>; summary: any }>('/api/status/critical-paths')
+        .then(d => { setCriticalPaths(d.checks || {}); setCpSummary(d.summary); })
+        .catch(() => {}),
     ])
       .then(() => { setApiOk(true); setApiMs(Date.now() - start); })
       .catch(() => { setApiOk(false); setApiMs(Date.now() - start); })
@@ -100,6 +105,39 @@ export default function Status() {
           ))}
         </div>
       </div>
+
+      {/* Critical Path Checks */}
+      {Object.keys(criticalPaths).length > 0 && (
+        <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-medium text-white">Critical Path Checks</h2>
+            {cpSummary && (
+              <span className="text-xs text-gray-500">
+                {cpSummary.passing}/{cpSummary.total} passing
+                {cpSummary.failing > 0 && <span className="text-red-400 ml-1">({cpSummary.failing} failing)</span>}
+              </span>
+            )}
+          </div>
+          <div className="space-y-4">
+            {Object.entries(criticalPaths).map(([appId, checks]) => (
+              <div key={appId}>
+                <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-1.5">{appId}</h3>
+                <div className="space-y-1">
+                  {(checks as any[]).map((c: any, i: number) => (
+                    <StatusRow
+                      key={i}
+                      name={c.check_type}
+                      status={c.status === 'pass' ? 'up' : c.status === 'degraded' ? 'degraded' : 'down'}
+                      detail={`${c.http_status || '—'} · ${c.response_ms || '—'}ms${c.error_message ? ' · ' + c.error_message : ''}`}
+                      time={c.checked_at}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Cache freshness */}
       <div className="bg-gray-900/50 border border-gray-800/50 rounded-xl p-5">

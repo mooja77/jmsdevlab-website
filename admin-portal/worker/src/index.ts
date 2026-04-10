@@ -33,6 +33,7 @@ import { handleEventIngest } from './routes/ingest';
 import { runCustomerHealthScores } from './cron/customer-health';
 import { runConversionSync } from './cron/conversions';
 import { runSnapshotSync } from './cron/snapshots';
+import { runCriticalPathChecks } from './cron/critical-paths';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -146,6 +147,37 @@ export default {
           runSnapshotSync(env),
         ]);
         return json({ status: 'refreshed', timestamp: new Date().toISOString() });
+      }
+
+      // Critical path checks — trigger manual run
+      if (path === '/api/status/critical-paths/run' && request.method === 'POST') {
+        await runCriticalPathChecks(env);
+        return json({ status: 'completed', timestamp: new Date().toISOString() });
+      }
+
+      // Critical path checks — latest results per app
+      if (path === '/api/status/critical-paths') {
+        const rows = await env.DB.prepare(`
+          SELECT c1.* FROM critical_path_checks c1
+          INNER JOIN (
+            SELECT app_id, check_type, MAX(checked_at) as max_at
+            FROM critical_path_checks GROUP BY app_id, check_type
+          ) c2 ON c1.app_id = c2.app_id AND c1.check_type = c2.check_type AND c1.checked_at = c2.max_at
+          ORDER BY c1.app_id, c1.check_type
+        `).all();
+
+        // Group by app
+        const byApp: Record<string, any[]> = {};
+        for (const row of rows.results as any[]) {
+          if (!byApp[row.app_id]) byApp[row.app_id] = [];
+          byApp[row.app_id].push(row);
+        }
+
+        const totalChecks = rows.results.length;
+        const passing = (rows.results as any[]).filter(r => r.status === 'pass').length;
+        const failing = (rows.results as any[]).filter(r => r.status === 'fail').length;
+
+        return json({ checks: byApp, summary: { total: totalChecks, passing, failing, degraded: totalChecks - passing - failing } });
       }
 
       if (path === '/api/cache/status') {
@@ -407,6 +439,10 @@ export default {
     if (minute % 15 === 0) {
       ctx.waitUntil(runDashboardSync(env));
       ctx.waitUntil(runSnapshotSync(env));
+      // Critical path checks run on :15 and :45 (not :00 and :30 which are heavier)
+      if (minute === 15 || minute === 45) {
+        ctx.waitUntil(runCriticalPathChecks(env));
+      }
     }
     if (minute % 10 === 0) {
       ctx.waitUntil(runUptimeChecks(env));
