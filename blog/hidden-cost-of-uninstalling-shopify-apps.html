@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/cookie-consent.js"></script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NPTXDRDH');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Hidden Cost of Uninstalling Shopify Apps - JMS Dev Lab</title>
+  <meta name="description" content="Uninstalling Shopify apps does not remove their code from your theme. Learn how dead code slows your store and what you can do about it.">
+
+  <link rel="canonical" href="https://jmsdevlab.com/blog/hidden-cost-of-uninstalling-shopify-apps.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Hidden Cost of Uninstalling Shopify Apps">
+  <meta property="og:description" content="Uninstalling Shopify apps does not remove their code from your theme. Learn how dead code slows your store and what you can do about it.">
+  <meta property="og:url" content="https://jmsdevlab.com/blog/hidden-cost-of-uninstalling-shopify-apps.html">
+  <meta property="og:image" content="https://jmsdevlab.com/og-image.png">
+  <meta property="og:site_name" content="JMS Dev Lab">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Hidden Cost of Uninstalling Shopify Apps">
+  <meta name="twitter:description" content="Uninstalling Shopify apps does not remove their code from your theme. Learn how dead code slows your store and what you can do about it.">
+  <meta name="twitter:image" content="https://jmsdevlab.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../style.css">
+
+  <!-- Plausible Analytics -->
+  <script async src="https://plausible.io/js/pa-dtXIdknLPdQ1bDwGBPI2S.js"></script>
+  <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Hidden Cost of Uninstalling Shopify Apps",
+    "description": "Uninstalling Shopify apps does not remove their code from your theme. Learn how dead code slows your store and what you can do about it.",
+    "datePublished": "2026-04-14",
+    "dateModified": "2026-04-14",
+    "author": { "@type": "Organization", "name": "JMS Dev Lab", "url": "https://jmsdevlab.com" },
+    "publisher": { "@type": "Organization", "name": "JMS Dev Lab", "logo": { "@type": "ImageObject", "url": "https://jmsdevlab.com/logo.svg" } },
+    "mainEntityOfPage": "https://jmsdevlab.com/blog/hidden-cost-of-uninstalling-shopify-apps.html"
+  }
+  </script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NPTXDRDH"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Navbar -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#2563eb"/>
+          <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+        </svg>
+        <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+      </a>
+      <div class="navbar-links" id="navLinks">
+        <a href="../apps.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../about.html">About</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../contact.html">Contact</a>
+              <a href="../contact.html" class="mobile-cta">Get in Touch</a>
+      </div>
+      <div class="navbar-cta">
+        <a href="../contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <div style="background: var(--gradient-dark); padding-top: 5rem;">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="../index.html">Home</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li class="breadcrumb-separator">/</li>
+        <li class="active">Hidden Cost of Uninstalling Apps</li>
+      </ol>
+    </nav>
+  </div>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jmsdevlab.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://jmsdevlab.com/blog.html"},{"@type":"ListItem","position":3,"name":"The Hidden Cost of Uninstalling Shopify Apps"}]}
+  </script>
+
+  <!-- Hero -->
+  <section class="legal-hero" style="padding-top: 2rem;">
+    <h1>The Hidden Cost of Uninstalling Shopify Apps</h1>
+    <div class="article-meta">
+      <div class="blog-card-date">14 April 2026</div>
+    </div>
+  </section>
+
+  <!-- Article -->
+  <div class="legal-content">
+    <p>You uninstalled five apps last month. Maybe a reviews widget you stopped using, a currency converter that was not pulling its weight, a pop-up builder you replaced with something better. You clicked &ldquo;Uninstall,&rdquo; confirmed the prompt, and moved on.</p>
+
+    <p>You thought that was that. It was not.</p>
+
+    <p>Those apps are gone from your Shopify admin. They are no longer charging you. But in almost every case, their code is still sitting inside your theme &mdash; running on every single page load, slowing your store down, and costing you money in ways that never show up on an invoice.</p>
+
+    <p>Disclosure: ThemeSweep is built by JMS Dev Lab, the publisher of this blog. We will be upfront about that throughout this article. But this problem exists whether you use our tool or not, and most of this post is about understanding the issue and checking for it yourself.</p>
+
+    <h2>What Actually Happens When You Uninstall a Shopify App</h2>
+
+    <p>When you install a Shopify app, the app typically does two things. First, it registers itself through Shopify&rsquo;s API so it can access your store data. Second, it injects code into your theme &mdash; JavaScript files, CSS stylesheets, Liquid snippets, custom sections, and sometimes entire template files.</p>
+
+    <p>When you uninstall that app, Shopify handles the first part. It revokes the app&rsquo;s API access, stops any recurring charges, and removes it from your admin panel. Clean and tidy.</p>
+
+    <p>The second part &mdash; the code inside your theme &mdash; Shopify does not touch. And there is a reasonable technical explanation for why.</p>
+
+    <p>Shopify cannot safely determine which pieces of theme code belong to which app. Apps modify your theme files in different ways. Some add new files. Some edit existing files by inserting snippets into your <code>theme.liquid</code> or <code>header.liquid</code>. Some add custom sections that you may have manually placed in your page layouts. If Shopify tried to automatically remove all of this on uninstall, it would risk breaking your theme &mdash; deleting a line that the app added but that you later modified, or removing a section that another app also depends on.</p>
+
+    <p>So Shopify makes the safe choice: it leaves the code alone. The app developer <em>could</em> write an uninstall hook that cleans up after itself, but most do not. There is no requirement to do so, and frankly, most app developers have little incentive to spend engineering time on a graceful exit.</p>
+
+    <p>The result is that every app you have ever installed and uninstalled has likely left code behind in your theme. And that code runs on every page load, whether it does anything useful or not.</p>
+
+    <h2>How to Check If You Have Dead Code</h2>
+
+    <p>Before you install any tool, you can check for this yourself. It takes about ten minutes.</p>
+
+    <h3>Step 1: Make a list of apps you have uninstalled</h3>
+
+    <p>Think back over the life of your store. Which apps have you tried and removed? If you cannot remember them all, check your email for Shopify app installation receipts or billing notifications. Even a partial list is useful.</p>
+
+    <h3>Step 2: View your theme&rsquo;s source code</h3>
+
+    <p>Open your live store in a browser. Right-click anywhere on the page and select &ldquo;View Page Source&rdquo; (not &ldquo;Inspect Element&rdquo; &mdash; you want the raw HTML). This shows you every script, stylesheet, and snippet that loads when a customer visits your store.</p>
+
+    <h3>Step 3: Search for app names</h3>
+
+    <p>Press <strong>Ctrl+F</strong> (or <strong>Cmd+F</strong> on Mac) and search for the names of the apps you uninstalled. Try the app name, the developer&rsquo;s company name, and common variations. For example, if you uninstalled a reviews app called &ldquo;StarReviews,&rdquo; search for &ldquo;starreviews,&rdquo; &ldquo;star-reviews,&rdquo; and the developer&rsquo;s domain.</p>
+
+    <p>If you find matches, that code is loading on every page of your store. It is making network requests, downloading files, and executing JavaScript &mdash; all for an app that no longer exists.</p>
+
+    <h3>Step 4: Check your theme files directly</h3>
+
+    <p>In your Shopify admin, go to <strong>Online Store &gt; Themes &gt; Actions &gt; Edit Code</strong>. Look through the <code>Snippets</code> and <code>Assets</code> folders. You will often find files with obvious app names &mdash; things like <code>bold-product.liquid</code>, <code>loox-reviews.js</code>, or <code>judgeme_widgets.liquid</code>. If the corresponding app is no longer installed, those files are dead weight.</p>
+
+    <p>Also check <code>theme.liquid</code> and <code>layout/theme.liquid</code> for script tags and link tags that reference app domains or CDN URLs. These are the lines that load external JavaScript and CSS files from the app&rsquo;s servers on every page.</p>
+
+    <h2>The Performance Impact</h2>
+
+    <p>Dead code is not just untidy. It has a measurable impact on your store&rsquo;s speed, and speed has a measurable impact on your revenue.</p>
+
+    <p>Here is what we typically see when auditing Shopify stores with accumulated dead code:</p>
+
+    <ul>
+      <li><strong>PageSpeed Insights score drops of 15 to 35 points.</strong> A store that should score 90+ on mobile scores 55&ndash;70 instead. We have seen stores drop from 95 to 58 after two years of app churn with no cleanup.</li>
+      <li><strong>Extra page weight of 200&ndash;800 KB.</strong> Each orphaned JavaScript file might only be 40&ndash;120 KB, but five or six of them add up. On a mobile connection, an extra 500 KB of unnecessary JavaScript adds 1.5&ndash;3 seconds to your page load time.</li>
+      <li><strong>Increased Total Blocking Time (TBT).</strong> Orphaned scripts do not just download &mdash; they execute. Even if the app is uninstalled and the script cannot find the elements it is looking for, the browser still parses and runs the code. This blocks the main thread, which directly impacts Total Blocking Time &mdash; one of Google&rsquo;s Core Web Vitals.</li>
+      <li><strong>Larger DOM size.</strong> Liquid snippets that inject HTML elements into your pages increase your DOM size. A larger DOM means slower rendering, slower interaction, and higher Cumulative Layout Shift (CLS) if those elements reserve space but render nothing visible.</li>
+    </ul>
+
+    <p>Google uses Core Web Vitals &mdash; Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS), and Interaction to Next Paint (INP) &mdash; as ranking signals. A store weighed down by dead code from six uninstalled apps is competing at a disadvantage against a clean store in the same niche. The SEO impact is not hypothetical. It is measured, documented, and real.</p>
+
+    <p>And then there is the direct conversion impact. Research from Google and Deloitte consistently shows that every additional second of load time reduces mobile conversion rates by 7&ndash;12%. If your store makes &pound;10,000 per month and dead code is adding 2 seconds to your load time, you are likely leaving &pound;1,400&ndash;&pound;2,400 per month on the table. That is not a rounding error.</p>
+
+    <h2>The Compounding Problem</h2>
+
+    <p>This would be manageable if it only happened once. But Shopify merchants are constantly experimenting with apps &mdash; and they should be. Trying new tools is how you find the ones that work for your business.</p>
+
+    <p>The average Shopify store installs and uninstalls 5&ndash;8 apps per year. Over a three-year period, that is 15&ndash;24 apps that have come and gone, each one potentially leaving behind JavaScript files, CSS stylesheets, Liquid snippets, and custom sections.</p>
+
+    <p>The problem compounds because the code from different apps often conflicts in subtle ways. Two orphaned CSS files might both try to style the same elements, causing visual glitches. An old JavaScript file might throw console errors because the DOM elements it expects no longer exist, which can cause other scripts to fail or slow down. We have seen cases where an orphaned review widget script was making 12 failed API calls per page load &mdash; each one timing out after 3 seconds &mdash; because the app&rsquo;s servers were returning 401 errors for an account that no longer existed.</p>
+
+    <p>The worst part is that this degradation happens slowly. Your store does not suddenly break. It gets 50 milliseconds slower, then another 80, then another 120. You do not notice because the change is gradual. By the time you run a PageSpeed test and wonder why your score is 62, the dead code has been accumulating for months or years.</p>
+
+    <h2>Your Options for Cleanup</h2>
+
+    <h3>Option 1: Manual cleanup</h3>
+
+    <p>You can remove dead code yourself. Go through your theme files, identify anything that belongs to an uninstalled app, and delete it. This is free and gives you complete control.</p>
+
+    <p>The downsides are significant, though. It requires you to know which files and code snippets belong to which apps &mdash; which is not always obvious. App code is not always labelled with the app&rsquo;s name. Some apps inject code into shared files like <code>theme.liquid</code>, and you need to identify exactly which lines to remove without breaking the surrounding code. If you delete the wrong line, your store breaks live.</p>
+
+    <p>For technically confident merchants with a simple theme and a short app history, manual cleanup is entirely viable. For stores with complex themes or a long history of app experimentation, it is risky and time-consuming. Budget 2&ndash;4 hours for a thorough manual audit, and make sure you duplicate your theme as a backup before you start editing.</p>
+
+    <h3>Option 2: Hire a developer</h3>
+
+    <p>A Shopify developer can audit your theme, identify dead code, and remove it cleanly. This is the safest manual approach because you are paying someone who understands Liquid, JavaScript, and theme architecture to make the changes.</p>
+
+    <p>Expect to pay &pound;150&ndash;&pound;400 for a one-off theme audit and cleanup, depending on the complexity. The limitation is that this is a point-in-time fix. The next time you uninstall an app, the problem starts again. You would need to re-hire the developer periodically &mdash; or learn to do it yourself.</p>
+
+    <h3>Option 3: Use an automated tool</h3>
+
+    <p>There are apps specifically designed to detect and remove orphaned code from Shopify themes. These tools scan your theme files, cross-reference what they find against known app signatures, and flag code that appears to belong to apps you no longer have installed.</p>
+
+    <p>The advantage is speed and repeatability. The scan takes minutes rather than hours, and you can run it whenever you uninstall an app. The disadvantage is that you are trusting a tool to correctly identify what is dead code and what is not &mdash; and the accuracy varies significantly between tools.</p>
+
+    <h2>How ThemeSweep Approaches This</h2>
+
+    <p>ThemeSweep is our answer to this problem. We built it because we kept seeing the same issue across client stores we were working on &mdash; performance problems caused by accumulated dead code that the merchant had no idea was there.</p>
+
+    <p>Here is what makes ThemeSweep&rsquo;s approach different from a simple pattern-matching scan:</p>
+
+    <h3>Installed-app cross-referencing</h3>
+
+    <p>ThemeSweep does not just look for code that matches known app patterns. It also checks your currently installed apps list through the Shopify API. This means it can distinguish between code from an app you are actively using (which should stay) and code from an app you uninstalled three months ago (which should go). This cross-referencing is the single most important feature, because it virtually eliminates false positives &mdash; the tool will not flag code from an app you are still paying for.</p>
+
+    <h3>Automatic backup before every cleanup</h3>
+
+    <p>Before ThemeSweep removes a single line of code, it creates a complete backup of your theme. Not a partial backup. A full copy of every file. This happens automatically, every time. You do not need to remember to do it.</p>
+
+    <h3>One-click rollback</h3>
+
+    <p>If something looks wrong after a cleanup &mdash; even if it is completely unrelated to the code that was removed &mdash; you can restore your theme to its pre-cleanup state with one click. No digging through version history, no re-uploading files. One click.</p>
+
+    <h3>Detailed reporting</h3>
+
+    <p>ThemeSweep shows you exactly what it found, which app it belongs to, which files are affected, and the estimated performance impact of removing it. You can review everything before approving the cleanup. Nothing is removed without your explicit confirmation.</p>
+
+    <p>Plans start at &pound;9.99/month with a 7-day free trial. The initial scan is free and takes about two minutes. Even if you decide not to use ThemeSweep for the cleanup, the scan alone will show you exactly what is sitting in your theme &mdash; and that information is worth having.</p>
+
+    <h2>What to Do Next</h2>
+
+    <p>Start with the manual check described earlier in this article. Open your store&rsquo;s source code, search for the names of apps you have uninstalled, and see what turns up. Run your store through <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener">Google PageSpeed Insights</a> and note your scores &mdash; particularly on mobile.</p>
+
+    <p>If you find dead code (and statistically, you will), you have three paths: clean it up manually, hire a developer for a one-off fix, or use a tool like ThemeSweep for ongoing automated cleanup. All three are legitimate. The only wrong choice is doing nothing and letting your store get slower with every app you uninstall.</p>
+
+    <p>Your customers will not tell you your store is slow. They will just leave.</p>
+
+    <h2>Related Reading</h2>
+
+    <ul>
+      <li><a href="themesweep-vs-cleanify-code.html">ThemeSweep vs Cleanify Code</a> &mdash; A detailed comparison of the two leading Shopify dead-code removal tools, covering accuracy, pricing, and approach.</li>
+      <li><a href="what-is-a-shopify-app.html">What Is a Shopify App?</a> &mdash; A plain-language explanation of how Shopify apps work, what they can access, and what happens when you install or uninstall them.</li>
+      <li><a href="hidden-costs-shopify-margins.html">Hidden Costs Eating Your Shopify Margins</a> &mdash; Dead code is one of several invisible costs that erode your store&rsquo;s performance and profitability over time.</li>
+      <li><a href="best-shopify-apps-jewelry-stores.html">Best Shopify Apps for Jewellery Stores</a> &mdash; Our curated list of apps worth installing, with notes on which ones play nicely with your theme.</li>
+    </ul>
+
+    <h2>Need Help?</h2>
+
+    <p>If you have questions about theme performance, want a professional audit of your store&rsquo;s dead code, or need help with any aspect of your Shopify setup, <a href="../contact.html">get in touch</a>. We are happy to take a look.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="navbar-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="6" fill="#2563eb"/>
+              <text x="16" y="22" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="#fff">&lt;/&gt;</text>
+            </svg>
+            <span><span class="logo-jms">JMS</span> <span class="logo-devlab">Dev Lab</span></span>
+          </a>
+          <p>Custom software for businesses that are too unique for off-the-shelf tools and too small for enterprise pricing.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Services</div>
+          <div class="footer-links">
+            <a href="../apps.html#custom">Custom Development</a>
+            <a href="https://jewelrystudiomanager.com" target="_blank" rel="noopener">JewelryStudioManager</a>
+            <a href="https://staffhubapp.com" target="_blank" rel="noopener">StaffHub</a>
+            <a href="https://jewelvalue.app" target="_blank" rel="noopener">Jewel Value</a>
+            <a href="https://smartcashapp.net" target="_blank" rel="noopener">SmartCash</a>
+            <a href="https://pitchsideapp.net" target="_blank" rel="noopener">Pitch Side</a>
+            <a href="https://repairdeskapp.net" target="_blank" rel="noopener">RepairDesk</a>
+            <a href="https://mygrowthmap.net" target="_blank" rel="noopener">GrowthMap</a>
+            <a href="https://qualcanvas.com" target="_blank" rel="noopener">QualCanvas</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Company</div>
+          <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact.html">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Legal</div>
+          <div class="footer-links">
+            <a href="../privacy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms of Service</a>
+            <a href="../pay.html">Pay Invoice</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copyright">&copy; 2026 JMS Dev Lab. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>
