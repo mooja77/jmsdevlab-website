@@ -29,6 +29,14 @@ export async function runAgentCron(env: Env): Promise<void> {
 
   // Release stale file claims (>2 hours old)
   await releaseStaleFileClaims(env);
+
+  // Approval timeout check
+  await checkApprovalTimeouts(env);
+
+  // Weekly data retention (Sunday)
+  if (now.getUTCDay() === 0 && hour === 3 && minute < 30) {
+    await runDataRetention(env);
+  }
 }
 
 async function resetDailyBudgets(env: Env): Promise<void> {
@@ -189,4 +197,73 @@ async function releaseStaleFileClaims(env: Env): Promise<void> {
   await env.DB.prepare(
     "UPDATE agent_file_claims SET released_at = datetime('now') WHERE released_at IS NULL AND claimed_at < datetime('now', '-2 hours')"
   ).run();
+}
+
+async function checkApprovalTimeouts(env: Env): Promise<void> {
+  // 72h+: auto-reject
+  const expired = await env.DB.prepare(`
+    UPDATE agent_tasks SET status = 'cancelled', completed_at = datetime('now'),
+      error_message = 'Auto-rejected: approval timeout (72h)'
+    WHERE status = 'needs-approval' AND created_at < datetime('now', '-72 hours')
+  `).run();
+
+  if (expired.meta.changes > 0) {
+    await env.DB.prepare(`
+      INSERT INTO agent_audit (agent_id, task_id, action, detail)
+      VALUES ('system', NULL, 'approval-timeout', ?)
+    `).bind(`Auto-rejected ${expired.meta.changes} tasks after 72h timeout`).run();
+  }
+
+  // 24h+: create warning bulletin (if not already created in last 24h)
+  const stale = await env.DB.prepare(`
+    SELECT id, agent_id, title FROM agent_tasks
+    WHERE status = 'needs-approval'
+    AND created_at < datetime('now', '-24 hours')
+    AND created_at > datetime('now', '-72 hours')
+  `).all();
+
+  for (const task of stale.results as any[]) {
+    const existingBulletin = await env.DB.prepare(`
+      SELECT id FROM agent_bulletins
+      WHERE title LIKE '%approval stale%' AND body LIKE ?
+      AND created_at > datetime('now', '-24 hours')
+    `).bind(`%#${task.id}%`).first();
+
+    if (!existingBulletin) {
+      await env.DB.prepare(`
+        INSERT INTO agent_bulletins (agent_id, scope, severity, title, body, expires_at)
+        VALUES (?, 'all', 'warning', 'Task approval stale', ?, datetime('now', '+24 hours'))
+      `).bind(task.agent_id, `Task #${task.id} "${task.title}" has been waiting for approval >24h`).run();
+    }
+  }
+}
+
+async function runDataRetention(env: Env): Promise<void> {
+  // Delete completed/failed/cancelled tasks older than 30 days
+  const deleted = await env.DB.prepare(`
+    DELETE FROM agent_tasks
+    WHERE status IN ('completed','failed','cancelled')
+    AND completed_at < datetime('now', '-30 days')
+  `).run();
+
+  // Release orphaned file claims
+  await env.DB.prepare(`
+    UPDATE agent_file_claims SET released_at = datetime('now')
+    WHERE released_at IS NULL AND task_id IN (
+      SELECT id FROM agent_tasks WHERE status IN ('completed','failed','cancelled')
+    )
+  `).run();
+
+  // Delete old bulletins (expired > 7 days ago)
+  await env.DB.prepare(`
+    DELETE FROM agent_bulletins
+    WHERE expires_at IS NOT NULL AND expires_at < datetime('now', '-7 days')
+  `).run();
+
+  if (deleted.meta.changes > 0) {
+    await env.DB.prepare(`
+      INSERT INTO agent_audit (agent_id, task_id, action, detail)
+      VALUES ('system', NULL, 'data-retention', ?)
+    `).bind(`Cleaned up ${deleted.meta.changes} old tasks`).run();
+  }
 }

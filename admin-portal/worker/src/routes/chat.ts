@@ -86,8 +86,10 @@ export async function handleChatRoutes(path: string, request: Request, url: URL,
       ).bind(convId, body.app_id, ipHash).run();
     }
 
-    // Build messages for Claude
-    const systemPrompt = CHAT_SYSTEM_PROMPTS[body.app_id] || DEFAULT_CHAT_PROMPT;
+    // Build messages for Claude — include conversation ID so agent can reference it for handoff
+    const supportEmail = APP_SUPPORT_EMAILS[body.app_id] || 'john@jmsdevlab.com';
+    const systemPrompt = (CHAT_SYSTEM_PROMPTS[body.app_id] || DEFAULT_CHAT_PROMPT)
+      + `\n\nCurrent conversation ID: ${convId}. Support email: ${supportEmail}. If handing off to a human, tell the user to email ${supportEmail} and reference chat ID ${convId.slice(0, 8)} so we can see what they've already asked.`;
     const history = (body.history || []).slice(-20); // Last 10 exchanges
     const messages = [
       ...history.map(m => ({ role: m.role, content: m.content })),

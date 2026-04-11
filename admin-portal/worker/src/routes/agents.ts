@@ -20,6 +20,12 @@ const VALID_TRANSITIONS: Record<string, string[]> = {
   cancelled: [],
 };
 
+const TERMINAL_STATUSES = ['completed', 'failed', 'cancelled'];
+
+function validateTransition(current: string, target: string): boolean {
+  return (VALID_TRANSITIONS[current] || []).includes(target);
+}
+
 function validateString(val: unknown, maxLen: number): string | null {
   if (typeof val !== 'string') return null;
   return val.substring(0, maxLen);
@@ -142,6 +148,22 @@ export async function handleAgentRoutes(
     return json({ ok: true });
   }
 
+  // DELETE /api/agents/:id — soft delete (deactivate)
+  const agentDeleteMatch = path.match(/^\/api\/agents\/([a-z0-9-]+)$/);
+  if (agentDeleteMatch && request.method === 'DELETE') {
+    const id = agentDeleteMatch[1];
+    const existing = await env.DB.prepare('SELECT id FROM agents WHERE id = ?').bind(id).first();
+    if (!existing) return json({ error: 'Agent not found' }, 404);
+    await env.DB.batch([
+      env.DB.prepare("UPDATE agents SET status = 'disabled', updated_at = datetime('now') WHERE id = ?").bind(id),
+      env.DB.prepare("UPDATE agent_tasks SET status = 'cancelled', completed_at = datetime('now') WHERE agent_id = ? AND status IN ('queued','claimed')").bind(id),
+      env.DB.prepare("UPDATE agent_schedules SET enabled = 0 WHERE agent_id = ?").bind(id),
+      env.DB.prepare("UPDATE agent_file_claims SET released_at = datetime('now') WHERE agent_id = ? AND released_at IS NULL").bind(id),
+    ]);
+    await logAudit(env, id, null, 'agent-deactivated', `Agent ${id} deactivated`);
+    return json({ ok: true });
+  }
+
   // GET /api/agents/:id/budget — budget status
   const budgetMatch = path.match(/^\/api\/agents\/([a-z0-9-]+)\/budget$/);
   if (budgetMatch && request.method === 'GET') {
@@ -166,7 +188,7 @@ export async function handleAgentRoutes(
   if (path === '/api/agents/tasks' && request.method === 'GET') {
     const agentId = url.searchParams.get('agent_id');
     const status = url.searchParams.get('status');
-    const limit = Math.min(parseInt(url.searchParams.get('limit') || '50'), 200);
+    const limit = Math.max(1, Math.min(parseInt(url.searchParams.get('limit') || '50') || 50, 200));
     let query = 'SELECT * FROM agent_tasks WHERE 1=1';
     const params: any[] = [];
     if (agentId) { query += ' AND agent_id = ?'; params.push(agentId); }
@@ -200,7 +222,15 @@ export async function handleAgentRoutes(
     }
     // Verify agent exists
     const agent = await env.DB.prepare('SELECT id FROM agents WHERE id = ?').bind(agentId).first();
-    if (!agent) return json({ error: `Agent '${agentId}' not found` }, 404);
+    if (!agent) return json({ error: 'Not found' }, 404);
+
+    // Rate limit: max 100 tasks per agent per hour
+    const recentCount = await env.DB.prepare(
+      "SELECT COUNT(*) as c FROM agent_tasks WHERE agent_id = ? AND created_at > datetime('now', '-1 hour')"
+    ).bind(agentId).first<{ c: number }>();
+    if ((recentCount?.c || 0) >= 100) {
+      return json({ error: 'Rate limit exceeded' }, 429);
+    }
 
     const priority = validateInt(body.priority, 1, 10) || 5;
     const description = validateString(body.description, 5000) || null;
@@ -248,6 +278,17 @@ export async function handleAgentRoutes(
       await logAudit(env, agentId, taskId as number, 'task-blocked', `Blocked by policy: ${policyResult.policy_name}`);
     }
 
+    if (policyResult.action === 'notify') {
+      await env.DB.prepare(`
+        INSERT INTO agent_bulletins (agent_id, scope, severity, title, body, expires_at)
+        VALUES (?, 'all', 'warning', ?, ?, datetime('now', '+24 hours'))
+      `).bind(
+        agentId,
+        `Policy alert: ${policyResult.policy_name}`,
+        `Agent ${agentId} triggered policy "${policyResult.policy_name}" on task "${title}"`,
+      ).run();
+    }
+
     return json({ ok: true, id: taskId, policy: policyResult.action, policy_name: policyResult.policy_name });
   }
 
@@ -275,7 +316,7 @@ export async function handleAgentRoutes(
           "UPDATE agent_tasks SET status = 'claimed', claimed_at = datetime('now'), heartbeat_at = datetime('now') WHERE id = ? AND status = 'queued'"
         ).bind(taskId).run();
         if (!result.meta.changes) {
-          return json({ error: 'Task already claimed by another executor' }, 409);
+          return json({ error: 'Conflict' }, 409);
         }
         await env.DB.prepare(
           "UPDATE agents SET status = 'running', last_active_at = datetime('now') WHERE id = ?"
@@ -285,8 +326,9 @@ export async function handleAgentRoutes(
       }
 
       case 'complete': {
-        if (!['claimed', 'running'].includes(task.status)) {
-          return json({ error: `Cannot complete task in '${task.status}' status` }, 400);
+        if (task.status === 'completed') return json({ ok: true, already: true });
+        if (!validateTransition(task.status, 'completed')) {
+          return json({ error: 'Invalid operation' }, 400);
         }
         const body = await request.json() as any;
         const costCents = validateInt(body.cost_cents, 0, 1000000) || 0;
@@ -339,6 +381,10 @@ export async function handleAgentRoutes(
       }
 
       case 'fail': {
+        if (task.status === 'failed') return json({ ok: true, already: true });
+        if (!validateTransition(task.status, 'failed')) {
+          return json({ error: 'Invalid operation' }, 400);
+        }
         const body = await request.json() as any;
         const errorMsg = validateString(body.error_message, 2000) || 'Unknown error';
         const failureType = validateString(body.failure_type, 30) || classifyFailure(errorMsg);
@@ -469,7 +515,7 @@ export async function handleAgentRoutes(
 
   if (path === '/api/agents/audit' && request.method === 'GET') {
     const agentId = url.searchParams.get('agent_id');
-    const limit = Math.min(parseInt(url.searchParams.get('limit') || '50'), 200);
+    const limit = Math.max(1, Math.min(parseInt(url.searchParams.get('limit') || '50') || 50, 200));
     let query = 'SELECT * FROM agent_audit WHERE 1=1';
     const params: any[] = [];
     if (agentId) { query += ' AND agent_id = ?'; params.push(agentId); }

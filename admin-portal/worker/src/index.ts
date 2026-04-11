@@ -36,6 +36,7 @@ import { runCustomerHealthScores } from './cron/customer-health';
 import { runConversionSync } from './cron/conversions';
 import { runSnapshotSync } from './cron/snapshots';
 import { runCriticalPathChecks } from './cron/critical-paths';
+import { runChatBriefing } from './cron/chat-briefing';
 import { runAgentCron } from './cron/agents';
 
 export default {
@@ -478,6 +479,10 @@ export default {
     const hour = new Date(event.scheduledTime).getUTCHours();
     if (hour === 0 && minute === 0) {
       ctx.waitUntil(runCustomerHealthScores(env));
+    }
+    // Chat briefing — daily at 20:00 UTC (9pm Irish time)
+    if (hour === 20 && minute === 0) {
+      ctx.waitUntil(runChatBriefing(env));
     }
 
     if (minute % 30 === 0) {

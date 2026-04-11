@@ -96,18 +96,23 @@ export const blockEnvFileAccess: HookCallback = async (input, _toolUseId, _conte
 };
 
 export function enforceWorkdirScope(allowedPath: string): HookCallback {
-  const normalizedAllowed = allowedPath.replace(/\\/g, '/').toLowerCase();
+  const { resolve } = require('path');
+  const resolvedAllowed = resolve(allowedPath).replace(/\\/g, '/').toLowerCase();
 
   return async (input, _toolUseId, _context) => {
     const toolInput = (input as any).tool_input || {};
-    const filePath = (toolInput.file_path || toolInput.path || '').replace(/\\/g, '/').toLowerCase();
+    const rawPath = toolInput.file_path || toolInput.path || '';
+    if (!rawPath) return {};
 
-    if (filePath && !filePath.startsWith(normalizedAllowed) && !filePath.startsWith('/tmp')) {
+    // Resolve to absolute path — catches ../ traversals
+    const resolvedPath = resolve(rawPath).replace(/\\/g, '/').toLowerCase();
+
+    if (!resolvedPath.startsWith(resolvedAllowed)) {
       return {
         hookSpecificOutput: {
           hookEventName: "PreToolUse",
           permissionDecision: "deny",
-          permissionDecisionReason: `Agent scoped to ${allowedPath} — cannot access ${filePath}`,
+          permissionDecisionReason: `Path resolves outside scope: ${rawPath}`,
         },
       };
     }

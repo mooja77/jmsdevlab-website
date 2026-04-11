@@ -60,13 +60,15 @@ export async function evaluatePolicy(
   return { action: 'none', policy_name: null };
 }
 
-function evaluateCondition(cond: Condition, ctx: TaskContext): boolean {
+function evaluateCondition(cond: Condition, ctx: TaskContext, depth = 0): boolean {
+  if (depth > 10) return false; // Prevent DoS via deeply nested conditions
+
   // Composite conditions
   if (cond.and) {
-    return cond.and.every(c => evaluateCondition(c, ctx));
+    return cond.and.every(c => evaluateCondition(c, ctx, depth + 1));
   }
   if (cond.or) {
-    return cond.or.some(c => evaluateCondition(c, ctx));
+    return cond.or.some(c => evaluateCondition(c, ctx, depth + 1));
   }
 
   // Leaf conditions

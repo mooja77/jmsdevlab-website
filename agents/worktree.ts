@@ -2,7 +2,7 @@
 // From ComposioHQ/agent-orchestrator pattern.
 
 import { execSync } from 'child_process';
-import { existsSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, rmSync } from 'fs';
 import { join, dirname } from 'path';
 
 const WORKTREE_BASE = join(dirname(new URL('.', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1')), 'worktrees');
@@ -19,7 +19,9 @@ export function createWorktree(appPath: string, taskId: number, agentId: string)
   const worktreePath = join(WORKTREE_BASE, safeName);
 
   // Ensure base directory exists
-  execSync(`mkdir -p "${WORKTREE_BASE}"`, { cwd: appPath });
+  if (!existsSync(WORKTREE_BASE)) {
+    mkdirSync(WORKTREE_BASE, { recursive: true });
+  }
 
   // Create worktree with new branch
   try {
@@ -63,9 +65,10 @@ export function commitWorktreeChanges(
 
     const fullMessage = `${message}\n\n${trailerLines}`;
 
-    execSync(`git commit -m "${fullMessage.replace(/"/g, '\\"')}"`, {
+    execSync('git commit -F -', {
       cwd: worktreePath,
-      stdio: 'pipe',
+      input: fullMessage,
+      stdio: ['pipe', 'pipe', 'pipe'],
       timeout: 30000,
     });
 
