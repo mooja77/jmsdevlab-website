@@ -3,7 +3,7 @@
 
 import { Env } from '../types';
 
-const STALE_TASK_TIMEOUT_MINUTES = 10;
+const STALE_TASK_TIMEOUT_MINUTES = 25; // 1.5x max task timeout (15 min feature tasks + verify-fix retries)
 
 export async function runAgentCron(env: Env): Promise<void> {
   const now = new Date();
@@ -24,8 +24,11 @@ export async function runAgentCron(env: Env): Promise<void> {
   // Evaluate scheduled tasks — every run
   await evaluateSchedules(env, now);
 
-  // Event routing — check for health failures and create agent tasks
+  // Event routing — check all sources and create agent tasks
   await routeHealthEvents(env);
+  await routeGitHubEvents(env);
+  await routeBarkEvents(env);
+  await routeChatEvents(env);
 
   // Release stale file claims (>2 hours old)
   await releaseStaleFileClaims(env);
@@ -131,27 +134,36 @@ async function evaluateSchedules(env: Env, now: Date): Promise<void> {
   }
 }
 
-// Simple cron matcher — supports "M H * * *" format (minute hour)
+// Cron matcher — supports "M H DOM MON DOW" format (minute hour day-of-month month day-of-week)
 function shouldRunNow(cron: string, now: Date): boolean {
   const parts = cron.split(' ');
   if (parts.length < 5) return false;
-  const [cronMin, cronHour] = parts;
-  const currentMin = now.getUTCMinutes();
-  const currentHour = now.getUTCHours();
+  const [cronMin, cronHour, cronDom, cronMonth, cronDow] = parts;
 
-  const minMatch = cronMin === '*' || parseInt(cronMin) === currentMin || Math.abs(parseInt(cronMin) - currentMin) < 15;
-  const hourMatch = cronHour === '*' || parseInt(cronHour) === currentHour;
+  const minMatch = cronMin === '*' || Math.abs(parseInt(cronMin) - now.getUTCMinutes()) < 15;
+  const hourMatch = cronHour === '*' || parseInt(cronHour) === now.getUTCHours();
+  const domMatch = cronDom === '*' || parseInt(cronDom) === now.getUTCDate();
+  const monthMatch = cronMonth === '*' || parseInt(cronMonth) === (now.getUTCMonth() + 1);
+  const dowMatch = cronDow === '*' || parseInt(cronDow) === now.getUTCDay();
 
-  return minMatch && hourMatch;
+  return minMatch && hourMatch && domMatch && monthMatch && dowMatch;
 }
 
 function getNextRunTime(cron: string, now: Date): string {
   const parts = cron.split(' ');
   if (parts.length < 5) return new Date(now.getTime() + 86400000).toISOString();
-  const [cronMin, cronHour] = parts;
+  const [cronMin, cronHour, , , cronDow] = parts;
 
   const next = new Date(now);
-  next.setUTCDate(next.getUTCDate() + 1);
+  if (cronDow !== '*') {
+    // Weekly schedule: advance to next matching day-of-week
+    const targetDow = parseInt(cronDow);
+    let daysAhead = (targetDow - now.getUTCDay() + 7) % 7 || 7;
+    next.setUTCDate(next.getUTCDate() + daysAhead);
+  } else {
+    // Daily schedule: advance to tomorrow
+    next.setUTCDate(next.getUTCDate() + 1);
+  }
   next.setUTCHours(cronHour === '*' ? 0 : parseInt(cronHour));
   next.setUTCMinutes(cronMin === '*' ? 0 : parseInt(cronMin));
   next.setUTCSeconds(0);
@@ -265,5 +277,112 @@ async function runDataRetention(env: Env): Promise<void> {
       INSERT INTO agent_audit (agent_id, task_id, action, detail)
       VALUES ('system', NULL, 'data-retention', ?)
     `).bind(`Cleaned up ${deleted.meta.changes} old tasks`).run();
+  }
+}
+
+// GitHub CI failure → create agent task
+async function routeGitHubEvents(env: Env): Promise<void> {
+  const failures = await env.DB.prepare(`
+    SELECT g.app_id, g.ci_status, g.last_commit_msg, g.last_commit_sha, a.id as agent_id
+    FROM github_cache g
+    JOIN agents a ON a.app_id = g.app_id
+    WHERE g.ci_status = 'failure'
+    AND a.type = 'app'
+    AND NOT EXISTS (
+      SELECT 1 FROM agent_tasks t
+      WHERE t.agent_id = a.id AND t.type = 'ci-fix'
+      AND t.status IN ('queued', 'claimed', 'running')
+      AND t.created_at > datetime('now', '-2 hours')
+    )
+  `).all();
+
+  for (const f of failures.results as any[]) {
+    await env.DB.prepare(`
+      INSERT INTO agent_tasks (agent_id, type, priority, title, description, created_by, input_json)
+      VALUES (?, 'ci-fix', 3, ?, ?, 'event-router', ?)
+    `).bind(
+      f.agent_id,
+      `CI failure: ${f.app_id}`,
+      `CI pipeline failing for ${f.app_id}. Last commit: ${f.last_commit_msg || 'unknown'}. Investigate and fix.`,
+      JSON.stringify({ commit_sha: f.last_commit_sha, commit_msg: f.last_commit_msg }),
+    ).run();
+    await env.DB.prepare(
+      "INSERT INTO agent_audit (agent_id, task_id, action, detail) VALUES (?, NULL, 'event-routed', ?)"
+    ).bind(f.agent_id, `CI failure auto-task for ${f.app_id}`).run();
+  }
+}
+
+// Bark lead with high score → create draft-response task
+async function routeBarkEvents(env: Env): Promise<void> {
+  const leads = await env.DB.prepare(`
+    SELECT id, first_name, location, category, search_results_json
+    FROM bark_leads
+    WHERE status IN ('new', 'found')
+    AND received_at > datetime('now', '-24 hours')
+    AND NOT EXISTS (
+      SELECT 1 FROM agent_tasks t
+      WHERE t.type = 'lead-response'
+      AND t.input_json LIKE '%"bark_lead_id":' || bark_leads.id || '%'
+      AND t.created_at > datetime('now', '-24 hours')
+    )
+  `).all();
+
+  for (const lead of leads.results as any[]) {
+    let score = 0;
+    try {
+      const research = JSON.parse(lead.search_results_json || '{}');
+      score = research?.topCandidates?.[0]?.score || 0;
+    } catch {}
+
+    if (score >= 70) {
+      const priority = score >= 90 ? 1 : 3;
+      await env.DB.prepare(`
+        INSERT INTO agent_tasks (agent_id, type, priority, title, description, created_by, requires_approval, input_json)
+        VALUES ('mkt-researcher', 'lead-research', ?, ?, ?, 'event-router', 0, ?)
+      `).bind(
+        priority,
+        `Lead: ${lead.first_name || 'Unknown'} in ${lead.location || 'Unknown'}`,
+        `High-scoring Bark lead (score: ${score}). Category: ${lead.category || 'N/A'}. Research this lead thoroughly — who they are, their business, website, needs. The pipeline will auto-create a response draft after your research completes.`,
+        JSON.stringify({ bark_lead_id: lead.id, name: lead.first_name, location: lead.location, category: lead.category, score }),
+      ).run();
+      await env.DB.prepare(
+        "INSERT INTO agent_audit (agent_id, task_id, action, detail) VALUES ('mkt-researcher', NULL, 'event-routed', ?)"
+      ).bind(`Bark lead auto-task: ${lead.first_name} (score ${score})`).run();
+    }
+  }
+}
+
+// Chat escalation → create support task
+async function routeChatEvents(env: Env): Promise<void> {
+  const escalations = await env.DB.prepare(`
+    SELECT c.id as conv_id, c.app_id, m.content as last_message
+    FROM chat_conversations c
+    JOIN chat_messages m ON m.conversation_id = c.id
+    WHERE c.last_message_at > datetime('now', '-30 minutes')
+    AND c.message_count >= 3
+    AND m.role = 'assistant'
+    AND (m.content LIKE '%email%support%' OR m.content LIKE '%contact%team%' OR m.content LIKE '%human%help%')
+    AND NOT EXISTS (
+      SELECT 1 FROM agent_tasks t
+      WHERE t.type = 'support-escalation'
+      AND t.input_json LIKE '%' || c.id || '%'
+      AND t.created_at > datetime('now', '-2 hours')
+    )
+    ORDER BY m.created_at DESC
+    LIMIT 5
+  `).all();
+
+  for (const e of escalations.results as any[]) {
+    await env.DB.prepare(`
+      INSERT INTO agent_tasks (agent_id, type, priority, title, description, created_by, requires_approval, input_json)
+      VALUES ('supervisor-apps', 'support-escalation', 3, ?, ?, 'event-router', 1, ?)
+    `).bind(
+      `Chat escalation: ${e.app_id}`,
+      `A chat conversation on ${e.app_id} needs human attention. The assistant suggested contacting support.`,
+      JSON.stringify({ conversation_id: e.conv_id, app_id: e.app_id }),
+    ).run();
+    await env.DB.prepare(
+      "INSERT INTO agent_audit (agent_id, task_id, action, detail) VALUES ('supervisor-apps', NULL, 'event-routed', ?)"
+    ).bind(`Chat escalation from ${e.app_id}`).run();
   }
 }
