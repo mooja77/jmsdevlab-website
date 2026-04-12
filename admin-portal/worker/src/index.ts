@@ -113,8 +113,8 @@ export default {
         return handleChatRoutes(path, request, url, env);
       }
 
-      // Agent harness
-      if (path.startsWith('/api/agents')) {
+      // Agent harness (includes /api/marketing/dashboard)
+      if (path.startsWith('/api/agents') || path.startsWith('/api/marketing')) {
         return handleAgentRoutes(path, request, url, env);
       }
 

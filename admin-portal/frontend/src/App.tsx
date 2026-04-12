@@ -22,7 +22,11 @@ import UTMBuilder from './pages/UTMBuilder';
 import Conversions from './pages/Conversions';
 import Status from './pages/Status';
 import Agents from './pages/Agents';
+import AgentDetail from './pages/AgentDetail';
 import ChatLog from './pages/ChatLog';
+import Marketing from './pages/Marketing';
+import MarketingApprovals from './pages/MarketingApprovals';
+import MarketingContent from './pages/MarketingContent';
 import ErrorBoundary from './components/ErrorBoundary';
 
 function EB({ children }: { children: React.ReactNode }) {
@@ -74,8 +78,12 @@ export default function App() {
         <Route path="/conversions" element={<EB><Conversions /></EB>} />
         <Route path="/settings" element={<EB><Settings /></EB>} />
         <Route path="/agents" element={<EB><Agents /></EB>} />
+        <Route path="/agents/:id" element={<EB><AgentDetail /></EB>} />
         <Route path="/chat" element={<EB><ChatLog /></EB>} />
         <Route path="/status" element={<EB><Status /></EB>} />
+        <Route path="/marketing" element={<EB><Marketing /></EB>} />
+        <Route path="/marketing/approvals" element={<EB><MarketingApprovals /></EB>} />
+        <Route path="/marketing/content" element={<EB><MarketingContent /></EB>} />
       </Route>
     </Routes>
   );

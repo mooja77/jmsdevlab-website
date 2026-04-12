@@ -59,6 +59,127 @@ export async function handleAgentRoutes(
     return json({ agents: rows.results });
   }
 
+  // POST /api/agents — create new agent
+  if (path === '/api/agents' && request.method === 'POST') {
+    const body = await request.json() as any;
+    const id = validateString(body.id, 50);
+    const name = validateString(body.name, 100);
+    const type = validateString(body.type, 30);
+    if (!id || !name || !type) {
+      return json({ error: 'id, name, and type are required' }, 400);
+    }
+    if (!['app', 'supervisor', 'marketing', 'operations', 'research', 'custom'].includes(type)) {
+      return json({ error: 'Invalid type' }, 400);
+    }
+    const existing = await env.DB.prepare('SELECT id FROM agents WHERE id = ?').bind(id).first();
+    if (existing) return json({ error: 'Agent ID already exists' }, 409);
+
+    const budget = validateInt(body.budget_daily_cents, 0, 100000) || 10;
+    const model = ['haiku', 'sonnet', 'opus'].includes(body.model_default) ? body.model_default : 'sonnet';
+
+    await env.DB.prepare(`
+      INSERT INTO agents (id, type, name, description, app_id, config_json, capabilities_json,
+        model_default, budget_daily_cents, system_prompt, skills_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      id, type, name,
+      validateString(body.description, 500) || null,
+      validateString(body.app_id, 50) || null,
+      body.config_json ? JSON.stringify(typeof body.config_json === 'string' ? JSON.parse(body.config_json) : body.config_json) : null,
+      body.capabilities_json ? JSON.stringify(typeof body.capabilities_json === 'string' ? JSON.parse(body.capabilities_json) : body.capabilities_json) : null,
+      model, budget,
+      validateString(body.system_prompt, 10000) || null,
+      body.skills_json ? JSON.stringify(body.skills_json) : null,
+    ).run();
+    await logAudit(env, id, null, 'agent-created', `Agent ${name} (${type}) created`);
+    return json({ ok: true, id });
+  }
+
+  // GET /api/marketing/dashboard — marketing command centre aggregate
+  if (path === '/api/marketing/dashboard' && request.method === 'GET') {
+    const MKT_AGENTS = ['marketer', 'marketing-business', 'marketing-content', 'marketing-social', 'marketing-seo', 'mkt-researcher', 'mkt-analytics', 'mkt-reviewer', 'outreach', 'supervisor-marketing'];
+    const mktList = MKT_AGENTS.map(a => `'${a}'`).join(',');
+
+    // Approvals pending
+    const approvals = await env.DB.prepare(`
+      SELECT COUNT(*) as count FROM agent_tasks
+      WHERE agent_id IN (${mktList}) AND status = 'needs-approval'
+    `).first<{ count: number }>();
+
+    // Content in pipeline (queued or claimed marketing content tasks)
+    const contentPipeline = await env.DB.prepare(`
+      SELECT id, agent_id, type, status, title, output_json, created_at, completed_at FROM agent_tasks
+      WHERE agent_id IN (${mktList})
+        AND type IN ('content-plan','blog-write','blog-seo','content-review','social-create')
+        AND status IN ('queued','claimed','running','completed','needs-approval')
+        AND created_at > datetime('now', '-14 days')
+      ORDER BY created_at DESC LIMIT 30
+    `).all();
+
+    // Lead tasks
+    const leadTasks = await env.DB.prepare(`
+      SELECT id, agent_id, type, status, title, input_json, output_json, created_at, completed_at FROM agent_tasks
+      WHERE type IN ('lead-research','lead-response')
+        AND status IN ('queued','claimed','running','completed','needs-approval')
+        AND created_at > datetime('now', '-14 days')
+      ORDER BY created_at DESC LIMIT 20
+    `).all();
+
+    // Recent Bark leads
+    const barkLeads = await env.DB.prepare(`
+      SELECT id, first_name, location, business_type, bark_category, status, confidence, matched_name, matched_company, created_at
+      FROM bark_leads WHERE created_at > datetime('now', '-30 days')
+      ORDER BY created_at DESC LIMIT 10
+    `).all();
+
+    // Recent completed marketing tasks (activity feed)
+    const recentActivity = await env.DB.prepare(`
+      SELECT id, agent_id, type, title, status, completed_at, created_at FROM agent_tasks
+      WHERE agent_id IN (${mktList})
+        AND status IN ('completed','failed')
+        AND completed_at > datetime('now', '-48 hours')
+      ORDER BY completed_at DESC LIMIT 15
+    `).all();
+
+    // Social posts this week
+    const socialThisWeek = await env.DB.prepare(`
+      SELECT COUNT(*) as count FROM agent_tasks
+      WHERE type = 'social-create' AND status = 'completed'
+        AND completed_at > datetime('now', '-7 days')
+    `).first<{ count: number }>();
+
+    // Group content pipeline by stage
+    const tasks = (contentPipeline.results || []) as any[];
+    const pipeline = {
+      drafting: tasks.filter(t => t.type === 'blog-write' && t.status !== 'completed'),
+      seo: tasks.filter(t => t.type === 'blog-seo' && t.status !== 'completed'),
+      review: tasks.filter(t => t.type === 'content-review' && t.status !== 'completed'),
+      approved: tasks.filter(t => t.status === 'completed' && t.type !== 'social-create'),
+      social: tasks.filter(t => t.type === 'social-create'),
+    };
+
+    // Next action (first pending approval or first queued high-priority task)
+    const nextApproval = await env.DB.prepare(`
+      SELECT id, title, type FROM agent_tasks
+      WHERE agent_id IN (${mktList}) AND status = 'needs-approval'
+      ORDER BY priority ASC, created_at ASC LIMIT 1
+    `).first<{ id: number; title: string; type: string }>();
+
+    return json({
+      stats: {
+        leads_awaiting: ((leadTasks.results || []) as any[]).filter(t => t.status !== 'completed').length,
+        content_in_pipeline: pipeline.drafting.length + pipeline.seo.length + pipeline.review.length,
+        social_posts_this_week: socialThisWeek?.count || 0,
+        approvals_pending: approvals?.count || 0,
+      },
+      leads: barkLeads.results || [],
+      lead_tasks: leadTasks.results || [],
+      content_pipeline: pipeline,
+      recent_activity: recentActivity.results || [],
+      next_action: nextApproval ? { type: nextApproval.type, title: nextApproval.title, task_id: nextApproval.id } : null,
+    });
+  }
+
   // GET /api/agents/dashboard — aggregate stats
   if (path === '/api/agents/dashboard' && request.method === 'GET') {
     const agents = await env.DB.prepare('SELECT * FROM agents ORDER BY type, name').all();
@@ -86,7 +207,7 @@ export async function handleAgentRoutes(
   const agentMatch = path.match(/^\/api\/agents\/([a-z0-9-]+)$/);
   if (agentMatch && request.method === 'GET' && !path.includes('/tasks') && !path.includes('/budget')) {
     const id = agentMatch[1];
-    if (['dashboard', 'tasks', 'messages', 'bulletins', 'audit', 'claims', 'policies'].includes(id)) {
+    if (['dashboard', 'tasks', 'messages', 'bulletins', 'audit', 'claims', 'policies', 'skills', 'templates', 'routing-rules'].includes(id)) {
       // Fall through to other routes
     } else {
       const agent = await env.DB.prepare('SELECT * FROM agents WHERE id = ?').bind(id).first();
@@ -228,7 +349,7 @@ export async function handleAgentRoutes(
     const recentCount = await env.DB.prepare(
       "SELECT COUNT(*) as c FROM agent_tasks WHERE agent_id = ? AND created_at > datetime('now', '-1 hour')"
     ).bind(agentId).first<{ c: number }>();
-    if ((recentCount?.c || 0) >= 100) {
+    if ((recentCount?.c || 0) >= 500) {
       return json({ error: 'Rate limit exceeded' }, 429);
     }
 
@@ -565,6 +686,141 @@ export async function handleAgentRoutes(
       "UPDATE agent_file_claims SET released_at = datetime('now') WHERE agent_id = ? AND task_id = ?"
     ).bind(body.agent_id, body.task_id).run();
     return json({ ok: true });
+  }
+
+  // ─── Feedback ────────────────────────────────────────────────
+
+  // POST /api/agents/tasks/:id/feedback — rate and provide feedback
+  const feedbackMatch = path.match(/^\/api\/agents\/tasks\/(\d+)\/feedback$/);
+  if (feedbackMatch && request.method === 'POST') {
+    const taskId = parseInt(feedbackMatch[1]);
+    const task = await env.DB.prepare('SELECT * FROM agent_tasks WHERE id = ?').bind(taskId).first<any>();
+    if (!task) return json({ error: 'Not found' }, 404);
+
+    const body = await request.json() as any;
+    const rating = validateInt(body.rating, 1, 5);
+    const feedback = validateString(body.feedback, 2000);
+
+    if (rating) {
+      await env.DB.prepare('UPDATE agent_tasks SET quality_rating = ? WHERE id = ?').bind(rating, taskId).run();
+    }
+
+    await logAudit(env, task.agent_id, taskId, 'task-feedback',
+      `Rating: ${rating || 'none'} — ${feedback || 'no comment'}`);
+
+    return json({ ok: true });
+  }
+
+  // ─── Execute (Draft System) ───────────────────────────────────
+
+  // POST /api/agents/tasks/:id/execute — execute an approved draft
+  const executeMatch = path.match(/^\/api\/agents\/tasks\/(\d+)\/execute$/);
+  if (executeMatch && request.method === 'POST') {
+    const taskId = parseInt(executeMatch[1]);
+    const task = await env.DB.prepare('SELECT * FROM agent_tasks WHERE id = ?').bind(taskId).first<any>();
+    if (!task) return json({ error: 'Not found' }, 404);
+    if (task.status !== 'completed') return json({ error: 'Task must be completed before execution' }, 400);
+
+    let draft: any;
+    try { draft = JSON.parse(task.output_json || '{}'); } catch { return json({ error: 'Invalid draft data' }, 400); }
+
+    const draftType = draft.type || draft.summary?.type;
+    let result = { executed: false, detail: 'Unknown draft type' };
+
+    // Draft types would be executed here (Gmail send, GitHub PR, etc.)
+    // For now, mark as executed and log
+    result = { executed: true, detail: `Draft type "${draftType || 'general'}" marked as executed. Manual action may be needed.` };
+
+    await env.DB.prepare(
+      "UPDATE agent_tasks SET output_json = ? WHERE id = ?"
+    ).bind(JSON.stringify({ ...draft, _executed: true, _executed_at: new Date().toISOString() }), taskId).run();
+    await logAudit(env, task.agent_id, taskId, 'task-executed', result.detail);
+    return json({ ok: true, ...result });
+  }
+
+  // ─── Natural Language Task Decomposition ─────────────────────
+
+  // POST /api/agents/tasks/natural — decompose natural language into tasks
+  if (path === '/api/agents/tasks/natural' && request.method === 'POST') {
+    const body = await request.json() as any;
+    const prompt = validateString(body.prompt, 500);
+    if (!prompt) return json({ error: 'prompt is required (max 500 chars)' }, 400);
+
+    // Get agent list for context
+    const agents = await env.DB.prepare("SELECT id, type, name FROM agents WHERE status != 'disabled' ORDER BY type, name").all();
+    const agentList = (agents.results as any[]).map(a => `${a.id} (${a.type}: ${a.name})`).join(', ');
+
+    // Use Anthropic API to decompose (Haiku for cost efficiency)
+    const apiKey = env.ANTHROPIC_API_KEY || '';
+    if (!apiKey) {
+      // Fallback: create a single task for supervisor
+      const result = await env.DB.prepare(`
+        INSERT INTO agent_tasks (agent_id, type, priority, title, description, created_by)
+        VALUES ('supervisor-apps', 'general', 5, ?, ?, 'natural-language')
+      `).bind(prompt.substring(0, 200), prompt).run();
+      return json({ ok: true, tasks: [{ id: result.meta.last_row_id, title: prompt }], fallback: true });
+    }
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 1024,
+          messages: [{ role: 'user', content: `Given these agents: ${agentList}\n\nDecompose this request into 1-5 specific tasks:\n"${prompt}"\n\nReturn ONLY a JSON array: [{"agent_id":"...","type":"...","priority":1-10,"title":"...","description":"..."}]\nUse existing agent IDs. Types: health-check, code-review, bug-fix, audit, general, content, research.` }],
+        }),
+      });
+      const data = await response.json() as any;
+      const text = data.content?.[0]?.text || '[]';
+      const jsonMatch = text.match(/\[[\s\S]*\]/);
+      const tasks = JSON.parse(jsonMatch?.[0] || '[]');
+
+      const created = [];
+      for (const t of tasks.slice(0, 5)) {
+        const agentId = validateString(t.agent_id, 50) || 'supervisor-apps';
+        const exists = await env.DB.prepare('SELECT id FROM agents WHERE id = ?').bind(agentId).first();
+        if (!exists) continue;
+        const result = await env.DB.prepare(`
+          INSERT INTO agent_tasks (agent_id, type, priority, title, description, created_by)
+          VALUES (?, ?, ?, ?, ?, 'natural-language')
+        `).bind(agentId, t.type || 'general', t.priority || 5, t.title || prompt, t.description || '').run();
+        created.push({ id: result.meta.last_row_id, agent_id: agentId, title: t.title });
+      }
+      await logAudit(env, 'system', null, 'natural-language', `"${prompt}" → ${created.length} tasks`);
+      return json({ ok: true, tasks: created });
+    } catch (e: any) {
+      return json({ error: 'Decomposition failed: ' + e.message }, 500);
+    }
+  }
+
+  // ─── Event Routing Rules ────────────────────────────────────
+
+  // GET /api/agents/routing-rules — list routing rules
+  if (path === '/api/agents/routing-rules' && request.method === 'GET') {
+    const rows = await env.DB.prepare('SELECT * FROM event_routing_rules ORDER BY source, task_priority').all();
+    return json({ rules: rows.results });
+  }
+
+  // ─── Skills ───────────────────────────────────────────────────
+
+  // GET /api/agents/skills — list all skills
+  if (path === '/api/agents/skills' && request.method === 'GET') {
+    const category = url.searchParams.get('category');
+    let query = 'SELECT * FROM agent_skills WHERE 1=1';
+    const params: any[] = [];
+    if (category) { query += ' AND category = ?'; params.push(category); }
+    query += ' ORDER BY category, name';
+    const rows = await env.DB.prepare(query).bind(...params).all();
+    return json({ skills: rows.results });
+  }
+
+  // ─── Task Templates ─────────────────────────────────────────
+
+  // GET /api/agents/templates — list task templates
+  if (path === '/api/agents/templates' && request.method === 'GET') {
+    const rows = await env.DB.prepare('SELECT * FROM agent_task_templates ORDER BY name').all();
+    return json({ templates: rows.results });
   }
 
   // ─── Policies ────────────────────────────────────────────────

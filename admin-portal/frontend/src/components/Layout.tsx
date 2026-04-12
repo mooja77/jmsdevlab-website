@@ -22,6 +22,9 @@ const navItems: { to: string; label: string; icon: IconName; shortcut: string }[
   { to: '/utm', label: 'UTM Builder', icon: 'visitors', shortcut: 'g t' },
   { to: '/chat', label: 'Chat', icon: 'leads', shortcut: 'g h' },
   { to: '/agents', label: 'Agents', icon: 'apps', shortcut: 'g g' },
+  { to: '/marketing', label: 'Marketing', icon: 'fire', shortcut: 'g k' },
+  { to: '/marketing/approvals', label: 'Approvals', icon: 'check', shortcut: 'g j' },
+  { to: '/marketing/content', label: 'Content', icon: 'trophy', shortcut: 'g w' },
   { to: '/status', label: 'Status', icon: 'alert', shortcut: 'g z' },
   { to: '/settings', label: 'Settings', icon: 'settings', shortcut: 'g s' },
 ];
